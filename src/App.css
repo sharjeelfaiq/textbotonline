@@ -1,0 +1,28 @@
+body {
+  transition: 0.5s ease-out;
+}
+.form-check {
+  position: absolute;
+  top: 20px;
+  right:20px;
+  z-index: 1;
+}
+.form-check-input {
+  cursor: pointer;
+}
+.routes-div{
+  margin-bottom: 100px;
+}
+@media screen and (max-width: 991px) {
+  .form-check-label {
+    display: none;
+  }
+  .form-check {
+    right: 70px;
+  }
+}
+@media screen and (max-width: 285px) {
+  /* .form-check {
+    right: 0px;
+  } */
+}

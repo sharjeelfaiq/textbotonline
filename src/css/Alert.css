@@ -1,0 +1,9 @@
+.alert-div{
+    height: 45px;
+}
+@media screen and (max-width: 280px) {
+    .alert-div{
+        height: 65px;
+        font-size: 0.75rem;
+    }
+}

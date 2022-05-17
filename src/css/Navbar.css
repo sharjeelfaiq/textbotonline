@@ -1,0 +1,7 @@
+.navbar{
+  transition: 0.5s ease-out;
+}
+.navbar-title{
+    margin-top: 3px;
+    margin-bottom: 0;
+}
