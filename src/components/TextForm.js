@@ -73,7 +73,7 @@ const TextForm = (props) => {
   const removeAllSpaces = () => {
     const newText = text.replace(/\s+/g, "");
     setText(newText);
-    props.showAlert("Extra spaces removed!", "success");
+    props.showAlert("All spaces removed!", "success");
   };
   // removeAllSpaces() function - ENDS
   // removeAllSymbols() function - STARTS
@@ -82,6 +82,7 @@ const TextForm = (props) => {
     const letters = text.match(regex);
     const newText = letters.join("");
     setText(newText);
+    props.showAlert("All symbols removed!", "success");
   };
   // removeAllSymbols() function - ENDS
   // duplicate() function - STARTS
