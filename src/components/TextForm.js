@@ -311,28 +311,28 @@ const TextForm = (props) => {
   const urlEncoded = () => {
     const newText = encodeURI(text);
     setText(newText);
-    props.showAlert("Rotate 13 decoder applied", "success");
+    props.showAlert("Encoded to URL", "success");
   };
   // urlEncoded() function - ENDS
   // urlDecoded() function - STARTS
   const urlDecoded = () => {
     const newText = decodeURI(text);
     setText(newText);
-    props.showAlert("Rotate 13 decoder applied", "success");
+    props.showAlert("Decoded the URL", "success");
   };
   // urlDecoded() function - ENDS
   // base64Encode() function - STARTS
   const base64Encode = () => {
     const newText = btoa(text);
     setText(newText);
-    props.showAlert("Rotate 13 decoder applied", "success");
+    props.showAlert("Base64 encoded!", "success");
   };
   // base64Encode() function - ENDS
   // base64Decode() function - STARTS
   const base64Decode = () => {
     const newText = atob(text);
     setText(newText);
-    props.showAlert("Rotate 13 decoder applied", "success");
+    props.showAlert("Base64 decoded!", "success");
   };
   // base64Decode() function - ENDS
   // unixToDate() function - STARTS
@@ -380,7 +380,7 @@ const TextForm = (props) => {
     const nums = text.match(regex);
     const newText = nums.join("");
     setText(newText);
-    props.showAlert("Text Extracted!", "success");
+    props.showAlert("Numbers Extracted!", "success");
   };
   // extractNumbers() function - ENDS
   // addPrefix() function - STARTS
@@ -390,7 +390,7 @@ const TextForm = (props) => {
     );
     const newText = prefix.concat(text);
     setText(newText);
-    props.showAlert("Text Extracted!", "success");
+    props.showAlert("Prefix added!", "success");
   };
   // addPrefix() function - ENDS
   // addSuffix() function - STARTS
@@ -400,7 +400,7 @@ const TextForm = (props) => {
     );
     const newText = text.concat(suffix);
     setText(newText);
-    props.showAlert("Text Extracted!", "success");
+    props.showAlert("Suffix added!", "success");
   };
   // addSuffix() function - ENDS
   // sortLinesSENS() function - STARTS
@@ -580,7 +580,7 @@ const TextForm = (props) => {
       c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()
     );
     setText(newText);
-    props.showAlert("Converted to 'Inverse Case'!", "success");
+    props.showAlert("Converted to 'Invert Case'!", "success");
   };
   // invertCase() function - ENDS
   // sentenceCase() function - STARTS
@@ -760,7 +760,7 @@ const TextForm = (props) => {
 
     setText(newText);
     setGeneratedText(newText);
-    props.showAlert("Random Words generated!", "success");
+    props.showAlert("Random Characters generated!", "success");
   };
   // getRandomCharacterss() function - ENDS
   // getRandomWords() function - STARTS
