@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import About from "./About";
 import _ from "lodash";
 import { Dropdown } from "react-bootstrap";
 import wordsFrequency from "words-frequency";
-import { frequencyOfArray, frequencyOfString } from "character-frequency";
+import { frequencyOfString } from "character-frequency";
 import { generateSlug } from "random-word-slugs";
 import randomWords from "random-words";
 import "bootstrap-icons/font/bootstrap-icons.css";
