@@ -663,11 +663,12 @@ const TextForm = (props) => {
   // pascalCase() function - ENDS
   // kebabCase() function - STARTS
   const kebabCase = () => {
-    const kebabCase = string => string
+    const kebabCase = (string) =>
+      string
         .replace(/([a-z])([A-Z])/g, "$1-$2")
-        .replace(/[\s_]+/g, '-')
+        .replace(/[\s_]+/g, "-")
         .toLowerCase();
-  
+
     const newText = kebabCase(text);
     setText(newText);
     props.showAlert("Converted to 'Kebab Case'!", "success");
@@ -1427,10 +1428,10 @@ const TextForm = (props) => {
           {/* Generate Dropdown - ENDS */}
         </div>
         {/* Top Buttons - END */}
-        <div className="d-flex">
+        <div className="d-flex align-items-center mt-1 mb-3">
           {/* Input Textarea - STARTS */}
           <textarea
-            className="form-control mt-1 mb-3"
+            className="form-control"
             id="floatingTextarea output"
             style={{
               width: "100%",
@@ -1445,9 +1446,12 @@ const TextForm = (props) => {
             required
           ></textarea>
           {/* Input Textarea - ENDS */}
+          {/* Textarea Dividing Div - STARTS */}
+          <div className="mx-1"></div>
+          {/* Textarea Dividing Div - ENDS */}
           {/* Output Textarea - STARTS */}
           <textarea
-            className="form-control mt-1 mb-3"
+            className="form-control"
             id="floatingTextarea output"
             style={{
               width: "100%",
