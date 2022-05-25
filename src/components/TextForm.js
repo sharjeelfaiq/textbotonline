@@ -1531,14 +1531,14 @@ const TextForm = (props) => {
           id="offcanvasBottom"
           aria-labelledby="offcanvasBottomLabel"
           style={{
-            backgroundColor: `${props.mode === "dark" ? "#212529" : "white"}`,
+            backgroundColor: `${props.mode === "dark" ? "#212529" : "#F8F9FA"}`,
             color: `${props.mode === "dark" ? "white" : "black"}`,
           }}
         >
           <div
             className="offcanvas-header d-flex justify-content-center"
             style={{
-              backgroundColor: `${props.mode === "dark" ? "#212529" : "white"}`,
+              backgroundColor: `${props.mode === "dark" ? "#212529" : "#F8F9FA"}`,
               color: `${props.mode === "dark" ? "white" : "black"}`,
             }}
           >
@@ -1548,7 +1548,7 @@ const TextForm = (props) => {
               <thead>
                 <tr>
                   <th scope="col" colSpan="3" className="text-center">
-                    YOUR TEXT SUMMARY
+                    TEXT SUMMARY TABLE
                   </th>
                 </tr>
               </thead>
