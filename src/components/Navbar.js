@@ -10,10 +10,18 @@ function Navbar(props) {
       >
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
-            <h4 className="navbar-title">Textbotonline</h4>
+            <h4
+              className="navbar-title"
+              style={{
+                fontFamily: "cursive",
+                textShadow: "0px 2px 2px rgba(0, 0, 0, 0.4)"
+              }}
+            >
+              TB<small class="text-muted">O</small>
+            </h4>
           </a>
           {/* <div className="collapse navbar-collapse" id="navbarSupportedContent"> */}
-            {/* <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          {/* <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/">
                   Text
@@ -25,7 +33,7 @@ function Navbar(props) {
                 </Link>
               </li>
             </ul> */}
-            {/* <form className="d-flex">
+          {/* <form className="d-flex">
               <input
                 className="form-control me-2"
                 type="search"
@@ -37,7 +45,7 @@ function Navbar(props) {
               </button>
             </form> */}
           {/* </div> */}
-                {/* <button
+          {/* <button
                   className="navbar-toggler"
                   type="button"
                   data-bs-toggle="collapse"
