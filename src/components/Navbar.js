@@ -9,7 +9,7 @@ function Navbar(props) {
         className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
       >
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
+          <a className="navbar-brand mx-2" href="/">
             <h4
               className="navbar-title"
               style={{
@@ -17,7 +17,7 @@ function Navbar(props) {
                 textShadow: "0px 2px 2px rgba(0, 0, 0, 0.4)"
               }}
             >
-              TB<small class="text-muted">O</small>
+              TB<small className="text-muted">O</small>
             </h4>
           </a>
           {/* <div className="collapse navbar-collapse" id="navbarSupportedContent"> */}
