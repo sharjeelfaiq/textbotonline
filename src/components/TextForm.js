@@ -11,11 +11,34 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "../css/TextForm.css";
 
 const TextForm = (props) => {
-  const [text, setText] = useState(""); // Handles the state of text inside textarea
-  const [generatedText, setGeneratedText] = useState(""); // Handles the state of text inside textarea
-  const [alignment, setAlignment] = useState(""); // Handles the state of alignment of text inside output textarea
+  const [text, setText] = useState(""); // Handles the text inside textarea
+  const [generatedText, setGeneratedText] = useState(""); // Handles the text inside textarea
+  const [inputDarkBackground, setInputDarkBackground] = useState("#242526"); // Handles the dark background color of the intput textarea
+  const [outputDarkBackground, setOutputDarkBackground] = useState("#242526"); // Handles the dark background color of the output textarea
+  const [inputLightBackground, setInputLightBackground] = useState("white"); // Handles the dark background color of the intput textarea
+  const [outputLightBackground, setOutputLightBackground] = useState("white"); // Handles the dark background color of the output textarea
 
   /* MENU DROPDOWN STARTS */
+  // uploadTextFile() function - STARTS
+  const uploadTextFile = () => {
+    let files = document.querySelector('input[type="file"]').files;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const lines = reader.result;
+      setText(lines);
+      setGeneratedText(lines);
+    };
+    setInputLightBackground("#8BE48B");
+    setTimeout(() => {
+      setInputLightBackground("white");
+    }, 280);
+    setInputDarkBackground("#8BE48B");
+    setTimeout(() => {
+      setInputDarkBackground("#242526");
+    }, 280);
+    reader.readAsText(files[0]);
+  };
+  // uploadTextFile() function - ENDS
   // downloadTxtFile() function - STARTS
   const downloadTxtFile = () => {
     const element = document.createElement("a");
@@ -26,20 +49,16 @@ const TextForm = (props) => {
     element.download = "myFile.txt";
     document.body.appendChild(element);
     element.click();
+    setOutputLightBackground("#0DCAF0");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    setOutputDarkBackground("#0DCAF0");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
   };
   // downloadTxtFile() function - ENDS
-  // uploadTextFile() function - STARTS
-  const uploadTextFile = () => {
-    let files = document.querySelector('input[type="file"]').files;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const lines = reader.result;
-      setText(lines);
-      setGeneratedText(lines);
-    };
-    reader.readAsText(files[0]);
-  };
-  // uploadTextFile() function - ENDS
   /* MENU DROPDOWN ENDS */
 
   /* EDIT DROPDOWN STARTS */
@@ -50,6 +69,14 @@ const TextForm = (props) => {
       .filter(Boolean)
       .join("\n");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Text is splitted!.", "success");
   };
   // splitText() function - ENDS
@@ -57,6 +84,14 @@ const TextForm = (props) => {
   const joinText = () => {
     const newText = text.replace(/\n/g, "");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Text is joined!.", "success");
   };
   // joinText() function - ENDS
@@ -67,6 +102,14 @@ const TextForm = (props) => {
       .replace(/^\s+|\s+$/g, "")
       .replace(/ +(\W)/g, "$1");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Extra spaces removed!", "success");
   };
   // removeExtraSpaces() function - ENDS
@@ -74,6 +117,14 @@ const TextForm = (props) => {
   const removeAllSpaces = () => {
     const newText = text.replace(/\s+/g, "");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("All spaces removed!", "success");
   };
   // removeAllSpaces() function - ENDS
@@ -83,6 +134,14 @@ const TextForm = (props) => {
     const letters = text.match(regex);
     const newText = letters.join("");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("All symbols removed!", "success");
   };
   // removeAllSymbols() function - ENDS
@@ -93,6 +152,14 @@ const TextForm = (props) => {
     );
     const newText = text.repeat(count + 1);
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Text duplicated!", "success");
   };
   // duplicate() function - ENDS
@@ -103,6 +170,14 @@ const TextForm = (props) => {
       .reverse()
       .join("");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Text Reversed!", "success");
   };
   // reverse() function - ENDS
@@ -113,6 +188,14 @@ const TextForm = (props) => {
       .replace(/ /g, "-")
       .replace(/[^\w-]+/g, "");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Text Slugified!", "success");
   };
   // slugify() function - ENDS
@@ -121,6 +204,14 @@ const TextForm = (props) => {
     const length = prompt("What length upto you want to truncate your text?");
     const newText = text.substring(0, length);
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Text Truncated!", "success");
   };
   // truncate() function - ENDS
@@ -128,6 +219,14 @@ const TextForm = (props) => {
   const paraToSingleLine = () => {
     const newText = text.replace(/\s+/g, " ");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Changed to one line text!", "success");
   };
   // alphabetize() function - STARTS
@@ -140,6 +239,14 @@ const TextForm = (props) => {
       .join(" ")
       .toString();
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Text Alphabetized", "success");
   };
   // alphabetize() function - ENDS
@@ -286,6 +393,14 @@ const TextForm = (props) => {
     };
     const newText = Z.generate(text);
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Zalgo affect applied", "success");
   };
   // zalgo() function - ENDS
@@ -295,6 +410,14 @@ const TextForm = (props) => {
     var b = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
     const newText = text.replace(/[a-z]/gi, (c) => b[a.indexOf(c)]);
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Rotate 13 decoder applied", "success");
   };
   // rot13Deg() function - ENDS
@@ -305,6 +428,14 @@ const TextForm = (props) => {
       .map((line, index) => `${index + 1}. ${line}`)
       .join("\n");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Line numbers added.", "success");
   };
   // addLineNum() function - ENDS
@@ -312,6 +443,14 @@ const TextForm = (props) => {
   const urlEncoded = () => {
     const newText = encodeURI(text);
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Encoded to URL", "success");
   };
   // urlEncoded() function - ENDS
@@ -319,6 +458,14 @@ const TextForm = (props) => {
   const urlDecoded = () => {
     const newText = decodeURI(text);
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Decoded the URL", "success");
   };
   // urlDecoded() function - ENDS
@@ -326,6 +473,14 @@ const TextForm = (props) => {
   const base64Encode = () => {
     const newText = btoa(text);
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Base64 encoded!", "success");
   };
   // base64Encode() function - ENDS
@@ -333,6 +488,14 @@ const TextForm = (props) => {
   const base64Decode = () => {
     const newText = atob(text);
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Base64 decoded!", "success");
   };
   // base64Decode() function - ENDS
@@ -342,6 +505,14 @@ const TextForm = (props) => {
     const date = new Date(unixTime * 1000);
     const newText = date.toLocaleDateString("en-US");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Converted from Unix Time to Date", "success");
   };
   // unixToDate() function - ENDS
@@ -355,6 +526,14 @@ const TextForm = (props) => {
     const newText =
       hours + " : " + minutes.substr(-2) + " : " + seconds.substr(-2);
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Converted from Unix Timestamp to Time", "success");
   };
   // unixToTime() function - ENDS
@@ -363,6 +542,14 @@ const TextForm = (props) => {
     const num = parseInt(text);
     const newText = num.toLocaleString();
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Number(s) Formated!", "success");
   };
   // formatNumbers() function - ENDS
@@ -372,6 +559,14 @@ const TextForm = (props) => {
     const letters = text.match(regex);
     const newText = letters.join("");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Text Extracted!", "success");
   };
   // extractText() function - ENDS
@@ -381,6 +576,14 @@ const TextForm = (props) => {
     const nums = text.match(regex);
     const newText = nums.join("");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Numbers Extracted!", "success");
   };
   // extractNumbers() function - ENDS
@@ -391,6 +594,14 @@ const TextForm = (props) => {
     );
     const newText = prefix.concat(text);
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Prefix added!", "success");
   };
   // addPrefix() function - ENDS
@@ -401,6 +612,14 @@ const TextForm = (props) => {
     );
     const newText = text.concat(suffix);
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Suffix added!", "success");
   };
   // addSuffix() function - ENDS
@@ -411,6 +630,14 @@ const TextForm = (props) => {
       .sort()
       .join("\n");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Lines Sorted!", "success");
   };
   // sortLinesSENS() function - ENDS
@@ -421,6 +648,14 @@ const TextForm = (props) => {
       .sort()
       .join("\n");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Lines Sorted!", "success");
   };
   // sortLinesINSENS() function - ENDS
@@ -432,6 +667,14 @@ const TextForm = (props) => {
       .reverse()
       .join("\n");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Lines Sorted in Reverse Order!", "success");
   };
   // sortLinesReverse() function - ENDS
@@ -443,6 +686,14 @@ const TextForm = (props) => {
       .reverse()
       .join("\n");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Lines Sorted in Reverse Order!", "success");
   };
   // sortLinesReverseINSENS() function - ENDS
@@ -508,6 +759,14 @@ const TextForm = (props) => {
     };
     const newText = intToRoman(Math.abs(Number(text)));
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert(
       "The entered decimal is converted to roman format!",
       "success"
@@ -532,6 +791,14 @@ const TextForm = (props) => {
       return sum;
     };
     setText(romanToInt(text.toUpperCase()).toString());
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert(
       "The entered roman number is converted to decimal!",
       "success"
@@ -545,6 +812,14 @@ const TextForm = (props) => {
   const upperCase = () => {
     const newText = text.toUpperCase();
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Converted to 'UPPERCASE'!", "success");
   };
   // upperCase() function - ENDS
@@ -552,6 +827,14 @@ const TextForm = (props) => {
   const lowerCase = () => {
     const newText = text.toLowerCase();
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Converted to 'lowercase'!", "success");
   };
   // lowerCase() function - ENDS
@@ -559,6 +842,14 @@ const TextForm = (props) => {
   const titleCase = () => {
     const newText = _.startCase(text);
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Converted to 'Title Case'!", "success");
   };
   // titleCase() function - ENDS
@@ -572,6 +863,14 @@ const TextForm = (props) => {
       })
       .join(" ");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Converted to 'Reverse Title Case'!", "success");
   };
   // reverseTitleCase() function - ENDS
@@ -581,6 +880,14 @@ const TextForm = (props) => {
       c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()
     );
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Converted to 'Invert Case'!", "success");
   };
   // invertCase() function - ENDS
@@ -592,12 +899,28 @@ const TextForm = (props) => {
         .replace(/(^\s*\w|[\.\!\?]\s*\w)/g, function(c) {
           return c.toUpperCase();
         });
+        setOutputDarkBackground("#CED4DA");
+        setTimeout(() => {
+          setOutputDarkBackground("#242526");
+        }, 280);
+        setOutputLightBackground("#CED4DA");
+        setTimeout(() => {
+          setOutputLightBackground("white");
+        }, 280);
       return newString;
     }
 
     function convertToSentenceCase() {
       var newText = firstLetterUpper(text);
       setText(newText);
+      setOutputDarkBackground("#CED4DA");
+      setTimeout(() => {
+        setOutputDarkBackground("#242526");
+      }, 280);
+      setOutputLightBackground("#CED4DA");
+      setTimeout(() => {
+        setOutputLightBackground("white");
+      }, 280);
       props.showAlert("Converted to 'Sentence Case'!", "success");
     }
     convertToSentenceCase();
@@ -613,6 +936,15 @@ const TextForm = (props) => {
       })
       .join(" ");
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    props.showAlert("Toggle cased text!", "success");
   };
   // toggleCase() function - ENDS
   // randomCase() function - STARTS
@@ -628,6 +960,14 @@ const TextForm = (props) => {
     }
     const newText = toggleCase(text);
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Converted to 'Random Case'!", "success");
   };
   // randomCase() function - ENDS
@@ -642,6 +982,14 @@ const TextForm = (props) => {
     }
     const newText = camelize(text);
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Converted to 'Cammal Case'!", "success");
   };
   // camelCase() function - ENDS
@@ -659,6 +1007,14 @@ const TextForm = (props) => {
     }
     const newText = toPascalCase(text);
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Converted to 'Pascal Case'!", "success");
   };
   // pascalCase() function - ENDS
@@ -672,6 +1028,14 @@ const TextForm = (props) => {
 
     const newText = kebabCase(text);
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Converted to 'Kebab Case'!", "success");
   };
   // kebabCase() function - ENDS
@@ -686,6 +1050,14 @@ const TextForm = (props) => {
     };
     const newText = toSnakeCase(text);
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert(
       "Converted to 'Cammal Case (Upper Camel Case or Pascal Camel Case)'!",
       "success"
@@ -699,6 +1071,14 @@ const TextForm = (props) => {
       newText[i] = newText[i].toUpperCase();
     }
     setText(newText.join(""));
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Converted to 'Alternate Case'!", "success");
   };
   // alternateCase1() function - ENDS
@@ -709,6 +1089,14 @@ const TextForm = (props) => {
       newText[i] = newText[i].toLowerCase();
     }
     setText(newText.join(""));
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Converted to 'Alternate Case'!", "success");
   };
   // alternateCase2() function - ENDS
@@ -724,6 +1112,14 @@ const TextForm = (props) => {
       newText += `${JSON.stringify(key)} = ${JSON.stringify(value)}\n`;
     }
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Characters Frequency Generated From a String!", "success");
   };
   // charFreqStr() function - ENDS
@@ -735,6 +1131,14 @@ const TextForm = (props) => {
       newText += `${JSON.stringify(key)} = ${JSON.stringify(value)}\n`;
     }
     setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Words Frequency Generated!", "success");
   };
   // wordFreq() function - ENDS
@@ -745,6 +1149,22 @@ const TextForm = (props) => {
     );
     setText(newText);
     setGeneratedText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setInputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setInputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    setInputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setInputLightBackground("white");
+    }, 280);
     props.showAlert("Dummy Text Generated!", "success");
   };
   // getDummyText() function - ENDS
@@ -762,6 +1182,22 @@ const TextForm = (props) => {
 
     setText(newText);
     setGeneratedText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setInputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setInputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    setInputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setInputLightBackground("white");
+    }, 280);
     props.showAlert("Random Characters generated!", "success");
   };
   // getRandomCharacterss() function - ENDS
@@ -773,6 +1209,22 @@ const TextForm = (props) => {
     const newText = randomWords({ exactly: count, join: " " });
     setText(newText);
     setGeneratedText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setInputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setInputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    setInputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setInputLightBackground("white");
+    }, 280);
     props.showAlert("Random Words generated!", "success");
   };
   // getRandomWords() function - ENDS
@@ -784,6 +1236,22 @@ const TextForm = (props) => {
     const newText = generateSlug(count);
     setText(newText);
     setGeneratedText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setInputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setInputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    setInputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setInputLightBackground("white");
+    }, 280);
     props.showAlert("Random Words Slug generated!", "success");
   };
   // getRandomWordsSlug() function - ENDS
@@ -795,6 +1263,22 @@ const TextForm = (props) => {
     const newText = generateSlug(count, { format: "noun" });
     setText(newText);
     setGeneratedText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setInputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setInputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    setInputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setInputLightBackground("white");
+    }, 280);
     props.showAlert(
       "Random Nouns generated! You can join them to get all of them in a row.",
       "success"
@@ -809,6 +1293,22 @@ const TextForm = (props) => {
     const newText = generateSlug(count, { format: "adjective" });
     setText(newText);
     setGeneratedText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setInputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setInputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    setInputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setInputLightBackground("white");
+    }, 280);
     props.showAlert(
       "Random Adjectives generated! You can join them to get all of them in a row.",
       "success"
@@ -817,8 +1317,8 @@ const TextForm = (props) => {
   // getAdjectives() function - ENDS
   // getNumbers() function - STARTS
   const getNumbers = () => {
-    const startingNum = window.prompt("Enter the starting number:");
-    const endingNum = window.prompt("Enter the ending number:");
+    const startingNum = window.prompt("The STARTING Number must be SMALLER then the ENDING Number\nEnter the starting number:");
+    const endingNum = window.prompt("The ENDING Number must be GREATER then the STARTING Number\nEnter the ending number:");
     let newText = "";
     for (
       let numberSeries = startingNum;
@@ -828,6 +1328,14 @@ const TextForm = (props) => {
       newText += numberSeries.toString() + "\n";
     }
     setText(newText);
+    setInputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setInputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert("Entered series of numbers is generated!", "success");
   };
   // getNumbers() function - ENDS
@@ -847,6 +1355,14 @@ const TextForm = (props) => {
     };
     const newText = text.hashCode();
     setText(newText.toString());
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
     props.showAlert(
       "The hash code is generated from the given string!",
       "success"
@@ -868,6 +1384,22 @@ const TextForm = (props) => {
         const newText = randomQuote.quote + "\n" + randomQuote.author;
         setText(newText);
         setGeneratedText(newText);
+        setOutputDarkBackground("#CED4DA");
+        setTimeout(() => {
+          setOutputDarkBackground("#242526");
+        }, 280);
+        setInputDarkBackground("#CED4DA");
+        setTimeout(() => {
+          setInputDarkBackground("#242526");
+        }, 280);
+        setOutputLightBackground("#CED4DA");
+        setTimeout(() => {
+          setOutputLightBackground("white");
+        }, 280);
+        setInputLightBackground("#CED4DA");
+        setTimeout(() => {
+          setInputLightBackground("white");
+        }, 280);
         props.showAlert("Random Quote Fetched!", "success");
       });
   };
@@ -879,7 +1411,22 @@ const TextForm = (props) => {
   const clear = () => {
     setText("");
     setGeneratedText("");
-    setAlignment("left");
+    setOutputDarkBackground("#962B35");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 400);
+    setInputDarkBackground("#962B35");
+    setTimeout(() => {
+      setInputDarkBackground("#242526");
+    }, 400);
+    setOutputLightBackground("#962B35");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    setInputLightBackground("#962B35");
+    setTimeout(() => {
+      setInputLightBackground("white");
+    }, 280);
     props.showAlert("Cleared!.", "success");
   };
   // clear() function - ENDS
@@ -909,9 +1456,6 @@ const TextForm = (props) => {
   const onTextChange = (e) => {
     setText(e.target.value);
     setGeneratedText(e.target.value);
-    if (text === "") {
-      setAlignment("left");
-    }
   };
   // onTextChange() function - ENDS
   return (
@@ -1451,7 +1995,9 @@ const TextForm = (props) => {
             id="floatingTextarea output"
             style={{
               width: "100%",
-              backgroundColor: `${props.mode === "dark" ? "#242526" : "white"}`,
+              backgroundColor: `${
+                props.mode === "dark" ? inputDarkBackground : inputLightBackground
+              }`,
               color: `${props.mode === "dark" ? "white" : "black"}`,
               textAlign: "left",
             }}
@@ -1471,9 +2017,10 @@ const TextForm = (props) => {
             id="floatingTextarea output"
             style={{
               width: "100%",
-              backgroundColor: `${props.mode === "dark" ? "#242526" : "white"}`,
+              backgroundColor: `${
+                props.mode === "dark" ? outputDarkBackground : outputLightBackground
+              }`,
               color: `${props.mode === "dark" ? "white" : "black"}`,
-              textAlign: text ? alignment : "left",
             }}
             value={text.length === 0 ? "Nothing to preview!" : text}
             readOnly
@@ -1485,14 +2032,20 @@ const TextForm = (props) => {
         {/* Bottom Buttons Section - START */}
         <div className="d-flex justify-content-between">
           {/* Clear Text Button - STARTS */}
-          <button
+          <motion.button
+            whileTap={{
+              scale: 0,
+            }}
             className="btn btn-danger mx-1 btn-sm bottom-btns rounded"
             onClick={clear}
             disabled={text.length === 0}
           >
             Clear <i className="bi bi-x-lg bottom-btns-icons"></i>
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileTap={{
+              scale: 0,
+            }}
             className={`btn btn-${
               text.length === 0 ? "secondary" : "primary"
             } mx-1 btn-sm bottom-btns rounded`}
@@ -1501,7 +2054,7 @@ const TextForm = (props) => {
             disabled={text.length === 0}
           >
             Save <i className="bi bi-download bottom-btns-icons" />
-          </button>
+          </motion.button>
           {/* Clear Text Button - ENDS */}
           {/* <button
               className="btn btn-secondary mx-1 btn-sm bottom-btns rounded"

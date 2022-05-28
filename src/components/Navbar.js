@@ -14,10 +14,10 @@ function Navbar(props) {
               className="navbar-title"
               style={{
                 fontFamily: "cursive",
-                textShadow: "0px 2px 2px rgba(0, 0, 0, 0.4)"
+                textShadow: "0px 2px 2px rgba(0, 0, 0, 0.4)",
               }}
             >
-              TB<small className="text-muted">O</small>
+              TBO
             </h4>
           </a>
           {/* <div className="collapse navbar-collapse" id="navbarSupportedContent"> */}
