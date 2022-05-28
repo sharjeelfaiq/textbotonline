@@ -85,11 +85,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -104,11 +99,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -123,11 +113,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -142,11 +127,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -161,11 +141,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -180,11 +155,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -199,11 +169,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -218,11 +183,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -237,11 +197,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -256,11 +211,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -275,11 +225,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -294,11 +239,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -314,11 +254,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -333,11 +268,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -352,11 +282,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -371,11 +296,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -390,11 +310,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -409,11 +324,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -429,11 +339,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -448,11 +353,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -467,11 +367,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -486,11 +381,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -509,11 +399,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -532,11 +417,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -555,11 +435,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -578,11 +453,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -602,11 +472,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -626,11 +491,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -646,11 +506,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -703,11 +558,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -723,11 +573,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -743,11 +588,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -762,11 +602,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -781,11 +616,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -801,11 +631,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -820,11 +645,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -840,11 +660,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -860,11 +675,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -881,11 +691,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -900,11 +705,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -919,11 +719,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -940,11 +735,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -960,11 +750,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1017,11 +802,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1036,11 +816,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1055,11 +830,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1074,11 +844,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1092,11 +857,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1111,11 +871,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1130,11 +885,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1149,11 +899,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1168,11 +913,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1187,11 +927,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1206,11 +941,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1225,11 +955,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1281,11 +1006,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1297,11 +1017,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1313,11 +1028,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1329,11 +1039,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1345,11 +1050,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1361,11 +1061,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1377,11 +1072,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1395,11 +1085,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
@@ -1413,11 +1098,6 @@ function About(props) {
                     transition: {
                       duration: 0.2,
                     },
-                    zIndex: 1,
-                    backgroundColor: `${
-                      props.mode === "dark" ? "#242526" : "white"
-                    }`,
-                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
                   }}
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
