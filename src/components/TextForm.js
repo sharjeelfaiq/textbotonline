@@ -916,7 +916,10 @@ const TextForm = (props) => {
   // onTextChange() function - ENDS
   return (
     <>
-      <motion.div
+      <motion.h1
+        className={`mt-3 text-center text-${
+          props.mode === "light" ? "dark" : "light"
+        }`}
         initial="hidden"
         animate="visible"
         variants={{
@@ -928,21 +931,15 @@ const TextForm = (props) => {
             scale: 1,
             opacity: 1,
             transition: {
-              delay: 0.3,
+              delay: 0.4,
             },
           },
         }}
       >
-        <h1
-          className={`mt-3 text-center text-${
-            props.mode === "light" ? "dark" : "light"
-          }`}
-        >
-          <span className="text-uppercase font-monospace">
-            textbot<span className="text-info">online</span>
-          </span>
-        </h1>
-      </motion.div>
+        <span className="text-uppercase font-monospace">
+          textbot<span className="text-info">online</span>
+        </span>
+      </motion.h1>
       <small>
         <p
           className={`text-center text-${
@@ -1448,52 +1445,40 @@ const TextForm = (props) => {
         </div>
         {/* Top Buttons - END */}
         <div className="d-flex align-items-center mt-1 mb-3">
-          <div style={{ width: "100%" }}>
-            {/* Input Textarea - STARTS */}
-            <textarea
-              className="form-control"
-              id="floatingTextarea output"
-              style={{
-                width: "100%",
-                backgroundColor: `${
-                  props.mode === "dark" ? "#242526" : "white"
-                }`,
-                color: `${props.mode === "dark" ? "white" : "black"}`,
-                textAlign: "left",
-              }}
-              onChange={onTextChange}
-              value={generatedText}
-              placeholder="Enter text here."
-              rows={12}
-              required
-            ></textarea>
-          </div>
+          {/* Input Textarea - STARTS */}
+          <textarea
+            className="form-control"
+            id="floatingTextarea output"
+            style={{
+              width: "100%",
+              backgroundColor: `${props.mode === "dark" ? "#242526" : "white"}`,
+              color: `${props.mode === "dark" ? "white" : "black"}`,
+              textAlign: "left",
+            }}
+            onChange={onTextChange}
+            value={generatedText}
+            placeholder="Enter text here."
+            rows={12}
+            required
+          ></textarea>
           {/* Input Textarea - ENDS */}
           {/* Textarea Dividing Div - STARTS */}
           <div className="mx-1"></div>
           {/* Textarea Dividing Div - ENDS */}
           {/* Output Textarea - STARTS */}
-          <div style={{ width: "100%" }}>
-            {/* <motion.div> */}
-            <motion.div>
-              <textarea
-                className="form-control"
-                id="floatingTextarea output"
-                style={{
-                  width: "100%",
-                  backgroundColor: `${
-                    props.mode === "dark" ? "#242526" : "white"
-                  }`,
-                  color: `${props.mode === "dark" ? "white" : "black"}`,
-                  textAlign: text ? alignment : "left",
-                }}
-                value={text.length === 0 ? "Nothing to preview!" : text}
-                readOnly
-                rows={12}
-              ></textarea>
-            </motion.div>
-            {/* </motion.div> */}
-          </div>
+          <textarea
+            className="form-control"
+            id="floatingTextarea output"
+            style={{
+              width: "100%",
+              backgroundColor: `${props.mode === "dark" ? "#242526" : "white"}`,
+              color: `${props.mode === "dark" ? "white" : "black"}`,
+              textAlign: text ? alignment : "left",
+            }}
+            value={text.length === 0 ? "Nothing to preview!" : text}
+            readOnly
+            rows={12}
+          ></textarea>
           {/* Output Textarea - ENDS */}
         </div>
 
