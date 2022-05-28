@@ -80,7 +80,7 @@
     font-size: 0.75rem;
   }
 }
-@media screen and (max-width: 280px) {
+@media screen and (max-width: 320px) {
   .top-btns {
     font-size: 0.6rem;
   }

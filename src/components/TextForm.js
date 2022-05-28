@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import About from "./About";
 import _ from "lodash";
 import { Dropdown } from "react-bootstrap";
 import wordsFrequency from "words-frequency";
-import { frequencyOfArray, frequencyOfString } from "character-frequency";
+import { frequencyOfString } from "character-frequency";
 import { generateSlug } from "random-word-slugs";
 import randomWords from "random-words";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -73,7 +73,7 @@ const TextForm = (props) => {
   const removeAllSpaces = () => {
     const newText = text.replace(/\s+/g, "");
     setText(newText);
-    props.showAlert("Extra spaces removed!", "success");
+    props.showAlert("All spaces removed!", "success");
   };
   // removeAllSpaces() function - ENDS
   // removeAllSymbols() function - STARTS
@@ -82,6 +82,7 @@ const TextForm = (props) => {
     const letters = text.match(regex);
     const newText = letters.join("");
     setText(newText);
+    props.showAlert("All symbols removed!", "success");
   };
   // removeAllSymbols() function - ENDS
   // duplicate() function - STARTS
@@ -310,28 +311,28 @@ const TextForm = (props) => {
   const urlEncoded = () => {
     const newText = encodeURI(text);
     setText(newText);
-    props.showAlert("Rotate 13 decoder applied", "success");
+    props.showAlert("Encoded to URL", "success");
   };
   // urlEncoded() function - ENDS
   // urlDecoded() function - STARTS
   const urlDecoded = () => {
     const newText = decodeURI(text);
     setText(newText);
-    props.showAlert("Rotate 13 decoder applied", "success");
+    props.showAlert("Decoded the URL", "success");
   };
   // urlDecoded() function - ENDS
   // base64Encode() function - STARTS
   const base64Encode = () => {
     const newText = btoa(text);
     setText(newText);
-    props.showAlert("Rotate 13 decoder applied", "success");
+    props.showAlert("Base64 encoded!", "success");
   };
   // base64Encode() function - ENDS
   // base64Decode() function - STARTS
   const base64Decode = () => {
     const newText = atob(text);
     setText(newText);
-    props.showAlert("Rotate 13 decoder applied", "success");
+    props.showAlert("Base64 decoded!", "success");
   };
   // base64Decode() function - ENDS
   // unixToDate() function - STARTS
@@ -379,7 +380,7 @@ const TextForm = (props) => {
     const nums = text.match(regex);
     const newText = nums.join("");
     setText(newText);
-    props.showAlert("Text Extracted!", "success");
+    props.showAlert("Numbers Extracted!", "success");
   };
   // extractNumbers() function - ENDS
   // addPrefix() function - STARTS
@@ -389,7 +390,7 @@ const TextForm = (props) => {
     );
     const newText = prefix.concat(text);
     setText(newText);
-    props.showAlert("Text Extracted!", "success");
+    props.showAlert("Prefix added!", "success");
   };
   // addPrefix() function - ENDS
   // addSuffix() function - STARTS
@@ -399,7 +400,7 @@ const TextForm = (props) => {
     );
     const newText = text.concat(suffix);
     setText(newText);
-    props.showAlert("Text Extracted!", "success");
+    props.showAlert("Suffix added!", "success");
   };
   // addSuffix() function - ENDS
   // sortLinesSENS() function - STARTS
@@ -579,7 +580,7 @@ const TextForm = (props) => {
       c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()
     );
     setText(newText);
-    props.showAlert("Converted to 'Inverse Case'!", "success");
+    props.showAlert("Converted to 'Invert Case'!", "success");
   };
   // invertCase() function - ENDS
   // sentenceCase() function - STARTS
@@ -662,11 +663,12 @@ const TextForm = (props) => {
   // pascalCase() function - ENDS
   // kebabCase() function - STARTS
   const kebabCase = () => {
-    const kebabCase = string => string
+    const kebabCase = (string) =>
+      string
         .replace(/([a-z])([A-Z])/g, "$1-$2")
-        .replace(/[\s_]+/g, '-')
+        .replace(/[\s_]+/g, "-")
         .toLowerCase();
-  
+
     const newText = kebabCase(text);
     setText(newText);
     props.showAlert("Converted to 'Kebab Case'!", "success");
@@ -759,7 +761,7 @@ const TextForm = (props) => {
 
     setText(newText);
     setGeneratedText(newText);
-    props.showAlert("Random Words generated!", "success");
+    props.showAlert("Random Characters generated!", "success");
   };
   // getRandomCharacterss() function - ENDS
   // getRandomWords() function - STARTS
@@ -1426,10 +1428,10 @@ const TextForm = (props) => {
           {/* Generate Dropdown - ENDS */}
         </div>
         {/* Top Buttons - END */}
-        <div className="d-flex">
+        <div className="d-flex align-items-center mt-1 mb-3">
           {/* Input Textarea - STARTS */}
           <textarea
-            className="form-control mt-1 mb-3"
+            className="form-control"
             id="floatingTextarea output"
             style={{
               width: "100%",
@@ -1444,9 +1446,12 @@ const TextForm = (props) => {
             required
           ></textarea>
           {/* Input Textarea - ENDS */}
+          {/* Textarea Dividing Div - STARTS */}
+          <div className="mx-1"></div>
+          {/* Textarea Dividing Div - ENDS */}
           {/* Output Textarea - STARTS */}
           <textarea
-            className="form-control mt-1 mb-3"
+            className="form-control"
             id="floatingTextarea output"
             style={{
               width: "100%",
@@ -1526,14 +1531,14 @@ const TextForm = (props) => {
           id="offcanvasBottom"
           aria-labelledby="offcanvasBottomLabel"
           style={{
-            backgroundColor: `${props.mode === "dark" ? "#212529" : "white"}`,
+            backgroundColor: `${props.mode === "dark" ? "#212529" : "#F8F9FA"}`,
             color: `${props.mode === "dark" ? "white" : "black"}`,
           }}
         >
           <div
             className="offcanvas-header d-flex justify-content-center"
             style={{
-              backgroundColor: `${props.mode === "dark" ? "#212529" : "white"}`,
+              backgroundColor: `${props.mode === "dark" ? "#212529" : "#F8F9FA"}`,
               color: `${props.mode === "dark" ? "white" : "black"}`,
             }}
           >
@@ -1543,7 +1548,7 @@ const TextForm = (props) => {
               <thead>
                 <tr>
                   <th scope="col" colSpan="3" className="text-center">
-                    YOUR TEXT SUMMARY
+                    TEXT SUMMARY TABLE
                   </th>
                 </tr>
               </thead>

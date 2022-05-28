@@ -18,11 +18,11 @@ body {
     display: none;
   }
   .form-check {
-    right: 70px;
+    right: 20px;
   }
 }
 @media screen and (max-width: 285px) {
-  /* .form-check {
+  .form-check {
     right: 0px;
-  } */
+  }
 }
