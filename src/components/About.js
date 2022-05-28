@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 function About(props) {
   return (
@@ -28,7 +29,7 @@ function About(props) {
       >
         Textbotonline is a{" "}
         <span className="text-uppercase">
-          <strong>free online text utility application or website</strong>
+          <strong>free online text utility web application or a website</strong>
         </span>{" "}
         that allow you to edit your text online or generate different kinds of
         text online. Moreover, it tells you the statistics or summary of your
@@ -77,136 +78,422 @@ function About(props) {
             aria-labelledby="panelsStayOpen-headingOne"
           >
             <div className="accordion-body">
-              <ul>
-                <li>
+              <ul style={{ listStyleType: "none" }}>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Split Text : </strong>
                     Splits each word of the given text on a new line.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Join Text : </strong>
                     Joins all of the words in separate lines to a single string.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Remove Extra Spaces : </strong>
                     Removes any extra space present in the text.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Remove All Spaces : </strong>
                     Removes all spaces from the text.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Remove All Symbols : </strong>
                     Removes all symbols from the text.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Duplicate Text : </strong>
                     Duplicates the text the number of times you need.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Reverse Text : </strong>
                     Reverses the text.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Slugify Text : </strong>
                     Slugifies the text.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Truncate Text : </strong>
                     Shorts the text content to the desired length.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Change Paragraphs to Single-line Text : </strong>
                     Converts all paragraphs to a single-line text.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Alphabetize Text : </strong>
                     Arranges the words in your text in alphabetic order.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Rotate 13 : </strong>
                     Obscures text by replacing each letter with the letter
                     thirteen places down the alphabet.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Zalgo Effect : </strong>
                     Converts normal text into zalgo text.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Add Line Number : </strong>
                     Adds line numbers to all the lines in the given text.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Encode URL : </strong>
                     Encodes the given string into a url.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Decode URL : </strong>
                     Decodes the URL into a text.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Base64 Encode : </strong>
                     Creates a Base64-encoded ASCII string from a binary string.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Base64 Decode : </strong>
                     Decodes a string of data which has been encoded using Base64
                     encoding.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>UNIX Timestamp to Date : </strong>
                     Converts unix timestamp to date.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>UNIX Timestamp to Time : </strong>
                     Converts unix timestamp to time.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Format Numbers : </strong>
                     Adds comma to numbers after every three digits.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Extract Text : </strong>
                     Extract all the text from the given text along with{" "}
@@ -215,8 +502,21 @@ function About(props) {
                     </em>
                     .
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Extract Numbers : </strong>
                     Extract all the numbers from the given text along with{" "}
@@ -225,8 +525,21 @@ function About(props) {
                     </em>
                     .
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Sort Lines - 1 : </strong>
                     Sort lines of the given text in the alphabetical order
@@ -235,8 +548,21 @@ function About(props) {
                     </b>
                     .
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Sort Lines - 2 : </strong>
                     Sort lines of the given text in the alphabetical order
@@ -245,8 +571,21 @@ function About(props) {
                     </b>
                     .
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Reverse Sort Lines - 1 : </strong>
                     Sort lines of the given text in the reverse alphabetical
@@ -256,8 +595,21 @@ function About(props) {
                     </b>
                     .
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Reverse Sort Lines - 2 : </strong>
                     Sort lines of the given text in the reverse alphabetical
@@ -267,21 +619,47 @@ function About(props) {
                     </b>
                     .
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Decimal To Roman : </strong>
                     Converts any entered decimal to a corresponding roman
                     number.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Roman To Decimal : </strong>
                     Converts any entered roman number to a corresponding
                     decimal.
                   </small>
-                </li>
+                </motion.li>
               </ul>
             </div>
           </div>
@@ -318,102 +696,284 @@ function About(props) {
             aria-labelledby="panelsStayOpen-headingTwo"
           >
             <div className="accordion-body">
-              <ul>
-                <li>
+              <ul style={{ listStyleType: "none" }}>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Uppercase : </strong>
                     Capitalizes letters as opposed to small letters (lower
                     case).
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Lowercase : </strong>
                     Decapitalizes letters as opposed to capital letters (upper
                     case).
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Title case : </strong>
                     Capitalizes the first letter of each word.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Reverse Title case : </strong>
                     Capitalizes the last letter of each word.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Invert case : </strong>
                     The opposite case will be selected (instead of uppercase -
                     lowercase, instead of lowercase - uppercase).
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Sentence case : </strong>
                     Capitalizes the first letter of each sentence.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Toggle case : </strong>
                     Decapitalizes the first letter of all words and capitalizes
                     the rest.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Random case : </strong>
                     Capitalizes and decapitalizes all letters in the text in a
                     random sequence.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>camelCase : </strong>
                     CamelCase Words are written without spaces, and the first
                     letter of each word is capitalized while the first letter of
                     the inital word is small.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>PascalCase : </strong>
                     The first letter of each word is capitalized.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>kebab-case : </strong>
                     The spaces between words are replaced with a dash.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>snake_case : </strong>
                     Snake case is basically a style of writing strings by
                     replacing the spaces with '_' and converting the first
                     letter of each word to lowercase.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Alternative case - 1 : </strong>
                     Capitalizes the initial letter and from there on the cases
                     alternate between uppercase and lowercase.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Alternative case - 2 : </strong>
                     Decapitalizes the initial letter and from there on the cases
                     alternate between uppercase and lowercase.
                   </small>
-                </li>
+                </motion.li>
               </ul>
             </div>
           </div>
@@ -450,78 +1010,234 @@ function About(props) {
             aria-labelledby="panelsStayOpen-headingThree"
           >
             <div className="accordion-body">
-              <ul>
-                <li>
+              <ul style={{ listStyleType: "none" }}>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Characters Frequency : </strong>Calculates the
                     occurrences of all characters in a text document.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Words Frequency : </strong>Calculates the
                     occurrences of all words in a text document.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Characters Frequency : </strong>Calculates the
                     occurrences of all characters in a text document.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Dummy Text : </strong>Generates the dummy text.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Random Characters : </strong>Generates random
                     characters of your desired length.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Random Words : </strong>Generates random words of
                     your desired length.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Random-Words-Slug : </strong>Generates
                     random-words-slug of your desired length.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Random Nouns : </strong>Generates random nouns of
                     your desired length.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Random Adjectives : </strong>Generates random
                     adjectives of your desired length.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Numbers : </strong>Generates numbers in sequence of
                     your desired length.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Hash Code : </strong>Generates the hash code
                     corresponding to the given string.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     <strong>Random Quotes Online : </strong>Generates a new
                     quote every single time.
                   </small>
-                </li>
+                </motion.li>
               </ul>
             </div>
           </div>
@@ -558,38 +1274,155 @@ function About(props) {
             aria-labelledby="panelsStayOpen-headingFour"
           >
             <div className="accordion-body">
-              <ul>
-                <li>
+              <ul style={{ listStyleType: "none" }}>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>Average reading time of your text.</small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>Paragraphs count.</small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>Sentences count.</small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>Words count.</small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>Unique Words count.</small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>Spaces count.</small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     Characters with empty spaces and new lines count.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>
                     Characters without empty spaces and new lines count.
                   </small>
-                </li>
-                <li>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                    zIndex: 1,
+                    backgroundColor: `${
+                      props.mode === "dark" ? "#242526" : "white"
+                    }`,
+                    color: `${props.mode === "dark" ? "white" : "#242526"}`,
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
                   <small>Average characters per word.</small>
-                </li>
+                </motion.li>
               </ul>
             </div>
           </div>
