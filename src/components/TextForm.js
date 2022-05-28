@@ -917,12 +917,20 @@ const TextForm = (props) => {
   return (
     <>
       <motion.div
-        initial={{ y: -50 }}
-        animate={{ y: 0 }}
-        transition={{
-          delay: 0.5,
-          y: { type: "spring", stiffness: 100 },
-          default: { duration: 1 },
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: {
+            scale: 0.8,
+            opacity: 0,
+          },
+          visible: {
+            scale: 1,
+            opacity: 1,
+            transition: {
+              delay: 0.3,
+            },
+          },
         }}
       >
         <h1
