@@ -1485,14 +1485,20 @@ const TextForm = (props) => {
         {/* Bottom Buttons Section - START */}
         <div className="d-flex justify-content-between">
           {/* Clear Text Button - STARTS */}
-          <button
+          <motion.button
+            whileTap={{
+              scale: 0
+            }}
             className="btn btn-danger mx-1 btn-sm bottom-btns rounded"
             onClick={clear}
             disabled={text.length === 0}
           >
             Clear <i className="bi bi-x-lg bottom-btns-icons"></i>
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileTap={{
+              scale: 0
+            }}
             className={`btn btn-${
               text.length === 0 ? "secondary" : "primary"
             } mx-1 btn-sm bottom-btns rounded`}
@@ -1501,7 +1507,7 @@ const TextForm = (props) => {
             disabled={text.length === 0}
           >
             Save <i className="bi bi-download bottom-btns-icons" />
-          </button>
+          </motion.button>
           {/* Clear Text Button - ENDS */}
           {/* <button
               className="btn btn-secondary mx-1 btn-sm bottom-btns rounded"
