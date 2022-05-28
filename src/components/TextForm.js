@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import About from "./About";
 import _ from "lodash";
 import { Dropdown } from "react-bootstrap";
@@ -6,6 +6,7 @@ import wordsFrequency from "words-frequency";
 import { frequencyOfString } from "character-frequency";
 import { generateSlug } from "random-word-slugs";
 import randomWords from "random-words";
+import { motion } from "framer-motion";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../css/TextForm.css";
 
@@ -915,15 +916,25 @@ const TextForm = (props) => {
   // onTextChange() function - ENDS
   return (
     <>
-      <h1
-        className={`mt-3 text-center text-${
-          props.mode === "light" ? "dark" : "light"
-        }`}
+      <motion.div
+        initial={{ y: -50 }}
+        animate={{ y: 0 }}
+        transition={{
+          delay: 0.5,
+          y: { type: "spring", stiffness: 100 },
+          default: { duration: 1 },
+        }}
       >
-        <span className="text-uppercase font-monospace">
-          textbot<span className="text-info">online</span>
-        </span>
-      </h1>
+        <h1
+          className={`mt-3 text-center text-${
+            props.mode === "light" ? "dark" : "light"
+          }`}
+        >
+          <span className="text-uppercase font-monospace">
+            textbot<span className="text-info">online</span>
+          </span>
+        </h1>
+      </motion.div>
       <small>
         <p
           className={`text-center text-${
@@ -1429,40 +1440,52 @@ const TextForm = (props) => {
         </div>
         {/* Top Buttons - END */}
         <div className="d-flex align-items-center mt-1 mb-3">
-          {/* Input Textarea - STARTS */}
-          <textarea
-            className="form-control"
-            id="floatingTextarea output"
-            style={{
-              width: "100%",
-              backgroundColor: `${props.mode === "dark" ? "#242526" : "white"}`,
-              color: `${props.mode === "dark" ? "white" : "black"}`,
-              textAlign: "left",
-            }}
-            onChange={onTextChange}
-            value={generatedText}
-            placeholder="Enter text here."
-            rows={12}
-            required
-          ></textarea>
+          <div style={{ width: "100%" }}>
+            {/* Input Textarea - STARTS */}
+            <textarea
+              className="form-control"
+              id="floatingTextarea output"
+              style={{
+                width: "100%",
+                backgroundColor: `${
+                  props.mode === "dark" ? "#242526" : "white"
+                }`,
+                color: `${props.mode === "dark" ? "white" : "black"}`,
+                textAlign: "left",
+              }}
+              onChange={onTextChange}
+              value={generatedText}
+              placeholder="Enter text here."
+              rows={12}
+              required
+            ></textarea>
+          </div>
           {/* Input Textarea - ENDS */}
           {/* Textarea Dividing Div - STARTS */}
           <div className="mx-1"></div>
           {/* Textarea Dividing Div - ENDS */}
           {/* Output Textarea - STARTS */}
-          <textarea
-            className="form-control"
-            id="floatingTextarea output"
-            style={{
-              width: "100%",
-              backgroundColor: `${props.mode === "dark" ? "#242526" : "white"}`,
-              color: `${props.mode === "dark" ? "white" : "black"}`,
-              textAlign: text ? alignment : "left",
-            }}
-            value={text.length === 0 ? "Nothing to preview!" : text}
-            readOnly
-            rows={12}
-          ></textarea>
+          <div style={{ width: "100%" }}>
+            {/* <motion.div> */}
+            <motion.div>
+              <textarea
+                className="form-control"
+                id="floatingTextarea output"
+                style={{
+                  width: "100%",
+                  backgroundColor: `${
+                    props.mode === "dark" ? "#242526" : "white"
+                  }`,
+                  color: `${props.mode === "dark" ? "white" : "black"}`,
+                  textAlign: text ? alignment : "left",
+                }}
+                value={text.length === 0 ? "Nothing to preview!" : text}
+                readOnly
+                rows={12}
+              ></textarea>
+            </motion.div>
+            {/* </motion.div> */}
+          </div>
           {/* Output Textarea - ENDS */}
         </div>
 
@@ -1538,7 +1561,9 @@ const TextForm = (props) => {
           <div
             className="offcanvas-header d-flex justify-content-center"
             style={{
-              backgroundColor: `${props.mode === "dark" ? "#212529" : "#F8F9FA"}`,
+              backgroundColor: `${
+                props.mode === "dark" ? "#212529" : "#F8F9FA"
+              }`,
               color: `${props.mode === "dark" ? "white" : "black"}`,
             }}
           >
