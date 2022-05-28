@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import About from "./About";
 import _ from "lodash";
 import { Dropdown } from "react-bootstrap";
@@ -6,6 +6,7 @@ import wordsFrequency from "words-frequency";
 import { frequencyOfString } from "character-frequency";
 import { generateSlug } from "random-word-slugs";
 import randomWords from "random-words";
+import { motion } from "framer-motion";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../css/TextForm.css";
 
@@ -915,15 +916,30 @@ const TextForm = (props) => {
   // onTextChange() function - ENDS
   return (
     <>
-      <h1
+      <motion.h1
         className={`mt-3 text-center text-${
           props.mode === "light" ? "dark" : "light"
         }`}
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: {
+            scale: 0.8,
+            opacity: 0,
+          },
+          visible: {
+            scale: 1,
+            opacity: 1,
+            transition: {
+              delay: 0.4,
+            },
+          },
+        }}
       >
         <span className="text-uppercase font-monospace">
           textbot<span className="text-info">online</span>
         </span>
-      </h1>
+      </motion.h1>
       <small>
         <p
           className={`text-center text-${
@@ -1538,7 +1554,9 @@ const TextForm = (props) => {
           <div
             className="offcanvas-header d-flex justify-content-center"
             style={{
-              backgroundColor: `${props.mode === "dark" ? "#212529" : "#F8F9FA"}`,
+              backgroundColor: `${
+                props.mode === "dark" ? "#212529" : "#F8F9FA"
+              }`,
               color: `${props.mode === "dark" ? "white" : "black"}`,
             }}
           >
