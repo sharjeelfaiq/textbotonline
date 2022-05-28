@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "./components/Navbar";
+import ScrollToTop from "./components/ScrollToTop";
 import Alert from "./components/Alert";
 import TextForm from "./components/TextForm";
 import Footer from "./components/Footer";
@@ -57,6 +58,7 @@ const App = () => {
         </div>
         {/* Toggle mode Switch - ENDS */}
         <Navbar mode={mode} />
+        <ScrollToTop />
         <Alert alert={alert} />
         {/* ROUTING STARTS */}
         <div className="container-lg routes-div">
