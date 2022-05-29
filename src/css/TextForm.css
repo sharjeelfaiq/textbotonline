@@ -18,6 +18,12 @@
   width: 65px;
   font-size: 0.75rem;
 }
+.contact-btn {
+  transition: 0.5s ease-out;
+  border-radius: 0;
+  width: 65px;
+  font-size: 0.75rem;
+}
 .bottom-btns-icons {
   transition: 0.5s ease-out;
 }

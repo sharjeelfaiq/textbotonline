@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
 
+import "../css/TextForm.css"
+
 const ContactUs = (props) => {
   const [input, setInput] = useState("");
 
@@ -123,7 +125,7 @@ const ContactUs = (props) => {
                         type="submit"
                         className={`btn btn-${
                           input.length === 0 ? "secondary" : "primary"
-                        } mx-1 btn-sm bottom-btns rounded`}
+                        } mx-1 btn-sm contact-btn rounded`}
                         disabled={input.length === 0 ? true : false}
                       >
                         Send
