@@ -1,6 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import emailjs from "emailjs-com";
 
 const ContactUs = (props) => {
+  const [input, setInput] = useState("");
+
+  // onTextChange() function - STARTS
+  const onTextChange = (e) => {
+    setInput(e.target.value);
+  };
+  // onTextChange() function - ENDS
+
+  // sendEmail() function - STARTS
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "Textbotonline",
+        "Textbotonline_610",
+        e.target,
+        "owZfMTisTWeKnU_qp"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+    setInput("");
+  };
+  // sendEmail() function - ENDS
+
   return (
     <>
       <h1
@@ -27,17 +60,82 @@ const ContactUs = (props) => {
       >
         <b>
           To make us aware of your thoughts and suggestions. Please take a
-          minute to email us{" "}
-          <a
-            href="mailto:mrmalik610@gmail.com"
-            target="_blank"
-            style={{ fontFamily:"monospace", textDecoration: "none", color: "#0fa7c5" }}
-          >
-            here
-          </a>{" "}
-          and be a sincere user of this website. Thanks!
+          minute to email us and be a sincere user of this website. Thanks!
         </b>
       </h6>
+      <section className="form-section">
+        <div>
+          <div className="row">
+            <div className="col-sm-12">
+              <div className="row">
+                <div className="col-sm-8 col-sm-offset-2">
+                  <form
+                    method="post"
+                    data-form-title="CONTACT US"
+                    onSubmit={sendEmail}
+                  >
+                    <input type="hidden" data-form-email="true" />
+                    <div className="form-group my-1">
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="name"
+                        required=""
+                        placeholder="Name*"
+                        data-form-field="Name"
+                      />
+                    </div>
+                    <div className="form-group my-1">
+                      <input
+                        type="email"
+                        className="form-control"
+                        name="email"
+                        required=""
+                        placeholder="Email*"
+                        data-form-field="Email"
+                      />
+                    </div>
+                    <div className="form-group my-1">
+                      <input
+                        type="tel"
+                        className="form-control"
+                        name="phone"
+                        placeholder="Phone"
+                        data-form-field="Phone"
+                      />
+                    </div>
+                    <div className="form-group my-1">
+                      <textarea
+                        className="form-control"
+                        name="message"
+                        placeholder="Message"
+                        rows="7"
+                        data-form-field="Message"
+                        value={input}
+                        onChange={onTextChange}
+                      ></textarea>
+                    </div>
+                    <div className="my-3">
+                      <motion.button
+                        whileTap={{
+                          scale: 0,
+                        }}
+                        type="submit"
+                        className={`btn btn-${
+                          input.length === 0 ? "secondary" : "primary"
+                        } mx-1 btn-sm bottom-btns rounded`}
+                        disabled={input.length === 0 ? true : false}
+                      >
+                        Send
+                      </motion.button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
