@@ -1,7 +1,7 @@
 body {
   transition: 0.5s ease-out;
 }
-.form-check {
+.form-switch {
   position: absolute;
   top: 20px;
   right:20px;
@@ -9,9 +9,6 @@ body {
 }
 .form-check-input {
   cursor: pointer;
-}
-.routes-div{
-  margin-bottom: 100px;
 }
 @media screen and (max-width: 991px) {
   .form-check-label {

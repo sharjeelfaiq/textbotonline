@@ -1,8 +1,14 @@
 import React from "react";
-// import { Link } from "react-router-dom";
 import "../css/Navbar.css";
 
-function Navbar(props) {
+const Navbar = (props) => {
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <nav
@@ -20,19 +26,27 @@ function Navbar(props) {
               TBO
             </h4>
           </a>
-          {/* <div className="collapse navbar-collapse" id="navbarSupportedContent"> */}
-          {/* <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/">
-                  Text
-                </Link>
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 nav-components">
+            <li
+              className={`text-${
+                props.mode === "light" ? "dark" : "light"
+              } nav-item mx-3`}
+              onClick={scrollToBottom}
+              style={{ cursor: "pointer" }}
+            >
+              Contact Us
+            </li>
+          </ul>
+          {/*<div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li
+                className="nav-item"
+              >
+                Home
               </li>
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/Numbers">
-                  Numbers
-                </Link>
-              </li>
-            </ul> */}
+            </ul>
+          </div>
+ */}{" "}
           {/* <form className="d-flex">
               <input
                 className="form-control me-2"
@@ -44,7 +58,6 @@ function Navbar(props) {
                 Search
               </button>
             </form> */}
-          {/* </div> */}
           {/* <button
                   className="navbar-toggler"
                   type="button"
@@ -60,6 +73,6 @@ function Navbar(props) {
       </nav>
     </>
   );
-}
+};
 
 export default Navbar;

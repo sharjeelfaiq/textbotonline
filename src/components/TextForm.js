@@ -9,6 +9,7 @@ import randomWords from "random-words";
 import { motion } from "framer-motion";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../css/TextForm.css";
+import ContactUs from "./ContactUs";
 
 const TextForm = (props) => {
   const [text, setText] = useState(""); // Handles the text inside textarea
@@ -21,42 +22,42 @@ const TextForm = (props) => {
   /* MENU DROPDOWN STARTS */
   // uploadTextFile() function - STARTS
   const uploadTextFile = () => {
-    let files = document.querySelector('input[type="file"]').files;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const lines = reader.result;
-      setText(lines);
-      setGeneratedText(lines);
-    };
-    setInputLightBackground("#8BE48B");
-    setTimeout(() => {
-      setInputLightBackground("white");
-    }, 280);
-    setInputDarkBackground("#8BE48B");
-    setTimeout(() => {
-      setInputDarkBackground("#242526");
-    }, 280);
-    reader.readAsText(files[0]);
+      let files = document.querySelector('input[type="file"]').files;
+      const reader = new FileReader();
+      reader.onload = () => {
+        const lines = reader.result;
+        setText(lines);
+        setGeneratedText(lines);
+      };
+      setInputLightBackground("#8BE48B");
+      setTimeout(() => {
+        setInputLightBackground("white");
+      }, 280);
+      setInputDarkBackground("#8BE48B");
+      setTimeout(() => {
+        setInputDarkBackground("#242526");
+      }, 280);
+      reader.readAsText(files[0]);
   };
   // uploadTextFile() function - ENDS
   // downloadTxtFile() function - STARTS
   const downloadTxtFile = () => {
-    const element = document.createElement("a");
-    const file = new Blob([text], {
-      type: "text/plain",
-    });
-    element.href = URL.createObjectURL(file);
-    element.download = "myFile.txt";
-    document.body.appendChild(element);
-    element.click();
-    setOutputLightBackground("#0DCAF0");
-    setTimeout(() => {
-      setOutputLightBackground("white");
-    }, 280);
-    setOutputDarkBackground("#0DCAF0");
-    setTimeout(() => {
-      setOutputDarkBackground("#242526");
-    }, 280);
+      const element = document.createElement("a");
+      const file = new Blob([text], {
+        type: "text/plain",
+      });
+      element.href = URL.createObjectURL(file);
+      element.download = "myFile.txt";
+      document.body.appendChild(element);
+      element.click();
+      setOutputLightBackground("#0DCAF0");
+      setTimeout(() => {
+        setOutputLightBackground("white");
+      }, 280);
+      setOutputDarkBackground("#0DCAF0");
+      setTimeout(() => {
+        setOutputDarkBackground("#242526");
+      }, 280);
   };
   // downloadTxtFile() function - ENDS
   /* MENU DROPDOWN ENDS */
@@ -899,14 +900,14 @@ const TextForm = (props) => {
         .replace(/(^\s*\w|[\.\!\?]\s*\w)/g, function(c) {
           return c.toUpperCase();
         });
-        setOutputDarkBackground("#CED4DA");
-        setTimeout(() => {
-          setOutputDarkBackground("#242526");
-        }, 280);
-        setOutputLightBackground("#CED4DA");
-        setTimeout(() => {
-          setOutputLightBackground("white");
-        }, 280);
+      setOutputDarkBackground("#CED4DA");
+      setTimeout(() => {
+        setOutputDarkBackground("#242526");
+      }, 280);
+      setOutputLightBackground("#CED4DA");
+      setTimeout(() => {
+        setOutputLightBackground("white");
+      }, 280);
       return newString;
     }
 
@@ -1317,8 +1318,12 @@ const TextForm = (props) => {
   // getAdjectives() function - ENDS
   // getNumbers() function - STARTS
   const getNumbers = () => {
-    const startingNum = window.prompt("The STARTING Number must be SMALLER then the ENDING Number\nEnter the starting number:");
-    const endingNum = window.prompt("The ENDING Number must be GREATER then the STARTING Number\nEnter the ending number:");
+    const startingNum = window.prompt(
+      "The STARTING Number must be SMALLER then the ENDING Number\nEnter the starting number:"
+    );
+    const endingNum = window.prompt(
+      "The ENDING Number must be GREATER then the STARTING Number\nEnter the ending number:"
+    );
     let newText = "";
     for (
       let numberSeries = startingNum;
@@ -1996,7 +2001,9 @@ const TextForm = (props) => {
             style={{
               width: "100%",
               backgroundColor: `${
-                props.mode === "dark" ? inputDarkBackground : inputLightBackground
+                props.mode === "dark"
+                  ? inputDarkBackground
+                  : inputLightBackground
               }`,
               color: `${props.mode === "dark" ? "white" : "black"}`,
               textAlign: "left",
@@ -2018,7 +2025,9 @@ const TextForm = (props) => {
             style={{
               width: "100%",
               backgroundColor: `${
-                props.mode === "dark" ? outputDarkBackground : outputLightBackground
+                props.mode === "dark"
+                  ? outputDarkBackground
+                  : outputLightBackground
               }`,
               color: `${props.mode === "dark" ? "white" : "black"}`,
             }}
@@ -2189,10 +2198,16 @@ const TextForm = (props) => {
       <hr className={`text-${props.mode === "dark" ? "light" : "dark"}`} />
       {/* STATISTICS SECTION ENDS */}
       {/* ABOUT SECTION STARTS */}
-      <div className="py-5">
+      <div className="my-5">
         <About mode={props.mode} showAlert={props.showAlert} />
       </div>
       {/* ABOUT SECTION ENDS */}
+      <hr className={`text-${props.mode === "dark" ? "light" : "dark"}`} />
+      {/* CONTACT US SECTION STARTS */}
+      <div className="my-5">
+        <ContactUs mode={props.mode} showAlert={props.showAlert} />
+      </div>
+      {/* CONTACT US SECTION ENDS */}
     </>
   );
 };
