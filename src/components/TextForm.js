@@ -21,27 +21,26 @@ const TextForm = (props) => {
   /* MENU DROPDOWN STARTS */
   // uploadTextFile() function - STARTS
   const uploadTextFile = () => {
-    let files = document.querySelector('input[type="file"]').files;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const lines = reader.result;
-      setText(lines);
-      setGeneratedText(lines);
-    };
-    setInputLightBackground("#8BE48B");
-    setTimeout(() => {
-      setInputLightBackground("white");
-    }, 280);
-    setInputDarkBackground("#8BE48B");
-    setTimeout(() => {
-      setInputDarkBackground("#242526");
-    }, 280);
-    reader.readAsText(files[0]);
+      let files = document.querySelector('input[type="file"]').files;
+      const reader = new FileReader();
+      reader.onload = () => {
+        const lines = reader.result;
+        setText(lines);
+        setGeneratedText(lines);
+      };
+      setInputLightBackground("#8BE48B");
+      setTimeout(() => {
+        setInputLightBackground("white");
+      }, 280);
+      setInputDarkBackground("#8BE48B");
+      setTimeout(() => {
+        setInputDarkBackground("#242526");
+      }, 280);
+      reader.readAsText(files[0]);
   };
   // uploadTextFile() function - ENDS
   // downloadTxtFile() function - STARTS
   const downloadTxtFile = () => {
-    setTimeout(() => {
       const element = document.createElement("a");
       const file = new Blob([text], {
         type: "text/plain",
@@ -58,7 +57,6 @@ const TextForm = (props) => {
       setTimeout(() => {
         setOutputDarkBackground("#242526");
       }, 280);
-    }, 1000);
   };
   // downloadTxtFile() function - ENDS
   /* MENU DROPDOWN ENDS */
