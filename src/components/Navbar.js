@@ -26,9 +26,11 @@ const Navbar = (props) => {
               TBO
             </h4>
           </a>
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 nav-components">
             <li
-              className="nav-item mx-3"
+              className={`text-${
+                props.mode === "light" ? "dark" : "light"
+              } nav-item mx-3`}
               onClick={scrollToBottom}
               style={{ cursor: "pointer" }}
             >

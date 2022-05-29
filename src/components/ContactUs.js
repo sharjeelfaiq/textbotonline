@@ -4,7 +4,7 @@ const ContactUs = (props) => {
   return (
     <>
       <h1
-        className={`text-center text-${
+        className={`text-center mb-4 text-${
           props.mode === "light" ? "dark" : "light"
         }`}
       >
