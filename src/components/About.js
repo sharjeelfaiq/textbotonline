@@ -20,7 +20,8 @@ function About(props) {
         <a href="http://textbotonline.com" style={{ textDecoration: "none" }}>
           http://www.textbotonline.com
         </a>{" "}
-        - the most comprehensive all in one text tool website on the internet today.
+        - the most comprehensive all in one text tool website on the internet
+        today.
       </h6>
       <p
         className={`lh-lg text-justify text-${
@@ -35,8 +36,9 @@ function About(props) {
         text online. Moreover, it tells you the statistics or summary of your
         text. Textbotonline tells you the average time to read your text. Also,
         you can know about the number of paragraphs, sentences, words, unique
-        wourds, spaces, characters with empty spaces and new lines and
-        characters without empty spaces and new lines in your text.
+        words, spaces, characters with empty spaces and newlines, and characters
+        without empty spaces and newlines in your text. You can visit the
+        website to see all the available features on it.
       </p>
       <div
         className="accordion my-4"
