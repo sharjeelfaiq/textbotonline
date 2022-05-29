@@ -41,22 +41,24 @@ const TextForm = (props) => {
   // uploadTextFile() function - ENDS
   // downloadTxtFile() function - STARTS
   const downloadTxtFile = () => {
-    const element = document.createElement("a");
-    const file = new Blob([text], {
-      type: "text/plain",
-    });
-    element.href = URL.createObjectURL(file);
-    element.download = "myFile.txt";
-    document.body.appendChild(element);
-    element.click();
-    setOutputLightBackground("#0DCAF0");
     setTimeout(() => {
-      setOutputLightBackground("white");
-    }, 280);
-    setOutputDarkBackground("#0DCAF0");
-    setTimeout(() => {
-      setOutputDarkBackground("#242526");
-    }, 280);
+      const element = document.createElement("a");
+      const file = new Blob([text], {
+        type: "text/plain",
+      });
+      element.href = URL.createObjectURL(file);
+      element.download = "myFile.txt";
+      document.body.appendChild(element);
+      element.click();
+      setOutputLightBackground("#0DCAF0");
+      setTimeout(() => {
+        setOutputLightBackground("white");
+      }, 280);
+      setOutputDarkBackground("#0DCAF0");
+      setTimeout(() => {
+        setOutputDarkBackground("#242526");
+      }, 280);
+    }, 1000);
   };
   // downloadTxtFile() function - ENDS
   /* MENU DROPDOWN ENDS */
@@ -899,14 +901,14 @@ const TextForm = (props) => {
         .replace(/(^\s*\w|[\.\!\?]\s*\w)/g, function(c) {
           return c.toUpperCase();
         });
-        setOutputDarkBackground("#CED4DA");
-        setTimeout(() => {
-          setOutputDarkBackground("#242526");
-        }, 280);
-        setOutputLightBackground("#CED4DA");
-        setTimeout(() => {
-          setOutputLightBackground("white");
-        }, 280);
+      setOutputDarkBackground("#CED4DA");
+      setTimeout(() => {
+        setOutputDarkBackground("#242526");
+      }, 280);
+      setOutputLightBackground("#CED4DA");
+      setTimeout(() => {
+        setOutputLightBackground("white");
+      }, 280);
       return newString;
     }
 
@@ -1317,8 +1319,12 @@ const TextForm = (props) => {
   // getAdjectives() function - ENDS
   // getNumbers() function - STARTS
   const getNumbers = () => {
-    const startingNum = window.prompt("The STARTING Number must be SMALLER then the ENDING Number\nEnter the starting number:");
-    const endingNum = window.prompt("The ENDING Number must be GREATER then the STARTING Number\nEnter the ending number:");
+    const startingNum = window.prompt(
+      "The STARTING Number must be SMALLER then the ENDING Number\nEnter the starting number:"
+    );
+    const endingNum = window.prompt(
+      "The ENDING Number must be GREATER then the STARTING Number\nEnter the ending number:"
+    );
     let newText = "";
     for (
       let numberSeries = startingNum;
@@ -1996,7 +2002,9 @@ const TextForm = (props) => {
             style={{
               width: "100%",
               backgroundColor: `${
-                props.mode === "dark" ? inputDarkBackground : inputLightBackground
+                props.mode === "dark"
+                  ? inputDarkBackground
+                  : inputLightBackground
               }`,
               color: `${props.mode === "dark" ? "white" : "black"}`,
               textAlign: "left",
@@ -2018,7 +2026,9 @@ const TextForm = (props) => {
             style={{
               width: "100%",
               backgroundColor: `${
-                props.mode === "dark" ? outputDarkBackground : outputLightBackground
+                props.mode === "dark"
+                  ? outputDarkBackground
+                  : outputLightBackground
               }`,
               color: `${props.mode === "dark" ? "white" : "black"}`,
             }}
