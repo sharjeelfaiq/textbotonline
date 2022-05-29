@@ -78,7 +78,7 @@ function About(props) {
             aria-labelledby="panelsStayOpen-headingOne"
           >
             <div className="accordion-body">
-              <ul style={{ listStyleType: "none" }}>
+              <ul style={{ listStyleType: "none" }} className="lh-lg">
                 <motion.li
                   whileHover={{
                     scale: 1.15,
@@ -551,7 +551,7 @@ function About(props) {
             aria-labelledby="panelsStayOpen-headingTwo"
           >
             <div className="accordion-body">
-              <ul style={{ listStyleType: "none" }}>
+              <ul style={{ listStyleType: "none" }} className="lh-lg">
                 <motion.li
                   whileHover={{
                     scale: 1.15,
@@ -795,7 +795,7 @@ function About(props) {
             aria-labelledby="panelsStayOpen-headingThree"
           >
             <div className="accordion-body">
-              <ul style={{ listStyleType: "none" }}>
+              <ul style={{ listStyleType: "none" }} className="lh-lg">
                 <motion.li
                   whileHover={{
                     scale: 1.15,
@@ -999,7 +999,7 @@ function About(props) {
             aria-labelledby="panelsStayOpen-headingFour"
           >
             <div className="accordion-body">
-              <ul style={{ listStyleType: "none" }}>
+              <ul style={{ listStyleType: "none" }} className="lh-lg">
                 <motion.li
                   whileHover={{
                     scale: 1.15,
