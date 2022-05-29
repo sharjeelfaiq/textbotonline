@@ -20,7 +20,7 @@ function About(props) {
         <a href="http://textbotonline.com" style={{ textDecoration: "none" }}>
           http://www.textbotonline.com
         </a>{" "}
-        - the most comprehensive text tool website on internet today.
+        - the most comprehensive all in one text tool website on the internet today.
       </h6>
       <p
         className={`lh-lg text-justify text-${
@@ -31,7 +31,7 @@ function About(props) {
         <span className="text-uppercase">
           <strong>free online text utility web application or a website</strong>
         </span>{" "}
-        that allow you to edit your text online or generate different kinds of
+        that allows you to edit your text online or generate different kinds of
         text online. Moreover, it tells you the statistics or summary of your
         text. Textbotonline tells you the average time to read your text. Also,
         you can know about the number of paragraphs, sentences, words, unique
@@ -78,7 +78,7 @@ function About(props) {
             aria-labelledby="panelsStayOpen-headingOne"
           >
             <div className="accordion-body">
-              <ul style={{ listStyleType: "none" }}>
+              <ul style={{ listStyleType: "none" }} className="lh-lg">
                 <motion.li
                   whileHover={{
                     scale: 1.15,
@@ -551,7 +551,7 @@ function About(props) {
             aria-labelledby="panelsStayOpen-headingTwo"
           >
             <div className="accordion-body">
-              <ul style={{ listStyleType: "none" }}>
+              <ul style={{ listStyleType: "none" }} className="lh-lg">
                 <motion.li
                   whileHover={{
                     scale: 1.15,
@@ -795,7 +795,7 @@ function About(props) {
             aria-labelledby="panelsStayOpen-headingThree"
           >
             <div className="accordion-body">
-              <ul style={{ listStyleType: "none" }}>
+              <ul style={{ listStyleType: "none" }} className="lh-lg">
                 <motion.li
                   whileHover={{
                     scale: 1.15,
@@ -999,7 +999,7 @@ function About(props) {
             aria-labelledby="panelsStayOpen-headingFour"
           >
             <div className="accordion-body">
-              <ul style={{ listStyleType: "none" }}>
+              <ul style={{ listStyleType: "none" }} className="lh-lg">
                 <motion.li
                   whileHover={{
                     scale: 1.15,
