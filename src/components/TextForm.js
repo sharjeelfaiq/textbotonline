@@ -9,6 +9,7 @@ import randomWords from "random-words";
 import { motion } from "framer-motion";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../css/TextForm.css";
+import Contact_us from "./Contact_us";
 
 const TextForm = (props) => {
   const [text, setText] = useState(""); // Handles the text inside textarea
@@ -2197,10 +2198,16 @@ const TextForm = (props) => {
       <hr className={`text-${props.mode === "dark" ? "light" : "dark"}`} />
       {/* STATISTICS SECTION ENDS */}
       {/* ABOUT SECTION STARTS */}
-      <div className="py-5">
+      <div className="my-5">
         <About mode={props.mode} showAlert={props.showAlert} />
       </div>
       {/* ABOUT SECTION ENDS */}
+      <hr className={`text-${props.mode === "dark" ? "light" : "dark"}`} />
+      {/* CONTACT US SECTION STARTS */}
+      <div className="my-5">
+        <Contact_us mode={props.mode} showAlert={props.showAlert} />
+      </div>
+      {/* CONTACT US SECTION ENDS */}
     </>
   );
 };

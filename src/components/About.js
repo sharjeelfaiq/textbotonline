@@ -5,7 +5,7 @@ function About(props) {
   return (
     <>
       <h1
-        className={`mt-5 mb-4 text-center text-${
+        className={`text-center text-${
           props.mode === "light" ? "dark" : "light"
         }`}
       >
