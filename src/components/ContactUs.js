@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
 
-import "../css/TextForm.css"
+import "../css/ContactUs.css";
 
 const ContactUs = (props) => {
   const [input, setInput] = useState("");
@@ -55,74 +55,91 @@ const ContactUs = (props) => {
         active hours and are always willing to know the ways to improve this
         website to the best and increase its utility for you.
       </p>
-      <h6
-        className={`lh-lg text-justify text-${
-          props.mode === "light" ? "dark" : "light"
-        }`}
-      >
-        <b>
-          To make us aware of your thoughts and suggestions. Please take a
-          minute to email us and be a sincere user of this website. Thanks!
-        </b>
-      </h6>
-      <section className="form-section">
-        <div>
-          <div className="row">
-            <div className="col-sm-12">
-              <div className="row">
-                <div className="col-sm-8 col-sm-offset-2">
-                  <form
-                    method="post"
-                    data-form-title="CONTACT US"
-                    onSubmit={sendEmail}
+      <div>
+        <div className="container">
+          <div className="section-contact">
+            <div className="row justify-content-center">
+              <div className="col-12 col-lg-10 col-xl-8">
+                <div className="header-section text-center">
+                  <h2 className="title">
+                    Get In Touch
+                    <span className="dot"></span>
+                    <span className="big-title">CONTACT</span>
+                  </h2>
+                  <p
+                    className={`description lh-lg text-center text-monospace text-${
+                      props.mode === "light" ? "dark" : "light"
+                    }`}
+                    style={{opacity:0.8}}
                   >
-                    <input type="hidden" data-form-email="true" />
-                    <div className="form-group my-1">
+                    To make us aware of your thoughts and suggestions. Please
+                    take a minute to email us. <strong>Thanks!</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="form-contact">
+              <form onSubmit={sendEmail}>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="single-input">
+                      <i className="fas fa-user"></i>
                       <input
                         type="text"
-                        className="form-control"
                         name="name"
-                        required=""
-                        placeholder="Name*"
-                        data-form-field="Name"
+                        placeholder="ENTER YOUR NAME"
                       />
                     </div>
-                    <div className="form-group my-1">
+                  </div>
+                  <div className="col-md-6">
+                    <div className="single-input">
+                      <i className="fas fa-envelope"></i>
                       <input
-                        type="email"
-                        className="form-control"
+                        type="text"
                         name="email"
-                        required=""
-                        placeholder="Email*"
-                        data-form-field="Email"
+                        placeholder="ENTER YOUR EMAIL"
                       />
                     </div>
-                    <div className="form-group my-1">
+                  </div>
+                  <div className="col-md-6">
+                    <div className="single-input">
+                      <i className="fas fa-phone"></i>
                       <input
-                        type="tel"
-                        className="form-control"
+                        type="text"
                         name="phone"
-                        placeholder="Phone"
-                        data-form-field="Phone"
+                        placeholder="ENTER YOUR PHONE NUMBER"
                       />
                     </div>
-                    <div className="form-group my-1">
+                  </div>
+                  <div className="col-md-6">
+                    <div className="single-input">
+                      <i className="fas fa-check"></i>
+                      <input
+                        type="text"
+                        name="subject"
+                        placeholder="ENTER YOUR SUBJECT"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-12">
+                    <div className="single-input">
+                      <i className="fas fa-comment-dots"></i>
                       <textarea
-                        className="form-control"
-                        name="message"
-                        placeholder="Message"
-                        rows="7"
-                        data-form-field="Message"
+                        placeholder="ENTER YOUR MESSAGE"
                         value={input}
                         onChange={onTextChange}
                       ></textarea>
                     </div>
-                    <div className="my-3">
+                  </div>
+                  <div className="col-12">
+                    <div className="submit-input text-center">
                       <motion.button
                         whileTap={{
                           scale: 0,
                         }}
                         type="submit"
+                        name="submit"
+                        value="SUBMIT NOW"
                         className={`btn btn-${
                           input.length === 0 ? "secondary" : "primary"
                         } mx-1 btn-sm contact-btn rounded`}
@@ -131,13 +148,13 @@ const ContactUs = (props) => {
                         Send
                       </motion.button>
                     </div>
-                  </form>
+                  </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </>
   );
 };
