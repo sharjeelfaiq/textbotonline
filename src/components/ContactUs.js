@@ -112,7 +112,7 @@ const ContactUs = (props) => {
                       <i className="fas fa-phone"></i>
                       <input
                         type="text"
-                        name="phoneNumber"
+                        name="phone"
                         placeholder="ENTER YOUR PHONE NUMBER"
                         required
                       />
