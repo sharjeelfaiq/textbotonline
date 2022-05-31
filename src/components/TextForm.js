@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import About from "./About";
 import _ from "lodash";
 import { Dropdown } from "react-bootstrap";
 import wordsFrequency from "words-frequency";
@@ -9,7 +8,6 @@ import randomWords from "random-words";
 import { motion } from "framer-motion";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../css/TextForm.css";
-import ContactUs from "./ContactUs";
 
 const TextForm = (props) => {
   const [text, setText] = useState(""); // Handles the text inside textarea
@@ -2197,17 +2195,6 @@ const TextForm = (props) => {
       </div>
       <hr className={`text-${props.mode === "dark" ? "light" : "dark"}`} />
       {/* STATISTICS SECTION ENDS */}
-      {/* ABOUT SECTION STARTS */}
-      <div className="my-5">
-        <About mode={props.mode} showAlert={props.showAlert} />
-      </div>
-      {/* ABOUT SECTION ENDS */}
-      <hr className={`text-${props.mode === "dark" ? "light" : "dark"}`} />
-      {/* CONTACT US SECTION STARTS */}
-      <div className="my-5">
-        <ContactUs mode={props.mode} showAlert={props.showAlert} />
-      </div>
-      {/* CONTACT US SECTION ENDS */}
     </>
   );
 };

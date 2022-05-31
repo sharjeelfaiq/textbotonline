@@ -41,7 +41,7 @@ const ContactUs = (props) => {
     setTimeout(() => {
       window.location.reload();
     }, 1500);
-  }
+  };
   // submit() function - ENDS
 
   return (
@@ -63,18 +63,8 @@ const ContactUs = (props) => {
         active hours and are always willing to know the ways to improve this
         website to the best and increase its utility for you.
       </p>
-      <h6
-        className={`lh-lg text-justify text-${
-          props.mode === "light" ? "dark" : "light"
-        }`}
-      >
-        <b>
-          To make us aware of your thoughts and suggestions. Please take a
-          minute to email us and be a sincere user of this website. Thanks!
-        </b>
-      </h6>
       <div>
-        <div className="container">
+        <div className="container py-5">
           <div className="section-contact">
             <div className="row justify-content-center">
               <div className="col-12 col-lg-10 col-xl-8">
@@ -85,9 +75,9 @@ const ContactUs = (props) => {
                     <span className="big-title">CONTACT</span>
                   </h2>
                   <p className="description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aenean consectetur commodo risus, nec pellentesque turpis
-                    efficitur non.
+                    To make us aware of your thoughts and suggestions. Please
+                    take a minute to email us and be a sincere user of this
+                    website. Thanks!{" "}
                   </p>
                 </div>
               </div>
@@ -102,6 +92,7 @@ const ContactUs = (props) => {
                         type="text"
                         name="name"
                         placeholder="ENTER YOUR NAME"
+                        required
                       />
                     </div>
                   </div>
@@ -112,6 +103,7 @@ const ContactUs = (props) => {
                         type="text"
                         name="email"
                         placeholder="ENTER YOUR EMAIL"
+                        required
                       />
                     </div>
                   </div>
@@ -122,6 +114,7 @@ const ContactUs = (props) => {
                         type="text"
                         name="phoneNumber"
                         placeholder="ENTER YOUR PHONE NUMBER"
+                        required
                       />
                     </div>
                   </div>
@@ -132,6 +125,7 @@ const ContactUs = (props) => {
                         type="text"
                         name="subject"
                         placeholder="ENTER YOUR SUBJECT"
+                        required
                       />
                     </div>
                   </div>
@@ -140,8 +134,10 @@ const ContactUs = (props) => {
                       <i className="fas fa-comment-dots"></i>
                       <textarea
                         placeholder="ENTER YOUR MESSAGE"
+                        name="message"
                         value={input}
                         onChange={onTextChange}
+                        required
                       ></textarea>
                     </div>
                   </div>

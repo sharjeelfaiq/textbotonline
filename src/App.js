@@ -3,6 +3,8 @@ import Navbar from "./components/Navbar";
 import ScrollToTop from "./components/ScrollToTop";
 import Alert from "./components/Alert";
 import TextForm from "./components/TextForm";
+import About from "./components/About";
+import ContactUs from "./components/ContactUs";
 import Footer from "./components/Footer";
 
 import "./App.css";
@@ -50,12 +52,25 @@ const App = () => {
         <Navbar mode={mode} />
         <ScrollToTop />
         <Alert alert={alert} />
-        {/* ROUTING STARTS */}
         <div className="container-lg routes-div">
           <TextForm mode={mode} showAlert={showAlert} />
+          {/* ABOUT SECTION STARTS */}
+          <div className="my-5">
+            <About mode={mode} showAlert={showAlert} />
+          </div>
+          {/* ABOUT SECTION ENDS */}
+          <hr className={`text-${mode === "dark" ? "light" : "dark"}`} />
+          {/* CONTACT US SECTION STARTS */}
+          <div className="my-5">
+            <ContactUs mode={mode} showAlert={showAlert} />
+          </div>
+          {/* CONTACT US SECTION ENDS */}
         </div>
-        {/* ROUTING ENDS */}
-        <Footer />
+          {/* FOOTER STARTS */}
+          <div className="pt-5">
+            <Footer />
+          </div>
+          {/* FOOTER ENDS */}
       </div>
     </>
   );
