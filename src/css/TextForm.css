@@ -18,6 +18,12 @@
   width: 65px;
   font-size: 0.75rem;
 }
+.contact-btn {
+  transition: 0.5s ease-out;
+  border-radius: 0;
+  width: 65px;
+  font-size: 0.75rem;
+}
 .bottom-btns-icons {
   transition: 0.5s ease-out;
 }
@@ -33,12 +39,6 @@
   font-size: 12px;
   padding: 10px 10px 7px 10px;
   font-weight: bold;
-}
-.close-btn {
-  transition: 0.2s ease-out;
-  border-radius: 50%;
-  background-color: #bb2d3b;
-  color: white;
 }
 @media screen and (max-width: 1199px) {
   .top-btns {

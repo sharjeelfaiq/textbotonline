@@ -9,7 +9,6 @@ import "./App.css";
 
 const App = () => {
   const [mode, setMode] = useState("light"); // Handles the state of dark mode
-  const [modeText, setModeText] = useState("dark"); // toggleMood() function - STARTS
   const [alert, setAlert] = useState(null);
 
   const showAlert = (message, type) => {
@@ -26,12 +25,10 @@ const App = () => {
   function toggleMood() {
     if (mode === "light") {
       setMode("dark");
-      setModeText("light");
       document.body.style.backgroundColor = "#18191A";
       showAlert("Dark mode has been enabled.", "success");
     } else {
       setMode("light");
-      setModeText("dark");
       document.body.style.backgroundColor = "white";
       showAlert("Light mode has been enabled.", "success");
     }
@@ -42,14 +39,6 @@ const App = () => {
       <div>
         {/* Toggle mode Switch - STARTS */}
         <div className="form-check form-switch">
-          <label
-            className={`form-check-label text-${
-              mode === "light" ? "dark" : "light"
-            }`}
-            htmlFor="flexSwitchCheckDefault"
-          >
-            Change to {modeText} mode
-          </label>
           <input
             className="form-check-input"
             type="checkbox"
