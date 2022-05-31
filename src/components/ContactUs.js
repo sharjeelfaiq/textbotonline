@@ -63,64 +63,87 @@ const ContactUs = (props) => {
           minute to email us and be a sincere user of this website. Thanks!
         </b>
       </h6>
-      <section className="form-section">
-        <div>
-          <div className="row">
-            <div className="col-sm-12">
-              <div className="row">
-                <div className="col-sm-8 col-sm-offset-2">
-                  <form
-                    method="post"
-                    data-form-title="CONTACT US"
-                    onSubmit={sendEmail}
-                  >
-                    <input type="hidden" data-form-email="true" />
-                    <div className="form-group my-1">
+      <div>
+        <div className="container">
+          <div className="section-contact">
+            <div className="row justify-content-center">
+              <div className="col-12 col-lg-10 col-xl-8">
+                <div className="header-section text-center">
+                  <h2 className="title">
+                    Get In Touch
+                    <span className="dot"></span>
+                    <span className="big-title">CONTACT</span>
+                  </h2>
+                  <p className="description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Aenean consectetur commodo risus, nec pellentesque turpis
+                    efficitur non.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="form-contact">
+              <form onSubmit={sendEmail}>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="single-input">
+                      <i className="fas fa-user"></i>
                       <input
                         type="text"
-                        className="form-control"
                         name="name"
-                        required=""
-                        placeholder="Name*"
-                        data-form-field="Name"
+                        placeholder="ENTER YOUR NAME"
                       />
                     </div>
-                    <div className="form-group my-1">
+                  </div>
+                  <div className="col-md-6">
+                    <div className="single-input">
+                      <i className="fas fa-envelope"></i>
                       <input
-                        type="email"
-                        className="form-control"
+                        type="text"
                         name="email"
-                        required=""
-                        placeholder="Email*"
-                        data-form-field="Email"
+                        placeholder="ENTER YOUR EMAIL"
                       />
                     </div>
-                    <div className="form-group my-1">
+                  </div>
+                  <div className="col-md-6">
+                    <div className="single-input">
+                      <i className="fas fa-phone"></i>
                       <input
-                        type="tel"
-                        className="form-control"
-                        name="phone"
-                        placeholder="Phone"
-                        data-form-field="Phone"
+                        type="text"
+                        name="phoneNumber"
+                        placeholder="ENTER YOUR PHONE NUMBER"
                       />
                     </div>
-                    <div className="form-group my-1">
+                  </div>
+                  <div className="col-md-6">
+                    <div className="single-input">
+                      <i className="fas fa-check"></i>
+                      <input
+                        type="text"
+                        name="subject"
+                        placeholder="ENTER YOUR SUBJECT"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-12">
+                    <div className="single-input">
+                      <i className="fas fa-comment-dots"></i>
                       <textarea
-                        className="form-control"
-                        name="message"
-                        placeholder="Message"
-                        rows="7"
-                        data-form-field="Message"
+                        placeholder="ENTER YOUR MESSAGE"
                         value={input}
                         onChange={onTextChange}
                       ></textarea>
                     </div>
-                    <div className="my-3">
+                  </div>
+                  <div className="col-12">
+                    <div className="submit-input text-center">
                       <motion.button
+                        type="submit"
+                        name="submit"
+                        value="SUBMIT NOW"
                         whileTap={{
                           scale: 0,
                         }}
-                        type="submit"
                         className={`btn btn-${
                           input.length === 0 ? "secondary" : "primary"
                         } mx-1 btn-sm bottom-btns rounded`}
@@ -129,13 +152,13 @@ const ContactUs = (props) => {
                         Send
                       </motion.button>
                     </div>
-                  </form>
+                  </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </>
   );
 };
