@@ -36,6 +36,14 @@ const ContactUs = (props) => {
   };
   // sendEmail() function - ENDS
 
+  // submit() function - STARTS
+  const submit = () => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 1500);
+  }
+  // submit() function - ENDS
+
   return (
     <>
       <h1
@@ -150,6 +158,7 @@ const ContactUs = (props) => {
                           input.length === 0 ? "secondary" : "primary"
                         } mx-1 btn-sm contact-btn rounded`}
                         disabled={input.length === 0 ? true : false}
+                        onClick={submit}
                       >
                         Send
                       </motion.button>
