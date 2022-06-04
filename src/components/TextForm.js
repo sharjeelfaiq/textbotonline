@@ -1434,7 +1434,7 @@ const TextForm = (props) => {
   };
   // clear() function - ENDS
   // copyToClipboard() function - STARTS
-  const copyToClipboard = () => {
+/*   const copyToClipboard = () => {
     navigator.clipboard.writeText(text);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -1453,10 +1453,10 @@ const TextForm = (props) => {
       setInputLightBackground("white");
     }, 280);
     props.showAlert("COPIED!", "success");
-  };
+  }; */
   // copyToClipboard() function - ENDS
   // pasteToTextarea() function - STARTS
-  const pasteToTextarea = () => {
+/*   const pasteToTextarea = () => {
     navigator.clipboard
       .readText()
       .then((newText) => {
@@ -1484,7 +1484,7 @@ const TextForm = (props) => {
         setInputLightBackground("white");
       }, 280);
       props.showAlert("PASTED!", "success");
-    };
+    }; */
   // pasteToTextarea() function - ENDS */
   /* BOTTOM BUTTONS END */
 
@@ -2085,7 +2085,7 @@ const TextForm = (props) => {
             </motion.button>
             {/* Clear Text Button - ENDS */}
             {/* Paste Text Button - STARTS */}
-            <motion.button
+            {/* <motion.button
               whileTap={{
                 scale: 0,
               }}
@@ -2095,7 +2095,7 @@ const TextForm = (props) => {
               style={{display: text.length === 0? "inline" : "none"}}
             >
               Paste <i className="bi bi-clipboard bottom-btns-icons"></i>
-            </motion.button>
+            </motion.button> */}
             {/* Paste Text Button - ENDS */}
           </div>
           <div>
@@ -2115,7 +2115,7 @@ const TextForm = (props) => {
             </motion.button>
             {/* Save Text Button - ENDS */}
             {/* Copy Text Button - STARTS */}
-            <motion.button
+            {/* <motion.button
               whileTap={{
                 scale: 0,
               }}
@@ -2126,7 +2126,7 @@ const TextForm = (props) => {
             >
               Copy{" "}
               <i className="bi bi-clipboard-check-fill bottom-btns-icons"></i>
-            </motion.button>
+            </motion.button> */}
             {/* Copy Text Button - ENDS */}
           </div>
         </div>
