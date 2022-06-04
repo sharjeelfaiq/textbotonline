@@ -20,42 +20,42 @@ const TextForm = (props) => {
   /* MENU DROPDOWN STARTS */
   // uploadTextFile() function - STARTS
   const uploadTextFile = () => {
-      let files = document.querySelector('input[type="file"]').files;
-      const reader = new FileReader();
-      reader.onload = () => {
-        const lines = reader.result;
-        setText(lines);
-        setGeneratedText(lines);
-      };
-      setInputLightBackground("#8BE48B");
-      setTimeout(() => {
-        setInputLightBackground("white");
-      }, 280);
-      setInputDarkBackground("#8BE48B");
-      setTimeout(() => {
-        setInputDarkBackground("#242526");
-      }, 280);
-      reader.readAsText(files[0]);
+    let files = document.querySelector('input[type="file"]').files;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const lines = reader.result;
+      setText(lines);
+      setGeneratedText(lines);
+    };
+    setInputLightBackground("#8BE48B");
+    setTimeout(() => {
+      setInputLightBackground("white");
+    }, 280);
+    setInputDarkBackground("#8BE48B");
+    setTimeout(() => {
+      setInputDarkBackground("#242526");
+    }, 280);
+    reader.readAsText(files[0]);
   };
   // uploadTextFile() function - ENDS
   // downloadTxtFile() function - STARTS
   const downloadTxtFile = () => {
-      const element = document.createElement("a");
-      const file = new Blob([text], {
-        type: "text/plain",
-      });
-      element.href = URL.createObjectURL(file);
-      element.download = "myFile.txt";
-      document.body.appendChild(element);
-      element.click();
-      setOutputLightBackground("#0DCAF0");
-      setTimeout(() => {
-        setOutputLightBackground("white");
-      }, 280);
-      setOutputDarkBackground("#0DCAF0");
-      setTimeout(() => {
-        setOutputDarkBackground("#242526");
-      }, 280);
+    const element = document.createElement("a");
+    const file = new Blob([text], {
+      type: "text/plain",
+    });
+    element.href = URL.createObjectURL(file);
+    element.download = "myFile.txt";
+    document.body.appendChild(element);
+    element.click();
+    setOutputLightBackground("#0DCAF0");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    setOutputDarkBackground("#0DCAF0");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
   };
   // downloadTxtFile() function - ENDS
   /* MENU DROPDOWN ENDS */
@@ -1433,9 +1433,25 @@ const TextForm = (props) => {
     props.showAlert("Cleared!.", "success");
   };
   // clear() function - ENDS
-  /*   // copyToClipboard() function - STARTS
+  // copyToClipboard() function - STARTS
   const copyToClipboard = () => {
     navigator.clipboard.writeText(text);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 400);
+    setInputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setInputDarkBackground("#242526");
+    }, 400);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    setInputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setInputLightBackground("white");
+    }, 280);
     props.showAlert("COPIED!", "success");
   };
   // copyToClipboard() function - ENDS
@@ -1451,7 +1467,24 @@ const TextForm = (props) => {
       .catch((err) => {
         props.showAlert(err, "error");
       });
-  };
+      setOutputDarkBackground("#CED4DA");
+      setTimeout(() => {
+        setOutputDarkBackground("#242526");
+      }, 400);
+      setInputDarkBackground("#CED4DA");
+      setTimeout(() => {
+        setInputDarkBackground("#242526");
+      }, 400);
+      setOutputLightBackground("#CED4DA");
+      setTimeout(() => {
+        setOutputLightBackground("white");
+      }, 280);
+      setInputLightBackground("#CED4DA");
+      setTimeout(() => {
+        setInputLightBackground("white");
+      }, 280);
+      props.showAlert("PASTED!", "success");
+    };
   // pasteToTextarea() function - ENDS */
   /* BOTTOM BUTTONS END */
 
@@ -2038,42 +2071,54 @@ const TextForm = (props) => {
 
         {/* Bottom Buttons Section - START */}
         <div className="d-flex justify-content-between">
-          {/* Clear Text Button - STARTS */}
-          <motion.button
-            whileTap={{
-              scale: 0,
-            }}
-            className="btn btn-danger mx-1 btn-sm bottom-btns rounded"
-            onClick={clear}
-            disabled={text.length === 0}
-          >
-            Clear <i className="bi bi-x-lg bottom-btns-icons"></i>
-          </motion.button>
-          <motion.button
-            whileTap={{
-              scale: 0,
-            }}
-            className={`btn btn-${
-              text.length === 0 ? "secondary" : "primary"
-            } mx-1 btn-sm bottom-btns rounded`}
-            onClick={downloadTxtFile}
-            title="Save the .txt file"
-            disabled={text.length === 0}
-          >
-            Save <i className="bi bi-download bottom-btns-icons" />
-          </motion.button>
-          {/* Clear Text Button - ENDS */}
-          {/* <button
+          <div>
+            {/* Clear Text Button - STARTS */}
+            <motion.button
+              whileTap={{
+                scale: 0,
+              }}
+              className="btn btn-danger mx-1 btn-sm bottom-btns rounded"
+              onClick={clear}
+              disabled={text.length === 0}
+            >
+              Clear <i className="bi bi-x-lg bottom-btns-icons"></i>
+            </motion.button>
+            {/* Clear Text Button - ENDS */}
+            {/* Paste Text Button - STARTS */}
+            <motion.button
+              whileTap={{
+                scale: 0,
+              }}
               className="btn btn-secondary mx-1 btn-sm bottom-btns rounded"
               onClick={pasteToTextarea}
               title="Paste the text to text area"
-              style={{ display: text.length === 0 ? "block" : "none" }}
+              style={{display: text.length === 0? "inline" : "none"}}
             >
               Paste <i className="bi bi-clipboard bottom-btns-icons"></i>
-            </button>
+            </motion.button>
+            {/* Paste Text Button - ENDS */}
           </div>
           <div>
-            <button
+            {/* Save Text Button - STARTS */}
+            <motion.button
+              whileTap={{
+                scale: 0,
+              }}
+              className={`btn btn-${
+                text.length === 0 ? "secondary" : "primary"
+              } mx-1 btn-sm bottom-btns rounded`}
+              onClick={downloadTxtFile}
+              title="Save the .txt file"
+              disabled={text.length === 0}
+            >
+              Save <i className="bi bi-download bottom-btns-icons" />
+            </motion.button>
+            {/* Save Text Button - ENDS */}
+            {/* Copy Text Button - STARTS */}
+            <motion.button
+              whileTap={{
+                scale: 0,
+              }}
               className="btn btn-warning mx-1 btn-sm bottom-btns rounded"
               onClick={copyToClipboard}
               title="Copy the text to clipboard"
@@ -2081,7 +2126,9 @@ const TextForm = (props) => {
             >
               Copy{" "}
               <i className="bi bi-clipboard-check-fill bottom-btns-icons"></i>
-            </button> */}
+            </motion.button>
+            {/* Copy Text Button - ENDS */}
+          </div>
         </div>
         {/* Bottom Buttons Section - END */}
       </div>
