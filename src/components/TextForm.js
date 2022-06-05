@@ -1537,7 +1537,7 @@ const TextForm = (props) => {
             <Dropdown.Toggle
               className={`btn btn-sm top-btns mx-1 btn-${props.mode}`}
             >
-              Menu
+              Upload
             </Dropdown.Toggle>
             <Dropdown.Menu variant={`${props.mode}`} className="menu-opt">
               <input
