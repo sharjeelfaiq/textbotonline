@@ -91,6 +91,10 @@
   background-color: #07395c;
 }
 
+.siteseal{
+  position: absolute;
+}
+
 @media (max-width: 575.99px) {
   .section-contact {
     padding: 80px 60px;
