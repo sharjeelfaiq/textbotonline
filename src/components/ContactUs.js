@@ -166,6 +166,11 @@ const ContactUs = (props) => {
           </div>
         </div>
       </div>
+      <h4
+        className="text-center"
+      >
+        <span className="text-uppercase blockquote-footer">Thanks For Using Textbotonline</span>
+      </h4>
     </>
   );
 };

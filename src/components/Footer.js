@@ -38,7 +38,7 @@ function Footer(props) {
           </small>{" "}
           |{" "}
           <span
-            title="Share this to help others..."
+            title="Share this website to help others..."
             onClick={handleShareButton}
             style={{ cursor: "pointer" }}
           >
