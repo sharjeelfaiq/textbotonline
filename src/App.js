@@ -6,6 +6,7 @@ import TextForm from "./components/TextForm";
 import About from "./components/About";
 import ContactUs from "./components/ContactUs";
 import Footer from "./components/Footer";
+import Script from "@gumgum/react-script-tag";
 
 import "./App.css";
 
@@ -38,40 +39,50 @@ const App = () => {
   // toggleMood() function - ENDS
   return (
     <>
-      <div>
-        {/* Toggle mode Switch - STARTS */}
-        <div className="form-check form-switch">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            id="flexSwitchCheckDefault"
-            onClick={toggleMood}
-          />
-        </div>
-        {/* Toggle mode Switch - ENDS */}
-        <Navbar mode={mode} />
-        <ScrollToTop />
-        <Alert alert={alert} />
-        <div className="container-lg routes-div">
-          <TextForm mode={mode} showAlert={showAlert} />
-          {/* ABOUT SECTION STARTS */}
-          <div className="my-5">
-            <About mode={mode} showAlert={showAlert} />
-          </div>
-          {/* ABOUT SECTION ENDS */}
-          <hr className={`text-${mode === "dark" ? "light" : "dark"}`} />
-          {/* CONTACT US SECTION STARTS */}
-          <div className="my-5">
-            <ContactUs mode={mode} showAlert={showAlert} />
-          </div>
-          {/* CONTACT US SECTION ENDS */}
-        </div>
-          {/* FOOTER STARTS */}
-          <div className="pt-5">
-            <Footer />
-          </div>
-          {/* FOOTER ENDS */}
+      {/* Toggle mode Switch - STARTS */}
+      <div className="form-check form-switch">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+          onClick={toggleMood}
+        />
       </div>
+      {/* Toggle mode Switch - ENDS */}
+      <Navbar mode={mode} />
+      <ScrollToTop />
+      <Alert alert={alert} />
+      <div className="container-lg">
+        <TextForm mode={mode} showAlert={showAlert} />
+        {/* ABOUT SECTION STARTS */}
+        <div className="my-5">
+          <About mode={mode} showAlert={showAlert} />
+        </div>
+        {/* ABOUT SECTION ENDS */}
+        <hr className={`text-${mode === "dark" ? "light" : "dark"}`} />
+        {/* CONTACT US SECTION STARTS */}
+        <div className="my-5">
+          <ContactUs mode={mode} showAlert={showAlert} />
+        </div>
+        {/* CONTACT US SECTION ENDS */}
+      </div>
+      {/* SSL SECURITY SEAL STARTS */}
+      <div className="siteseal">
+        <span id="siteseal">
+          <Script
+            async
+            type="text/javascript"
+            src="https://seal.godaddy.com/getSeal?sealID=HMgNcG9mIWiSb6zRMRwW1XQgZfKgyFTokjgC5k7nSfBdfUJiOrMYyj1fOcuL"
+          ></Script>
+        </span>
+      </div>
+      {/* SSL SECURITY SEAL ENDS */}
+
+      {/* FOOTER STARTS */}
+      <div className="pt-3">
+        <Footer />
+      </div>
+      {/* FOOTER ENDS */}
     </>
   );
 };

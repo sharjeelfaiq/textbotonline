@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
-import Script from "@gumgum/react-script-tag";
 
 import "../css/ContactUs.css";
 
@@ -167,13 +166,6 @@ const ContactUs = (props) => {
           </div>
         </div>
       </div>
-      <span id="siteseal" className="siteseal">
-        <Script
-          async
-          type="text/javascript"
-          src="https://seal.godaddy.com/getSeal?sealID=HMgNcG9mIWiSb6zRMRwW1XQgZfKgyFTokjgC5k7nSfBdfUJiOrMYyj1fOcuL"
-        ></Script>
-      </span>
     </>
   );
 };
