@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../src/components/Navbar";
 import ScrollToTop from "../src/components/ScrollToTop";
 import Alert from "../src/components/Alert";
@@ -30,13 +30,27 @@ const App = () => {
       setMode("dark");
       document.body.style.backgroundColor = "#18191A";
       showAlert("Dark mode has been enabled.", "success");
+      localStorage.setItem("mode", "dark");
     } else {
+      localStorage.setItem("mode", "light");
       setMode("light");
       document.body.style.backgroundColor = "white";
       showAlert("Light mode has been enabled.", "success");
     }
   }
   // toggleMood() function - ENDS
+
+  useEffect(() => {
+    if (localStorage.getItem("mode") === "dark") {
+      setMode("dark");
+      document.body.style.backgroundColor = "#18191A";
+      showAlert("Dark mode has been enabled.", "success");
+    } else {
+      setMode("light");
+      document.body.style.backgroundColor = "white";
+      showAlert("Light mode has been enabled.", "success");
+    }
+  }, []);
 
   return (
     <>
