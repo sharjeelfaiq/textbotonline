@@ -44,11 +44,9 @@ const App = () => {
     if (localStorage.getItem("mode") === "dark") {
       setMode("dark");
       document.body.style.backgroundColor = "#18191A";
-      showAlert("Dark mode has been enabled.", "success");
     } else {
       setMode("light");
       document.body.style.backgroundColor = "white";
-      showAlert("Light mode has been enabled.", "success");
     }
   }, []);
 
