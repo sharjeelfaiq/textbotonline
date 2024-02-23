@@ -6,7 +6,7 @@
   "dependencies": {
     "@gumgum/react-script-tag": "^0.0.3",
     "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^12.1.4",
+    "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap-icons": "^1.8.1",
     "caniuse-lite": "^1.0.30001559",
