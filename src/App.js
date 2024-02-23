@@ -59,6 +59,7 @@ const App = () => {
           type="checkbox"
           id="flexSwitchCheckDefault"
           onClick={toggleMood}
+          checked={mode === "light" ? false : true}
         />
       </div>
       {/* Toggle mode Switch - ENDS */}

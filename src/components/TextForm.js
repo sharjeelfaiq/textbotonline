@@ -4,7 +4,7 @@ import { Dropdown } from "react-bootstrap";
 import wordsFrequency from "words-frequency";
 import { frequencyOfString } from "character-frequency";
 import { generateSlug } from "random-word-slugs";
-import randomWords from "random-words";
+// import randomWords from "random-words";
 import { motion } from "framer-motion";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../css/TextForm.css";
@@ -164,10 +164,7 @@ const TextForm = (props) => {
   // duplicate() function - ENDS
   // reverse() function - STARTS
   const reverse = () => {
-    const newText = text
-      .split("")
-      .reverse()
-      .join("");
+    const newText = text.split("").reverse().join("");
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -232,7 +229,7 @@ const TextForm = (props) => {
   const alphabetize = () => {
     const newText = text
       .split(" ")
-      .sort(function(a, b) {
+      .sort(function (a, b) {
         return a.localeCompare(b);
       })
       .join(" ")
@@ -373,13 +370,13 @@ const TextForm = (props) => {
           "\u0489" /*     ҉_     */,
         ],
       },
-      random: function(len) {
+      random: function (len) {
         if (len === 1) return 0;
         return !!len ? Math.floor(Math.random() * len + 1) - 1 : Math.random();
       },
-      generate: function(str) {
+      generate: function (str) {
         var str_arr = str.split(""),
-          output = str_arr.map(function(a) {
+          output = str_arr.map(function (a) {
             if (a === " ") return a;
             for (var i = 0, l = Z.random(16); i < l; i++) {
               var rand = Z.random(3);
@@ -624,10 +621,7 @@ const TextForm = (props) => {
   // addSuffix() function - ENDS
   // sortLinesSENS() function - STARTS
   const sortLinesSENS = () => {
-    const newText = text
-      .split(/\r?\n/)
-      .sort()
-      .join("\n");
+    const newText = text.split(/\r?\n/).sort().join("\n");
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -642,10 +636,7 @@ const TextForm = (props) => {
   // sortLinesSENS() function - ENDS
   // sortLinesINSENS() function - STARTS
   const sortLinesINSENS = () => {
-    const newText = text
-      .split(/\r?\n/i)
-      .sort()
-      .join("\n");
+    const newText = text.split(/\r?\n/i).sort().join("\n");
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -660,11 +651,7 @@ const TextForm = (props) => {
   // sortLinesINSENS() function - ENDS
   // sortLinesReverse() function - STARTS
   const sortLinesReverseSENS = () => {
-    const newText = text
-      .split(/\r?\n/)
-      .sort()
-      .reverse()
-      .join("\n");
+    const newText = text.split(/\r?\n/).sort().reverse().join("\n");
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -679,11 +666,7 @@ const TextForm = (props) => {
   // sortLinesReverse() function - ENDS
   // sortLinesReverseINSENS() function - STARTS
   const sortLinesReverseINSENS = () => {
-    const newText = text
-      .split(/\r?\n/i)
-      .sort()
-      .reverse()
-      .join("\n");
+    const newText = text.split(/\r?\n/i).sort().reverse().join("\n");
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -857,7 +840,7 @@ const TextForm = (props) => {
     const newText = text
       .toLowerCase()
       .split(" ")
-      .map(function(item) {
+      .map(function (item) {
         return item.slice(0, -1) + item.slice(-1).toUpperCase();
       })
       .join(" ");
@@ -895,7 +878,7 @@ const TextForm = (props) => {
     function firstLetterUpper() {
       var newString = text
         .toLowerCase()
-        .replace(/(^\s*\w|[\.\!\?]\s*\w)/g, function(c) {
+        .replace(/(^\s*\w|[\.\!\?]\s*\w)/g, function (c) {
           return c.toUpperCase();
         });
       setOutputDarkBackground("#CED4DA");
@@ -930,7 +913,7 @@ const TextForm = (props) => {
     const newText = text
       .toUpperCase()
       .split(" ")
-      .map(function(word) {
+      .map(function (word) {
         return word.charAt(0).toLowerCase() + word.slice(1);
       })
       .join(" ");
@@ -952,7 +935,7 @@ const TextForm = (props) => {
       return str
         .toUpperCase()
         .split(" ")
-        .map(function(word) {
+        .map(function (word) {
           return word.charAt(0).toLowerCase() + word.slice(1);
         })
         .join(" ");
@@ -974,7 +957,7 @@ const TextForm = (props) => {
   const camelCase = () => {
     function camelize(str) {
       return str
-        .replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
+        .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
           return index === 0 ? word.toLowerCase() : word.toUpperCase();
         })
         .replace(/\s+/g, "");
@@ -1201,7 +1184,7 @@ const TextForm = (props) => {
   };
   // getRandomCharacterss() function - ENDS
   // getRandomWords() function - STARTS
-  const getRandomWords = () => {
+  /* const getRandomWords = () => {
     const count = Number(
       prompt("How many random words do you need? Enter a number:")
     );
@@ -1225,7 +1208,7 @@ const TextForm = (props) => {
       setInputLightBackground("white");
     }, 280);
     props.showAlert("Random Words generated!", "success");
-  };
+  }; */
   // getRandomWords() function - ENDS
   // getRandomWordsSlug() function - STARTS
   const getRandomWordsSlug = () => {
@@ -1344,7 +1327,7 @@ const TextForm = (props) => {
   // getNumbers() function - ENDS
   // getHash() function - STARTS
   const getHash = () => {
-    String.prototype.hashCode = function() {
+    String.prototype.hashCode = function () {
       var hash = 0,
         i,
         chr;
@@ -1434,7 +1417,7 @@ const TextForm = (props) => {
   };
   // clear() function - ENDS
   // copyToClipboard() function - STARTS
-/*   const copyToClipboard = () => {
+  /*   const copyToClipboard = () => {
     navigator.clipboard.writeText(text);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -1456,7 +1439,7 @@ const TextForm = (props) => {
   }; */
   // copyToClipboard() function - ENDS
   // pasteToTextarea() function - STARTS
-/*   const pasteToTextarea = () => {
+  /*   const pasteToTextarea = () => {
     navigator.clipboard
       .readText()
       .then((newText) => {
@@ -1970,13 +1953,13 @@ const TextForm = (props) => {
               >
                 Random Characters
               </Dropdown.Item>
-              <Dropdown.Item
+              {/* <Dropdown.Item
                 onClick={getRandomWords}
                 title="Generate random words"
                 className="menu-item"
               >
                 Random Words
-              </Dropdown.Item>
+              </Dropdown.Item> */}
               <Dropdown.Item
                 onClick={getRandomWordsSlug}
                 title="Generate random words-slug"
