@@ -50,7 +50,6 @@ const App = () => {
     }
   }, []);
 
-  
   return (
     <>
       {/* Toggle mode Switch - STARTS */}
