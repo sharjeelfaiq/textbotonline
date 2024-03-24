@@ -874,7 +874,7 @@ const TextForm = (props) => {
   };
   // invertCase() function - ENDS
   // sentenceCase() function - STARTS
-  const sentenceCase = () => {
+  /* const sentenceCase = () => {
     function firstLetterUpper() {
       var newString = text
         .toLowerCase()
@@ -906,7 +906,7 @@ const TextForm = (props) => {
       props.showAlert("Converted to 'Sentence Case'!", "success");
     }
     convertToSentenceCase();
-  };
+  }; */
   // sentenceCase() function - ENDS
   // toggleCase() function - STARTS
   const toggleCase = () => {
@@ -1327,7 +1327,7 @@ const TextForm = (props) => {
   // getNumbers() function - ENDS
   // getHash() function - STARTS
   const getHash = () => {
-    String.prototype.hashCode = function () {
+    String.hashCode = function () {
       var hash = 0,
         i,
         chr;
@@ -1840,14 +1840,14 @@ const TextForm = (props) => {
               >
                 Invert CASE
               </Dropdown.Item>
-              <Dropdown.Item
+              {/* <Dropdown.Item
                 onClick={sentenceCase}
                 disabled={text.length === 0}
                 title="Change the case of your text"
                 className="menu-item"
               >
                 Sentence case
-              </Dropdown.Item>
+              </Dropdown.Item> */}
               <Dropdown.Item
                 onClick={toggleCase}
                 disabled={text.length === 0}
