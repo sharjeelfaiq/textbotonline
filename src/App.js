@@ -6,7 +6,7 @@ import TextForm from "../src/components/TextForm";
 import About from "../src/components/About";
 import ContactUs from "../src/components/ContactUs";
 import Footer from "../src/components/Footer";
-import Script from "@gumgum/react-script-tag";
+// import Script from "@gumgum/react-script-tag";
 
 import "./App.css";
 
@@ -81,7 +81,7 @@ const App = () => {
         {/* CONTACT US SECTION ENDS */}
       </div>
       {/* SSL SECURITY SEAL STARTS */}
-      <div className="siteseal">
+      {/* <div className="siteseal">
         <span id="siteseal">
           <Script
             async
@@ -89,7 +89,7 @@ const App = () => {
             src="https://seal.godaddy.com/getSeal?sealID=HMgNcG9mIWiSb6zRMRwW1XQgZfKgyFTokjgC5k7nSfBdfUJiOrMYyj1fOcuL"
           ></Script>
         </span>
-      </div>
+      </div> */}
       {/* SSL SECURITY SEAL ENDS */}
 
       {/* FOOTER STARTS */}
