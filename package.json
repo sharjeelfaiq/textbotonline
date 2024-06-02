@@ -13,6 +13,8 @@
     "emailjs-com": "^3.2.0",
     "framer-motion": "^4.1.17",
     "loadash": "^1.0.0",
+    "number-pro": "^1.1.2",
+    "quotes-factory": "^1.1.2",
     "random-word-slugs": "^0.1.6",
     "random-words": "^1.1.2",
     "react": "^18.2.0",
@@ -22,6 +24,7 @@
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
+    "superbstring": "^1.1.2",
     "web-vitals": "^2.1.4",
     "words-frequency": "^1.1.1"
   },

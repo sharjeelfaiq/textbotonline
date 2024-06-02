@@ -1,21 +1,26 @@
-import React, { useState } from "react";
-import _ from "lodash";
-import { Dropdown } from "react-bootstrap";
+import { useState } from "react";
+
+// import _ from "lodash";
+// import randomWords from "random-words";
 import wordsFrequency from "words-frequency";
+import superbstring from "superbstring";
+import numberPro from "number-pro";
+import getQuotes from "quotes-factory";
+import { Dropdown } from "react-bootstrap";
 import { frequencyOfString } from "character-frequency";
 import { generateSlug } from "random-word-slugs";
-// import randomWords from "random-words";
 import { motion } from "framer-motion";
 import "bootstrap-icons/font/bootstrap-icons.css";
+
 import "../css/TextForm.css";
 
 const TextForm = (props) => {
-  const [text, setText] = useState(""); // Handles the text inside textarea
-  const [generatedText, setGeneratedText] = useState(""); // Handles the text inside textarea
-  const [inputDarkBackground, setInputDarkBackground] = useState("#242526"); // Handles the dark background color of the intput textarea
-  const [outputDarkBackground, setOutputDarkBackground] = useState("#242526"); // Handles the dark background color of the output textarea
-  const [inputLightBackground, setInputLightBackground] = useState("white"); // Handles the dark background color of the intput textarea
-  const [outputLightBackground, setOutputLightBackground] = useState("white"); // Handles the dark background color of the output textarea
+  const [text, setText] = useState("");
+  const [generatedText, setGeneratedText] = useState("");
+  const [inputDarkBackground, setInputDarkBackground] = useState("#242526");
+  const [outputDarkBackground, setOutputDarkBackground] = useState("#242526");
+  const [inputLightBackground, setInputLightBackground] = useState("white");
+  const [outputLightBackground, setOutputLightBackground] = useState("white");
 
   /* MENU DROPDOWN STARTS */
   // uploadTextFile() function - STARTS
@@ -63,10 +68,7 @@ const TextForm = (props) => {
   /* EDIT DROPDOWN STARTS */
   // splitText() function - STARTS
   const splitText = () => {
-    const newText = text
-      .split(/((?:\w+ ){1})/g)
-      .filter(Boolean)
-      .join("\n");
+    const newText = superbstring.splitString(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -81,7 +83,7 @@ const TextForm = (props) => {
   // splitText() function - ENDS
   // joinText() function - STARTS
   const joinText = () => {
-    const newText = text.replace(/\n/g, "");
+    const newText = superbstring.joinString(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -96,10 +98,7 @@ const TextForm = (props) => {
   // joinText() function - ENDS
   // removeExtraSpaces() function - STARTS
   const removeExtraSpaces = () => {
-    const newText = text
-      .replace(/\s+/g, " ")
-      .replace(/^\s+|\s+$/g, "")
-      .replace(/ +(\W)/g, "$1");
+    const newText = superbstring.removeExtraSpaces(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -114,7 +113,7 @@ const TextForm = (props) => {
   // removeExtraSpaces() function - ENDS
   // removeAllSpaces() function - STARTS
   const removeAllSpaces = () => {
-    const newText = text.replace(/\s+/g, "");
+    const newText = superbstring.removeAllSpaces(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -129,9 +128,7 @@ const TextForm = (props) => {
   // removeAllSpaces() function - ENDS
   // removeAllSymbols() function - STARTS
   const removeAllSymbols = () => {
-    const regex = /[0-9/A-Z/a-z/ /]/g;
-    const letters = text.match(regex);
-    const newText = letters.join("");
+    const newText = superbstring.removeAllSymbols(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -149,7 +146,7 @@ const TextForm = (props) => {
     const count = Number(
       prompt("How many times do you want to duplicate the text?")
     );
-    const newText = text.repeat(count + 1);
+    const newText = superbstring.duplicate(text, count);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -164,7 +161,7 @@ const TextForm = (props) => {
   // duplicate() function - ENDS
   // reverse() function - STARTS
   const reverse = () => {
-    const newText = text.split("").reverse().join("");
+    const newText = superbstring.reverse(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -179,10 +176,7 @@ const TextForm = (props) => {
   // reverse() function - ENDS
   // slugify() function - STARTS
   const slugify = () => {
-    const newText = text
-      .toLowerCase()
-      .replace(/ /g, "-")
-      .replace(/[^\w-]+/g, "");
+    const newText = superbstring.slugify(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -198,7 +192,7 @@ const TextForm = (props) => {
   // truncate() function - STARTS
   const truncate = () => {
     const length = prompt("What length upto you want to truncate your text?");
-    const newText = text.substring(0, length);
+    const newText = superbstring.truncate(text, length);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -213,7 +207,7 @@ const TextForm = (props) => {
   // truncate() function - ENDS
   // paraToSingleLine() function - STARTS
   const paraToSingleLine = () => {
-    const newText = text.replace(/\s+/g, " ");
+    const newText = superbstring.paraToSingleLine(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -227,13 +221,7 @@ const TextForm = (props) => {
   };
   // alphabetize() function - STARTS
   const alphabetize = () => {
-    const newText = text
-      .split(" ")
-      .sort(function (a, b) {
-        return a.localeCompare(b);
-      })
-      .join(" ")
-      .toString();
+    const newText = superbstring.alphabetize(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -248,146 +236,7 @@ const TextForm = (props) => {
   // alphabetize() function - ENDS
   // zalgo() function - STARTS
   const zalgo = () => {
-    var Z = {
-      chars: {
-        0: [
-          /* up */ "\u030d" /*     ̍     */,
-          "\u030e" /*     ̎     */,
-          "\u0304" /*     ̄     */,
-          "\u0305" /*     ̅     */,
-          "\u033f" /*     ̿     */,
-          "\u0311" /*     ̑     */,
-          "\u0306" /*     ̆     */,
-          "\u0310" /*     ̐     */,
-          "\u0352" /*     ͒     */,
-          "\u0357" /*     ͗     */,
-          "\u0351" /*     ͑     */,
-          "\u0307" /*     ̇     */,
-          "\u0308" /*     ̈     */,
-          "\u030a" /*     ̊     */,
-          "\u0342" /*     ͂     */,
-          "\u0343" /*     ̓     */,
-          "\u0344" /*     ̈́     */,
-          "\u034a" /*     ͊     */,
-          "\u034b" /*     ͋     */,
-          "\u034c" /*     ͌     */,
-          "\u0303" /*     ̃     */,
-          "\u0302" /*     ̂     */,
-          "\u030c" /*     ̌     */,
-          "\u0350" /*     ͐     */,
-          "\u0300" /*     ̀     */,
-          "\u0301" /*     ́     */,
-          "\u030b" /*     ̋     */,
-          "\u030f" /*     ̏     */,
-          "\u0312" /*     ̒     */,
-          "\u0313" /*     ̓     */,
-          "\u0314" /*     ̔     */,
-          "\u033d" /*     ̽     */,
-          "\u0309" /*     ̉     */,
-          "\u0363" /*     ͣ     */,
-          "\u0364" /*     ͤ     */,
-          "\u0365" /*     ͥ     */,
-          "\u0366" /*     ͦ     */,
-          "\u0367" /*     ͧ     */,
-          "\u0368" /*     ͨ     */,
-          "\u0369" /*     ͩ     */,
-          "\u036a" /*     ͪ     */,
-          "\u036b" /*     ͫ     */,
-          "\u036c" /*     ͬ     */,
-          "\u036d" /*     ͭ     */,
-          "\u036e" /*     ͮ     */,
-          "\u036f" /*     ͯ     */,
-          "\u033e" /*     ̾     */,
-          "\u035b" /*     ͛     */,
-          "\u0346" /*     ͆     */,
-          "\u031a" /*     ̚     */,
-        ],
-        1: [
-          /* down */ "\u0316" /*     ̖     */,
-          "\u0317" /*     ̗     */,
-          "\u0318" /*     ̘     */,
-          "\u0319" /*     ̙     */,
-          "\u031c" /*     ̜     */,
-          "\u031d" /*     ̝     */,
-          "\u031e" /*     ̞     */,
-          "\u031f" /*     ̟     */,
-          "\u0320" /*     ̠     */,
-          "\u0324" /*     ̤     */,
-          "\u0325" /*     ̥     */,
-          "\u0326" /*     ̦     */,
-          "\u0329" /*     ̩     */,
-          "\u032a" /*     ̪     */,
-          "\u032b" /*     ̫     */,
-          "\u032c" /*     ̬     */,
-          "\u032d" /*     ̭     */,
-          "\u032e" /*     ̮     */,
-          "\u032f" /*     ̯     */,
-          "\u0330" /*     ̰     */,
-          "\u0331" /*     ̱     */,
-          "\u0332" /*     ̲     */,
-          "\u0333" /*     ̳     */,
-          "\u0339" /*     ̹     */,
-          "\u033a" /*     ̺     */,
-          "\u033b" /*     ̻     */,
-          "\u033c" /*     ̼     */,
-          "\u0345" /*     ͅ     */,
-          "\u0347" /*     ͇     */,
-          "\u0348" /*     ͈     */,
-          "\u0349" /*     ͉     */,
-          "\u034d" /*     ͍     */,
-          "\u034e" /*     ͎     */,
-          "\u0353" /*     ͓     */,
-          "\u0354" /*     ͔     */,
-          "\u0355" /*     ͕     */,
-          "\u0356" /*     ͖     */,
-          "\u0359" /*     ͙     */,
-          "\u035a" /*     ͚     */,
-          "\u0323" /*     ̣     */,
-        ],
-        2: [
-          /* mid */ "\u0315" /*     ̕     */,
-          "\u031b" /*     ̛     */,
-          "\u0340" /*     ̀     */,
-          "\u0341" /*     ́     */,
-          "\u0358" /*     ͘     */,
-          "\u0321" /*     ̡     */,
-          "\u0322" /*     ̢     */,
-          "\u0327" /*     ̧     */,
-          "\u0328" /*     ̨     */,
-          "\u0334" /*     ̴     */,
-          "\u0335" /*     ̵     */,
-          "\u0336" /*     ̶     */,
-          "\u034f" /*     ͏     */,
-          "\u035c" /*     ͜     */,
-          "\u035d" /*     ͝     */,
-          "\u035e" /*     ͞     */,
-          "\u035f" /*     ͟     */,
-          "\u0360" /*     ͠     */,
-          "\u0362" /*     ͢     */,
-          "\u0338" /*     ̸     */,
-          "\u0337" /*     ̷      */,
-          "\u0361" /*     ͡     */,
-          "\u0489" /*     ҉_     */,
-        ],
-      },
-      random: function (len) {
-        if (len === 1) return 0;
-        return !!len ? Math.floor(Math.random() * len + 1) - 1 : Math.random();
-      },
-      generate: function (str) {
-        var str_arr = str.split(""),
-          output = str_arr.map(function (a) {
-            if (a === " ") return a;
-            for (var i = 0, l = Z.random(16); i < l; i++) {
-              var rand = Z.random(3);
-              a += Z.chars[rand][Z.random(Z.chars[rand].length)];
-            }
-            return a;
-          });
-        return output.join("");
-      },
-    };
-    const newText = Z.generate(text);
+    const newText = superbstring.zalgo(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -402,9 +251,7 @@ const TextForm = (props) => {
   // zalgo() function - ENDS
   // rot13Deg() function - STARTS
   const rot13Deg = () => {
-    var a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    var b = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
-    const newText = text.replace(/[a-z]/gi, (c) => b[a.indexOf(c)]);
+    const newText = superbstring.rotate13Deg(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -497,9 +344,7 @@ const TextForm = (props) => {
   // base64Decode() function - ENDS
   // unixToDate() function - STARTS
   const unixToDate = () => {
-    const unixTime = text;
-    const date = new Date(unixTime * 1000);
-    const newText = date.toLocaleDateString("en-US");
+    const newText = numberPro.unixToDate(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -514,13 +359,7 @@ const TextForm = (props) => {
   // unixToDate() function - ENDS
   // unixToTime() function - STARTS
   const unixToTime = () => {
-    const unix_timestamp = text;
-    const date = new Date(unix_timestamp * 1000);
-    const hours = date.getHours();
-    const minutes = "0" + date.getMinutes();
-    const seconds = "0" + date.getSeconds();
-    const newText =
-      hours + " : " + minutes.substr(-2) + " : " + seconds.substr(-2);
+    const newText = numberPro.unixToTime(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -535,8 +374,7 @@ const TextForm = (props) => {
   // unixToTime() function - ENDS
   // formatNumbers() function - STARTS
   const formatNumbers = () => {
-    const num = parseInt(text);
-    const newText = num.toLocaleString();
+    const newText = numberPro.formatNumbers(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -551,9 +389,7 @@ const TextForm = (props) => {
   // formatNumbers() function - ENDS
   // extractText() function - STARTS
   const extractText = () => {
-    const regex = /[A-Z/a-z/ /]/g;
-    const letters = text.match(regex);
-    const newText = letters.join("");
+    const newText = superbstring.extractText(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -568,9 +404,7 @@ const TextForm = (props) => {
   // extractText() function - ENDS
   // extractNumbers() function - STARTS
   const extractNumbers = () => {
-    const regex = /[0-9/ /]/g;
-    const nums = text.match(regex);
-    const newText = nums.join("");
+    const newText = superbstring.extractNumber(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -588,7 +422,7 @@ const TextForm = (props) => {
     const prefix = window.prompt(
       "Enter the text you need to prefix to the text inside the text area."
     );
-    const newText = prefix.concat(text);
+    const newText = superbstring.addPrefix(text, prefix);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -606,7 +440,7 @@ const TextForm = (props) => {
     const suffix = window.prompt(
       "Enter the text you need to suffix to the text inside the text area."
     );
-    const newText = text.concat(suffix);
+    const newText = superbstring.addSuffix(text, suffix);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -681,65 +515,7 @@ const TextForm = (props) => {
   // sortLinesReverseINSENS() function - ENDS
   // decimalToRoman() function - STARTS
   const decimalToRoman = () => {
-    const intToRoman = (num) => {
-      let result = "";
-      while (num) {
-        if (num >= 1000) {
-          result += "M";
-          num -= 1000;
-        } else if (num >= 500) {
-          if (num >= 900) {
-            result += "CM";
-            num -= 900;
-          } else {
-            result += "D";
-            num -= 500;
-          }
-        } else if (num >= 100) {
-          if (num >= 400) {
-            result += "CD";
-            num -= 400;
-          } else {
-            result += "C";
-            num -= 100;
-          }
-        } else if (num >= 50) {
-          if (num >= 90) {
-            result += "XC";
-            num -= 90;
-          } else {
-            result += "L";
-            num -= 50;
-          }
-        } else if (num >= 10) {
-          if (num >= 40) {
-            result += "XL";
-            num -= 40;
-          } else {
-            result += "X";
-            num -= 10;
-          }
-        } else if (num >= 5) {
-          if (num >= 9) {
-            result += "IX";
-            num -= 9;
-          } else {
-            result += "V";
-            num -= 5;
-          }
-        } else {
-          if (num >= 4) {
-            result += "IV";
-            num -= 4;
-          } else {
-            result += "I";
-            num -= 1;
-          }
-        }
-      }
-      return result;
-    };
-    const newText = intToRoman(Math.abs(Number(text)));
+    const newText = numberPro.decimalToRoman(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -757,22 +533,8 @@ const TextForm = (props) => {
   // decimalToRoman() function - ENDS
   // romanToDecimal() function - STARTS
   const romanToDecimal = () => {
-    const romanToInt = (s) => {
-      const legend = "IVXLCDM";
-      const l = [1, 5, 10, 50, 100, 500, 1000];
-      let sum = 0;
-      while (s) {
-        if (!!s[1] && legend.indexOf(s[0]) < legend.indexOf(s[1])) {
-          sum += l[legend.indexOf(s[1])] - l[legend.indexOf(s[0])];
-          s = s.substring(2, s.length);
-        } else {
-          sum += l[legend.indexOf(s[0])];
-          s = s.substring(1, s.length);
-        }
-      }
-      return sum;
-    };
-    setText(romanToInt(text.toUpperCase()).toString());
+    const newText = numberPro.romanToDecimal(text);
+    setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
       setOutputDarkBackground("#242526");
@@ -821,7 +583,7 @@ const TextForm = (props) => {
   };
   // lowerCase() function - ENDS
   // titleCase() function - STARTS
-  const titleCase = () => {
+  /* const titleCase = () => {
     const newText = _.startCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
@@ -833,17 +595,11 @@ const TextForm = (props) => {
       setOutputLightBackground("white");
     }, 280);
     props.showAlert("Converted to 'Title Case'!", "success");
-  };
+  }; */
   // titleCase() function - ENDS
   // reverseTitleCase() function - STARTS
   const reverseTitleCase = () => {
-    const newText = text
-      .toLowerCase()
-      .split(" ")
-      .map(function (item) {
-        return item.slice(0, -1) + item.slice(-1).toUpperCase();
-      })
-      .join(" ");
+    const newText = superbstring.reverseTitleCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -858,9 +614,7 @@ const TextForm = (props) => {
   // reverseTitleCase() function - ENDS
   // invertCase() function - STARTS
   const invertCase = () => {
-    const newText = text.replace(/./g, (c) =>
-      c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()
-    );
+    const newText = superbstring.invertCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -955,14 +709,7 @@ const TextForm = (props) => {
   // randomCase() function - ENDS
   // camelCase() function - STARTS
   const camelCase = () => {
-    function camelize(str) {
-      return str
-        .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-          return index === 0 ? word.toLowerCase() : word.toUpperCase();
-        })
-        .replace(/\s+/g, "");
-    }
-    const newText = camelize(text);
+    const newText = superbstring.camelCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -977,17 +724,7 @@ const TextForm = (props) => {
   // camelCase() function - ENDS
   // pascalCase() function - STARTS
   const pascalCase = () => {
-    function toPascalCase(string) {
-      return `${string}`
-        .replace(new RegExp(/[-_]+/, "g"), " ")
-        .replace(new RegExp(/[^\w\s]/, "g"), "")
-        .replace(
-          new RegExp(/\s+(.)(\w*)/, "g"),
-          ($1, $2, $3) => `${$2.toUpperCase() + $3.toLowerCase()}`
-        )
-        .replace(new RegExp(/\w/), (s) => s.toUpperCase());
-    }
-    const newText = toPascalCase(text);
+    const newText = superbstring.pascalCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -1002,13 +739,7 @@ const TextForm = (props) => {
   // pascalCase() function - ENDS
   // kebabCase() function - STARTS
   const kebabCase = () => {
-    const kebabCase = (string) =>
-      string
-        .replace(/([a-z])([A-Z])/g, "$1-$2")
-        .replace(/[\s_]+/g, "-")
-        .toLowerCase();
-
-    const newText = kebabCase(text);
+    const newText = superbstring.kebabCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -1023,14 +754,7 @@ const TextForm = (props) => {
   // kebabCase() function - ENDS
   // snakeCase() function - STARTS
   const snakeCase = () => {
-    const toSnakeCase = (str = "") => {
-      const strArr = str.split(" ");
-      const snakeArr = strArr.reduce((acc, val) => {
-        return acc.concat(val.toLowerCase());
-      }, []);
-      return snakeArr.join("_");
-    };
-    const newText = toSnakeCase(text);
+    const newText = superbstring.snakeCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -1048,11 +772,8 @@ const TextForm = (props) => {
   // snakeCase() function - ENDS
   // alternateCase1() function - STARTS
   const alternateCase1 = () => {
-    var newText = text.toLowerCase().split("");
-    for (var i = 0; i < newText.length; i += 2) {
-      newText[i] = newText[i].toUpperCase();
-    }
-    setText(newText.join(""));
+    var newText = superbstring.alternateCase1(text);
+    setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
       setOutputDarkBackground("#242526");
@@ -1066,11 +787,8 @@ const TextForm = (props) => {
   // alternateCase1() function - ENDS
   // alternateCase2() function - STARTS
   const alternateCase2 = () => {
-    var newText = text.toUpperCase().split("");
-    for (var i = 0; i < newText.length; i += 2) {
-      newText[i] = newText[i].toLowerCase();
-    }
-    setText(newText.join(""));
+    var newText = superbstring.alternateCase2(text);
+    setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
       setOutputDarkBackground("#242526");
@@ -1126,9 +844,7 @@ const TextForm = (props) => {
   // wordFreq() function - ENDS
   // getDummyText() function - STARTS
   const getDummyText = () => {
-    let newText = generatedText.concat(
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit, quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam recusandae alias error harum maxime adipisci amet laborum. Perspiciatis minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur fugiat, temporibus enim commodi iusto libero magni deleniti quod quam consequuntur! Commodi minima excepturi repudiandae velit hic maxime doloremque. Quaerat provident commodi consectetur veniam similique ad earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores labore suscipit quas? Nulla, placeat. Voluptatem quaerat non architecto ab laudantium modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam quasi aliquam eligendi, placeat qui corporis!"
-    );
+    let newText = superbstring.getDummyText();
     setText(newText);
     setGeneratedText(newText);
     setOutputDarkBackground("#CED4DA");
@@ -1152,16 +868,8 @@ const TextForm = (props) => {
   // getDummyText() function - ENDS
   // getRandomCharacters() function - STARTS
   const getRandomCharacters = () => {
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-!%*~`_()[]{}<>";
-    let newText = "";
-    const chaactersLength = characters.length;
     const limit = prompt("What length of random characters do you need?");
-
-    for (let i = 0; i < limit; i++) {
-      newText += characters.charAt(Math.floor(Math.random() * chaactersLength));
-    }
-
+    const newText = superbstring.getRandomCharacters(limit);
     setText(newText);
     setGeneratedText(newText);
     setOutputDarkBackground("#CED4DA");
@@ -1305,14 +1013,7 @@ const TextForm = (props) => {
     const endingNum = window.prompt(
       "The ENDING Number must be GREATER then the STARTING Number\nEnter the ending number:"
     );
-    let newText = "";
-    for (
-      let numberSeries = startingNum;
-      numberSeries <= endingNum;
-      numberSeries++
-    ) {
-      newText += numberSeries.toString() + "\n";
-    }
+    const newText = numberPro.getNumbers(startingNum, endingNum);
     setText(newText);
     setInputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -1356,38 +1057,30 @@ const TextForm = (props) => {
   };
   // getHash() function - ENDS
   // getQuotes() function - STARTS
-  const getQuotes = () => {
-    const inspo = `https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json`;
-    fetch(inspo)
-      .then((res) => res.json())
-      .then((data) => {
-        const dataQuotes = data.quotes;
-        // Gives us our array of quotes
-        const randomNum = Math.floor(Math.random() * dataQuotes.length);
-        // Randomization: This is iterating a random number from 0 to the length of array.
-        const randomQuote = data.quotes[randomNum];
-        // Accessing a random quote corresponding with that random number
-        const newText = randomQuote.quote + "\n" + randomQuote.author;
-        setText(newText);
-        setGeneratedText(newText);
-        setOutputDarkBackground("#CED4DA");
-        setTimeout(() => {
-          setOutputDarkBackground("#242526");
-        }, 280);
-        setInputDarkBackground("#CED4DA");
-        setTimeout(() => {
-          setInputDarkBackground("#242526");
-        }, 280);
-        setOutputLightBackground("#CED4DA");
-        setTimeout(() => {
-          setOutputLightBackground("white");
-        }, 280);
-        setInputLightBackground("#CED4DA");
-        setTimeout(() => {
-          setInputLightBackground("white");
-        }, 280);
-        props.showAlert("Random Quote Fetched!", "success");
-      });
+  const getQuote = () => {
+    const statement = getQuotes().statement;
+    const author = getQuotes().author;
+
+    const newText = `${statement}\n${author}`;
+    setText(newText);
+    setGeneratedText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setInputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setInputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    setInputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setInputLightBackground("white");
+    }, 280);
+    props.showAlert("Random Quote Fetched!", "success");
   };
   // getQuotes() function - ENDS
   /* GENERATE DROPDOWN ENDS */
@@ -1500,7 +1193,7 @@ const TextForm = (props) => {
         }}
       >
         <span className="text-uppercase font-monospace">
-          textbot<span className="text-info">online</span>
+          TEXTBOT<span className="text-info">ONLINE</span>
         </span>
       </motion.h1>
       <small>
@@ -1816,14 +1509,14 @@ const TextForm = (props) => {
               >
                 lowercase
               </Dropdown.Item>
-              <Dropdown.Item
+              {/* <Dropdown.Item
                 onClick={titleCase}
                 disabled={text.length === 0}
                 title="Change The Case Of Your Text"
                 className="menu-item"
               >
                 Title Case
-              </Dropdown.Item>
+              </Dropdown.Item> */}
               <Dropdown.Item
                 onClick={reverseTitleCase}
                 disabled={text.length === 0}
@@ -1996,7 +1689,7 @@ const TextForm = (props) => {
                 Hash Code
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={getQuotes}
+                onClick={getQuote}
                 title="Generate a quote"
                 className="menu-item"
               >
