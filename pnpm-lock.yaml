@@ -26,6 +26,9 @@ importers:
       caniuse-lite:
         specifier: ^1.0.30001559
         version: 1.0.30001626
+      case-string:
+        specifier: ^1.0.1
+        version: 1.0.1
       character-frequency:
         specifier: ^2.0.1
         version: 2.0.1
@@ -35,9 +38,6 @@ importers:
       framer-motion:
         specifier: ^4.1.17
         version: 4.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      loadash:
-        specifier: ^1.0.0
-        version: 1.0.0
       number-pro:
         specifier: ^1.1.2
         version: 1.1.2
@@ -1929,6 +1929,9 @@ packages:
     resolution: {integrity: sha512-roIFONhcxog0JSSWbvVAh3OocukmSgpqOH6YpMkCvav/ySIV3JKg4Dc8vYtQjYi/UxpNE36r/9v+VqTQqgkYmw==}
     engines: {node: '>=4'}
 
+  case-string@1.0.1:
+    resolution: {integrity: sha512-tpc2b/DfERXERIAUhhJNRqUXaZGXgueYkngDhrK0/VgYwTvRwoWas0DHucoYGWtLNwp3zeXsAaSJh4sgu9SsUg==}
+
   chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
     engines: {node: '>=4'}
@@ -3665,10 +3668,6 @@ packages:
 
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
-
-  loadash@1.0.0:
-    resolution: {integrity: sha512-xlX5HBsXB3KG0FJbJJG/3kYWCfsCyCSus3T+uHVu6QL6YxAdggmm3QeyLgn54N2yi5/UE6xxL5ZWJAAiHzHYEg==}
-    deprecated: Package is unsupport. Please use the lodash package instead.
 
   loader-runner@4.3.0:
     resolution: {integrity: sha512-3R/1M+yS3j5ou80Me59j7F9IMs4PXs3VqRrm0TU3AbKPxlmpoY1TNscJV/oGJXo8qCatFGTfDbY6W6ipGOYXfg==}
@@ -8016,6 +8015,8 @@ snapshots:
 
   case-sensitive-paths-webpack-plugin@2.4.0: {}
 
+  case-string@1.0.1: {}
+
   chalk@2.4.2:
     dependencies:
       ansi-styles: 3.2.1
@@ -10213,8 +10214,6 @@ snapshots:
   lilconfig@3.1.1: {}
 
   lines-and-columns@1.2.4: {}
-
-  loadash@1.0.0: {}
 
   loader-runner@4.3.0: {}
 

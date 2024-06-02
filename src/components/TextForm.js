@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-// import _ from "lodash";
 // import randomWords from "random-words";
 import wordsFrequency from "words-frequency";
 import superbstring from "superbstring";
 import numberPro from "number-pro";
 import getQuotes from "quotes-factory";
+import caseString from "case-string";
 import { Dropdown } from "react-bootstrap";
 import { frequencyOfString } from "character-frequency";
 import { generateSlug } from "random-word-slugs";
@@ -583,8 +583,8 @@ const TextForm = (props) => {
   };
   // lowerCase() function - ENDS
   // titleCase() function - STARTS
-  /* const titleCase = () => {
-    const newText = _.startCase(text);
+  const titleCase = () => {
+    const newText = caseString.titleCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -595,11 +595,11 @@ const TextForm = (props) => {
       setOutputLightBackground("white");
     }, 280);
     props.showAlert("Converted to 'Title Case'!", "success");
-  }; */
+  };
   // titleCase() function - ENDS
   // reverseTitleCase() function - STARTS
   const reverseTitleCase = () => {
-    const newText = superbstring.reverseTitleCase(text);
+    const newText = caseString.reverseTitleCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -614,7 +614,7 @@ const TextForm = (props) => {
   // reverseTitleCase() function - ENDS
   // invertCase() function - STARTS
   const invertCase = () => {
-    const newText = superbstring.invertCase(text);
+    const newText = caseString.invertCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -684,7 +684,7 @@ const TextForm = (props) => {
   };
   // toggleCase() function - ENDS
   // randomCase() function - STARTS
-  const randomCase = () => {
+  /* const randomCase = () => {
     function toggleCase(str) {
       return str
         .toUpperCase()
@@ -705,11 +705,11 @@ const TextForm = (props) => {
       setOutputLightBackground("white");
     }, 280);
     props.showAlert("Converted to 'Random Case'!", "success");
-  };
+  }; */
   // randomCase() function - ENDS
   // camelCase() function - STARTS
   const camelCase = () => {
-    const newText = superbstring.camelCase(text);
+    const newText = caseString.camelCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -724,7 +724,7 @@ const TextForm = (props) => {
   // camelCase() function - ENDS
   // pascalCase() function - STARTS
   const pascalCase = () => {
-    const newText = superbstring.pascalCase(text);
+    const newText = caseString.pascalCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -739,7 +739,7 @@ const TextForm = (props) => {
   // pascalCase() function - ENDS
   // kebabCase() function - STARTS
   const kebabCase = () => {
-    const newText = superbstring.kebabCase(text);
+    const newText = caseString.kebabCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -754,7 +754,7 @@ const TextForm = (props) => {
   // kebabCase() function - ENDS
   // snakeCase() function - STARTS
   const snakeCase = () => {
-    const newText = superbstring.snakeCase(text);
+    const newText = caseString.snakeCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -772,7 +772,7 @@ const TextForm = (props) => {
   // snakeCase() function - ENDS
   // alternateCase1() function - STARTS
   const alternateCase1 = () => {
-    var newText = superbstring.alternateCase1(text);
+    var newText = caseString.alternateCase1(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -787,7 +787,7 @@ const TextForm = (props) => {
   // alternateCase1() function - ENDS
   // alternateCase2() function - STARTS
   const alternateCase2 = () => {
-    var newText = superbstring.alternateCase2(text);
+    var newText = caseString.alternateCase2(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -1509,14 +1509,14 @@ const TextForm = (props) => {
               >
                 lowercase
               </Dropdown.Item>
-              {/* <Dropdown.Item
+              <Dropdown.Item
                 onClick={titleCase}
                 disabled={text.length === 0}
                 title="Change The Case Of Your Text"
                 className="menu-item"
               >
                 Title Case
-              </Dropdown.Item> */}
+              </Dropdown.Item>
               <Dropdown.Item
                 onClick={reverseTitleCase}
                 disabled={text.length === 0}
@@ -1549,14 +1549,14 @@ const TextForm = (props) => {
               >
                 Toggle case
               </Dropdown.Item>
-              <Dropdown.Item
+              {/* <Dropdown.Item
                 onClick={randomCase}
                 disabled={text.length === 0}
                 title="CHangE thE CasE OF yoUR teXT"
                 className="menu-item"
               >
                 raNDoM cASE
-              </Dropdown.Item>
+              </Dropdown.Item> */}
               <Dropdown.Item
                 onClick={camelCase}
                 disabled={text.length === 0}
