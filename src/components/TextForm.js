@@ -1,11 +1,62 @@
 import { useState } from "react";
 
-// import randomWords from "random-words";
 import wordsFrequency from "words-frequency";
-import superbstring from "superbstring";
-import numberPro from "number-pro";
-import getQuotes from "quotes-factory";
-import caseString from "case-string";
+import {
+  addPrefix,
+  addSuffix,
+  alphabetize,
+  base64Decode,
+  base64Enode,
+  decodeUri,
+  duplicate,
+  encodeUri,
+  extractText,
+  getDummyText,
+  getRandomCharacters,
+  joinString,
+  paraToSingleLine,
+  removeAllSpaces,
+  removeAllSymbols,
+  removeExtraSpaces,
+  reverse,
+  rotate13Deg,
+  slugify,
+  splitString,
+  truncate,
+  zalgo,
+} from "superbstring";
+import {
+  decimalToRoman,
+  extractNumber,
+  formatNumbers,
+  getNumbers,
+  romanToDecimal,
+  unixToDate,
+  unixToTime,
+} from "number-pro";
+import { getQuote } from "./Quotes";
+import {
+  alternateCase1,
+  alternateCase2,
+  camelCase,
+  constantCase,
+  dotCase,
+  invertCase,
+  kebabCase,
+  lowerCase,
+  noCase,
+  pascalCase,
+  pascalSnakeCase,
+  pathCase,
+  snakeCase,
+  reverseTitleCase,
+  sentenceCase,
+  spongeCase as randomCase,
+  titleCase,
+  toggleCase,
+  trainCase,
+  upperCase,
+} from "case-string";
 import { Dropdown } from "react-bootstrap";
 import { frequencyOfString } from "character-frequency";
 import { generateSlug } from "random-word-slugs";
@@ -22,8 +73,6 @@ const TextForm = (props) => {
   const [inputLightBackground, setInputLightBackground] = useState("white");
   const [outputLightBackground, setOutputLightBackground] = useState("white");
 
-  /* MENU DROPDOWN STARTS */
-  // uploadTextFile() function - STARTS
   const uploadTextFile = () => {
     let files = document.querySelector('input[type="file"]').files;
     const reader = new FileReader();
@@ -42,8 +91,7 @@ const TextForm = (props) => {
     }, 280);
     reader.readAsText(files[0]);
   };
-  // uploadTextFile() function - ENDS
-  // downloadTxtFile() function - STARTS
+
   const downloadTxtFile = () => {
     const element = document.createElement("a");
     const file = new Blob([text], {
@@ -62,13 +110,9 @@ const TextForm = (props) => {
       setOutputDarkBackground("#242526");
     }, 280);
   };
-  // downloadTxtFile() function - ENDS
-  /* MENU DROPDOWN ENDS */
 
-  /* EDIT DROPDOWN STARTS */
-  // splitText() function - STARTS
-  const splitText = () => {
-    const newText = superbstring.splitString(text);
+  const handleTextSplit = () => {
+    const newText = splitString(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -80,10 +124,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Text is splitted!.", "success");
   };
-  // splitText() function - ENDS
-  // joinText() function - STARTS
-  const joinText = () => {
-    const newText = superbstring.joinString(text);
+
+  const handleTextJoin = () => {
+    const newText = joinString(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -95,10 +138,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Text is joined!.", "success");
   };
-  // joinText() function - ENDS
-  // removeExtraSpaces() function - STARTS
-  const removeExtraSpaces = () => {
-    const newText = superbstring.removeExtraSpaces(text);
+
+  const handleExtraSpacesRemoval = () => {
+    const newText = removeExtraSpaces(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -110,10 +152,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Extra spaces removed!", "success");
   };
-  // removeExtraSpaces() function - ENDS
-  // removeAllSpaces() function - STARTS
-  const removeAllSpaces = () => {
-    const newText = superbstring.removeAllSpaces(text);
+
+  const handleAllSpacesRemoval = () => {
+    const newText = removeAllSpaces(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -125,10 +166,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("All spaces removed!", "success");
   };
-  // removeAllSpaces() function - ENDS
-  // removeAllSymbols() function - STARTS
-  const removeAllSymbols = () => {
-    const newText = superbstring.removeAllSymbols(text);
+
+  const handleAllSymbolsRemoval = () => {
+    const newText = removeAllSymbols(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -140,13 +180,12 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("All symbols removed!", "success");
   };
-  // removeAllSymbols() function - ENDS
-  // duplicate() function - STARTS
-  const duplicate = () => {
+
+  const handleTextDuplication = () => {
     const count = Number(
       prompt("How many times do you want to duplicate the text?")
     );
-    const newText = superbstring.duplicate(text, count);
+    const newText = duplicate(text, count);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -158,10 +197,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Text duplicated!", "success");
   };
-  // duplicate() function - ENDS
-  // reverse() function - STARTS
-  const reverse = () => {
-    const newText = superbstring.reverse(text);
+
+  const handleTextReversal = () => {
+    const newText = reverse(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -173,10 +211,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Text Reversed!", "success");
   };
-  // reverse() function - ENDS
-  // slugify() function - STARTS
-  const slugify = () => {
-    const newText = superbstring.slugify(text);
+
+  const handleTextSlugification = () => {
+    const newText = slugify(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -188,11 +225,10 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Text Slugified!", "success");
   };
-  // slugify() function - ENDS
-  // truncate() function - STARTS
-  const truncate = () => {
+
+  const handleTextTruncation = () => {
     const length = prompt("What length upto you want to truncate your text?");
-    const newText = superbstring.truncate(text, length);
+    const newText = truncate(text, length);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -204,10 +240,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Text Truncated!", "success");
   };
-  // truncate() function - ENDS
-  // paraToSingleLine() function - STARTS
-  const paraToSingleLine = () => {
-    const newText = superbstring.paraToSingleLine(text);
+
+  const convertParagraphsToLine = () => {
+    const newText = paraToSingleLine(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -219,9 +254,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Changed to one line text!", "success");
   };
-  // alphabetize() function - STARTS
-  const alphabetize = () => {
-    const newText = superbstring.alphabetize(text);
+
+  const sortWordsAlphabetically = () => {
+    const newText = alphabetize(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -233,10 +268,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Text Alphabetized", "success");
   };
-  // alphabetize() function - ENDS
-  // zalgo() function - STARTS
-  const zalgo = () => {
-    const newText = superbstring.zalgo(text);
+
+  const applyZalgoEffect = () => {
+    const newText = zalgo(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -248,10 +282,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Zalgo affect applied", "success");
   };
-  // zalgo() function - ENDS
-  // rot13Deg() function - STARTS
-  const rot13Deg = () => {
-    const newText = superbstring.rotate13Deg(text);
+
+  const handleTextRotation = () => {
+    const newText = rotate13Deg(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -263,8 +296,7 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Rotate 13 decoder applied", "success");
   };
-  // rot13Deg() function - ENDS
-  // addLineNum() function - STARTS
+
   const addLineNum = () => {
     const newText = text
       .split("\n")
@@ -281,10 +313,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Line numbers added.", "success");
   };
-  // addLineNum() function - ENDS
-  // urlEncoded() function - STARTS
-  const urlEncoded = () => {
-    const newText = encodeURI(text);
+
+  const handleUrlEncoding = () => {
+    const newText = encodeUri(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -296,10 +327,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Encoded to URL", "success");
   };
-  // urlEncoded() function - ENDS
-  // urlDecoded() function - STARTS
-  const urlDecoded = () => {
-    const newText = decodeURI(text);
+
+  const handleUrlDecoding = () => {
+    const newText = decodeUri(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -311,10 +341,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Decoded the URL", "success");
   };
-  // urlDecoded() function - ENDS
-  // base64Encode() function - STARTS
-  const base64Encode = () => {
-    const newText = btoa(text);
+
+  const handleBase64Encoding = () => {
+    const newText = base64Enode(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -326,10 +355,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Base64 encoded!", "success");
   };
-  // base64Encode() function - ENDS
-  // base64Decode() function - STARTS
-  const base64Decode = () => {
-    const newText = atob(text);
+
+  const handleBase64Decoding = () => {
+    const newText = base64Decode(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -341,10 +369,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Base64 decoded!", "success");
   };
-  // base64Decode() function - ENDS
-  // unixToDate() function - STARTS
-  const unixToDate = () => {
-    const newText = numberPro.unixToDate(text);
+
+  const convertUnixToDate = () => {
+    const newText = unixToDate(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -356,10 +383,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Converted from Unix Time to Date", "success");
   };
-  // unixToDate() function - ENDS
-  // unixToTime() function - STARTS
-  const unixToTime = () => {
-    const newText = numberPro.unixToTime(text);
+
+  const convertUnixToTime = () => {
+    const newText = unixToTime(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -371,10 +397,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Converted from Unix Timestamp to Time", "success");
   };
-  // unixToTime() function - ENDS
-  // formatNumbers() function - STARTS
-  const formatNumbers = () => {
-    const newText = numberPro.formatNumbers(text);
+
+  const formatNumberInput = () => {
+    const newText = formatNumbers(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -386,10 +411,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Number(s) Formated!", "success");
   };
-  // formatNumbers() function - ENDS
-  // extractText() function - STARTS
-  const extractText = () => {
-    const newText = superbstring.extractText(text);
+
+  const extractTextFromInput = () => {
+    const newText = extractText(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -401,10 +425,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Text Extracted!", "success");
   };
-  // extractText() function - ENDS
-  // extractNumbers() function - STARTS
-  const extractNumbers = () => {
-    const newText = superbstring.extractNumber(text);
+
+  const extractNumbersFromInput = () => {
+    const newText = extractNumber(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -416,13 +439,12 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Numbers Extracted!", "success");
   };
-  // extractNumbers() function - ENDS
-  // addPrefix() function - STARTS
-  const addPrefix = () => {
+
+  const addPrefixToInput = () => {
     const prefix = window.prompt(
       "Enter the text you need to prefix to the text inside the text area."
     );
-    const newText = superbstring.addPrefix(text, prefix);
+    const newText = addPrefix(text, prefix);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -434,13 +456,12 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Prefix added!", "success");
   };
-  // addPrefix() function - ENDS
-  // addSuffix() function - STARTS
-  const addSuffix = () => {
+
+  const addSuffixToInput = () => {
     const suffix = window.prompt(
       "Enter the text you need to suffix to the text inside the text area."
     );
-    const newText = superbstring.addSuffix(text, suffix);
+    const newText = addSuffix(text, suffix);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -452,8 +473,7 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Suffix added!", "success");
   };
-  // addSuffix() function - ENDS
-  // sortLinesSENS() function - STARTS
+
   const sortLinesSENS = () => {
     const newText = text.split(/\r?\n/).sort().join("\n");
     setText(newText);
@@ -467,8 +487,7 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Lines Sorted!", "success");
   };
-  // sortLinesSENS() function - ENDS
-  // sortLinesINSENS() function - STARTS
+
   const sortLinesINSENS = () => {
     const newText = text.split(/\r?\n/i).sort().join("\n");
     setText(newText);
@@ -482,8 +501,7 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Lines Sorted!", "success");
   };
-  // sortLinesINSENS() function - ENDS
-  // sortLinesReverse() function - STARTS
+
   const sortLinesReverseSENS = () => {
     const newText = text.split(/\r?\n/).sort().reverse().join("\n");
     setText(newText);
@@ -497,8 +515,7 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Lines Sorted in Reverse Order!", "success");
   };
-  // sortLinesReverse() function - ENDS
-  // sortLinesReverseINSENS() function - STARTS
+
   const sortLinesReverseINSENS = () => {
     const newText = text.split(/\r?\n/i).sort().reverse().join("\n");
     setText(newText);
@@ -512,10 +529,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Lines Sorted in Reverse Order!", "success");
   };
-  // sortLinesReverseINSENS() function - ENDS
-  // decimalToRoman() function - STARTS
-  const decimalToRoman = () => {
-    const newText = numberPro.decimalToRoman(text);
+
+  const convertDecimalToRoman = () => {
+    const newText = decimalToRoman(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -530,10 +546,9 @@ const TextForm = (props) => {
       "success"
     );
   };
-  // decimalToRoman() function - ENDS
-  // romanToDecimal() function - STARTS
-  const romanToDecimal = () => {
-    const newText = numberPro.romanToDecimal(text);
+
+  const convertRomanToDeciman = () => {
+    const newText = romanToDecimal(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -548,13 +563,9 @@ const TextForm = (props) => {
       "success"
     );
   };
-  // romanToDecimal() function - ENDS
-  /* EDIT DROPDOWN ENDS */
 
-  /* CHANGE CASE DROPDOWN STARTS */
-  // upperCase() function - STARTS
-  const upperCase = () => {
-    const newText = text.toUpperCase();
+  const convertToUpperCase = () => {
+    const newText = upperCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -566,10 +577,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Converted to 'UPPERCASE'!", "success");
   };
-  // upperCase() function - ENDS
-  // lowerCase() function - STARTS
-  const lowerCase = () => {
-    const newText = text.toLowerCase();
+
+  const convertToLowerCase = () => {
+    const newText = lowerCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -581,10 +591,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Converted to 'lowercase'!", "success");
   };
-  // lowerCase() function - ENDS
-  // titleCase() function - STARTS
-  const titleCase = () => {
-    const newText = caseString.titleCase(text);
+
+  const convertToTitleCase = () => {
+    const newText = titleCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -596,10 +605,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Converted to 'Title Case'!", "success");
   };
-  // titleCase() function - ENDS
-  // reverseTitleCase() function - STARTS
-  const reverseTitleCase = () => {
-    const newText = caseString.reverseTitleCase(text);
+
+  const convertToReverseTitleCase = () => {
+    const newText = reverseTitleCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -611,10 +619,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Converted to 'Reverse Title Case'!", "success");
   };
-  // reverseTitleCase() function - ENDS
-  // invertCase() function - STARTS
-  const invertCase = () => {
-    const newText = caseString.invertCase(text);
+
+  const convertToInvertCase = () => {
+    const newText = invertCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -626,51 +633,23 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Converted to 'Invert Case'!", "success");
   };
-  // invertCase() function - ENDS
-  // sentenceCase() function - STARTS
-  /* const sentenceCase = () => {
-    function firstLetterUpper() {
-      var newString = text
-        .toLowerCase()
-        .replace(/(^\s*\w|[\.\!\?]\s*\w)/g, function (c) {
-          return c.toUpperCase();
-        });
-      setOutputDarkBackground("#CED4DA");
-      setTimeout(() => {
-        setOutputDarkBackground("#242526");
-      }, 280);
-      setOutputLightBackground("#CED4DA");
-      setTimeout(() => {
-        setOutputLightBackground("white");
-      }, 280);
-      return newString;
-    }
 
-    function convertToSentenceCase() {
-      var newText = firstLetterUpper(text);
-      setText(newText);
-      setOutputDarkBackground("#CED4DA");
-      setTimeout(() => {
-        setOutputDarkBackground("#242526");
-      }, 280);
-      setOutputLightBackground("#CED4DA");
-      setTimeout(() => {
-        setOutputLightBackground("white");
-      }, 280);
-      props.showAlert("Converted to 'Sentence Case'!", "success");
-    }
-    convertToSentenceCase();
-  }; */
-  // sentenceCase() function - ENDS
-  // toggleCase() function - STARTS
-  const toggleCase = () => {
-    const newText = text
-      .toUpperCase()
-      .split(" ")
-      .map(function (word) {
-        return word.charAt(0).toLowerCase() + word.slice(1);
-      })
-      .join(" ");
+  const convertToSentenceCase = () => {
+    var newText = sentenceCase(text);
+    setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    props.showAlert("Converted to 'Sentence Case'!", "success");
+  };
+
+  const handleToggleCase = () => {
+    const newText = toggleCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -682,19 +661,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Toggle cased text!", "success");
   };
-  // toggleCase() function - ENDS
-  // randomCase() function - STARTS
-  /* const randomCase = () => {
-    function toggleCase(str) {
-      return str
-        .toUpperCase()
-        .split(" ")
-        .map(function (word) {
-          return word.charAt(0).toLowerCase() + word.slice(1);
-        })
-        .join(" ");
-    }
-    const newText = toggleCase(text);
+
+  const convertToRandomCase = () => {
+    const newText = randomCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -705,11 +674,10 @@ const TextForm = (props) => {
       setOutputLightBackground("white");
     }, 280);
     props.showAlert("Converted to 'Random Case'!", "success");
-  }; */
-  // randomCase() function - ENDS
-  // camelCase() function - STARTS
-  const camelCase = () => {
-    const newText = caseString.camelCase(text);
+  };
+
+  const convertToCamelCase = () => {
+    const newText = camelCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -721,10 +689,52 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Converted to 'Cammal Case'!", "success");
   };
-  // camelCase() function - ENDS
-  // pascalCase() function - STARTS
-  const pascalCase = () => {
-    const newText = caseString.pascalCase(text);
+
+  const convertToConstantCase = () => {
+    const newText = constantCase(text);
+    setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    props.showAlert("Converted to 'Constant Case'!", "success");
+  };
+
+  const convertToDotCase = () => {
+    console.log(dotCase(text));
+    const newText = dotCase(text);
+    setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    props.showAlert("Converted to 'Dot Case'!", "success");
+  };
+
+  const convertToNoCase = () => {
+    const newText = noCase(text);
+    setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    props.showAlert("Converted to 'No Case'!", "success");
+  };
+
+  const convertToPascalCase = () => {
+    const newText = pascalCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -736,10 +746,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Converted to 'Pascal Case'!", "success");
   };
-  // pascalCase() function - ENDS
-  // kebabCase() function - STARTS
-  const kebabCase = () => {
-    const newText = caseString.kebabCase(text);
+
+  const convertToKebabCase = () => {
+    const newText = kebabCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -751,10 +760,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Converted to 'Kebab Case'!", "success");
   };
-  // kebabCase() function - ENDS
-  // snakeCase() function - STARTS
-  const snakeCase = () => {
-    const newText = caseString.snakeCase(text);
+
+  const convertToSnakeCase = () => {
+    const newText = snakeCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -769,41 +777,77 @@ const TextForm = (props) => {
       "success"
     );
   };
-  // snakeCase() function - ENDS
-  // alternateCase1() function - STARTS
-  const alternateCase1 = () => {
-    var newText = caseString.alternateCase1(text);
-    setText(newText);
-    setOutputDarkBackground("#CED4DA");
-    setTimeout(() => {
-      setOutputDarkBackground("#242526");
-    }, 280);
-    setOutputLightBackground("#CED4DA");
-    setTimeout(() => {
-      setOutputLightBackground("white");
-    }, 280);
-    props.showAlert("Converted to 'Alternate Case'!", "success");
-  };
-  // alternateCase1() function - ENDS
-  // alternateCase2() function - STARTS
-  const alternateCase2 = () => {
-    var newText = caseString.alternateCase2(text);
-    setText(newText);
-    setOutputDarkBackground("#CED4DA");
-    setTimeout(() => {
-      setOutputDarkBackground("#242526");
-    }, 280);
-    setOutputLightBackground("#CED4DA");
-    setTimeout(() => {
-      setOutputLightBackground("white");
-    }, 280);
-    props.showAlert("Converted to 'Alternate Case'!", "success");
-  };
-  // alternateCase2() function - ENDS
-  /* CHANGE CASE DROPDOWN ENDS */
 
-  /* GENERATE DROPDOWN STARTS */
-  // charFreqStr() function - STARTS
+  const convertToAlternateCase1 = () => {
+    var newText = alternateCase1(text);
+    setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    props.showAlert("Converted to 'Alternate Case'!", "success");
+  };
+
+  const convertToAlternateCase2 = () => {
+    var newText = alternateCase2(text);
+    setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    props.showAlert("Converted to 'Alternate Case'!", "success");
+  };
+
+  const convertToPascalSnakeCase = () => {
+    const newText = pascalSnakeCase(text);
+    setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    props.showAlert("Converted to 'Pascal Snake Case'!", "success");
+  };
+
+  const convertToPathCase = () => {
+    const newText = pathCase(text);
+    setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    props.showAlert("Converted to 'Path Case'!", "success");
+  };
+
+  const convertToTrainCase = () => {
+    const newText = trainCase(text);
+    setText(newText);
+    setOutputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputDarkBackground("#242526");
+    }, 280);
+    setOutputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setOutputLightBackground("white");
+    }, 280);
+    props.showAlert("Converted to 'Train Case'!", "success");
+  };
+
   const charFreqStr = () => {
     const JSONdata = frequencyOfString(text);
     console.log(JSONdata);
@@ -822,8 +866,7 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Characters Frequency Generated From a String!", "success");
   };
-  // charFreqStr() function - ENDS
-  // wordFreq() function - STARTS
+
   const wordFreq = () => {
     const JSONdata = wordsFrequency(text).data;
     let newText;
@@ -841,10 +884,9 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Words Frequency Generated!", "success");
   };
-  // wordFreq() function - ENDS
-  // getDummyText() function - STARTS
-  const getDummyText = () => {
-    let newText = superbstring.getDummyText();
+
+  const generateDummyText = () => {
+    let newText = getDummyText();
     setText(newText);
     setGeneratedText(newText);
     setOutputDarkBackground("#CED4DA");
@@ -865,11 +907,10 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Dummy Text Generated!", "success");
   };
-  // getDummyText() function - ENDS
-  // getRandomCharacters() function - STARTS
-  const getRandomCharacters = () => {
+
+  const generateRandomCharacters = () => {
     const limit = prompt("What length of random characters do you need?");
-    const newText = superbstring.getRandomCharacters(limit);
+    const newText = getRandomCharacters(limit);
     setText(newText);
     setGeneratedText(newText);
     setOutputDarkBackground("#CED4DA");
@@ -890,36 +931,8 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Random Characters generated!", "success");
   };
-  // getRandomCharacterss() function - ENDS
-  // getRandomWords() function - STARTS
-  /* const getRandomWords = () => {
-    const count = Number(
-      prompt("How many random words do you need? Enter a number:")
-    );
-    const newText = randomWords({ exactly: count, join: " " });
-    setText(newText);
-    setGeneratedText(newText);
-    setOutputDarkBackground("#CED4DA");
-    setTimeout(() => {
-      setOutputDarkBackground("#242526");
-    }, 280);
-    setInputDarkBackground("#CED4DA");
-    setTimeout(() => {
-      setInputDarkBackground("#242526");
-    }, 280);
-    setOutputLightBackground("#CED4DA");
-    setTimeout(() => {
-      setOutputLightBackground("white");
-    }, 280);
-    setInputLightBackground("#CED4DA");
-    setTimeout(() => {
-      setInputLightBackground("white");
-    }, 280);
-    props.showAlert("Random Words generated!", "success");
-  }; */
-  // getRandomWords() function - ENDS
-  // getRandomWordsSlug() function - STARTS
-  const getRandomWordsSlug = () => {
+
+  const generateRandomSlagWords = () => {
     const count = Number(
       prompt("How many random words slug do you need? Enter a number:")
     );
@@ -944,9 +957,8 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Random Words Slug generated!", "success");
   };
-  // getRandomWordsSlug() function - ENDS
-  // getNouns() function - STARTS
-  const getNouns = () => {
+
+  const generateRandomNouns = () => {
     const count = Number(
       prompt("How many random nouns do you need? Enter a number:")
     );
@@ -974,9 +986,8 @@ const TextForm = (props) => {
       "success"
     );
   };
-  // getNouns() function - ENDS
-  // getAdjectives() function - STARTS
-  const getAdjectives = () => {
+
+  const generateRandomAdjectives = () => {
     const count = Number(
       prompt("How many random adjectives do you need? Enter a number:")
     );
@@ -1004,16 +1015,15 @@ const TextForm = (props) => {
       "success"
     );
   };
-  // getAdjectives() function - ENDS
-  // getNumbers() function - STARTS
-  const getNumbers = () => {
+
+  const generateNumbersList = () => {
     const startingNum = window.prompt(
       "The STARTING Number must be SMALLER then the ENDING Number\nEnter the starting number:"
     );
     const endingNum = window.prompt(
       "The ENDING Number must be GREATER then the STARTING Number\nEnter the ending number:"
     );
-    const newText = numberPro.getNumbers(startingNum, endingNum);
+    const newText = getNumbers(startingNum, endingNum);
     setText(newText);
     setInputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -1025,24 +1035,22 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Entered series of numbers is generated!", "success");
   };
-  // getNumbers() function - ENDS
-  // getHash() function - STARTS
-  const getHash = () => {
-    String.hashCode = function () {
-      var hash = 0,
-        i,
-        chr;
-      if (this.length === 0) return hash;
-      for (i = 0; i < this.length; i++) {
-        chr = this.charCodeAt(i);
-        hash = (hash << 5) - hash + chr;
-        hash |= 0; // Convert to 32bit integer
+
+  const convertToHashCode = () => {
+    const hashCode = (str) => {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash = (hash << 5) - hash + char;
+        hash = hash & hash; // Convert to 32bit integer
       }
       return hash;
     };
-    const newText = text.hashCode();
-    setText(newText.toString());
+
+    const newText = hashCode(text).toString();
+    setText(newText);
     setOutputDarkBackground("#CED4DA");
+
     setTimeout(() => {
       setOutputDarkBackground("#242526");
     }, 280);
@@ -1055,14 +1063,14 @@ const TextForm = (props) => {
       "success"
     );
   };
-  // getHash() function - ENDS
-  // getQuotes() function - STARTS
-  const getQuote = () => {
-    const statement = getQuotes().statement;
-    const author = getQuotes().author;
+
+  const generateQuote = () => {
+    const statement = getQuote().statement;
+    const author = getQuote().author;
 
     const newText = `${statement}\n${author}`;
     setText(newText);
+
     setGeneratedText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -1082,11 +1090,7 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Random Quote Fetched!", "success");
   };
-  // getQuotes() function - ENDS
-  /* GENERATE DROPDOWN ENDS */
 
-  /* BOTTOM BUTTONS START */
-  // clear() function - STARTS
   const clear = () => {
     setText("");
     setGeneratedText("");
@@ -1108,31 +1112,21 @@ const TextForm = (props) => {
     }, 280);
     props.showAlert("Cleared!.", "success");
   };
-  // clear() function - ENDS
-  // copyToClipboard() function - STARTS
-  /*   const copyToClipboard = () => {
+
+  const copyToClipboard = () => {
     navigator.clipboard.writeText(text);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
       setOutputDarkBackground("#242526");
     }, 400);
-    setInputDarkBackground("#CED4DA");
-    setTimeout(() => {
-      setInputDarkBackground("#242526");
-    }, 400);
     setOutputLightBackground("#CED4DA");
     setTimeout(() => {
       setOutputLightBackground("white");
     }, 280);
-    setInputLightBackground("#CED4DA");
-    setTimeout(() => {
-      setInputLightBackground("white");
-    }, 280);
     props.showAlert("COPIED!", "success");
-  }; */
-  // copyToClipboard() function - ENDS
-  // pasteToTextarea() function - STARTS
-  /*   const pasteToTextarea = () => {
+  };
+
+  const pasteToTextarea = () => {
     navigator.clipboard
       .readText()
       .then((newText) => {
@@ -1143,33 +1137,22 @@ const TextForm = (props) => {
       .catch((err) => {
         props.showAlert(err, "error");
       });
-      setOutputDarkBackground("#CED4DA");
-      setTimeout(() => {
-        setOutputDarkBackground("#242526");
-      }, 400);
-      setInputDarkBackground("#CED4DA");
-      setTimeout(() => {
-        setInputDarkBackground("#242526");
-      }, 400);
-      setOutputLightBackground("#CED4DA");
-      setTimeout(() => {
-        setOutputLightBackground("white");
-      }, 280);
-      setInputLightBackground("#CED4DA");
-      setTimeout(() => {
-        setInputLightBackground("white");
-      }, 280);
-      props.showAlert("PASTED!", "success");
-    }; */
-  // pasteToTextarea() function - ENDS */
-  /* BOTTOM BUTTONS END */
+    setInputDarkBackground("#CED4DA");
+    setTimeout(() => {
+      setInputDarkBackground("#242526");
+    }, 400);
+    setInputLightBackground("#CED4DA");
+    setTimeout(() => {
+      setInputLightBackground("white");
+    }, 280);
+    props.showAlert("PASTED!", "success");
+  };
 
-  // onTextChange() function - STARTS
   const onTextChange = (e) => {
     setText(e.target.value);
     setGeneratedText(e.target.value);
   };
-  // onTextChange() function - ENDS
+
   return (
     <>
       <motion.h1
@@ -1202,13 +1185,11 @@ const TextForm = (props) => {
             props.mode === "light" ? "dark" : "light"
           }`}
         >
-          Just copy/paste or upload your text here and hit desired button
+          Just copy/paste or upload your text here and hit the desired button
         </p>
       </small>
       <div className="form-floating mb-3">
-        {/* Top Buttons - START */}
         <div className="d-flex">
-          {/* Menu Dropdown - STARTS */}
           <Dropdown>
             <Dropdown.Toggle
               className={`btn btn-sm top-btns mx-1 btn-${props.mode}`}
@@ -1225,8 +1206,6 @@ const TextForm = (props) => {
               />
             </Dropdown.Menu>
           </Dropdown>
-          {/* Menu Dropdown - Ends */}
-          {/* Edit Dropdown - STARTS */}
           <Dropdown>
             <Dropdown.Toggle
               className={`btn btn-sm top-btns mx-1 btn-${props.mode}`}
@@ -1235,7 +1214,7 @@ const TextForm = (props) => {
             </Dropdown.Toggle>
             <Dropdown.Menu className="menu-scroll" variant={`${props.mode}`}>
               <Dropdown.Item
-                onClick={splitText}
+                onClick={handleTextSplit}
                 disabled={text.length === 0}
                 title="Split all words to new lines."
                 className="menu-item"
@@ -1243,7 +1222,7 @@ const TextForm = (props) => {
                 Split Text
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={joinText}
+                onClick={handleTextJoin}
                 disabled={text.length === 0}
                 title="Join all the text to a single line."
                 className="menu-item"
@@ -1251,7 +1230,7 @@ const TextForm = (props) => {
                 Join Text
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={removeExtraSpaces}
+                onClick={handleExtraSpacesRemoval}
                 disabled={text.length === 0}
                 title="Removes extra spaces, new ines, tab spaces"
                 className="menu-item"
@@ -1259,7 +1238,7 @@ const TextForm = (props) => {
                 Remove Extra Spaces
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={removeAllSpaces}
+                onClick={handleAllSpacesRemoval}
                 disabled={text.length === 0}
                 title="Removes all the spaces, new ines, tab spaces"
                 className="menu-item"
@@ -1267,7 +1246,7 @@ const TextForm = (props) => {
                 Remove All Spaces
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={removeAllSymbols}
+                onClick={handleAllSymbolsRemoval}
                 disabled={text.length === 0}
                 title="Removes all the symbols"
                 className="menu-item"
@@ -1275,7 +1254,7 @@ const TextForm = (props) => {
                 Remove All Symbols
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={duplicate}
+                onClick={handleTextDuplication}
                 disabled={text.length === 0}
                 title="Duplicate text"
                 className="menu-item"
@@ -1283,7 +1262,7 @@ const TextForm = (props) => {
                 Duplicate
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={reverse}
+                onClick={handleTextReversal}
                 disabled={text.length === 0}
                 title="Reverese text"
                 className="menu-item"
@@ -1291,7 +1270,7 @@ const TextForm = (props) => {
                 Reverse
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={slugify}
+                onClick={handleTextSlugification}
                 disabled={text.length === 0}
                 title="Slugify text"
                 className="menu-item"
@@ -1299,7 +1278,7 @@ const TextForm = (props) => {
                 Slugify
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={truncate}
+                onClick={handleTextTruncation}
                 disabled={text.length === 0}
                 title="Truncate the text upto desired length"
                 className="menu-item"
@@ -1307,7 +1286,7 @@ const TextForm = (props) => {
                 Truncate
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={paraToSingleLine}
+                onClick={convertParagraphsToLine}
                 disabled={text.length === 0}
                 title="Convert paragraphs to single line"
                 className="menu-item"
@@ -1315,7 +1294,7 @@ const TextForm = (props) => {
                 Paragraph to single line
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={alphabetize}
+                onClick={sortWordsAlphabetically}
                 disabled={text.length === 0}
                 title="Change the order of words in text as A-Z"
                 className="menu-item"
@@ -1323,7 +1302,7 @@ const TextForm = (props) => {
                 Alphabetize Text
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={zalgo}
+                onClick={applyZalgoEffect}
                 disabled={text.length === 0}
                 title="Apply Zalgo affect"
                 className="menu-item"
@@ -1331,7 +1310,7 @@ const TextForm = (props) => {
                 Zalgo
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={rot13Deg}
+                onClick={handleTextRotation}
                 disabled={text.length === 0}
                 title="Rotate 13 decoder"
                 className="menu-item"
@@ -1347,7 +1326,7 @@ const TextForm = (props) => {
                 Add Line Number
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={urlEncoded}
+                onClick={handleUrlEncoding}
                 disabled={text.length === 0}
                 title="Encode to URL"
                 className="menu-item"
@@ -1355,7 +1334,7 @@ const TextForm = (props) => {
                 Encode URL
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={urlDecoded}
+                onClick={handleUrlDecoding}
                 disabled={text.length === 0}
                 title="Decode the URL"
                 className="menu-item"
@@ -1363,7 +1342,7 @@ const TextForm = (props) => {
                 Decode URL
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={base64Encode}
+                onClick={handleBase64Encoding}
                 disabled={text.length === 0}
                 title="Encode to URL"
                 className="menu-item"
@@ -1371,7 +1350,7 @@ const TextForm = (props) => {
                 Base64 Encode
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={base64Decode}
+                onClick={handleBase64Decoding}
                 disabled={text.length === 0}
                 title="Decode the URL"
                 className="menu-item"
@@ -1379,7 +1358,7 @@ const TextForm = (props) => {
                 Base64 Decode
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={unixToDate}
+                onClick={convertUnixToDate}
                 disabled={text.length === 0}
                 title="Convert from Unix to date"
                 className="menu-item"
@@ -1387,7 +1366,7 @@ const TextForm = (props) => {
                 UNIX to Date
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={unixToTime}
+                onClick={convertUnixToTime}
                 disabled={text.length === 0}
                 title="Convert from Unix to time"
                 className="menu-item"
@@ -1395,7 +1374,7 @@ const TextForm = (props) => {
                 UNIX to Time
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={formatNumbers}
+                onClick={formatNumberInput}
                 disabled={text.length === 0}
                 title="Adds comma to numbers after every three digits"
                 className="menu-item"
@@ -1403,7 +1382,7 @@ const TextForm = (props) => {
                 Format Numbers
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={extractText}
+                onClick={extractTextFromInput}
                 disabled={text.length === 0}
                 title="Extract the text from the given string"
                 className="menu-item"
@@ -1411,7 +1390,7 @@ const TextForm = (props) => {
                 Extract Text
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={extractNumbers}
+                onClick={extractNumbersFromInput}
                 disabled={text.length === 0}
                 title="Extract the numbers from the given string"
                 className="menu-item"
@@ -1419,7 +1398,7 @@ const TextForm = (props) => {
                 Extract Numbers
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={addPrefix}
+                onClick={addPrefixToInput}
                 disabled={text.length === 0}
                 title="Adds prefix to the given string"
                 className="menu-item"
@@ -1427,7 +1406,7 @@ const TextForm = (props) => {
                 Add Prefix
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={addSuffix}
+                onClick={addSuffixToInput}
                 disabled={text.length === 0}
                 title="Adds suffix to the given string"
                 className="menu-item"
@@ -1440,7 +1419,7 @@ const TextForm = (props) => {
                 title="Sort lines in the aphabetical order"
                 className="menu-item"
               >
-                Sort lines - 1
+                Sort lines alphabetically
               </Dropdown.Item>
               <Dropdown.Item
                 onClick={sortLinesINSENS}
@@ -1448,7 +1427,7 @@ const TextForm = (props) => {
                 title="Sort lines in the aphabetical order (case insensitive)"
                 className="menu-item"
               >
-                Sort lines - 2
+                Sort lines alphabetically (case insensitive)
               </Dropdown.Item>
               <Dropdown.Item
                 onClick={sortLinesReverseSENS}
@@ -1456,7 +1435,7 @@ const TextForm = (props) => {
                 title="Sort lines in the reverse aphabetical order"
                 className="menu-item"
               >
-                Reverse sort lines - 1
+                Reverse sort lines alphabetically
               </Dropdown.Item>
               <Dropdown.Item
                 onClick={sortLinesReverseINSENS}
@@ -1464,10 +1443,10 @@ const TextForm = (props) => {
                 title="Sort lines in the reverse aphabetical order (case insensitive)"
                 className="menu-item"
               >
-                Reverse sort lines - 2
+                Reverse sort lines alphabetically (case insensitive)
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={decimalToRoman}
+                onClick={convertDecimalToRoman}
                 disabled={text.length === 0}
                 title="Converts Decimal to Roman numbers."
                 className="menu-item"
@@ -1475,7 +1454,7 @@ const TextForm = (props) => {
                 Decimal to Roman
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={romanToDecimal}
+                onClick={convertRomanToDeciman}
                 disabled={text.length === 0}
                 title="Converts Roman numbers to Decimal."
                 className="menu-item"
@@ -1484,8 +1463,6 @@ const TextForm = (props) => {
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          {/* Edit Dropdown - ENDS */}
-          {/* Change Case Dropdown - STARTS */}
           <Dropdown>
             <Dropdown.Toggle
               className={`btn btn-sm top-btns mx-1 btn-${props.mode}`}
@@ -1494,7 +1471,7 @@ const TextForm = (props) => {
             </Dropdown.Toggle>
             <Dropdown.Menu className="menu-scroll" variant={`${props.mode}`}>
               <Dropdown.Item
-                onClick={upperCase}
+                onClick={convertToUpperCase}
                 disabled={text.length === 0}
                 title="CHANGE THE CASE OF YOUR TEXT"
                 className="menu-item"
@@ -1502,7 +1479,7 @@ const TextForm = (props) => {
                 UPPERCASE
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={lowerCase}
+                onClick={convertToLowerCase}
                 disabled={text.length === 0}
                 title="change the case of your text"
                 className="menu-item"
@@ -1510,7 +1487,7 @@ const TextForm = (props) => {
                 lowercase
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={titleCase}
+                onClick={convertToTitleCase}
                 disabled={text.length === 0}
                 title="Change The Case Of Your Text"
                 className="menu-item"
@@ -1518,7 +1495,7 @@ const TextForm = (props) => {
                 Title Case
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={reverseTitleCase}
+                onClick={convertToReverseTitleCase}
                 disabled={text.length === 0}
                 title="changE thE casE oF youR texT"
                 className="menu-item"
@@ -1526,39 +1503,39 @@ const TextForm = (props) => {
                 reversE titlE casE
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={invertCase}
+                onClick={convertToInvertCase}
                 disabled={text.length === 0}
                 title="Change THE case OF your TEXT => cHANGE the CASE of YOUR text"
                 className="menu-item"
               >
                 Invert CASE
               </Dropdown.Item>
-              {/* <Dropdown.Item
-                onClick={sentenceCase}
+              <Dropdown.Item
+                onClick={convertToSentenceCase}
                 disabled={text.length === 0}
                 title="Change the case of your text"
                 className="menu-item"
               >
                 Sentence case
-              </Dropdown.Item> */}
+              </Dropdown.Item>
               <Dropdown.Item
-                onClick={toggleCase}
+                onClick={handleToggleCase}
                 disabled={text.length === 0}
                 title="cHANGE tHE cASE oF yOUR tEXT"
                 className="menu-item"
               >
                 Toggle case
               </Dropdown.Item>
-              {/* <Dropdown.Item
-                onClick={randomCase}
+              <Dropdown.Item
+                onClick={convertToRandomCase}
                 disabled={text.length === 0}
                 title="CHangE thE CasE OF yoUR teXT"
                 className="menu-item"
               >
                 raNDoM cASE
-              </Dropdown.Item> */}
+              </Dropdown.Item>
               <Dropdown.Item
-                onClick={camelCase}
+                onClick={convertToCamelCase}
                 disabled={text.length === 0}
                 title="changeTheCaseOfYourText"
                 className="menu-item"
@@ -1566,7 +1543,7 @@ const TextForm = (props) => {
                 camelCase
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={pascalCase}
+                onClick={convertToPascalCase}
                 disabled={text.length === 0}
                 title="ChangeTheCaseOfYourText"
                 className="menu-item"
@@ -1574,7 +1551,7 @@ const TextForm = (props) => {
                 PascalCase
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={kebabCase}
+                onClick={convertToKebabCase}
                 disabled={text.length === 0}
                 title="change-the-case-of-your-text"
                 className="menu-item"
@@ -1582,7 +1559,7 @@ const TextForm = (props) => {
                 kebab-case
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={snakeCase}
+                onClick={convertToSnakeCase}
                 disabled={text.length === 0}
                 title="change_the_case_of_your_text"
                 className="menu-item"
@@ -1590,7 +1567,31 @@ const TextForm = (props) => {
                 snake_case
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={alternateCase1}
+                onclick={convertToConstantCase}
+                disabled={text.length === 0}
+                title="Change the case of your text"
+                className="menu-item"
+              >
+                constant_case
+              </Dropdown.Item>
+              <Dropdown.Item
+                onclick={convertToDotCase}
+                disabled={text.length === 0}
+                title="Change.the.case.of.your.text"
+                className="menu-item"
+              >
+                dot.case
+              </Dropdown.Item>
+              <Dropdown.Item
+                onclick={convertToNoCase}
+                disabled={text.length === 0}
+                title="Change the case of your text"
+                className="menu-item"
+              >
+                no case
+              </Dropdown.Item>
+              <Dropdown.Item
+                onClick={convertToAlternateCase1}
                 disabled={text.length === 0}
                 title="ChAnGe ThE cAsE oF yOuR tExT"
                 className="menu-item"
@@ -1598,7 +1599,31 @@ const TextForm = (props) => {
                 AlTeRnAtE cAsE - 1
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={alternateCase2}
+                onClick={convertToPascalSnakeCase}
+                disabled={text.length === 0}
+                title="CJAMGE_THE_CASE_OF_YOUR_TEXT"
+                className="menu-item"
+              >
+                Pascal Snake Case
+              </Dropdown.Item>
+              <Dropdown.Item
+                onClick={convertToPathCase}
+                disabled={text.length === 0}
+                title="CJAMGE_THE_CASE_OF_YOUR_TEXT"
+                className="menu-item"
+              >
+                Path Case
+              </Dropdown.Item>
+              <Dropdown.Item
+                onClick={convertToTrainCase}
+                disabled={text.length === 0}
+                title="CJAMGE_THE_CASE_OF_YOUR_TEXT"
+                className="menu-item"
+              >
+                Train Case
+              </Dropdown.Item>
+              <Dropdown.Item
+                onClick={convertToAlternateCase2}
                 disabled={text.length === 0}
                 title="cHaNgE tHe CaSe Of YoUr TeXt"
                 className="menu-item"
@@ -1607,8 +1632,6 @@ const TextForm = (props) => {
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          {/* Change Case Dropdown - Ends */}
-          {/* Generate Dropdown - STARTS */}
           <Dropdown>
             <Dropdown.Toggle
               className={`btn btn-sm top-btns mx-1 btn-${props.mode}`}
@@ -1633,63 +1656,56 @@ const TextForm = (props) => {
                 Words Frequency
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={getDummyText}
+                onClick={generateDummyText}
                 title="Generate dummy text"
                 className="menu-item"
               >
                 Dummy Text
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={getRandomCharacters}
+                onClick={generateRandomCharacters}
                 title="Generate random characters"
                 className="menu-item"
               >
                 Random Characters
               </Dropdown.Item>
-              {/* <Dropdown.Item
-                onClick={getRandomWords}
-                title="Generate random words"
-                className="menu-item"
-              >
-                Random Words
-              </Dropdown.Item> */}
               <Dropdown.Item
-                onClick={getRandomWordsSlug}
+                onClick={generateRandomSlagWords}
                 title="Generate random words-slug"
                 className="menu-item"
               >
                 Random-Words-Slug
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={getNouns}
+                onClick={generateRandomNouns}
                 title="Generate random nouns"
                 className="menu-item"
               >
                 Random Nouns
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={getAdjectives}
+                onClick={generateRandomAdjectives}
                 title="Generate random adjectives"
                 className="menu-item"
               >
                 Random Adjectives
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={getNumbers}
+                onClick={generateNumbersList}
                 title="Generate Numbers"
                 className="menu-item"
               >
                 Generate Numbers
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={getHash}
+                onClick={convertToHashCode}
                 title="Generate Hash Code from a string"
                 className="menu-item"
               >
                 Hash Code
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={getQuote}
+                onClick={generateQuote}
                 title="Generate a quote"
                 className="menu-item"
               >
@@ -1697,11 +1713,8 @@ const TextForm = (props) => {
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          {/* Generate Dropdown - ENDS */}
         </div>
-        {/* Top Buttons - END */}
         <div className="d-flex align-items-center mt-1 mb-3">
-          {/* Input Textarea - STARTS */}
           <textarea
             className="form-control"
             id="floatingTextarea output"
@@ -1721,11 +1734,7 @@ const TextForm = (props) => {
             rows={12}
             required
           ></textarea>
-          {/* Input Textarea - ENDS */}
-          {/* Textarea Dividing Div - STARTS */}
           <div className="mx-1"></div>
-          {/* Textarea Dividing Div - ENDS */}
-          {/* Output Textarea - STARTS */}
           <textarea
             className="form-control"
             id="floatingTextarea output"
@@ -1742,13 +1751,9 @@ const TextForm = (props) => {
             readOnly
             rows={12}
           ></textarea>
-          {/* Output Textarea - ENDS */}
         </div>
-
-        {/* Bottom Buttons Section - START */}
         <div className="d-flex justify-content-between">
           <div>
-            {/* Clear Text Button - STARTS */}
             <motion.button
               whileTap={{
                 scale: 0,
@@ -1759,23 +1764,18 @@ const TextForm = (props) => {
             >
               Clear <i className="bi bi-x-lg bottom-btns-icons"></i>
             </motion.button>
-            {/* Clear Text Button - ENDS */}
-            {/* Paste Text Button - STARTS */}
-            {/* <motion.button
+            <motion.button
               whileTap={{
                 scale: 0,
               }}
               className="btn btn-secondary mx-1 btn-sm bottom-btns rounded"
               onClick={pasteToTextarea}
               title="Paste the text to text area"
-              style={{display: text.length === 0? "inline" : "none"}}
             >
               Paste <i className="bi bi-clipboard bottom-btns-icons"></i>
-            </motion.button> */}
-            {/* Paste Text Button - ENDS */}
+            </motion.button>
           </div>
           <div>
-            {/* Save Text Button - STARTS */}
             <motion.button
               whileTap={{
                 scale: 0,
@@ -1789,9 +1789,7 @@ const TextForm = (props) => {
             >
               Save <i className="bi bi-download bottom-btns-icons" />
             </motion.button>
-            {/* Save Text Button - ENDS */}
-            {/* Copy Text Button - STARTS */}
-            {/* <motion.button
+            <motion.button
               whileTap={{
                 scale: 0,
               }}
@@ -1802,14 +1800,10 @@ const TextForm = (props) => {
             >
               Copy{" "}
               <i className="bi bi-clipboard-check-fill bottom-btns-icons"></i>
-            </motion.button> */}
-            {/* Copy Text Button - ENDS */}
+            </motion.button>
           </div>
         </div>
-        {/* Bottom Buttons Section - END */}
       </div>
-
-      {/* STATISTICS SECTION STARTS */}
       <hr className={`text-${props.mode === "dark" ? "light" : "dark"}`} />
       <div className="d-flex justify-content-center">
         <button
@@ -1917,7 +1911,6 @@ const TextForm = (props) => {
         </div>
       </div>
       <hr className={`text-${props.mode === "dark" ? "light" : "dark"}`} />
-      {/* STATISTICS SECTION ENDS */}
     </>
   );
 };

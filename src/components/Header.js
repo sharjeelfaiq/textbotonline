@@ -1,14 +1,7 @@
 import React from "react";
 import "../css/Navbar.css";
 
-const Navbar = (props) => {
-  const scrollToBottom = () => {
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: "smooth",
-    });
-  };
-
+const Header = (props) => {
   return (
     <>
       <nav
@@ -26,21 +19,10 @@ const Navbar = (props) => {
               TBO
             </h4>
           </a>
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 nav-components">
-            <li
-              className={`text-${
-                props.mode === "light" ? "dark" : "light"
-              } nav-item mx-3`}
-              onClick={scrollToBottom}
-              style={{ cursor: "pointer" }}
-            >
-              Contact Us
-            </li>
-          </ul>
         </div>
       </nav>
     </>
   );
 };
 
-export default Navbar;
+export default Header;

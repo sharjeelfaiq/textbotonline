@@ -12,11 +12,6 @@ body {
   cursor: pointer;
 }
 
-.siteseal {
-  padding-bottom: 50px;
-  padding-left: 5px;
-}
-
 @media screen and (max-width: 991px) {
   .form-check-label {
     display: none;
