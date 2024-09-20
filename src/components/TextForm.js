@@ -692,6 +692,7 @@ const TextForm = (props) => {
 
   const convertToConstantCase = () => {
     const newText = constantCase(text);
+    console.log(newText);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
     setTimeout(() => {
@@ -705,7 +706,6 @@ const TextForm = (props) => {
   };
 
   const convertToDotCase = () => {
-    console.log(dotCase(text));
     const newText = dotCase(text);
     setText(newText);
     setOutputDarkBackground("#CED4DA");
@@ -1567,15 +1567,15 @@ const TextForm = (props) => {
                 snake_case
               </Dropdown.Item>
               <Dropdown.Item
-                onclick={convertToConstantCase}
+                onClick={convertToConstantCase}
                 disabled={text.length === 0}
                 title="Change the case of your text"
                 className="menu-item"
               >
-                constant_case
+                CONSTANT_CASE
               </Dropdown.Item>
               <Dropdown.Item
-                onclick={convertToDotCase}
+                onClick={convertToDotCase}
                 disabled={text.length === 0}
                 title="Change.the.case.of.your.text"
                 className="menu-item"
@@ -1583,7 +1583,7 @@ const TextForm = (props) => {
                 dot.case
               </Dropdown.Item>
               <Dropdown.Item
-                onclick={convertToNoCase}
+                onClick={convertToNoCase}
                 disabled={text.length === 0}
                 title="Change the case of your text"
                 className="menu-item"
