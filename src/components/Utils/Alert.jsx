@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/Alert.css"
+import "../../css/Alert.css"
 
 function Alert(props) {
   const capitalizeFirstLetter = (string) => {
