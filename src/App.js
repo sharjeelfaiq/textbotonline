@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import ScrollToTop from "../src/components/ScrollToTop";
 import Alert from "../src/components/Alert";
-import TextForm from "../src/components/TextForm";
+import Textareas from "../src/components/Textareas/Textareas";
 import About from "../src/components/About";
 import Footer from "../src/components/Footer";
 
@@ -61,7 +61,7 @@ const App = () => {
       <ScrollToTop />
       <Alert alert={alert} />
       <div className="container-lg">
-        <TextForm mode={mode} showAlert={showAlert} />
+        <Textareas mode={mode} showAlert={showAlert} />
         <div className="my-5">
           <About mode={mode} showAlert={showAlert} />
         </div>
