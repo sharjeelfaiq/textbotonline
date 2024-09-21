@@ -2,11 +2,9 @@ import React from "react";
 import "../css/Alert.css"
 
 function Alert(props) {
-  /* capitalizeFirstLetter() function - STARTS */
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
-  /* capitalizeFirstLetter() function - STARTS */
 
   return (
     <div className="alert-div">

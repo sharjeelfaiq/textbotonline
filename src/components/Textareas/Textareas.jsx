@@ -4,10 +4,17 @@ import { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { motion } from "framer-motion";
 import TextManipulationButton from "../TextManipulation/TextManipulationButton.jsx";
-import { manipulationButtonsData } from "../TextManipulation/ManipulationBtnsData.js";
+import { manipulationButtonsProps } from "../TextManipulation/ManipulationBtnsProps.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../../css/TextareaAndStats.css";
 import Statistics from "../Statistics/Statistics.jsx";
+import ActionButton from "../ActionButton/ActionButton.jsx";
+import {
+  downloadTextFile,
+  clearTextarea,
+  copyToClipboard,
+  pasteToTextarea,
+} from "../ActionButton/ActionButton.js";
 
 const TextareaAndStats = (props) => {
   const [inputText, setInputText] = useState("");
@@ -84,6 +91,64 @@ const TextareaAndStats = (props) => {
     textAlign: "left",
   };
 
+  const actionButtonsProps = [
+    [
+      {
+        action: () =>
+          pasteToTextarea(
+            setInputText,
+            setOutputText,
+            transitionInputTextarea,
+            props
+          ),
+        className: "btn btn-secondary mx-1 btn-sm bottom-btns rounded",
+        disabled: false,
+        title: "Paste the text to text area",
+        actionName: "Paste",
+        iconClases: "bi bi-clipboard bottom-btns-icons",
+      },
+      {
+        action: () =>
+          clearTextarea(
+            inputText,
+            outputText,
+            setInputText,
+            setOutputText,
+            props,
+            transitionInputTextarea,
+            transitionOutputTextarea
+          ),
+        className: "btn btn-danger mx-1 btn-sm bottom-btns rounded",
+        disabled: inputText.length === 0,
+        title: "Clear the text area",
+        actionName: "Clear",
+        iconClases: "bi bi-x-lg bottom-btns-icons",
+      },
+    ],
+    [
+      {
+        action: () =>
+          copyToClipboard(outputText, transitionOutputTextarea, props),
+        className: "btn btn-warning mx-1 btn-sm bottom-btns rounded",
+        disabled: inputText.length === 0,
+        title: "Copy the text to clipboard",
+        actionName: "Copy",
+        iconClases: "bi bi-clipboard-check-fill bottom-btns-icons",
+      },
+      {
+        action: () =>
+          downloadTextFile(inputText, props, transitionOutputTextarea),
+        className: `btn btn-${
+          inputText.length === 0 ? "secondary" : "primary"
+        } mx-1 btn-sm bottom-btns rounded`,
+        disabled: inputText.length === 0,
+        title: "Save the .txt file",
+        actionName: "Save",
+        iconClases: "bi bi-download bottom-btns-icons",
+      },
+    ],
+  ];
+
   function uploadTextFile() {
     const fileInput = document.querySelector('input[type="file"]');
     if (fileInput?.files.length > 0) {
@@ -104,60 +169,7 @@ const TextareaAndStats = (props) => {
     }
   }
 
-  function downloadTextFile() {
-    if (!inputText.trim()) {
-      props.showAlert("No text to download", "warning");
-      return;
-    }
-    const blob = new Blob([inputText], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "myFile.txt";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-    transitionOutputTextarea();
-    props.showAlert("File downloaded successfully!", "success");
-  }
-
-  function clearTextarea() {
-    if (!inputText.trim() && !outputText.trim()) {
-      props.showAlert("Textareas are already empty", "info");
-
-      return;
-    }
-    setInputText("");
-    setOutputText("");
-    transitionInputTextarea("clearTextarea");
-    transitionOutputTextarea("clearTextarea");
-    props.showAlert("Cleared!", "success");
-  }
-
-  async function copyToClipboard() {
-    try {
-      await navigator.clipboard.writeText(outputText);
-      transitionOutputTextarea();
-      props.showAlert("COPIED!", "success");
-    } catch (err) {
-      props.showAlert("Failed to copy: " + err, "error");
-    }
-  }
-
-  async function pasteToTextarea() {
-    try {
-      const newText = await navigator.clipboard.readText();
-      setInputText(newText);
-      setOutputText(newText);
-      transitionInputTextarea();
-      props.showAlert("PASTED!", "success");
-    } catch (err) {
-      props.showAlert("Failed to paste: " + err, "error");
-    }
-  }
-
-  const manipulationBtnsData = manipulationButtonsData(
+  const manipulationBtnsData = manipulationButtonsProps(
     inputText,
     props,
     setOutputText,
@@ -208,51 +220,28 @@ const TextareaAndStats = (props) => {
       <div className="form-floating mb-3">
         <div className="d-flex justify-content-between">
           <div>
-            <motion.button
-              onClick={clearTextarea}
-              disabled={inputText.length === 0}
-              title="Clear the text area"
-              className="btn btn-danger mx-1 btn-sm bottom-btns rounded"
-            >
-              Clear <i className="bi bi-x-lg bottom-btns-icons"></i>
-            </motion.button>
-            <motion.button
-              whileTap={{
-                scale: 0,
-              }}
-              className="btn btn-secondary mx-1 btn-sm bottom-btns rounded"
-              onClick={pasteToTextarea}
-              title="Paste the text to text area"
-            >
-              Paste <i className="bi bi-clipboard bottom-btns-icons"></i>
-            </motion.button>
+            {actionButtonsProps[0].map((btnProp) => (
+              <ActionButton
+                action={btnProp.action}
+                className={btnProp.className}
+                disabled={btnProp.disabled}
+                title={btnProp.title}
+                actionName={btnProp.actionName}
+                iconClases={btnProp.iconClases}
+              />
+            ))}
           </div>
           <div>
-            <motion.button
-              whileTap={{
-                scale: 0,
-              }}
-              className={`btn btn-${
-                inputText.length === 0 ? "secondary" : "primary"
-              } mx-1 btn-sm bottom-btns rounded`}
-              onClick={downloadTextFile}
-              title="Save the .txt file"
-              disabled={inputText.length === 0}
-            >
-              Save <i className="bi bi-download bottom-btns-icons" />
-            </motion.button>
-            <motion.button
-              whileTap={{
-                scale: 0,
-              }}
-              className="btn btn-warning mx-1 btn-sm bottom-btns rounded"
-              onClick={copyToClipboard}
-              title="Copy the text to clipboard"
-              disabled={inputText.length === 0}
-            >
-              Copy{" "}
-              <i className="bi bi-clipboard-check-fill bottom-btns-icons"></i>
-            </motion.button>
+            {actionButtonsProps[1].map((btnProp) => (
+              <ActionButton
+                action={btnProp.action}
+                className={btnProp.className}
+                disabled={btnProp.disabled}
+                title={btnProp.title}
+                actionName={btnProp.actionName}
+                iconClases={btnProp.iconClases}
+              />
+            ))}
           </div>
         </div>
         <div className="d-flex align-items-center mt-1 mb-2">
@@ -265,7 +254,7 @@ const TextareaAndStats = (props) => {
             placeholder="Enter text here."
             rows={12}
             required
-          ></textarea>
+          />
           <div className="mx-1"></div>
           <textarea
             className="form-control"
@@ -275,7 +264,7 @@ const TextareaAndStats = (props) => {
             placeholder="Nothing to preview!"
             rows={12}
             readOnly
-          ></textarea>
+          />
         </div>
         <div className="d-flex">
           <Dropdown>
@@ -360,7 +349,7 @@ const TextareaAndStats = (props) => {
                 return (
                   btnData.menuName === "Generate" && (
                     <TextManipulationButton
-                      isDisabled={inputText.length === 0}
+                      isDisabled={false}
                       className="menuName-item"
                       optionName={btnData.optionName}
                       title={btnData.title}
@@ -376,7 +365,6 @@ const TextareaAndStats = (props) => {
       </div>
       <hr className={`text-${props.mode === "dark" ? "light" : "dark"}`} />
       <Statistics mode={props.mode} outputText={outputText} />
-      <hr className={`text-${props.mode === "dark" ? "light" : "dark"}`} />
     </>
   );
 };
