@@ -198,12 +198,10 @@ export const handleTextManipulation = (
       break;
     case "convertDecimalToRoman":
       transformedText = decimalToRoman(originalText);
-      console.log(transformedText);
       props.showAlert("Convert Decimal to Roman!", "success");
       break;
     case "convertRomanToDecimal":
       transformedText = romanToDecimal(originalText);
-      console.log(transformedText);
       props.showAlert("Convert Roman to Decimal!", "success");
       break;
     case "uppercase":
