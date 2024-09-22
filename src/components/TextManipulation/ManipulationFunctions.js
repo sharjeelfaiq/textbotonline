@@ -45,7 +45,6 @@ import {
   lowerCase,
   noCase,
   pascalCase,
-  pascalSnakeCase,
   pathCase,
   snakeCase,
   reverseTitleCase,
@@ -260,10 +259,6 @@ export const handleTextManipulation = (
     case "alternatecase1":
       transformedText = alternateCase1(originalText);
       props.showAlert("Convert to Alternate Case 1!", "success");
-      break;
-    case "pascalSnakeCase":
-      transformedText = pascalSnakeCase(originalText);
-      props.showAlert("Convert to Pascal Snake Case!", "success");
       break;
     case "pathcase":
       transformedText = pathCase(originalText);

@@ -90,7 +90,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Split Text : </strong>
+                    <strong>Split Text: </strong>
                     Splits each word of the given text on a new line.
                   </small>
                 </motion.li>
@@ -104,7 +104,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Join Text : </strong>
+                    <strong>Join Text: </strong>
                     Joins all of the words in separate lines to a single string.
                   </small>
                 </motion.li>
@@ -118,7 +118,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Remove Extra Spaces : </strong>
+                    <strong>Remove Extra Spaces: </strong>
                     Removes any extra space present in the text.
                   </small>
                 </motion.li>
@@ -132,7 +132,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Remove All Spaces : </strong>
+                    <strong>Remove All Spaces: </strong>
                     Removes all spaces from the text.
                   </small>
                 </motion.li>
@@ -146,7 +146,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Remove All Symbols : </strong>
+                    <strong>Remove All Symbols: </strong>
                     Removes all symbols from the text.
                   </small>
                 </motion.li>
@@ -160,7 +160,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Duplicate Text : </strong>
+                    <strong>Duplicate Text: </strong>
                     Duplicates the text the number of times you need.
                   </small>
                 </motion.li>
@@ -174,7 +174,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Reverse Text : </strong>
+                    <strong>Reverse Text: </strong>
                     Reverses the text.
                   </small>
                 </motion.li>
@@ -188,7 +188,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Slugify Text : </strong>
+                    <strong>Slugify Text: </strong>
                     Slugifies the text.
                   </small>
                 </motion.li>
@@ -202,7 +202,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Truncate Text : </strong>
+                    <strong>Truncate Text: </strong>
                     Shorts the text content to the desired length.
                   </small>
                 </motion.li>
@@ -216,7 +216,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Change Paragraphs to Single-line Text : </strong>
+                    <strong>Change Paragraphs to Single-line Text: </strong>
                     Converts all paragraphs to a single-line text.
                   </small>
                 </motion.li>
@@ -230,7 +230,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Alphabetize Text : </strong>
+                    <strong>Alphabetize Text: </strong>
                     Arranges the words in your text in alphabetic order.
                   </small>
                 </motion.li>
@@ -244,7 +244,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Rotate 13 : </strong>
+                    <strong>Rotate 13: </strong>
                     Obscures text by replacing each letter with the letter
                     thirteen places down the alphabet.
                   </small>
@@ -259,7 +259,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Zalgo Effect : </strong>
+                    <strong>Zalgo Effect: </strong>
                     Converts normal text into zalgo text.
                   </small>
                 </motion.li>
@@ -273,7 +273,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Add Line Number : </strong>
+                    <strong>Add Line Number: </strong>
                     Adds line numbers to all the lines in the given text.
                   </small>
                 </motion.li>
@@ -287,7 +287,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Encode URL : </strong>
+                    <strong>Encode URL: </strong>
                     Encodes the given string into a url.
                   </small>
                 </motion.li>
@@ -301,7 +301,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Decode URL : </strong>
+                    <strong>Decode URL: </strong>
                     Decodes the URL into a text.
                   </small>
                 </motion.li>
@@ -315,7 +315,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Base64 Encode : </strong>
+                    <strong>Base64 Encode: </strong>
                     Creates a Base64-encoded ASCII string from a binary string.
                   </small>
                 </motion.li>
@@ -329,7 +329,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Base64 Decode : </strong>
+                    <strong>Base64 Decode: </strong>
                     Decodes a string of data which has been encoded using Base64
                     encoding.
                   </small>
@@ -344,7 +344,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>UNIX Timestamp to Date : </strong>
+                    <strong>UNIX Timestamp to Date: </strong>
                     Converts unix timestamp to date.
                   </small>
                 </motion.li>
@@ -358,7 +358,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>UNIX Timestamp to Time : </strong>
+                    <strong>UNIX Timestamp to Time: </strong>
                     Converts unix timestamp to time.
                   </small>
                 </motion.li>
@@ -372,7 +372,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Format Numbers : </strong>
+                    <strong>Format Numbers: </strong>
                     Adds comma to numbers after every three digits.
                   </small>
                 </motion.li>
@@ -386,7 +386,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Extract Text : </strong>
+                    <strong>Extract Text: </strong>
                     Extract all the text from the given text along with{" "}
                     <em>
                       <b>"/" (forward slash)</b>
@@ -404,7 +404,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Extract Numbers : </strong>
+                    <strong>Extract Numbers: </strong>
                     Extract all the numbers from the given text along with{" "}
                     <em>
                       <b>"/" (forward slash)</b>
@@ -422,7 +422,36 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Sort Lines - 1 : </strong>
+                    <strong>Add Prefix: </strong>
+                    Adds a prefix to the given text.
+                  </small>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
+                  0
+                  <small>
+                    <strong>Add Suffix: </strong>
+                    Adds a suffix to the given text.
+                  </small>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
+                  <small>
+                    <strong>Sort Lines - 1: </strong>
                     Sort lines of the given text in the alphabetical order
                     <b>
                       -<em>Case Sensitive</em>
@@ -440,7 +469,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Sort Lines - 2 : </strong>
+                    <strong>Sort Lines - 2: </strong>
                     Sort lines of the given text in the alphabetical order
                     <b>
                       -<em>Case Insensitive</em>
@@ -458,7 +487,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Reverse Sort Lines - 1 : </strong>
+                    <strong>Reverse Sort Lines - 1: </strong>
                     Sort lines of the given text in the reverse alphabetical
                     order
                     <b>
@@ -477,7 +506,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Reverse Sort Lines - 2 : </strong>
+                    <strong>Reverse Sort Lines - 2: </strong>
                     Sort lines of the given text in the reverse alphabetical
                     order
                     <b>
@@ -496,7 +525,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Decimal To Roman : </strong>
+                    <strong>Decimal To Roman: </strong>
                     Converts any entered decimal to a corresponding roman
                     number.
                   </small>
@@ -511,7 +540,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Roman To Decimal : </strong>
+                    <strong>Roman To Decimal: </strong>
                     Converts any entered roman number to a corresponding
                     decimal.
                   </small>
@@ -563,7 +592,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Uppercase : </strong>
+                    <strong>Uppercase: </strong>
                     Capitalizes letters as opposed to small letters (lower
                     case).
                   </small>
@@ -578,7 +607,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Lowercase : </strong>
+                    <strong>Lowercase: </strong>
                     Decapitalizes letters as opposed to capital letters (upper
                     case).
                   </small>
@@ -593,7 +622,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Title case : </strong>
+                    <strong>Title case: </strong>
                     Capitalizes the first letter of each word.
                   </small>
                 </motion.li>
@@ -607,7 +636,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Reverse Title case : </strong>
+                    <strong>Reverse Title case: </strong>
                     Capitalizes the last letter of each word.
                   </small>
                 </motion.li>
@@ -621,7 +650,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Invert case : </strong>
+                    <strong>Invert case: </strong>
                     The opposite case will be selected (instead of uppercase -
                     lowercase, instead of lowercase - uppercase).
                   </small>
@@ -636,7 +665,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Sentence case : </strong>
+                    <strong>Sentence case: </strong>
                     Capitalizes the first letter of each sentence.
                   </small>
                 </motion.li>
@@ -650,7 +679,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Toggle case : </strong>
+                    <strong>Toggle case: </strong>
                     Decapitalizes the first letter of all words and capitalizes
                     the rest.
                   </small>
@@ -665,7 +694,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Random case : </strong>
+                    <strong>Random case: </strong>
                     Capitalizes and decapitalizes all letters in the text in a
                     random sequence.
                   </small>
@@ -680,7 +709,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>camelCase : </strong>
+                    <strong>camelCase: </strong>
                     CamelCase Words are written without spaces, and the first
                     letter of each word is capitalized while the first letter of
                     the inital word is small.
@@ -696,7 +725,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>PascalCase : </strong>
+                    <strong>PascalCase: </strong>
                     The first letter of each word is capitalized.
                   </small>
                 </motion.li>
@@ -710,7 +739,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>kebab-case : </strong>
+                    <strong>kebab-case: </strong>
                     The spaces between words are replaced with a dash.
                   </small>
                 </motion.li>
@@ -724,7 +753,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>snake_case : </strong>
+                    <strong>snake_case: </strong>
                     Snake case is basically a style of writing strings by
                     replacing the spaces with '_' and converting the first
                     letter of each word to lowercase.
@@ -740,7 +769,54 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Alternative case - 1 : </strong>
+                    <strong>CONSTANT_CASE: </strong>
+                    Constant case is a style of writing strings by replacing the
+                    spaces with '_' and converting the first letter of each word
+                    to uppercase.
+                  </small>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
+                  <small>
+                    <strong>dot.case: </strong>
+                    Dot case is a style of writing strings by replacing the
+                    spaces with '.' and converting the first letter of each word
+                    to lowercase.
+                  </small>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
+                  <small>
+                    <strong>no case: </strong>
+                    No case is a style of writing strings with no specified
+                    case.
+                  </small>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
+                  <small>
+                    <strong>Alternative case - 1: </strong>
                     Capitalizes the initial letter and from there on the cases
                     alternate between uppercase and lowercase.
                   </small>
@@ -755,7 +831,69 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Alternative case - 2 : </strong>
+                    <strong>path/case: </strong>
+                    Path case is a style of writing strings by replacing the
+                    spaces with '/' and converting the first letter of each word
+                    to lowercase.
+                  </small>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
+                  <small>
+                    <strong>Train-Case: </strong>
+                    Train case is a style of writing strings by replacing the
+                    spaces with '-' and converting the first letter of each word
+                    to uppercase.
+                  </small>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
+                  <small>
+                    <strong>Alternative case - 1: </strong>
+                    Capitalizes the initial letter and from there on the cases
+                    alternate between uppercase and lowercase.
+                  </small>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
+                  <small>
+                    <strong>Alternative case - 1: </strong>
+                    Capitalizes the initial letter and from there on the cases
+                    alternate between uppercase and lowercase.
+                  </small>
+                </motion.li>
+                <motion.li
+                  whileHover={{
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.2,
+                    },
+                  }}
+                  style={{ width: "80%", borderRadius: "5px" }}
+                >
+                  <small>
+                    <strong>Alternative case - 2: </strong>
                     Decapitalizes the initial letter and from there on the cases
                     alternate between uppercase and lowercase.
                   </small>
@@ -807,7 +945,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Characters Frequency : </strong>Calculates the
+                    <strong>Characters Frequency: </strong>Calculates the
                     occurrences of all characters in a text document.
                   </small>
                 </motion.li>
@@ -821,8 +959,8 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Words Frequency : </strong>Calculates the
-                    occurrences of all words in a text document.
+                    <strong>Words Frequency: </strong>Calculates the occurrences
+                    of all words in a text document.
                   </small>
                 </motion.li>
                 <motion.li
@@ -835,7 +973,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Characters Frequency : </strong>Calculates the
+                    <strong>Characters Frequency: </strong>Calculates the
                     occurrences of all characters in a text document.
                   </small>
                 </motion.li>
@@ -849,7 +987,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Dummy Text : </strong>Generates the dummy text.
+                    <strong>Dummy Text: </strong>Generates the dummy text.
                   </small>
                 </motion.li>
                 <motion.li
@@ -862,7 +1000,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Random Characters : </strong>Generates random
+                    <strong>Random Characters: </strong>Generates random
                     characters of your desired length.
                   </small>
                 </motion.li>
@@ -876,7 +1014,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Random Words : </strong>Generates random words of
+                    <strong>Random Words: </strong>Generates random words of
                     your desired length.
                   </small>
                 </motion.li>
@@ -890,7 +1028,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Random-Words-Slug : </strong>Generates
+                    <strong>Random-Words-Slug: </strong>Generates
                     random-words-slug of your desired length.
                   </small>
                 </motion.li>
@@ -904,7 +1042,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Random Nouns : </strong>Generates random nouns of
+                    <strong>Random Nouns: </strong>Generates random nouns of
                     your desired length.
                   </small>
                 </motion.li>
@@ -918,7 +1056,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Random Adjectives : </strong>Generates random
+                    <strong>Random Adjectives: </strong>Generates random
                     adjectives of your desired length.
                   </small>
                 </motion.li>
@@ -932,7 +1070,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Numbers : </strong>Generates numbers in sequence of
+                    <strong>Numbers: </strong>Generates numbers in sequence of
                     your desired length.
                   </small>
                 </motion.li>
@@ -946,7 +1084,7 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Hash Code : </strong>Generates the hash code
+                    <strong>Hash Code: </strong>Generates the hash code
                     corresponding to the given string.
                   </small>
                 </motion.li>
@@ -960,8 +1098,8 @@ function About(props) {
                   style={{ width: "80%", borderRadius: "5px" }}
                 >
                   <small>
-                    <strong>Random Quotes Online : </strong>Generates a new
-                    quote every single time.
+                    <strong>Random Quotes Online: </strong>Generates a new quote
+                    every single time.
                   </small>
                 </motion.li>
               </ul>

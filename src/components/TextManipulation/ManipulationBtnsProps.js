@@ -696,20 +696,6 @@ export const manipulationButtonsProps = (
     },
     {
       menuName: "Change Case",
-      optionName: "Pascal Snake Case",
-      title: "Convert to Pascal Snake Case",
-      action: () =>
-        handleTextManipulation(
-          "pascalcase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
       optionName: "Path Case",
       title: "Convert to Path Case",
       action: () =>
