@@ -125,39 +125,68 @@ const Statistics = ({ mode, outputText }) => {
     ).toFixed(1);
 
     return [
-      { label: "Reading time (Slow)", value: `${slowReadingTime} minutes` },
+      {
+        label: "Reading time (Slow)",
+        value:
+          `${slowReadingTime} minutes` === "0.0 minutes"
+            ? "N/A"
+            : `${slowReadingTime} minutes`,
+      },
       {
         label: "Reading time (Average)",
-        value: `${averageReadingTime} minutes`,
+        value:
+          `${averageReadingTime} minutes` === "0.0 minutes"
+            ? "N/A"
+            : `${averageReadingTime} minutes`,
       },
-      { label: "Reading time (Fast)", value: `${fastReadingTime} minutes` },
-      { label: "Paragraphs", value: paragraphs.length },
-      { label: "Sentences", value: sentences.length },
-      { label: "Words", value: words.length },
-      { label: "Characters", value: characters },
-      { label: "Unique Words", value: uniqueWords.size },
-      { label: "Longest Word", value: longestWord },
-      { label: "Shortest Word", value: shortestWord },
+      {
+        label: "Reading time (Fast)",
+        value:
+          `${fastReadingTime} minutes` === "0.0 minutes"
+            ? "N/A"
+            : `${fastReadingTime} minutes`,
+      },
+      { label: "Paragraphs", value: paragraphs.length || "N/A" },
+      { label: "Sentences", value: sentences.length || "N/A" },
+      { label: "Words", value: words.length || "N/A" },
+      { label: "Characters", value: characters || "N/A" },
+      { label: "Unique Words", value: uniqueWords.size || "N/A" },
+      { label: "Longest Word", value: longestWord || "N/A" },
+      { label: "Shortest Word", value: shortestWord || "N/A" },
       {
         label: "Average Word Length",
-        value: `${averageWordLength} characters`,
+        value: `${averageWordLength} characters` === "NaN characters" ? "N/A" : `${averageWordLength} characters`,
       },
-      { label: "Complex Words", value: complexWords },
-      { label: "Lexical Density", value: `${lexicalDensity}%` },
-      { label: "Passive Voice Sentences", value: passiveVoiceSentences },
-      { label: "Longest Sentence", value: longestSentence },
-      { label: "Shortest Sentence", value: shortestSentence },
-      { label: "Complex Sentences (20+ words)", value: complexSentences },
-      { label: "Hapax Legomena", value: hapaxLegomena },
+      { label: "Complex Words", value: complexWords || "N/A" },
+      { label: "Lexical Density", value: `${lexicalDensity}%` === "NaN%" ? "N/A" : `${lexicalDensity}%` },
+      { label: "Passive Voice Sentences", value: passiveVoiceSentences || "N/A" },
+      { label: "Longest Sentence", value: longestSentence || "N/A" },
+      { label: "Shortest Sentence", value: shortestSentence || "N/A" },
+      {
+        label: "Complex Sentences (20+ words)",
+        value: complexSentences || "N/A",
+      },
+      { label: "Hapax Legomena", value: hapaxLegomena || "N/A" },
       {
         label: "Average Sentence Length",
-        value: `${(words.length / sentences.length).toFixed(1)} words`,
+        value:
+          `${(words.length / sentences.length).toFixed(1)} words` ===
+          "NaN words"
+            ? "N/A"
+            : `${(words.length / sentences.length).toFixed(1)} words`,
       },
       {
         label: "Unique Word Ratio",
-        value: `${((uniqueWords.size / words.length) * 100).toFixed(2)}%`,
+        value:
+          `${((uniqueWords.size / words.length) * 100).toFixed(2)}%` === "NaN%"
+            ? "N/A"
+            : `${((uniqueWords.size / words.length) * 100).toFixed(2)}%`,
       },
-      { label: "Flesch-Kincaid Grade Level", value: fleschKincaidGradeLevel },
+      {
+        label: "Flesch-Kincaid Grade Level",
+        value:
+          fleschKincaidGradeLevel === "NaN" ? "N/A" : fleschKincaidGradeLevel,
+      },
       {
         label: "Readability",
         value: calculateReadabilityScore(sentences, words, syllables),
