@@ -3,7 +3,7 @@ import {
   clearTextarea,
   copyToClipboard,
   pasteToTextarea,
-} from "../ActionButton/ActionButton.js";
+} from "./actionButton.js";
 
 export const actionButtonsProps = (
   inputText,

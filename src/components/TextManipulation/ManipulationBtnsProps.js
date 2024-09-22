@@ -1,4 +1,4 @@
-import { handleTextManipulation } from "./ManipulationFunctions";
+import { handleTextManipulation } from "./manipulationFunctions";
 
 export const manipulationButtonsProps = (
   inputText,
@@ -12,6 +12,8 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Split Text",
       title: "Split all words to new lines.",
+      description:
+        "This option splits each word of the given text on a new line.",
       action: () =>
         handleTextManipulation(
           "splitInput",
@@ -26,6 +28,8 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Join Text",
       title: "Join all the text to a single line.",
+      description:
+        "This option joins all of the words in separate lines to a single string.",
       action: () =>
         handleTextManipulation(
           "joinInput",
@@ -40,6 +44,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Remove Extra Spaces",
       title: "Removes extra spaces, new ines, tab spaces",
+      description: "This option removes any extra space present in the text.",
       action: () =>
         handleTextManipulation(
           "removeExtraSpaces",
@@ -54,6 +59,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Remove All Spaces",
       title: "Removes all the spaces, new ines, tab spaces",
+      description: "This option removes all the spaces, new ines, tab spaces.",
       action: () =>
         handleTextManipulation(
           "removeAllSpaces",
@@ -68,6 +74,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Remove All Symbols",
       title: "Removes all the symbols",
+      description: "This option removes all the symbols.",
       action: () =>
         handleTextManipulation(
           "removeAllSymbols",
@@ -82,6 +89,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Duplicate",
       title: "Duplicate text",
+      description: "This option duplicates the given text.",
       action: () =>
         handleTextManipulation(
           "duplicate",
@@ -96,6 +104,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Reverse",
       title: "Reverese text",
+      description: "This option reverses the given text.",
       action: () =>
         handleTextManipulation(
           "reverse",
@@ -110,6 +119,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Slugify",
       title: "Slugify text",
+      description: "This option converts the given text to a slug.",
       action: () =>
         handleTextManipulation(
           "slugify",
@@ -124,6 +134,8 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Truncate",
       title: "Truncate the text upto desired length",
+      description:
+        "This option truncates the given text upto the desired length.",
       action: () =>
         handleTextManipulation(
           "truncate",
@@ -138,6 +150,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Paragraph to single line",
       title: "Convert paragraphs to single line",
+      description: "This option converts paragraphs to a single line.",
       action: () =>
         handleTextManipulation(
           "paragraphToSingleLine",
@@ -152,6 +165,8 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Alphabetize Text",
       title: "Change the order of words in text as A-Z",
+      description:
+        "This option changes the order of words in the given text as A-Z.",
       action: () =>
         handleTextManipulation(
           "alphabetize",
@@ -166,6 +181,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Zalgo",
       title: "Apply Zalgo affect",
+      description: "This option applies the Zalgo effect to the given text.",
       action: () =>
         handleTextManipulation(
           "zalgo",
@@ -180,6 +196,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Rotate 13",
       title: "Rotate 13 decoder",
+      description: "This option rotates the given text by 13 places.",
       action: () =>
         handleTextManipulation(
           "rotate13",
@@ -194,6 +211,8 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Add Line Number",
       title: "Add line number to each line",
+      description:
+        "This option adds line number to each line of the given text.",
       action: () =>
         handleTextManipulation(
           "addLineNum",
@@ -208,6 +227,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Encode URL",
       title: "Encode to URL",
+      description: "This option encodes the given text to a URL.",
       action: () =>
         handleTextManipulation(
           "encodeUri",
@@ -222,6 +242,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Decode the URL",
       title: "Decode the URL",
+      description: "This option decodes the given URL.",
       action: () =>
         handleTextManipulation(
           "decodeUri",
@@ -235,7 +256,8 @@ export const manipulationButtonsProps = (
     {
       menuName: "Edit",
       optionName: "Base64 Encode",
-      title: "Encode to URL",
+      title: "Encode to Base64",
+      description: "This option encodes the given text to Base64.",
       action: () =>
         handleTextManipulation(
           "base64Encode",
@@ -249,7 +271,8 @@ export const manipulationButtonsProps = (
     {
       menuName: "Edit",
       optionName: "Base64 Decode",
-      title: "Decode the URL",
+      title: "Decode the Base64",
+      description: "This option decodes the given Base64 text.",
       action: () =>
         handleTextManipulation(
           "base64Decode",
@@ -264,6 +287,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "UNIX to Date",
       title: "Convert from Unix to date",
+      description: "This option converts the given Unix timestamp to a date.",
       action: () =>
         handleTextManipulation(
           "unixToDate",
@@ -278,6 +302,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "UNIX to Time",
       title: "Convert from Unix to time",
+      description: "This option converts the given Unix timestamp to a time.",
       action: () =>
         handleTextManipulation(
           "unixToTime",
@@ -292,6 +317,8 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Format Numbers",
       title: "Adds comma to numbers after every three digits",
+      description:
+        "This option adds a comma to numbers after every three digits.",
       action: () =>
         handleTextManipulation(
           "formatNumbers",
@@ -306,6 +333,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Extract Text",
       title: "Extract the text from the given string",
+      description: "This option extracts the text from the given string.",
       action: () =>
         handleTextManipulation(
           "extractText",
@@ -320,6 +348,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Extract Numbers",
       title: "Extract the numbers from the given string",
+      description: "This option extracts the numbers from the given string.",
       action: () =>
         handleTextManipulation(
           "extractNumbers",
@@ -334,6 +363,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Add Prefix",
       title: "Add prefix to each line",
+      description: "This option adds a prefix to each line of the given text.",
       action: () =>
         handleTextManipulation(
           "addPrefix",
@@ -348,6 +378,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Add Suffix",
       title: "Add suffix to each line",
+      description: "This option adds a suffix to each line of the given text.",
       action: () =>
         handleTextManipulation(
           "addSuffix",
@@ -362,6 +393,8 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Sort Lines SENS",
       title: "Sort lines in the aphabetical order",
+      description:
+        "This option sorts the lines of the given text in alphabetical order.",
       action: () =>
         handleTextManipulation(
           "sortLinesSENS",
@@ -376,6 +409,8 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Sort Lines INSENS",
       title: "Sort lines in the aphabetical order (case insensitive)",
+      description:
+        "This option sorts the lines of the given text in alphabetical order.",
       action: () =>
         handleTextManipulation(
           "sortLinesINSENS",
@@ -390,6 +425,8 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Sort Lines Reverse SENS",
       title: "Sort lines in the reverse aphabetical order",
+      description:
+        "This option sorts the lines of the given text in reverse alphabetical order.",
       action: () =>
         handleTextManipulation(
           "sortLinesReverseSENS",
@@ -404,6 +441,8 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Sort Lines Reverse INSENS",
       title: "Sort lines in the reverse aphabetical order (case insensitive)",
+      description:
+        "This option sorts the lines of the given text in reverse alphabetical order.",
       action: () =>
         handleTextManipulation(
           "sortLinesReverseINSENS",
@@ -418,6 +457,8 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Convert Decimal to Roman",
       title: "Converts Decimal to Roman numbers.",
+      description:
+        "This option converts the given decimal number to a Roman numeral.",
       action: () =>
         handleTextManipulation(
           "convertDecimalToRoman",
@@ -432,6 +473,8 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Convert Roman to Decimal",
       title: "Converts Roman numbers to Decimal.",
+      description:
+        "This option converts the given Roman numeral to a decimal number.",
       action: () =>
         handleTextManipulation(
           "convertRomanToDecimal",
@@ -446,20 +489,7 @@ export const manipulationButtonsProps = (
       menuName: "Edit",
       optionName: "Convert to Hash Code",
       title: "Convert to Hash Code.",
-      action: () =>
-        handleTextManipulation(
-          "convertToHashCode",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Hash Code",
-      title: "Generate Hash Code from a string",
+      description: "This option converts the given text to a hash code.",
       action: () =>
         handleTextManipulation(
           "convertToHashCode",
@@ -474,6 +504,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Uppercase",
       title: "Convert to Uppercase",
+      description: "This option converts the given text to uppercase.",
       action: () =>
         handleTextManipulation(
           "uppercase",
@@ -488,6 +519,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Lowercase",
       title: "Convert to Lowercase",
+      description: "This option converts the given text to lowercase.",
       action: () =>
         handleTextManipulation(
           "lowercase",
@@ -502,6 +534,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Titlecase",
       title: "Convert to Titlecase",
+      description: "This option converts the given text to titlecase.",
       action: () =>
         handleTextManipulation(
           "titlecase",
@@ -516,6 +549,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Reverse Titlecase",
       title: "Convert to Reverse Titlecase",
+      description: "This option converts the given text to reverse titlecase.",
       action: () =>
         handleTextManipulation(
           "reverseTitleCase",
@@ -530,6 +564,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Invert Case",
       title: "Convert to Invert Case",
+      description: "This option converts the given text to invert case.",
       action: () =>
         handleTextManipulation(
           "invertcase",
@@ -544,6 +579,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Sentence Case",
       title: "Convert to Sentence Case",
+      description: "This option converts the given text to sentence case.",
       action: () =>
         handleTextManipulation(
           "sentencecase",
@@ -558,6 +594,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Toggle Case",
       title: "Convert to Toggle Case",
+      description: "This option converts the given text to toggle case.",
       action: () =>
         handleTextManipulation(
           "togglecase",
@@ -572,6 +609,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Random Case",
       title: "Convert to Random Case",
+      description: "This option converts the given text to random case.",
       action: () =>
         handleTextManipulation(
           "randomcase",
@@ -586,6 +624,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Camel Case",
       title: "Convert to Camel Case",
+      description: "This option converts the given text to camel case.",
       action: () =>
         handleTextManipulation(
           "camelcase",
@@ -600,6 +639,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Pascal Case",
       title: "Convert to Pascal Case",
+      description: "This option converts the given text to pascal case.",
       action: () =>
         handleTextManipulation(
           "pascalcase",
@@ -614,6 +654,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Kebab Case",
       title: "Convert to Kebab Case",
+      description: "This option converts the given text to kebab case.",
       action: () =>
         handleTextManipulation(
           "kebabcase",
@@ -628,6 +669,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Snake Case",
       title: "Convert to Snake Case",
+      description: "This option converts the given text to snake case.",
       action: () =>
         handleTextManipulation(
           "snakecase",
@@ -642,6 +684,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Constant Case",
       title: "Convert to Constant Case",
+      description: "This option converts the given text to constant case.",
       action: () =>
         handleTextManipulation(
           "constantcase",
@@ -656,6 +699,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Dot Case",
       title: "Convert to Dot Case",
+      description: "This option converts the given text to dot case.",
       action: () =>
         handleTextManipulation(
           "dotcase",
@@ -670,6 +714,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "No Case",
       title: "Convert to No Case",
+      description: "This option converts the given text to no case.",
       action: () =>
         handleTextManipulation(
           "nocase",
@@ -684,6 +729,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Alternate Case 1",
       title: "Convert to Alternate Case 1",
+      description: "This option converts the given text to alternate case 1.",
       action: () =>
         handleTextManipulation(
           "alternatecase1",
@@ -698,6 +744,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Path Case",
       title: "Convert to Path Case",
+      description: "This option converts the given text to path case.",
       action: () =>
         handleTextManipulation(
           "pathcase",
@@ -712,6 +759,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Train Case",
       title: "Convert to Train Case",
+      description: "This option converts the given text to train case.",
       action: () =>
         handleTextManipulation(
           "traincase",
@@ -726,6 +774,7 @@ export const manipulationButtonsProps = (
       menuName: "Change Case",
       optionName: "Alternate Case 2",
       title: "Convert to Alternate Case 2",
+      description: "This option converts the given text to alternate case 2.",
       action: () =>
         handleTextManipulation(
           "alternatecase2",
@@ -740,6 +789,8 @@ export const manipulationButtonsProps = (
       menuName: "Generate",
       optionName: "Generate Characters Frequency",
       title: "Generate characters frequency",
+      description:
+        "This option generates the frequency of characters in the given text.",
       action: () =>
         handleTextManipulation(
           "charFreqStr",
@@ -754,6 +805,8 @@ export const manipulationButtonsProps = (
       menuName: "Generate",
       optionName: "Generate Words Frequency",
       title: "Generate words frequency",
+      description:
+        "This option generates the frequency of words in the given text.",
       action: () =>
         handleTextManipulation(
           "wordFreq",
@@ -768,6 +821,7 @@ export const manipulationButtonsProps = (
       menuName: "Generate",
       optionName: "Generate Dummy Text",
       title: "Generate dummy text",
+      description: "This option generates dummy text based on the given text.",
       action: () =>
         handleTextManipulation(
           "generateDummyText",
@@ -782,6 +836,8 @@ export const manipulationButtonsProps = (
       menuName: "Generate",
       optionName: "Generate Random Characters",
       title: "Generate random characters",
+      description:
+        "This option generates random characters based on the given text.",
       action: () =>
         handleTextManipulation(
           "generateRandomCharacters",
@@ -796,6 +852,8 @@ export const manipulationButtonsProps = (
       menuName: "Generate",
       optionName: "Generate Random Words-Slug",
       title: "Generate random words-slug",
+      description:
+        "This option generates random words-slug based on the given text.",
       action: () =>
         handleTextManipulation(
           "generateRandomSlagWords",
@@ -810,6 +868,8 @@ export const manipulationButtonsProps = (
       menuName: "Generate",
       optionName: "Generate Random Nouns",
       title: "Generate random nouns",
+      description:
+        "This option generates random nouns based on the given text.",
       action: () =>
         handleTextManipulation(
           "generateRandomNouns",
@@ -824,6 +884,8 @@ export const manipulationButtonsProps = (
       menuName: "Generate",
       optionName: "Generate Random Adjectives",
       title: "Generate random adjectives",
+      description:
+        "This option generates random adjectives based on the given text.",
       action: () =>
         handleTextManipulation(
           "generateRandomAdjectives",
@@ -838,6 +900,8 @@ export const manipulationButtonsProps = (
       menuName: "Generate",
       optionName: "Generate Numbers",
       title: "Generate numbers",
+      description:
+        "This option generates random numbers based on the given text.",
       action: () =>
         handleTextManipulation(
           "generateNumbersList",
@@ -852,6 +916,7 @@ export const manipulationButtonsProps = (
       menuName: "Generate",
       optionName: "Generate Quote",
       title: "Generate a quote",
+      description: "This option generates a quote based on the given text.",
       action: () =>
         handleTextManipulation(
           "generateQuote",
