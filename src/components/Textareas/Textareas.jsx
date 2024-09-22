@@ -170,7 +170,7 @@ const TextareaAndStats = React.memo((props) => {
   return (
     <>
       <motion.h1
-        className={`mt-3 text-center text-${
+        className={`text-center text-${
           props.mode === "light" ? "dark" : "light"
         }`}
         initial="hidden"
