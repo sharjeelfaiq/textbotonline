@@ -1,22 +1,15 @@
-// Textareas.jsx
-
-import { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { Dropdown } from "react-bootstrap";
 import { motion } from "framer-motion";
-import TextManipulationButton from "../TextManipulation/TextManipulationButton.jsx";
 import { manipulationButtonsProps } from "../TextManipulation/ManipulationBtnsProps.js";
-import "bootstrap-icons/font/bootstrap-icons.css";
-import "../../css/TextareaAndStats.css";
+import { actionButtonsProps } from "../ActionButton/ActionButtonProps.js";
+import TextManipulationButton from "../TextManipulation/TextManipulationButton.jsx";
 import Statistics from "../Statistics/Statistics.jsx";
 import ActionButton from "../ActionButton/ActionButton.jsx";
-import {
-  downloadTextFile,
-  clearTextarea,
-  copyToClipboard,
-  pasteToTextarea,
-} from "../ActionButton/ActionButton.js";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "../../css/TextareaAndStats.css";
 
-const TextareaAndStats = (props) => {
+const TextareaAndStats = React.memo((props) => {
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
   const [inputDarkBackground, setInputDarkBackground] = useState("#242526");
@@ -29,17 +22,19 @@ const TextareaAndStats = (props) => {
   let inputTimeouts = [];
   let outputTimeouts = [];
 
-  function clearInputTimeouts() {
+  const clearInputTimeouts = useCallback(() => {
     inputTimeouts.forEach((timeout) => clearTimeout(timeout));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     inputTimeouts = [];
-  }
+  }, []);
 
-  function clearOutputTimeouts() {
+  const clearOutputTimeouts = useCallback(() => {
     outputTimeouts.forEach((timeout) => clearTimeout(timeout));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     outputTimeouts = [];
-  }
+  }, []);
 
-  function transitionInputTextarea() {
+  const transitionInputTextarea = useCallback(() => {
     clearInputTimeouts();
 
     setInputDarkBackground("#CED4DA");
@@ -55,9 +50,10 @@ const TextareaAndStats = (props) => {
         setInputLightBackground("white");
       }, timeoutDuration)
     );
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clearInputTimeouts]);
 
-  function transitionOutputTextarea() {
+  const transitionOutputTextarea = useCallback(() => {
     clearOutputTimeouts();
 
     setOutputDarkBackground("#CED4DA");
@@ -73,83 +69,47 @@ const TextareaAndStats = (props) => {
         setOutputLightBackground("white");
       }, timeoutDuration)
     );
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clearOutputTimeouts]);
 
-  const inputTextAreaStyle = {
-    width: "100%",
-    backgroundColor:
-      props.mode === "dark" ? inputDarkBackground : inputLightBackground,
-    color: `${props.mode === "dark" ? "white" : "black"}`,
-    textAlign: "left",
-  };
+  const createTextAreaStyle = useCallback(
+    (isDark, darkBackgroundColor, lightBackgroundColor) => ({
+      width: "100%",
+      backgroundColor: isDark ? darkBackgroundColor : lightBackgroundColor,
+      color: isDark ? "white" : "black",
+      textAlign: "left",
+    }),
+    []
+  );
 
-  const outputTextAreaStyle = {
-    width: "100%",
-    backgroundColor:
-      props.mode === "dark" ? outputDarkBackground : outputLightBackground,
-    color: `${props.mode === "dark" ? "white" : "black"}`,
-    textAlign: "left",
-  };
+  const isDarkMode = props.mode === "dark";
 
-  const actionButtonsProps = [
+  const inputTextAreaStyle = useMemo(
+    () =>
+      createTextAreaStyle(
+        isDarkMode,
+        inputDarkBackground,
+        inputLightBackground
+      ),
+    [isDarkMode, inputDarkBackground, inputLightBackground, createTextAreaStyle]
+  );
+
+  const outputTextAreaStyle = useMemo(
+    () =>
+      createTextAreaStyle(
+        isDarkMode,
+        outputDarkBackground,
+        outputLightBackground
+      ),
     [
-      {
-        action: () =>
-          pasteToTextarea(
-            setInputText,
-            setOutputText,
-            transitionInputTextarea,
-            props
-          ),
-        className: "btn btn-secondary mx-1 btn-sm bottom-btns rounded",
-        disabled: false,
-        title: "Paste the text to text area",
-        actionName: "Paste",
-        iconClases: "bi bi-clipboard bottom-btns-icons",
-      },
-      {
-        action: () =>
-          clearTextarea(
-            inputText,
-            outputText,
-            setInputText,
-            setOutputText,
-            props,
-            transitionInputTextarea,
-            transitionOutputTextarea
-          ),
-        className: "btn btn-danger mx-1 btn-sm bottom-btns rounded",
-        disabled: inputText.length === 0,
-        title: "Clear the text area",
-        actionName: "Clear",
-        iconClases: "bi bi-x-lg bottom-btns-icons",
-      },
-    ],
-    [
-      {
-        action: () =>
-          copyToClipboard(outputText, transitionOutputTextarea, props),
-        className: "btn btn-warning mx-1 btn-sm bottom-btns rounded",
-        disabled: inputText.length === 0,
-        title: "Copy the text to clipboard",
-        actionName: "Copy",
-        iconClases: "bi bi-clipboard-check-fill bottom-btns-icons",
-      },
-      {
-        action: () =>
-          downloadTextFile(inputText, props, transitionOutputTextarea),
-        className: `btn btn-${
-          inputText.length === 0 ? "secondary" : "primary"
-        } mx-1 btn-sm bottom-btns rounded`,
-        disabled: inputText.length === 0,
-        title: "Save the .txt file",
-        actionName: "Save",
-        iconClases: "bi bi-download bottom-btns-icons",
-      },
-    ],
-  ];
+      isDarkMode,
+      outputDarkBackground,
+      outputLightBackground,
+      createTextAreaStyle,
+    ]
+  );
 
-  function uploadTextFile() {
+  const uploadTextFile = useCallback(() => {
     const fileInput = document.querySelector('input[type="file"]');
     if (fileInput?.files.length > 0) {
       const reader = new FileReader();
@@ -167,20 +127,45 @@ const TextareaAndStats = (props) => {
     } else {
       props.showAlert("No file selected", "warning");
     }
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.showAlert, transitionInputTextarea]);
 
-  const manipulationBtnsData = manipulationButtonsProps(
-    inputText,
-    props,
-    setOutputText,
-    setInputText,
-    transitionOutputTextarea
+  const actionBtnsData = useMemo(
+    () =>
+      actionButtonsProps(
+        inputText,
+        outputText,
+        setInputText,
+        setOutputText,
+        props,
+        transitionInputTextarea,
+        transitionOutputTextarea
+      ),
+    [
+      inputText,
+      outputText,
+      props,
+      transitionInputTextarea,
+      transitionOutputTextarea,
+    ]
   );
 
-  const onTextChange = (e) => {
+  const manipulationBtnsData = useMemo(
+    () =>
+      manipulationButtonsProps(
+        inputText,
+        props,
+        setOutputText,
+        setInputText,
+        transitionOutputTextarea
+      ),
+    [inputText, props, transitionOutputTextarea]
+  );
+
+  const onTextChange = useCallback((e) => {
     setInputText(e.target.value);
     setOutputText(e.target.value);
-  };
+  }, []);
 
   return (
     <>
@@ -220,7 +205,7 @@ const TextareaAndStats = (props) => {
       <div className="form-floating mb-3">
         <div className="d-flex justify-content-between">
           <div>
-            {actionButtonsProps[0].map((btnProp) => (
+            {actionBtnsData[0].map((btnProp) => (
               <ActionButton
                 action={btnProp.action}
                 className={btnProp.className}
@@ -228,11 +213,12 @@ const TextareaAndStats = (props) => {
                 title={btnProp.title}
                 actionName={btnProp.actionName}
                 iconClases={btnProp.iconClases}
+                key={actionBtnsData[0].indexOf(btnProp)}
               />
             ))}
           </div>
           <div>
-            {actionButtonsProps[1].map((btnProp) => (
+            {actionBtnsData[1].map((btnProp) => (
               <ActionButton
                 action={btnProp.action}
                 className={btnProp.className}
@@ -240,6 +226,7 @@ const TextareaAndStats = (props) => {
                 title={btnProp.title}
                 actionName={btnProp.actionName}
                 iconClases={btnProp.iconClases}
+                key={actionBtnsData[1].indexOf(btnProp)}
               />
             ))}
           </div>
@@ -290,7 +277,7 @@ const TextareaAndStats = (props) => {
               Edit
             </Dropdown.Toggle>
             <Dropdown.Menu
-              className="menuName-scroll"
+              className="menuName-scroll menu-scroll"
               variant={`${props.mode}`}
             >
               {manipulationBtnsData.map((btnData) => {
@@ -316,7 +303,7 @@ const TextareaAndStats = (props) => {
               Change Case
             </Dropdown.Toggle>
             <Dropdown.Menu
-              className="menuName-scroll"
+              className="menuName-scroll menu-scroll"
               variant={`${props.mode}`}
             >
               {manipulationBtnsData.map((btnData) => {
@@ -342,7 +329,7 @@ const TextareaAndStats = (props) => {
               Generate
             </Dropdown.Toggle>
             <Dropdown.Menu
-              className="menuName-scroll"
+              className="menuName-scroll menu-scroll"
               variant={`${props.mode}`}
             >
               {manipulationBtnsData.map((btnData) => {
@@ -367,6 +354,6 @@ const TextareaAndStats = (props) => {
       <Statistics mode={props.mode} outputText={outputText} />
     </>
   );
-};
+});
 
 export default TextareaAndStats;
