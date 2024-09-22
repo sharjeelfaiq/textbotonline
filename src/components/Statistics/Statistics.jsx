@@ -30,7 +30,7 @@ const Statistics = ({ mode, outputText }) => {
     if (word.length <= 3) return 1;
     word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, "");
     word = word.replace(/^y/, "");
-    return word.match(/[aeiouy]{1,2}/g)?.length || 1;
+    return (word.match(/[aeiouy]{1,2}/g) || []).length || 1;
   }, []);
 
   const detectPassiveVoice = useCallback((sentence) => {
@@ -57,8 +57,11 @@ const Statistics = ({ mode, outputText }) => {
   }, []);
 
   const statistics = useMemo(() => {
-    const words = outputText.split(/\s+/).filter(Boolean);
-    const sentences = outputText.split(/[.!?]+/).filter(Boolean);
+    const words = outputText.trim().split(/\s+/).filter(Boolean);
+    const sentences = outputText
+      .trim()
+      .split(/[.!?]+/)
+      .filter(Boolean);
     const paragraphs = outputText.split(/\r\n|\r|\n/).filter(Boolean);
     const characters = outputText.length;
 
@@ -76,6 +79,7 @@ const Statistics = ({ mode, outputText }) => {
         word.length < shortest.length && word.length > 1 ? word : shortest,
       words[0]
     );
+
     const averageWordLength = (
       words.reduce((sum, word) => sum + word.length, 0) / words.length
     ).toFixed(2);
@@ -87,9 +91,7 @@ const Statistics = ({ mode, outputText }) => {
     const averageReadingTime = (words.length / 200).toFixed(1);
     const fastReadingTime = (words.length / 300).toFixed(1);
 
-    const passiveVoiceSentences = sentences.filter((sentence) =>
-      detectPassiveVoice(sentence)
-    ).length;
+    const passiveVoiceSentences = sentences.filter(detectPassiveVoice).length;
     const stopWordCount = countStopWords(words);
     const lexicalDensity = (
       ((words.length - stopWordCount) / words.length) *
@@ -102,13 +104,13 @@ const Statistics = ({ mode, outputText }) => {
           : longest,
       ""
     );
-    const shortestSentence = sentences.reduce(
-      (shortest, sentence) =>
-        sentence.split(/\s+/).length < shortest.split(/\s+/).length
-          ? sentence
-          : shortest,
-      sentences[0]
-    );
+    const shortestSentence = sentences.reduce((shortest, sentence) => {
+      const sentenceLength = sentence.split(/\s+/).length;
+      return sentenceLength < shortest.split(/\s+/).length && sentenceLength > 0
+        ? sentence
+        : shortest;
+    }, sentences[0]);
+
     const complexSentences = sentences.filter(
       (sentence) => sentence.split(/\s+/).length > 20
     ).length;
@@ -172,7 +174,7 @@ const Statistics = ({ mode, outputText }) => {
   return (
     <div className="d-flex justify-content-center">
       <button
-        className={`btn mx-1 btn-sm text-uppercase shadow`}
+        className={`btn mx-1 btn-lg text-uppercase shadow`}
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasBottom"
@@ -247,9 +249,9 @@ const Statistics = ({ mode, outputText }) => {
                   <th
                     scope="col"
                     style={{
-                      backgroundColor: isDarkMode ? "#495057" : "#e2e6ea",
+                      backgroundColor: isDarkMode ? "#343a40" : "#f8f9fa",
                       color: isDarkMode ? "white" : "black",
-                      padding: "10px 15px",
+                      borderBottom: `1px solid ${textColor}`,
                     }}
                   >
                     Metric
@@ -257,9 +259,9 @@ const Statistics = ({ mode, outputText }) => {
                   <th
                     scope="col"
                     style={{
-                      backgroundColor: isDarkMode ? "#495057" : "#e2e6ea",
+                      backgroundColor: isDarkMode ? "#343a40" : "#f8f9fa",
                       color: isDarkMode ? "white" : "black",
-                      padding: "10px 15px",
+                      borderBottom: `1px solid ${textColor}`,
                     }}
                   >
                     Value
@@ -267,21 +269,10 @@ const Statistics = ({ mode, outputText }) => {
                 </tr>
               </thead>
               <tbody>
-                {statistics.map((stat, index) => (
-                  <tr
-                    key={index}
-                    style={{ transition: "background-color 0.2s" }}
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.backgroundColor = isDarkMode
-                        ? "#343a40"
-                        : "#e9ecef")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.backgroundColor = "inherit")
-                    }
-                  >
-                    <td style={{ padding: "10px 15px" }}>{stat.label}</td>
-                    <td style={{ padding: "10px 15px" }}>{stat.value}</td>
+                {statistics.map(({ label, value }, index) => (
+                  <tr key={index}>
+                    <td>{label}</td>
+                    <td>{value}</td>
                   </tr>
                 ))}
               </tbody>
