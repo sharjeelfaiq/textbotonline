@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import TextManipulationButton from "../TextManipulation/TextManipulationButton.jsx";
 import ActionButton from "../ActionButton/ActionButton.jsx";
 import { manipulationButtonProps } from "../TextManipulation/manipulationButtonProps.js";
-import { actionButtonProps } from "../ActionButton/actionButtonProps.js";
+import { actionButtonProps } from "../../components/ActionButton/actionButtonProps.js";
 import Statistics from "../Statistics/Statistics.jsx";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../../css/TextareaAndStats.css";
