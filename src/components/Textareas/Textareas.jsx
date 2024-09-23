@@ -1,10 +1,8 @@
 import React, { useState, useMemo, useCallback } from "react";
 import { Dropdown } from "react-bootstrap";
 import { motion } from "framer-motion";
-import TextManipulationButton from "../TextManipulation/TextManipulationButton.jsx";
+import DropdownMenu from "../Dropdown/DropdownMenu.jsx";
 import ActionButton from "../ActionButton/ActionButton.jsx";
-import { manipulationButtonProps } from "../TextManipulation/ManipulationButtonProps.js";
-import { actionButtonProps } from "../ActionButton/ActionButtonProps.js";
 import Statistics from "../Statistics/Statistics.jsx";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../../css/TextareaAndStats.css";
@@ -16,6 +14,8 @@ const TextareaAndStats = React.memo((props) => {
   const [outputDarkBackground, setOutputDarkBackground] = useState("#242526");
   const [inputLightBackground, setInputLightBackground] = useState("white");
   const [outputLightBackground, setOutputLightBackground] = useState("white");
+
+  const { mode } = props;
 
   const timeoutDuration = 280;
 
@@ -82,7 +82,7 @@ const TextareaAndStats = React.memo((props) => {
     []
   );
 
-  const isDarkMode = props.mode === "dark";
+  const isDarkMode = mode === "dark";
 
   const inputTextAreaStyle = useMemo(
     () =>
@@ -130,38 +130,6 @@ const TextareaAndStats = React.memo((props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.showAlert, transitionInputTextarea]);
 
-  const actionBtnsData = useMemo(
-    () =>
-      actionButtonProps(
-        inputText,
-        outputText,
-        setInputText,
-        setOutputText,
-        props,
-        transitionInputTextarea,
-        transitionOutputTextarea
-      ),
-    [
-      inputText,
-      outputText,
-      props,
-      transitionInputTextarea,
-      transitionOutputTextarea,
-    ]
-  );
-
-  const manipulationBtnsData = useMemo(
-    () =>
-      manipulationButtonProps(
-        inputText,
-        props,
-        setOutputText,
-        setInputText,
-        transitionOutputTextarea
-      ),
-    [inputText, props, transitionOutputTextarea]
-  );
-
   const onTextChange = useCallback((e) => {
     setInputText(e.target.value);
     setOutputText(e.target.value);
@@ -170,9 +138,7 @@ const TextareaAndStats = React.memo((props) => {
   return (
     <>
       <motion.h1
-        className={`text-center text-${
-          props.mode === "light" ? "dark" : "light"
-        }`}
+        className={`text-center text-${mode === "light" ? "dark" : "light"}`}
         initial="hidden"
         animate="visible"
         variants={{
@@ -195,9 +161,7 @@ const TextareaAndStats = React.memo((props) => {
       </motion.h1>
       <small>
         <p
-          className={`text-center text-${
-            props.mode === "light" ? "dark" : "light"
-          }`}
+          className={`text-center text-${mode === "light" ? "dark" : "light"}`}
         >
           Just copy/paste or upload your text here and hit the desired button
         </p>
@@ -205,30 +169,28 @@ const TextareaAndStats = React.memo((props) => {
       <div className="form-floating mb-3">
         <div className="d-flex justify-content-between">
           <div>
-            {actionBtnsData[0].map((btnProp) => (
-              <ActionButton
-                action={btnProp.action}
-                className={btnProp.className}
-                disabled={btnProp.disabled}
-                title={btnProp.title}
-                actionName={btnProp.actionName}
-                iconClases={btnProp.iconClases}
-                key={actionBtnsData[0].indexOf(btnProp)}
-              />
-            ))}
+            <ActionButton
+              index={0}
+              inputText={inputText}
+              outputText={outputText}
+              setInputText={setInputText}
+              setOutputText={setOutputText}
+              props={props}
+              transitionInputTextarea={transitionInputTextarea}
+              transitionOutputTextarea={transitionOutputTextarea}
+            />
           </div>
           <div>
-            {actionBtnsData[1].map((btnProp) => (
-              <ActionButton
-                action={btnProp.action}
-                className={btnProp.className}
-                disabled={btnProp.disabled}
-                title={btnProp.title}
-                actionName={btnProp.actionName}
-                iconClases={btnProp.iconClases}
-                key={actionBtnsData[1].indexOf(btnProp)}
-              />
-            ))}
+            <ActionButton
+              index={1}
+              inputText={inputText}
+              outputText={outputText}
+              setInputText={setInputText}
+              setOutputText={setOutputText}
+              props={props}
+              transitionInputTextarea={transitionInputTextarea}
+              transitionOutputTextarea={transitionOutputTextarea}
+            />
           </div>
         </div>
         <div className="d-flex align-items-center mt-1 mb-2">
@@ -255,12 +217,10 @@ const TextareaAndStats = React.memo((props) => {
         </div>
         <div className="d-flex">
           <Dropdown>
-            <Dropdown.Toggle
-              className={`btn btn-sm top-btns mx-1 btn-${props.mode}`}
-            >
+            <Dropdown.Toggle className={`btn btn-sm top-btns mx-1 btn-${mode}`}>
               Upload
             </Dropdown.Toggle>
-            <Dropdown.Menu variant={`${props.mode}`} className="menuName-opt">
+            <Dropdown.Menu variant={`${mode}`} className="menuName-opt">
               <input
                 type="file"
                 accept="text/plain"
@@ -270,88 +230,40 @@ const TextareaAndStats = React.memo((props) => {
               />
             </Dropdown.Menu>
           </Dropdown>
-          <Dropdown>
-            <Dropdown.Toggle
-              className={`btn btn-sm top-btns mx-1 btn-${props.mode}`}
-            >
-              Edit
-            </Dropdown.Toggle>
-            <Dropdown.Menu
-              className="menuName-scroll menu-scroll"
-              variant={`${props.mode}`}
-            >
-              {manipulationBtnsData.map((btnData) => {
-                return (
-                  btnData.menuName === "Edit" && (
-                    <TextManipulationButton
-                      isDisabled={inputText.length === 0}
-                      className="menuName-item"
-                      optionName={btnData.optionName}
-                      title={btnData.title}
-                      action={btnData.action}
-                      key={manipulationBtnsData.indexOf(btnData)}
-                    />
-                  )
-                );
-              })}
-            </Dropdown.Menu>
-          </Dropdown>
-          <Dropdown>
-            <Dropdown.Toggle
-              className={`btn btn-sm top-btns mx-1 btn-${props.mode}`}
-            >
-              Change Case
-            </Dropdown.Toggle>
-            <Dropdown.Menu
-              className="menuName-scroll menu-scroll"
-              variant={`${props.mode}`}
-            >
-              {manipulationBtnsData.map((btnData) => {
-                return (
-                  btnData.menuName === "Change Case" && (
-                    <TextManipulationButton
-                      isDisabled={inputText.length === 0}
-                      className="menuName-item"
-                      optionName={btnData.optionName}
-                      title={btnData.title}
-                      action={btnData.action}
-                      key={manipulationBtnsData.indexOf(btnData)}
-                    />
-                  )
-                );
-              })}
-            </Dropdown.Menu>
-          </Dropdown>
-          <Dropdown>
-            <Dropdown.Toggle
-              className={`btn btn-sm top-btns mx-1 btn-${props.mode}`}
-            >
-              Generate
-            </Dropdown.Toggle>
-            <Dropdown.Menu
-              className="menuName-scroll menu-scroll"
-              variant={`${props.mode}`}
-            >
-              {manipulationBtnsData.map((btnData) => {
-                return (
-                  btnData.menuName === "Generate" && (
-                    <TextManipulationButton
-                      isDisabled={false}
-                      className="menuName-item"
-                      optionName={btnData.optionName}
-                      title={btnData.title}
-                      action={btnData.action}
-                      key={manipulationBtnsData.indexOf(btnData)}
-                    />
-                  )
-                );
-              })}
-            </Dropdown.Menu>
-          </Dropdown>
+          <DropdownMenu
+            inputText={inputText}
+            setInputText={setInputText}
+            outputText={outputText}
+            setOutputText={setOutputText}
+            transitionOutputTextarea={transitionOutputTextarea}
+            mode={mode}
+            props={props}
+            menu={"Edit"}
+          />
+          <DropdownMenu
+            inputText={inputText}
+            setInputText={setInputText}
+            outputText={outputText}
+            setOutputText={setOutputText}
+            transitionOutputTextarea={transitionOutputTextarea}
+            mode={mode}
+            props={props}
+            menu={"Change Case"}
+          />
+          <DropdownMenu
+            inputText={inputText}
+            setInputText={setInputText}
+            outputText={outputText}
+            setOutputText={setOutputText}
+            transitionOutputTextarea={transitionOutputTextarea}
+            mode={mode}
+            props={props}
+            menu={"Generate"}
+          />
         </div>
       </div>
-      <hr className={`text-${props.mode === "dark" ? "light" : "dark"}`} />
-      <Statistics mode={props.mode} outputText={outputText} />
+      <hr className={`text-${mode === "dark" ? "light" : "dark"}`} />
+      <Statistics mode={mode} outputText={outputText} />
     </>
   );
 });

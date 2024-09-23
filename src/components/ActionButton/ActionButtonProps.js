@@ -28,7 +28,7 @@ export const actionButtonProps = (
         disabled: false,
         title: "Paste the text to text area",
         actionName: "Paste",
-        iconClases: "bi bi-clipboard bottom-btns-icons",
+        iconClasess: "bi bi-clipboard bottom-btns-icons",
       },
       {
         action: () =>
@@ -45,7 +45,7 @@ export const actionButtonProps = (
         disabled: inputText.length === 0,
         title: "Clear the text area",
         actionName: "Clear",
-        iconClases: "bi bi-x-lg bottom-btns-icons",
+        iconClasses: "bi bi-x-lg bottom-btns-icons",
       },
     ],
     [
@@ -56,7 +56,7 @@ export const actionButtonProps = (
         disabled: inputText.length === 0,
         title: "Copy the text to clipboard",
         actionName: "Copy",
-        iconClases: "bi bi-clipboard-check-fill bottom-btns-icons",
+        iconClasses: "bi bi-clipboard-check-fill bottom-btns-icons",
       },
       {
         action: () =>
@@ -67,7 +67,7 @@ export const actionButtonProps = (
         disabled: inputText.length === 0,
         title: "Save the .txt file",
         actionName: "Save",
-        iconClases: "bi bi-download bottom-btns-icons",
+        iconClasses: "bi bi-download bottom-btns-icons",
       },
     ],
   ];

@@ -1,6 +1,6 @@
 import { handleTextManipulation } from "./ManipulationFunctions";
 
-export const manipulationButtonProps = (
+export const dropdownOptionsProps = (
   inputText,
   props,
   setOutputText,

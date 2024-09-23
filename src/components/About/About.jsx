@@ -1,10 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import AccordionItems from "./AccordionItem";
-import { manipulationButtonProps } from "../TextManipulation/ManipulationButtonProps.js";
+import { dropdownOptionsProps } from "../TextManipulation/DropdownOptionProps.js";
 
 function About(props) {
-  const manipulationBtnsProps = manipulationButtonProps();
+  const manipulationBtnsProps = dropdownOptionsProps();
 
   const metrics = [
     {
