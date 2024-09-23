@@ -74,7 +74,7 @@ const Textareas = React.memo((props) => {
         textareaBackground.inputDark,
         textareaBackground.inputLight
       ),
-    [isDarkMode, textareaBackground.inputDark, textareaBackground.inputLight]
+    [createTextAreaStyle, isDarkMode, textareaBackground.inputDark, textareaBackground.inputLight]
   );
 
   const outputTextAreaStyle = useMemo(
@@ -84,7 +84,7 @@ const Textareas = React.memo((props) => {
         textareaBackground.outputDark,
         textareaBackground.outputLight
       ),
-    [isDarkMode, textareaBackground.outputDark, textareaBackground.outputLight]
+    [createTextAreaStyle, isDarkMode, textareaBackground.outputDark, textareaBackground.outputLight]
   );
 
   const uploadTextFile = useCallback(() => {
