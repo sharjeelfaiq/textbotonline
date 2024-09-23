@@ -105,7 +105,7 @@ const Textareas = React.memo((props) => {
     } else {
       props.showAlert("No file selected", "warning");
     }
-  }, [props.showAlert, transitionInputTextarea]);
+  }, [props, transitionInputTextarea]);
 
   const onTextChange = useCallback((e) => {
     setInputText(e.target.value);
