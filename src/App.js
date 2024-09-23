@@ -59,7 +59,7 @@ const App = () => {
         <hr className={`text-${mode === "dark" ? "light" : "dark"}`} />
       </div>
       <div className="pt-3">
-        <Footer />
+        <Footer mode={mode} />
       </div>
     </>
   );
