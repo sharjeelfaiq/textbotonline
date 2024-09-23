@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import AccordionItems from "./AccordionItem";
-import { manipulationButtonProps } from "../TextManipulation/manipulationButtonProps.js";
+import { manipulationButtonProps } from "../TextManipulation/ManipulationButtonProps.js";
 
 function About(props) {
   const manipulationBtnsProps = manipulationButtonProps();
