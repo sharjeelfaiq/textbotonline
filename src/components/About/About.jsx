@@ -1,12 +1,8 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { dropdownOptionsProps } from "../DropdownMenu/DropdownOptionProps.js";
 import { aboutText, metrics } from "./About.js";
 import AccordionItems from "./AccordionItem";
 
 function About(props) {
-  const manipulationBtnsProps = dropdownOptionsProps();
-
   return (
     <>
       <h1
@@ -62,18 +58,7 @@ function About(props) {
             aria-labelledby="panelsStayOpen-headingOne"
           >
             <div className="accordion-body">
-              <ul style={{ listStyleType: "none" }} className="lh-lg">
-                {manipulationBtnsProps.map(
-                  (item, index) =>
-                    item.menuName === "Edit" && (
-                      <AccordionItems
-                        key={index}
-                        title={item.optionName}
-                        description={item.description}
-                      />
-                    )
-                )}
-              </ul>
+              <AccordionItems menu={"Edit"} />
             </div>
           </div>
         </div>
@@ -109,18 +94,7 @@ function About(props) {
             aria-labelledby="panelsStayOpen-headingTwo"
           >
             <div className="accordion-body">
-              <ul style={{ listStyleType: "none" }} className="lh-lg">
-                {manipulationBtnsProps.map(
-                  (item, index) =>
-                    item.menuName === "Change Case" && (
-                      <AccordionItems
-                        key={index}
-                        title={item.optionName}
-                        description={item.description}
-                      />
-                    )
-                )}
-              </ul>
+              <AccordionItems menu={"Change Case"} />
             </div>
           </div>
         </div>
@@ -156,18 +130,7 @@ function About(props) {
             aria-labelledby="panelsStayOpen-headingThree"
           >
             <div className="accordion-body">
-              <ul style={{ listStyleType: "none" }} className="lh-lg">
-                {manipulationBtnsProps.map(
-                  (item, index) =>
-                    item.menuName === "Generate" && (
-                      <AccordionItems
-                        key={index}
-                        title={item.optionName}
-                        description={item.description}
-                      />
-                    )
-                )}
-              </ul>
+              <AccordionItems menu={"Generate"} />
             </div>
           </div>
         </div>{" "}
@@ -205,12 +168,9 @@ function About(props) {
             <div className="accordion-body">
               <ul style={{ listStyleType: "none" }} className="lh-lg">
                 {metrics.map((metric, index) => (
-                  <motion.li
-                    key={index}
-                    style={{ width: "80%", borderRadius: "5px" }}
-                  >
+                  <li key={index} style={{ width: "80%", borderRadius: "5px" }}>
                     <small>{metric.description}</small>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
             </div>

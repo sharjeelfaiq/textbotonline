@@ -1,14 +1,23 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { dropdownOptionsProps } from "../DropdownMenu/DropdownOptionProps.js";
 
-const AccordionItems = ({ title, description }) => {
+const AccordionItems = ({ menu }) => {
+  const manipulationBtnsProps = dropdownOptionsProps();
+
   return (
-    <motion.li style={{ width: "80%", borderRadius: "5px" }}>
-      <small>
-        <strong>{title} - </strong>
-        {description}
-      </small>
-    </motion.li>
+    <ul style={{ listStyleType: "none" }} className="lh-lg">
+      {manipulationBtnsProps.map(
+        (item, index) =>
+          item.menuName === menu && (
+            <li key={index} style={{ width: "80%", borderRadius: "5px" }}>
+              <small>
+                <strong>{item.optionName} - </strong>
+                {item.description}
+              </small>
+            </li>
+          )
+      )}
+    </ul>
   );
 };
 
