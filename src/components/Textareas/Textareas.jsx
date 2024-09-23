@@ -241,6 +241,7 @@ const Textareas = React.memo((props) => {
       </div>
       <hr className={`text-${mode === "dark" ? "light" : "dark"}`} />
       <Statistics mode={mode} outputText={outputText} />
+      <hr className={`text-${mode === "dark" ? "light" : "dark"}`} />
     </>
   );
 });
