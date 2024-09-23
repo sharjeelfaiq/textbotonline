@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import AccordionItems from "./AccordionItem";
-import { dropdownOptionsProps } from "../Dropdown/DropdownOptionProps.js";
+import { dropdownOptionsProps } from "../DropdownMenu/DropdownOptionProps.js";
 
 function About(props) {
   const manipulationBtnsProps = dropdownOptionsProps();

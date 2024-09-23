@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useCallback, useRef } from "react";
 import { Dropdown } from "react-bootstrap";
 import { motion } from "framer-motion";
-import DropdownMenu from "../Dropdown/DropdownMenu.jsx";
+import DropdownMenu from "../DropdownMenu/DropdownMenu.jsx";
 import ActionButton from "../ActionButton/ActionButton.jsx";
 import Statistics from "../Statistics/Statistics.jsx";
 import "bootstrap-icons/font/bootstrap-icons.css";
