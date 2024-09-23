@@ -1,11 +1,16 @@
 import React, { useState, useMemo, useCallback, useRef } from "react";
 import { Dropdown } from "react-bootstrap";
 import { motion } from "framer-motion";
+import { textareaprops } from "./TextareasProps.js";
 import DropdownMenu from "../DropdownMenu/DropdownMenu.jsx";
 import ActionButton from "../ActionButton/ActionButton.jsx";
 import Statistics from "../Statistics/Statistics.jsx";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../../css/TextareaAndStats.css";
+
+
+const appName = textareaprops.appName;
+const tagLine = textareaprops.tagLine;
 
 const Textareas = React.memo((props) => {
   const [inputText, setInputText] = useState("");
@@ -74,7 +79,12 @@ const Textareas = React.memo((props) => {
         textareaBackground.inputDark,
         textareaBackground.inputLight
       ),
-    [createTextAreaStyle, isDarkMode, textareaBackground.inputDark, textareaBackground.inputLight]
+    [
+      createTextAreaStyle,
+      isDarkMode,
+      textareaBackground.inputDark,
+      textareaBackground.inputLight,
+    ]
   );
 
   const outputTextAreaStyle = useMemo(
@@ -84,7 +94,12 @@ const Textareas = React.memo((props) => {
         textareaBackground.outputDark,
         textareaBackground.outputLight
       ),
-    [createTextAreaStyle, isDarkMode, textareaBackground.outputDark, textareaBackground.outputLight]
+    [
+      createTextAreaStyle,
+      isDarkMode,
+      textareaBackground.outputDark,
+      textareaBackground.outputLight,
+    ]
   );
 
   const uploadTextFile = useCallback(() => {
@@ -132,15 +147,16 @@ const Textareas = React.memo((props) => {
           },
         }}
       >
-        <span className="text-uppercase font-monospace">
-          TEXTBOT<span className="text-info">ONLINE</span>
-        </span>
+        <h1
+          className="text-uppercase font-monospace"
+          dangerouslySetInnerHTML={{ __html: appName }}
+        />
       </motion.h1>
       <small>
         <p
           className={`text-center text-${mode === "light" ? "dark" : "light"}`}
         >
-          Just copy/paste or upload your text here and hit the desired button
+          {tagLine}
         </p>
       </small>
       <div className="form-floating mb-3">
