@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useCallback } from "react";
 import { Dropdown } from "react-bootstrap";
 import { motion } from "framer-motion";
-import { manipulationButtonsProps } from "../TextManipulation/manipulationBtnsProps.js";
+import { manipulationButtonsProps } from "../TextManipulation/manipulationButtonProps.js";
 import { actionButtonsProps } from "../ActionButton/actionButtonProps.js";
 import TextManipulationButton from "../TextManipulation/TextManipulationButton.jsx";
 import Statistics from "../Statistics/Statistics.jsx";
