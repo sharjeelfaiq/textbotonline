@@ -1,6 +1,6 @@
 import { handleTextManipulation } from "./manipulationFunctions";
 
-export const manipulationButtonsProps = (
+export const manipulationButtonProps = (
   inputText,
   props,
   setOutputText,

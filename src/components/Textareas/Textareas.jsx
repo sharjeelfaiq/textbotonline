@@ -1,11 +1,11 @@
 import React, { useState, useMemo, useCallback } from "react";
 import { Dropdown } from "react-bootstrap";
 import { motion } from "framer-motion";
-import { manipulationButtonsProps } from "../TextManipulation/manipulationButtonProps.js";
-import { actionButtonsProps } from "../ActionButton/actionButtonProps.js";
 import TextManipulationButton from "../TextManipulation/TextManipulationButton.jsx";
-import Statistics from "../Statistics/Statistics.jsx";
+import { manipulationButtonProps } from "../TextManipulation/manipulationButtonProps.js";
 import ActionButton from "../ActionButton/ActionButton.jsx";
+import { actionButtonsProps } from "../ActionButton/actionButtonProps.js";
+import Statistics from "../Statistics/Statistics.jsx";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../../css/TextareaAndStats.css";
 
@@ -152,7 +152,7 @@ const TextareaAndStats = React.memo((props) => {
 
   const manipulationBtnsData = useMemo(
     () =>
-      manipulationButtonsProps(
+      manipulationButtonProps(
         inputText,
         props,
         setOutputText,
