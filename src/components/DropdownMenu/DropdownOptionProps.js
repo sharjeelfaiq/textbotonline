@@ -1,931 +1,409 @@
 import { handleTextManipulation } from "./ManipulationFunctions";
 
+const createOption = (menuName, optionName, title, description, type) => ({
+  menuName,
+  optionName,
+  title,
+  description,
+  action:
+    (inputText, props, setOutputText, setInputText, transitionOutputTextarea) =>
+    () =>
+      handleTextManipulation(
+        type,
+        inputText,
+        props,
+        setOutputText,
+        setInputText,
+        transitionOutputTextarea
+      ),
+});
+
+const createMenuOptions = (menuName, options) =>
+  options.map(([optionName, title, description, type]) =>
+    createOption(menuName, optionName, title, description, type)
+  );
+
 export const dropdownOptionsProps = (
   inputText,
   props,
   setOutputText,
   setInputText,
   transitionOutputTextarea
-) => {
-  return [
-    {
-      menuName: "Edit",
-      optionName: "Split Text",
-      title: "Split all words to new lines.",
-      description:
+) =>
+  [
+    ...createMenuOptions("Edit", [
+      [
+        "Split Text",
+        "Split all words to new lines.",
         "This option splits each word of the given text on a new line.",
-      action: () =>
-        handleTextManipulation(
-          "splitInput",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Join Text",
-      title: "Join all the text to a single line.",
-      description:
+        "splitInput",
+      ],
+      [
+        "Join Text",
+        "Join all the text to a single line.",
         "This option joins all of the words in separate lines to a single string.",
-      action: () =>
-        handleTextManipulation(
-          "joinInput",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Remove Extra Spaces",
-      title: "Removes extra spaces, new ines, tab spaces",
-      description: "This option removes any extra space present in the text.",
-      action: () =>
-        handleTextManipulation(
-          "removeExtraSpaces",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Remove All Spaces",
-      title: "Removes all the spaces, new ines, tab spaces",
-      description: "This option removes all the spaces, new ines, tab spaces.",
-      action: () =>
-        handleTextManipulation(
-          "removeAllSpaces",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Remove All Symbols",
-      title: "Removes all the symbols",
-      description: "This option removes all the symbols.",
-      action: () =>
-        handleTextManipulation(
-          "removeAllSymbols",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Duplicate",
-      title: "Duplicate text",
-      description: "This option duplicates the given text.",
-      action: () =>
-        handleTextManipulation(
-          "duplicate",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Reverse",
-      title: "Reverese text",
-      description: "This option reverses the given text.",
-      action: () =>
-        handleTextManipulation(
-          "reverse",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Slugify",
-      title: "Slugify text",
-      description: "This option converts the given text to a slug.",
-      action: () =>
-        handleTextManipulation(
-          "slugify",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Truncate",
-      title: "Truncate the text upto desired length",
-      description:
-        "This option truncates the given text upto the desired length.",
-      action: () =>
-        handleTextManipulation(
-          "truncate",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Paragraph to single line",
-      title: "Convert paragraphs to single line",
-      description: "This option converts paragraphs to a single line.",
-      action: () =>
-        handleTextManipulation(
-          "paragraphToSingleLine",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Alphabetize Text",
-      title: "Change the order of words in text as A-Z",
-      description:
+        "joinInput",
+      ],
+      [
+        "Remove Extra Spaces",
+        "Removes extra spaces, new lines, tab spaces",
+        "This option removes any extra space present in the text.",
+        "removeExtraSpaces",
+      ],
+      [
+        "Remove All Spaces",
+        "Removes all the spaces, new lines, tab spaces",
+        "This option removes all the spaces, new lines, tab spaces.",
+        "removeAllSpaces",
+      ],
+      [
+        "Remove All Symbols",
+        "Removes all the symbols",
+        "This option removes all the symbols.",
+        "removeAllSymbols",
+      ],
+      [
+        "Duplicate",
+        "Duplicate text",
+        "This option duplicates the given text.",
+        "duplicate",
+      ],
+      [
+        "Reverse",
+        "Reverse text",
+        "This option reverses the given text.",
+        "reverse",
+      ],
+      [
+        "Slugify",
+        "Slugify text",
+        "This option converts the given text to a slug.",
+        "slugify",
+      ],
+      [
+        "Truncate",
+        "Truncate the text up to desired length",
+        "This option truncates the given text up to the desired length.",
+        "truncate",
+      ],
+      [
+        "Paragraph to single line",
+        "Convert paragraphs to single line",
+        "This option converts paragraphs to a single line.",
+        "paragraphToSingleLine",
+      ],
+      [
+        "Alphabetize Text",
+        "Change the order of words in text as A-Z",
         "This option changes the order of words in the given text as A-Z.",
-      action: () =>
-        handleTextManipulation(
-          "alphabetize",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Zalgo",
-      title: "Apply Zalgo affect",
-      description: "This option applies the Zalgo effect to the given text.",
-      action: () =>
-        handleTextManipulation(
-          "zalgo",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Rotate 13",
-      title: "Rotate 13 decoder",
-      description: "This option rotates the given text by 13 places.",
-      action: () =>
-        handleTextManipulation(
-          "rotate13",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Add Line Number",
-      title: "Add line number to each line",
-      description:
+        "alphabetize",
+      ],
+      [
+        "Zalgo",
+        "Apply Zalgo effect",
+        "This option applies the Zalgo effect to the given text.",
+        "zalgo",
+      ],
+      [
+        "Rotate 13",
+        "Rotate 13 decoder",
+        "This option rotates the given text by 13 places.",
+        "rotate13",
+      ],
+      [
+        "Add Line Number",
+        "Add line number to each line",
         "This option adds line number to each line of the given text.",
-      action: () =>
-        handleTextManipulation(
-          "addLineNum",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Encode URL",
-      title: "Encode to URL",
-      description: "This option encodes the given text to a URL.",
-      action: () =>
-        handleTextManipulation(
-          "encodeUri",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Decode the URL",
-      title: "Decode the URL",
-      description: "This option decodes the given URL.",
-      action: () =>
-        handleTextManipulation(
-          "decodeUri",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Base64 Encode",
-      title: "Encode to Base64",
-      description: "This option encodes the given text to Base64.",
-      action: () =>
-        handleTextManipulation(
-          "base64Encode",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Base64 Decode",
-      title: "Decode the Base64",
-      description: "This option decodes the given Base64 text.",
-      action: () =>
-        handleTextManipulation(
-          "base64Decode",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "UNIX to Date",
-      title: "Convert from Unix to date",
-      description: "This option converts the given Unix timestamp to a date.",
-      action: () =>
-        handleTextManipulation(
-          "unixToDate",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "UNIX to Time",
-      title: "Convert from Unix to time",
-      description: "This option converts the given Unix timestamp to a time.",
-      action: () =>
-        handleTextManipulation(
-          "unixToTime",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Format Numbers",
-      title: "Adds comma to numbers after every three digits",
-      description:
+        "addLineNum",
+      ],
+      [
+        "Encode URL",
+        "Encode to URL",
+        "This option encodes the given text to a URL.",
+        "encodeUri",
+      ],
+      [
+        "Decode the URL",
+        "Decode the URL",
+        "This option decodes the given URL.",
+        "decodeUri",
+      ],
+      [
+        "Base64 Encode",
+        "Encode to Base64",
+        "This option encodes the given text to Base64.",
+        "base64Encode",
+      ],
+      [
+        "Base64 Decode",
+        "Decode the Base64",
+        "This option decodes the given Base64 text.",
+        "base64Decode",
+      ],
+      [
+        "UNIX to Date",
+        "Convert from Unix to date",
+        "This option converts the given Unix timestamp to a date.",
+        "unixToDate",
+      ],
+      [
+        "UNIX to Time",
+        "Convert from Unix to time",
+        "This option converts the given Unix timestamp to a time.",
+        "unixToTime",
+      ],
+      [
+        "Format Numbers",
+        "Adds comma to numbers after every three digits",
         "This option adds a comma to numbers after every three digits.",
-      action: () =>
-        handleTextManipulation(
-          "formatNumbers",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Extract Text",
-      title: "Extract the text from the given string",
-      description: "This option extracts the text from the given string.",
-      action: () =>
-        handleTextManipulation(
-          "extractText",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Extract Numbers",
-      title: "Extract the numbers from the given string",
-      description: "This option extracts the numbers from the given string.",
-      action: () =>
-        handleTextManipulation(
-          "extractNumbers",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Add Prefix",
-      title: "Add prefix to each line",
-      description: "This option adds a prefix to each line of the given text.",
-      action: () =>
-        handleTextManipulation(
-          "addPrefix",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Add Suffix",
-      title: "Add suffix to each line",
-      description: "This option adds a suffix to each line of the given text.",
-      action: () =>
-        handleTextManipulation(
-          "addSuffix",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Sort Lines SENS",
-      title: "Sort lines in the aphabetical order",
-      description:
+        "formatNumbers",
+      ],
+      [
+        "Extract Text",
+        "Extract the text from the given string",
+        "This option extracts the text from the given string.",
+        "extractText",
+      ],
+      [
+        "Extract Numbers",
+        "Extract the numbers from the given string",
+        "This option extracts the numbers from the given string.",
+        "extractNumbers",
+      ],
+      [
+        "Add Prefix",
+        "Add prefix to each line",
+        "This option adds a prefix to each line of the given text.",
+        "addPrefix",
+      ],
+      [
+        "Add Suffix",
+        "Add suffix to each line",
+        "This option adds a suffix to each line of the given text.",
+        "addSuffix",
+      ],
+      [
+        "Sort Lines SENS",
+        "Sort lines in the alphabetical order",
         "This option sorts the lines of the given text in alphabetical order.",
-      action: () =>
-        handleTextManipulation(
-          "sortLinesSENS",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Sort Lines INSENS",
-      title: "Sort lines in the aphabetical order (case insensitive)",
-      description:
+        "sortLinesSENS",
+      ],
+      [
+        "Sort Lines INSENS",
+        "Sort lines in the alphabetical order (case insensitive)",
         "This option sorts the lines of the given text in alphabetical order.",
-      action: () =>
-        handleTextManipulation(
-          "sortLinesINSENS",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Sort Lines Reverse SENS",
-      title: "Sort lines in the reverse aphabetical order",
-      description:
+        "sortLinesINSENS",
+      ],
+      [
+        "Sort Lines Reverse SENS",
+        "Sort lines in the reverse alphabetical order",
         "This option sorts the lines of the given text in reverse alphabetical order.",
-      action: () =>
-        handleTextManipulation(
-          "sortLinesReverseSENS",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Sort Lines Reverse INSENS",
-      title: "Sort lines in the reverse aphabetical order (case insensitive)",
-      description:
+        "sortLinesReverseSENS",
+      ],
+      [
+        "Sort Lines Reverse INSENS",
+        "Sort lines in the reverse alphabetical order (case insensitive)",
         "This option sorts the lines of the given text in reverse alphabetical order.",
-      action: () =>
-        handleTextManipulation(
-          "sortLinesReverseINSENS",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Convert Decimal to Roman",
-      title: "Converts Decimal to Roman numbers.",
-      description:
+        "sortLinesReverseINSENS",
+      ],
+      [
+        "Convert Decimal to Roman",
+        "Converts Decimal to Roman numbers.",
         "This option converts the given decimal number to a Roman numeral.",
-      action: () =>
-        handleTextManipulation(
-          "convertDecimalToRoman",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Convert Roman to Decimal",
-      title: "Converts Roman numbers to Decimal.",
-      description:
+        "convertDecimalToRoman",
+      ],
+      [
+        "Convert Roman to Decimal",
+        "Converts Roman numbers to Decimal.",
         "This option converts the given Roman numeral to a decimal number.",
-      action: () =>
-        handleTextManipulation(
-          "convertRomanToDecimal",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Edit",
-      optionName: "Convert to Hash Code",
-      title: "Convert to Hash Code.",
-      description: "This option converts the given text to a hash code.",
-      action: () =>
-        handleTextManipulation(
-          "convertToHashCode",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Uppercase",
-      title: "Convert to Uppercase",
-      description: "This option converts the given text to uppercase.",
-      action: () =>
-        handleTextManipulation(
-          "uppercase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Lowercase",
-      title: "Convert to Lowercase",
-      description: "This option converts the given text to lowercase.",
-      action: () =>
-        handleTextManipulation(
-          "lowercase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Titlecase",
-      title: "Convert to Titlecase",
-      description: "This option converts the given text to titlecase.",
-      action: () =>
-        handleTextManipulation(
-          "titlecase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Reverse Titlecase",
-      title: "Convert to Reverse Titlecase",
-      description: "This option converts the given text to reverse titlecase.",
-      action: () =>
-        handleTextManipulation(
-          "reverseTitleCase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Invert Case",
-      title: "Convert to Invert Case",
-      description: "This option converts the given text to invert case.",
-      action: () =>
-        handleTextManipulation(
-          "invertcase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Sentence Case",
-      title: "Convert to Sentence Case",
-      description: "This option converts the given text to sentence case.",
-      action: () =>
-        handleTextManipulation(
-          "sentencecase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Toggle Case",
-      title: "Convert to Toggle Case",
-      description: "This option converts the given text to toggle case.",
-      action: () =>
-        handleTextManipulation(
-          "togglecase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Random Case",
-      title: "Convert to Random Case",
-      description: "This option converts the given text to random case.",
-      action: () =>
-        handleTextManipulation(
-          "randomcase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Camel Case",
-      title: "Convert to Camel Case",
-      description: "This option converts the given text to camel case.",
-      action: () =>
-        handleTextManipulation(
-          "camelcase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Pascal Case",
-      title: "Convert to Pascal Case",
-      description: "This option converts the given text to pascal case.",
-      action: () =>
-        handleTextManipulation(
-          "pascalcase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Kebab Case",
-      title: "Convert to Kebab Case",
-      description: "This option converts the given text to kebab case.",
-      action: () =>
-        handleTextManipulation(
-          "kebabcase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Snake Case",
-      title: "Convert to Snake Case",
-      description: "This option converts the given text to snake case.",
-      action: () =>
-        handleTextManipulation(
-          "snakecase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Constant Case",
-      title: "Convert to Constant Case",
-      description: "This option converts the given text to constant case.",
-      action: () =>
-        handleTextManipulation(
-          "constantcase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Dot Case",
-      title: "Convert to Dot Case",
-      description: "This option converts the given text to dot case.",
-      action: () =>
-        handleTextManipulation(
-          "dotcase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "No Case",
-      title: "Convert to No Case",
-      description: "This option converts the given text to no case.",
-      action: () =>
-        handleTextManipulation(
-          "nocase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Alternate Case 1",
-      title: "Convert to Alternate Case 1",
-      description: "This option converts the given text to alternate case 1.",
-      action: () =>
-        handleTextManipulation(
-          "alternatecase1",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Path Case",
-      title: "Convert to Path Case",
-      description: "This option converts the given text to path case.",
-      action: () =>
-        handleTextManipulation(
-          "pathcase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Train Case",
-      title: "Convert to Train Case",
-      description: "This option converts the given text to train case.",
-      action: () =>
-        handleTextManipulation(
-          "traincase",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Change Case",
-      optionName: "Alternate Case 2",
-      title: "Convert to Alternate Case 2",
-      description: "This option converts the given text to alternate case 2.",
-      action: () =>
-        handleTextManipulation(
-          "alternatecase2",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Generate",
-      optionName: "Generate Characters Frequency",
-      title: "Generate characters frequency",
-      description:
+        "convertRomanToDecimal",
+      ],
+      [
+        "Convert to Hash Code",
+        "Convert to Hash Code.",
+        "This option converts the given text to a hash code.",
+        "convertToHashCode",
+      ],
+    ]),
+    ...createMenuOptions("Change Case", [
+      [
+        "Uppercase",
+        "Convert to Uppercase",
+        "This option converts the given text to uppercase.",
+        "uppercase",
+      ],
+      [
+        "Lowercase",
+        "Convert to Lowercase",
+        "This option converts the given text to lowercase.",
+        "lowercase",
+      ],
+      [
+        "Titlecase",
+        "Convert to Titlecase",
+        "This option converts the given text to titlecase.",
+        "titlecase",
+      ],
+      [
+        "Reverse Titlecase",
+        "Convert to Reverse Titlecase",
+        "This option converts the given text to reverse titlecase.",
+        "reverseTitleCase",
+      ],
+      [
+        "Invert Case",
+        "Convert to Invert Case",
+        "This option converts the given text to invert case.",
+        "invertcase",
+      ],
+      [
+        "Sentence Case",
+        "Convert to Sentence Case",
+        "This option converts the given text to sentence case.",
+        "sentencecase",
+      ],
+      [
+        "Toggle Case",
+        "Convert to Toggle Case",
+        "This option converts the given text to toggle case.",
+        "togglecase",
+      ],
+      [
+        "Random Case",
+        "Convert to Random Case",
+        "This option converts the given text to random case.",
+        "randomcase",
+      ],
+      [
+        "Camel Case",
+        "Convert to Camel Case",
+        "This option converts the given text to camel case.",
+        "camelcase",
+      ],
+      [
+        "Pascal Case",
+        "Convert to Pascal Case",
+        "This option converts the given text to pascal case.",
+        "pascalcase",
+      ],
+      [
+        "Kebab Case",
+        "Convert to Kebab Case",
+        "This option converts the given text to kebab case.",
+        "kebabcase",
+      ],
+      [
+        "Snake Case",
+        "Convert to Snake Case",
+        "This option converts the given text to snake case.",
+        "snakecase",
+      ],
+      [
+        "Constant Case",
+        "Convert to Constant Case",
+        "This option converts the given text to constant case.",
+        "constantcase",
+      ],
+      [
+        "Dot Case",
+        "Convert to Dot Case",
+        "This option converts the given text to dot case.",
+        "dotcase",
+      ],
+      [
+        "No Case",
+        "Convert to No Case",
+        "This option converts the given text to no case.",
+        "nocase",
+      ],
+      [
+        "Alternate Case 1",
+        "Convert to Alternate Case 1",
+        "This option converts the given text to alternate case 1.",
+        "alternatecase1",
+      ],
+      [
+        "Path Case",
+        "Convert to Path Case",
+        "This option converts the given text to path case.",
+        "pathcase",
+      ],
+      [
+        "Train Case",
+        "Convert to Train Case",
+        "This option converts the given text to train case.",
+        "traincase",
+      ],
+      [
+        "Alternate Case 2",
+        "Convert to Alternate Case 2",
+        "This option converts the given text to alternate case 2.",
+        "alternatecase2",
+      ],
+    ]),
+    ...createMenuOptions("Generate", [
+      [
+        "Generate Characters Frequency",
+        "Generate characters frequency",
         "This option generates the frequency of characters in the given text.",
-      action: () =>
-        handleTextManipulation(
-          "charFreqStr",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Generate",
-      optionName: "Generate Words Frequency",
-      title: "Generate words frequency",
-      description:
+        "charFreqStr",
+      ],
+      [
+        "Generate Words Frequency",
+        "Generate words frequency",
         "This option generates the frequency of words in the given text.",
-      action: () =>
-        handleTextManipulation(
-          "wordFreq",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Generate",
-      optionName: "Generate Dummy Text",
-      title: "Generate dummy text",
-      description: "This option generates dummy text based on the given text.",
-      action: () =>
-        handleTextManipulation(
-          "generateDummyText",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Generate",
-      optionName: "Generate Random Characters",
-      title: "Generate random characters",
-      description:
+        "wordFreq",
+      ],
+      [
+        "Generate Dummy Text",
+        "Generate dummy text",
+        "This option generates dummy text based on the given text.",
+        "generateDummyText",
+      ],
+      [
+        "Generate Random Characters",
+        "Generate random characters",
         "This option generates random characters based on the given text.",
-      action: () =>
-        handleTextManipulation(
-          "generateRandomCharacters",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Generate",
-      optionName: "Generate Random Words-Slug",
-      title: "Generate random words-slug",
-      description:
+        "generateRandomCharacters",
+      ],
+      [
+        "Generate Random Words-Slug",
+        "Generate random words-slug",
         "This option generates random words-slug based on the given text.",
-      action: () =>
-        handleTextManipulation(
-          "generateRandomSlagWords",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Generate",
-      optionName: "Generate Random Nouns",
-      title: "Generate random nouns",
-      description:
+        "generateRandomSlagWords",
+      ],
+      [
+        "Generate Random Nouns",
+        "Generate random nouns",
         "This option generates random nouns based on the given text.",
-      action: () =>
-        handleTextManipulation(
-          "generateRandomNouns",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Generate",
-      optionName: "Generate Random Adjectives",
-      title: "Generate random adjectives",
-      description:
+        "generateRandomNouns",
+      ],
+      [
+        "Generate Random Adjectives",
+        "Generate random adjectives",
         "This option generates random adjectives based on the given text.",
-      action: () =>
-        handleTextManipulation(
-          "generateRandomAdjectives",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Generate",
-      optionName: "Generate Numbers",
-      title: "Generate numbers",
-      description:
+        "generateRandomAdjectives",
+      ],
+      [
+        "Generate Numbers",
+        "Generate numbers",
         "This option generates random numbers based on the given text.",
-      action: () =>
-        handleTextManipulation(
-          "generateNumbersList",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-    {
-      menuName: "Generate",
-      optionName: "Generate Quote",
-      title: "Generate a quote",
-      description: "This option generates a quote based on the given text.",
-      action: () =>
-        handleTextManipulation(
-          "generateQuote",
-          inputText,
-          props,
-          setOutputText,
-          setInputText,
-          transitionOutputTextarea
-        ),
-    },
-  ];
-};
+        "generateNumbersList",
+      ],
+      [
+        "Generate Quote",
+        "Generate a quote",
+        "This option generates a quote based on the given text.",
+        "generateQuote",
+      ],
+    ]),
+  ].map((option) => ({
+    ...option,
+    action: option.action(
+      inputText,
+      props,
+      setOutputText,
+      setInputText,
+      transitionOutputTextarea
+    ),
+  }));
