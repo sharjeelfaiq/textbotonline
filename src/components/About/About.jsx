@@ -4,7 +4,89 @@ import AccordionItems from "./AccordionItem";
 import { manipulationButtonsProps } from "../TextManipulation/manipulationBtnsProps";
 
 function About(props) {
-  const manipulationBtnsProps = manipulationButtonsProps()
+  const manipulationBtnsProps = manipulationButtonsProps();
+
+  const metrics = [
+    {
+      label: "Reading time (Slow)",
+      description: "Average reading time of your text.",
+    },
+    {
+      label: "Reading time (Average)",
+      description: "Average reading time at a normal pace.",
+    },
+    {
+      label: "Reading time (Fast)",
+      description: "Average reading time for quick readers.",
+    },
+    { label: "Paragraphs", description: "Count of paragraphs in the text." },
+    { label: "Sentences", description: "Count of sentences in the text." },
+    { label: "Words", description: "Total number of words in the text." },
+    {
+      label: "Characters",
+      description: "Total character count including spaces and new lines.",
+    },
+    {
+      label: "Unique Words",
+      description: "Count of distinct words in the text.",
+    },
+    {
+      label: "Longest Word",
+      description: "The word with the maximum length in the text.",
+    },
+    {
+      label: "Shortest Word",
+      description: "The word with the minimum length in the text.",
+    },
+    {
+      label: "Average Word Length",
+      description: "Average number of characters per word.",
+    },
+    {
+      label: "Complex Words",
+      description: "Count of words with more than three syllables.",
+    },
+    {
+      label: "Lexical Density",
+      description: "Percentage of unique words relative to total words.",
+    },
+    {
+      label: "Passive Voice Sentences",
+      description: "Count of sentences written in passive voice.",
+    },
+    {
+      label: "Longest Sentence",
+      description: "The sentence with the maximum length in words.",
+    },
+    {
+      label: "Shortest Sentence",
+      description: "The sentence with the minimum length in words.",
+    },
+    {
+      label: "Complex Sentences (20+ words)",
+      description: "Count of sentences with 20 or more words.",
+    },
+    {
+      label: "Hapax Legomena",
+      description: "Count of words that appear only once.",
+    },
+    {
+      label: "Average Sentence Length",
+      description: "Average number of words per sentence.",
+    },
+    {
+      label: "Unique Word Ratio",
+      description: "Percentage of unique words in relation to total words.",
+    },
+    {
+      label: "Flesch-Kincaid Grade Level",
+      description: "Readability score based on sentence and syllable count.",
+    },
+    {
+      label: "Readability",
+      description: "Qualitative assessment of the text's readability.",
+    },
+  ];
   return (
     <>
       <h1
@@ -229,70 +311,19 @@ function About(props) {
           >
             <div className="accordion-body">
               <ul style={{ listStyleType: "none" }} className="lh-lg">
-                <motion.li style={{ width: "80%", borderRadius: "5px" }}>
-                  <small>Average reading time of your text.</small>
-                </motion.li>
-                <motion.li style={{ width: "80%", borderRadius: "5px" }}>
-                  <small>Paragraphs count.</small>
-                </motion.li>
-                <motion.li style={{ width: "80%", borderRadius: "5px" }}>
-                  <small>Sentences count.</small>
-                </motion.li>
-                <motion.li style={{ width: "80%", borderRadius: "5px" }}>
-                  <small>Words count.</small>
-                </motion.li>
-                <motion.li style={{ width: "80%", borderRadius: "5px" }}>
-                  <small>Unique Words count.</small>
-                </motion.li>
-                <motion.li style={{ width: "80%", borderRadius: "5px" }}>
-                  <small>Spaces count.</small>
-                </motion.li>
-                <motion.li style={{ width: "80%", borderRadius: "5px" }}>
-                  <small>
-                    Characters with empty spaces and new lines count.
-                  </small>
-                </motion.li>
-                <motion.li style={{ width: "80%", borderRadius: "5px" }}>
-                  <small>
-                    Characters without empty spaces and new lines count.
-                  </small>
-                </motion.li>
-                <motion.li style={{ width: "80%", borderRadius: "5px" }}>
-                  <small>Average characters per word.</small>
-                </motion.li>
+                {metrics.map((metric, index) => (
+                  <motion.li
+                    key={index}
+                    style={{ width: "80%", borderRadius: "5px" }}
+                  >
+                    <small>{metric.description}</small>
+                  </motion.li>
+                ))}
               </ul>
             </div>
           </div>
         </div>{" "}
       </div>
-      <p
-        className={`lh-lg text-justify text-${
-          props.mode === "light" ? "dark" : "light"
-        }`}
-      >
-        Here, you can upload your text file if your file is too big or download
-        the converted text file if you don't want or wish to copy the converted
-        text.
-      </p>
-      <p
-        className={`lh-lg text-justify text-${
-          props.mode === "light" ? "dark" : "light"
-        }`}
-      >
-        Moreover, you can choose to work in{" "}
-        <span className="text-uppercase">
-          <strong>Dark Mode</strong>
-        </span>{" "}
-        that releases the stress on your eyes while working for a longer time.
-      </p>
-      <p
-        className={`lh-lg text-justify text-${
-          props.mode === "light" ? "dark" : "light"
-        }`}
-      >
-        Never forget to share this online text tool which is totally free to
-        use.
-      </p>
     </>
   );
 }
