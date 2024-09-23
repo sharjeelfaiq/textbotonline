@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useCallback } from "react";
-import Header from "./components/Header/Header";
-import ScrollToTop from "./components/Utils/ScrollToTop";
-import Alert from "./components/Utils/Alert";
-import Textareas from "../src/components/Textareas/Textareas";
-import About from "./components/About/About";
-import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header.jsx";
+import ScrollToTop from "./components/Utils/ScrollToTop.jsx";
+import Alert from "./components/Utils/Alert.jsx";
+import Textareas from "../src/components/Textareas/Textareas.jsx";
+import About from "./components/About/About.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 
 import "./App.css";
 

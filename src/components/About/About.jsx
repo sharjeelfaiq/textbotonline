@@ -1,92 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
-import AccordionItems from "./AccordionItem";
 import { dropdownOptionsProps } from "../DropdownMenu/DropdownOptionProps.js";
+import { aboutText, metrics } from "./About.js";
+import AccordionItems from "./AccordionItem";
 
 function About(props) {
   const manipulationBtnsProps = dropdownOptionsProps();
 
-  const metrics = [
-    {
-      label: "Reading time (Slow)",
-      description: "Average reading time of your text.",
-    },
-    {
-      label: "Reading time (Average)",
-      description: "Average reading time at a normal pace.",
-    },
-    {
-      label: "Reading time (Fast)",
-      description: "Average reading time for quick readers.",
-    },
-    { label: "Paragraphs", description: "Count of paragraphs in the text." },
-    { label: "Sentences", description: "Count of sentences in the text." },
-    { label: "Words", description: "Total number of words in the text." },
-    {
-      label: "Characters",
-      description: "Total character count including spaces and new lines.",
-    },
-    {
-      label: "Unique Words",
-      description: "Count of distinct words in the text.",
-    },
-    {
-      label: "Longest Word",
-      description: "The word with the maximum length in the text.",
-    },
-    {
-      label: "Shortest Word",
-      description: "The word with the minimum length in the text.",
-    },
-    {
-      label: "Average Word Length",
-      description: "Average number of characters per word.",
-    },
-    {
-      label: "Complex Words",
-      description: "Count of words with more than three syllables.",
-    },
-    {
-      label: "Lexical Density",
-      description: "Percentage of unique words relative to total words.",
-    },
-    {
-      label: "Passive Voice Sentences",
-      description: "Count of sentences written in passive voice.",
-    },
-    {
-      label: "Longest Sentence",
-      description: "The sentence with the maximum length in words.",
-    },
-    {
-      label: "Shortest Sentence",
-      description: "The sentence with the minimum length in words.",
-    },
-    {
-      label: "Complex Sentences (20+ words)",
-      description: "Count of sentences with 20 or more words.",
-    },
-    {
-      label: "Hapax Legomena",
-      description: "Count of words that appear only once.",
-    },
-    {
-      label: "Average Sentence Length",
-      description: "Average number of words per sentence.",
-    },
-    {
-      label: "Unique Word Ratio",
-      description: "Percentage of unique words in relation to total words.",
-    },
-    {
-      label: "Flesch-Kincaid Grade Level",
-      description: "Readability score based on sentence and syllable count.",
-    },
-    {
-      label: "Readability",
-      description: "Qualitative assessment of the text's readability.",
-    },
-  ];
   return (
     <>
       <h1
@@ -96,39 +16,12 @@ function About(props) {
       >
         <span className="text-uppercase font-monospace">about</span>
       </h1>
-      <h6
-        className={`lh-lg text-justify text-${
-          props.mode === "light" ? "dark" : "light"
-        }`}
-      >
-        Welcome to{" "}
-        <a
-          href="http://textbotonline.netlify.app"
-          style={{ textDecoration: "none" }}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          http://textbotonline.netlify.app
-        </a>{" "}
-        - the most comprehensive all-in-one text tool website today.
-      </h6>
       <p
         className={`lh-lg text-justify text-${
           props.mode === "light" ? "dark" : "light"
         }`}
-      >
-        Textbotonline is a{" "}
-        <span className="text-uppercase">
-          <strong>free online text utility web application or a website</strong>
-        </span>{" "}
-        that allows you to edit your text online or generate different kinds of
-        text online. Moreover, it tells you the statistics or summary of your
-        text. Textbotonline tells you the average time to read your text. Also,
-        you can know the number of paragraphs, sentences, words, unique words,
-        spaces, characters with empty spaces and newlines, and characters
-        without empty spaces and newlines in your text. You can visit the
-        website to see all the features it has available.
-      </p>
+        dangerouslySetInnerHTML={{ __html: aboutText }}
+      />
       <div
         className="accordion my-4"
         id="accordionPanelsStayOpenExample"
