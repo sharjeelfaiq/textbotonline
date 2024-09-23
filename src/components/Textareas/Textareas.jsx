@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback, useRef } from "react";
 import { Dropdown } from "react-bootstrap";
 import { motion } from "framer-motion";
 import DropdownMenu from "../Dropdown/DropdownMenu.jsx";
@@ -7,70 +7,53 @@ import Statistics from "../Statistics/Statistics.jsx";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../../css/TextareaAndStats.css";
 
-const TextareaAndStats = React.memo((props) => {
+const Textareas = React.memo((props) => {
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
-  const [inputDarkBackground, setInputDarkBackground] = useState("#242526");
-  const [outputDarkBackground, setOutputDarkBackground] = useState("#242526");
-  const [inputLightBackground, setInputLightBackground] = useState("white");
-  const [outputLightBackground, setOutputLightBackground] = useState("white");
+  const [textareaBackground, setTextareaBackground] = useState({
+    inputDark: "#242526",
+    inputLight: "white",
+    outputDark: "#242526",
+    outputLight: "white",
+  });
 
   const { mode } = props;
 
   const timeoutDuration = 280;
 
-  let inputTimeouts = [];
-  let outputTimeouts = [];
+  // Refs for input and output timeouts
+  const inputTimeoutsRef = useRef([]);
+  const outputTimeoutsRef = useRef([]);
 
-  const clearInputTimeouts = useCallback(() => {
-    inputTimeouts.forEach((timeout) => clearTimeout(timeout));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    inputTimeouts = [];
-  }, []);
+  const clearTimeouts = (timeoutsRef) => {
+    timeoutsRef.current.forEach((timeout) => clearTimeout(timeout));
+    timeoutsRef.current = [];
+  };
 
-  const clearOutputTimeouts = useCallback(() => {
-    outputTimeouts.forEach((timeout) => clearTimeout(timeout));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    outputTimeouts = [];
-  }, []);
+  const transitionTextarea = (area, darkColor, lightColor) => {
+    setTextareaBackground((prevState) => ({
+      ...prevState,
+      [area]: darkColor,
+    }));
+    setTimeout(() => {
+      setTextareaBackground((prevState) => ({
+        ...prevState,
+        [area]: lightColor,
+      }));
+    }, timeoutDuration);
+  };
 
   const transitionInputTextarea = useCallback(() => {
-    clearInputTimeouts();
-
-    setInputDarkBackground("#CED4DA");
-    inputTimeouts.push(
-      setTimeout(() => {
-        setInputDarkBackground("#242526");
-      }, timeoutDuration)
-    );
-
-    setInputLightBackground("#CED4DA");
-    inputTimeouts.push(
-      setTimeout(() => {
-        setInputLightBackground("white");
-      }, timeoutDuration)
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clearInputTimeouts]);
+    clearTimeouts(inputTimeoutsRef);
+    transitionTextarea("inputDark", "#CED4DA", "#242526");
+    transitionTextarea("inputLight", "#CED4DA", "white");
+  }, []);
 
   const transitionOutputTextarea = useCallback(() => {
-    clearOutputTimeouts();
-
-    setOutputDarkBackground("#CED4DA");
-    outputTimeouts.push(
-      setTimeout(() => {
-        setOutputDarkBackground("#242526");
-      }, timeoutDuration)
-    );
-
-    setOutputLightBackground("#CED4DA");
-    outputTimeouts.push(
-      setTimeout(() => {
-        setOutputLightBackground("white");
-      }, timeoutDuration)
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clearOutputTimeouts]);
+    clearTimeouts(outputTimeoutsRef);
+    transitionTextarea("outputDark", "#CED4DA", "#242526");
+    transitionTextarea("outputLight", "#CED4DA", "white");
+  }, []);
 
   const createTextAreaStyle = useCallback(
     (isDark, darkBackgroundColor, lightBackgroundColor) => ({
@@ -88,25 +71,20 @@ const TextareaAndStats = React.memo((props) => {
     () =>
       createTextAreaStyle(
         isDarkMode,
-        inputDarkBackground,
-        inputLightBackground
+        textareaBackground.inputDark,
+        textareaBackground.inputLight
       ),
-    [isDarkMode, inputDarkBackground, inputLightBackground, createTextAreaStyle]
+    [isDarkMode, textareaBackground.inputDark, textareaBackground.inputLight]
   );
 
   const outputTextAreaStyle = useMemo(
     () =>
       createTextAreaStyle(
         isDarkMode,
-        outputDarkBackground,
-        outputLightBackground
+        textareaBackground.outputDark,
+        textareaBackground.outputLight
       ),
-    [
-      isDarkMode,
-      outputDarkBackground,
-      outputLightBackground,
-      createTextAreaStyle,
-    ]
+    [isDarkMode, textareaBackground.outputDark, textareaBackground.outputLight]
   );
 
   const uploadTextFile = useCallback(() => {
@@ -127,7 +105,6 @@ const TextareaAndStats = React.memo((props) => {
     } else {
       props.showAlert("No file selected", "warning");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.showAlert, transitionInputTextarea]);
 
   const onTextChange = useCallback((e) => {
@@ -179,7 +156,7 @@ const TextareaAndStats = React.memo((props) => {
               transitionInputTextarea={transitionInputTextarea}
               transitionOutputTextarea={transitionOutputTextarea}
             />
-          </div>
+          </div>{" "}
           <div>
             <ActionButton
               index={1}
@@ -191,12 +168,12 @@ const TextareaAndStats = React.memo((props) => {
               transitionInputTextarea={transitionInputTextarea}
               transitionOutputTextarea={transitionOutputTextarea}
             />
-          </div>
+          </div>{" "}
         </div>
         <div className="d-flex align-items-center mt-1 mb-2">
           <textarea
             className="form-control"
-            id="floatingTextarea output"
+            id="floatingTextarea input"
             style={inputTextAreaStyle}
             onChange={onTextChange}
             value={inputText}
@@ -268,4 +245,4 @@ const TextareaAndStats = React.memo((props) => {
   );
 });
 
-export default TextareaAndStats;
+export default Textareas;
