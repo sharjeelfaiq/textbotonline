@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Header from "./components/Header/Header";
 import ScrollToTop from "./components/Utils/ScrollToTop";
 import Alert from "./components/Utils/Alert";
@@ -9,42 +9,33 @@ import Footer from "./components/Footer/Footer";
 import "./App.css";
 
 const App = () => {
-  const [mode, setMode] = useState("light"); // Handles the state of dark mode
+  const [mode, setMode] = useState(
+    () => localStorage.getItem("mode") || "light"
+  );
   const [alert, setAlert] = useState(null);
 
-  const showAlert = (message, type) => {
-    setAlert({
-      msg: message,
-      type: type,
-    });
-    setTimeout(() => {
-      setAlert(null);
-    }, 1500);
-  };
+  const showAlert = useCallback((message, type) => {
+    setAlert({ msg: message, type });
+    setTimeout(() => setAlert(null), 500);
+  }, []);
 
-  function toggleMood() {
-    if (mode === "light") {
-      setMode("dark");
-      document.body.style.backgroundColor = "#18191A";
-      showAlert("Dark mode has been enabled.", "success");
-      localStorage.setItem("mode", "dark");
-    } else {
-      localStorage.setItem("mode", "light");
-      setMode("light");
-      document.body.style.backgroundColor = "white";
-      showAlert("Light mode has been enabled.", "success");
-    }
-  }
+  const toggleMode = useCallback(() => {
+    const newMode = mode === "light" ? "dark" : "light";
+    setMode(newMode);
+    localStorage.setItem("mode", newMode);
+    document.body.style.backgroundColor =
+      newMode === "dark" ? "#18191A" : "white";
+    showAlert(
+      `${
+        newMode.charAt(0).toUpperCase() + newMode.slice(1)
+      } mode has been enabled.`,
+      "success"
+    );
+  }, [mode, showAlert]);
 
   useEffect(() => {
-    if (localStorage.getItem("mode") === "dark") {
-      setMode("dark");
-      document.body.style.backgroundColor = "#18191A";
-    } else {
-      setMode("light");
-      document.body.style.backgroundColor = "white";
-    }
-  }, []);
+    document.body.style.backgroundColor = mode === "dark" ? "#18191A" : "white";
+  }, [mode]);
 
   return (
     <>
@@ -53,8 +44,8 @@ const App = () => {
           className="form-check-input"
           type="checkbox"
           id="flexSwitchCheckDefault"
-          onClick={toggleMood}
-          defaultChecked={mode === "light" ? false : true}
+          onChange={toggleMode}
+          checked={mode === "dark"}
         />
       </div>
       <Header mode={mode} />
@@ -70,7 +61,6 @@ const App = () => {
       <div className="pt-3">
         <Footer />
       </div>
-      {/* FOOTER ENDS */}
     </>
   );
 };
