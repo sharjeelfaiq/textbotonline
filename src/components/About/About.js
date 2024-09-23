@@ -37,8 +37,6 @@ export const aboutText = `
   </ul>
   
   <p>Experience the power of efficient text manipulation today. Visit <a href="https://textbotonline.netlify.app" target="_blank" rel="noopener noreferrer">Textbotonline</a> to explore our full range of features and revolutionize your text editing process.</p>
-  
-  <p><em>Textbotonline: Transforming text manipulation, one character at a time.</em></p>
   `;
 
 export const metrics = [
