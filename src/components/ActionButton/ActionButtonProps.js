@@ -5,7 +5,7 @@ import {
   pasteToTextarea,
 } from "./actionButton.js";
 
-export const actionButtonsProps = (
+export const actionButtonProps = (
   inputText,
   outputText,
   setInputText,

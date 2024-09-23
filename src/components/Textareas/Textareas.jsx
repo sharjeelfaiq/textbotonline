@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import TextManipulationButton from "../TextManipulation/TextManipulationButton.jsx";
 import { manipulationButtonProps } from "../TextManipulation/manipulationButtonProps.js";
 import ActionButton from "../ActionButton/ActionButton.jsx";
-import { actionButtonsProps } from "../ActionButton/actionButtonProps.js";
+import { actionButtonProps } from "../ActionButton/actionButtonProps.js";
 import Statistics from "../Statistics/Statistics.jsx";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../../css/TextareaAndStats.css";
@@ -132,7 +132,7 @@ const TextareaAndStats = React.memo((props) => {
 
   const actionBtnsData = useMemo(
     () =>
-      actionButtonsProps(
+      actionButtonProps(
         inputText,
         outputText,
         setInputText,
