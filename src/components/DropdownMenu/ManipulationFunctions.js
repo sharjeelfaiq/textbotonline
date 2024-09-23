@@ -57,6 +57,110 @@ import {
 } from "case-string";
 import { generateSlug } from "random-word-slugs";
 
+const actionHandlers = {
+  splitInput: (text) => splitString(text),
+  joinInput: (text) => joinString(text),
+  removeExtraSpaces: (text) => removeExtraSpaces(text),
+  removeAllSpaces: (text) => removeAllSpaces(text),
+  removeAllSymbols: (text) => removeAllSymbols(text),
+  duplicate: (text) => {
+    const count = prompt("Enter duplicate count:");
+    return duplicate(text, count);
+  },
+  reverse: (text) => reverse(text),
+  slugify: (text) => slugify(text),
+  truncate: (text) => {
+    const length = prompt("Enter truncation length:");
+    return truncate(text, length);
+  },
+  paragraphToSingleLine: (text) => paraToSingleLine(text),
+  alphabetize: (text) => alphabetize(text),
+  zalgo: (text) => zalgo(text),
+  rotate13: (text) => rotate13Deg(text),
+  addLineNum: (text) => addLineNum(text),
+  encodeUri: (text) => encodeUri(text),
+  decodeUri: (text) => decodeUri(text),
+  base64Encode: (text) => base64Enode(text),
+  base64Decode: (text) => base64Decode(text),
+  unixToDate: (text) => unixToDate(text),
+  unixToTime: (text) => unixToTime(text),
+  formatNumbers: (text) => formatNumbers(text),
+  extractText: (text) => extractText(text),
+  extractNumbers: (text) => extractNumber(text),
+  addPrefix: (text) => {
+    const prefix = prompt("Enter the prefix:");
+    return addPrefix(text, prefix);
+  },
+  addSuffix: (text) => {
+    const suffix = prompt("Enter the suffix:");
+    return addSuffix(text, suffix);
+  },
+  sortLinesSENS: (text) => sortLinesSENS(text),
+  sortLinesINSENS: (text) => sortLinesINSENS(text),
+  sortLinesReverseSENS: (text) => sortLinesReverseSENS(text),
+  sortLinesReverseINSENS: (text) => sortLinesReverseINSENS(text),
+  convertDecimalToRoman: (text) => decimalToRoman(text),
+  convertRomanToDecimal: (text) => romanToDecimal(text),
+  uppercase: (text) => upperCase(text),
+  lowercase: (text) => lowerCase(text),
+  titlecase: (text) => titleCase(text),
+  reverseTitleCase: (text) => reverseTitleCase(text),
+  invertcase: (text) => invertCase(text),
+  sentencecase: (text) => sentenceCase(text),
+  togglecase: (text) => toggleCase(text),
+  randomcase: (text) => randomCase(text),
+  camelcase: (text) => camelCase(text),
+  pascalcase: (text) => pascalCase(text),
+  kebabcase: (text) => kebabCase(text),
+  snakecase: (text) => snakeCase(text),
+  constantcase: (text) => constantCase(text),
+  dotcase: (text) => dotCase(text),
+  nocase: (text) => noCase(text),
+  alternatecase1: (text) => alternateCase1(text),
+  pathcase: (text) => pathCase(text),
+  traincase: (text) => trainCase(text),
+  alternatecase2: (text) => alternateCase2(text),
+  charFreqStr: (text) => charFreqStr(text),
+  wordFreq: (text) => wordFreq(text),
+  generateDummyText: () => getDummyText(),
+  generateRandomCharacters: () => {
+    const totalChars = prompt("What length of random characters do you need?");
+    return getRandomCharacters(totalChars);
+  },
+  generateRandomSlagWords: () => {
+    const totalSlugWords = Number(
+      prompt("How many random words slug do you need? Enter a number:")
+    );
+    return generateSlug(totalSlugWords);
+  },
+  generateRandomNouns: () => {
+    const totalNouns = Number(
+      prompt("How many random nouns do you need? Enter a number:")
+    );
+    return generateSlug(totalNouns, { format: "noun" });
+  },
+  generateRandomAdjectives: () => {
+    const totalAdjectives = Number(
+      prompt("How many random adjectives do you need? Enter a number:")
+    );
+    return generateSlug(totalAdjectives, { format: "adjective" });
+  },
+  generateNumbersList: () => {
+    const startingNum = window.prompt(
+      "The STARTING Number must be SMALLER than the ENDING Number\nEnter the starting number:"
+    );
+    const endingNum = window.prompt(
+      "The ENDING Number must be GREATER than the STARTING Number\nEnter the ending number:"
+    );
+    return getNumbers(startingNum, endingNum);
+  },
+  convertToHashCode: (text) => convertToHashCode(text),
+  generateQuote: () => {
+    const { statement, author } = getQuote();
+    return `${statement}\n${author}`;
+  },
+};
+
 export const handleTextManipulation = (
   action,
   inputText,
@@ -66,290 +170,25 @@ export const handleTextManipulation = (
   transitionOutputTextarea
 ) => {
   const originalText = inputText;
-  let transformedText = "";
-  switch (action) {
-    case "splitInput":
-      transformedText = splitString(originalText);
-      props.showAlert("Split!", "success");
-      break;
-    case "joinInput":
-      transformedText = joinString(originalText);
-      props.showAlert("Join!", "success");
-      break;
-    case "removeExtraSpaces":
-      transformedText = removeExtraSpaces(originalText);
-      props.showAlert("Remove Extra Spaces!", "success");
-      break;
-    case "removeAllSpaces":
-      transformedText = removeAllSpaces(originalText);
-      props.showAlert("Remove All Spaces!", "success");
-      break;
-    case "removeAllSymbols":
-      transformedText = removeAllSymbols(originalText);
-      props.showAlert("Remove All Symbols!", "success");
-      break;
-    case "duplicate":
-      const count = prompt("Enter duplicate count:");
-      transformedText = duplicate(originalText, count);
-      props.showAlert("Duplicate!", "success");
-      break;
-    case "reverse":
-      transformedText = reverse(originalText);
-      props.showAlert("Reverse!", "success");
-      break;
-    case "slugify":
-      transformedText = slugify(originalText);
-      props.showAlert("Slugify!", "success");
-      break;
-    case "truncate":
-      const length = prompt("Enter truncation length:");
-      transformedText = truncate(originalText, length);
-      props.showAlert("Truncate!", "success");
-      break;
-    case "paragraphToSingleLine":
-      transformedText = paraToSingleLine(originalText);
-      props.showAlert("Paragraph to single line!", "success");
-      break;
-    case "alphabetize":
-      transformedText = alphabetize(originalText);
-      props.showAlert("Alphabetize!", "success");
-      break;
-    case "zalgo":
-      transformedText = zalgo(originalText);
-      props.showAlert("Zalgo!", "success");
-      break;
-    case "rotate13":
-      transformedText = rotate13Deg(originalText);
-      props.showAlert("Rotate 13!", "success");
-      break;
-    case "addLineNum":
-      transformedText = addLineNum(originalText);
-      props.showAlert("Add Line Number!", "success");
-      break;
-    case "encodeUri":
-      transformedText = encodeUri(originalText);
-      props.showAlert("URL Encode!", "success");
-      break;
-    case "decodeUri":
-      transformedText = decodeUri(originalText);
-      props.showAlert("URL Decode!", "success");
-      break;
-    case "base64Encode":
-      transformedText = base64Enode(originalText);
-      props.showAlert("Base64 Encode!", "success");
-      break;
-    case "base64Decode":
-      transformedText = base64Decode(originalText);
-      props.showAlert("Base64 Decode!", "success");
-      break;
-    case "unixToDate":
-      transformedText = unixToDate(originalText);
-      props.showAlert("UNIX to Date!", "success");
-      break;
-    case "unixToTime":
-      transformedText = unixToTime(originalText);
-      props.showAlert("UNIX to Time!", "success");
-      break;
-    case "formatNumbers":
-      transformedText = formatNumbers(originalText);
-      props.showAlert("Format Numbers!", "success");
-      break;
-    case "extractText":
-      transformedText = extractText(originalText);
-      props.showAlert("Extract Text!", "success");
-      break;
-    case "extractNumbers":
-      transformedText = extractNumber(originalText);
-      props.showAlert("Extract Numbers!", "success");
-      break;
-    case "addPrefix":
-      const prefix = prompt("Enter the prefix:");
-      transformedText = addPrefix(originalText, prefix);
-      props.showAlert("Add Prefix!", "success");
-      break;
-    case "addSuffix":
-      const suffix = prompt("Enter the suffix:");
-      transformedText = addSuffix(originalText, suffix);
-      props.showAlert("Add Suffix!", "success");
-      break;
-    case "sortLinesSENS":
-      transformedText = sortLinesSENS(originalText);
-      props.showAlert("Sort Lines SENS!", "success");
-      break;
-    case "sortLinesINSENS":
-      transformedText = sortLinesINSENS(originalText);
-      props.showAlert("Sort Lines INSENS!", "success");
-      break;
-    case "sortLinesReverseSENS":
-      transformedText = sortLinesReverseSENS(originalText);
-      props.showAlert("Sort Lines Reverse SENS!", "success");
-      break;
-    case "sortLinesReverseINSENS":
-      transformedText = sortLinesReverseINSENS(originalText);
-      props.showAlert("Sort Lines Reverse INSENS!", "success");
-      break;
-    case "convertDecimalToRoman":
-      transformedText = decimalToRoman(originalText);
-      props.showAlert("Convert Decimal to Roman!", "success");
-      break;
-    case "convertRomanToDecimal":
-      transformedText = romanToDecimal(originalText);
-      props.showAlert("Convert Roman to Decimal!", "success");
-      break;
-    case "uppercase":
-      transformedText = upperCase(originalText);
-      props.showAlert("Convert to Upper Case!", "success");
-      break;
-    case "lowercase":
-      transformedText = lowerCase(originalText);
-      props.showAlert("Convert to Lower Case!", "success");
-      break;
-    case "titlecase":
-      transformedText = titleCase(originalText);
-      props.showAlert("Convert to Title Case!", "success");
-      break;
-    case "reverseTitleCase":
-      transformedText = reverseTitleCase(originalText);
-      props.showAlert("Convert to Reverse Title Case!", "success");
-      break;
-    case "invertcase":
-      transformedText = invertCase(originalText);
-      props.showAlert("Convert to Invert Case!", "success");
-      break;
-    case "sentencecase":
-      transformedText = sentenceCase(originalText);
-      props.showAlert("Convert to Sentence Case!", "success");
-      break;
-    case "togglecase":
-      transformedText = toggleCase(originalText);
-      props.showAlert("Convert to Toggle Case!", "success");
-      break;
-    case "randomcase":
-      transformedText = randomCase(originalText);
-      props.showAlert("Convert to Random Case!", "success");
-      break;
-    case "camelcase":
-      transformedText = camelCase(originalText);
-      props.showAlert("Convert to Camel Case!", "success");
-      break;
-    case "pascalcase":
-      transformedText = pascalCase(originalText);
-      props.showAlert("Convert to Pascal Case!", "success");
-      break;
-    case "kebabcase":
-      transformedText = kebabCase(originalText);
-      props.showAlert("Convert to Kebab Case!", "success");
-      break;
-    case "snakecase":
-      transformedText = snakeCase(originalText);
-      props.showAlert("Convert to Snake Case!", "success");
-      break;
-    case "constantcase":
-      transformedText = constantCase(originalText);
-      props.showAlert("Convert to Constant Case!", "success");
-      break;
-    case "dotcase":
-      transformedText = dotCase(originalText);
-      props.showAlert("Convert to Dot Case!", "success");
-      break;
-    case "nocase":
-      transformedText = noCase(originalText);
-      props.showAlert("Convert to No Case!", "success");
-      break;
-    case "alternatecase1":
-      transformedText = alternateCase1(originalText);
-      props.showAlert("Convert to Alternate Case 1!", "success");
-      break;
-    case "pathcase":
-      transformedText = pathCase(originalText);
-      props.showAlert("Convert to Path Case!", "success");
-      break;
-    case "traincase":
-      transformedText = trainCase(originalText);
-      props.showAlert("Convert to Train Case!", "success");
-      break;
-    case "alternatecase2":
-      transformedText = alternateCase2(originalText);
-      props.showAlert("Convert to Alternate Case 2!", "success");
-      break;
-    case "charFreqStr":
-      transformedText = charFreqStr(originalText);
-      props.showAlert("Character Frequency String!", "success");
-      break;
-    case "wordFreq":
-      transformedText = wordFreq(originalText);
-      props.showAlert("Word Frequency!", "success");
-      break;
-    case "generateDummyText":
-      transformedText = getDummyText();
-      props.showAlert("Dummy Text Generated!", "success");
-      break;
-    case "generateRandomCharacters":
-      const totalChars = prompt(
-        "What length of random characters do you need?"
-      );
-      transformedText = getRandomCharacters(totalChars);
-      props.showAlert("Random Characters Generated!", "success");
-      break;
-    case "generateRandomSlagWords":
-      const totalSlugWords = Number(
-        prompt("How many random words slug do you need? Enter a number:")
-      );
-      transformedText = generateSlug(totalSlugWords);
-      props.showAlert("Random Words Slug Generated!", "success");
-      break;
-    case "generateRandomNouns":
-      const totalNouns = Number(
-        prompt("How many random nouns do you need? Enter a number:")
-      );
-      transformedText = generateSlug(totalNouns, { format: "noun" });
-      props.showAlert("Random Nouns Generated!", "success");
-      break;
-    case "generateRandomAdjectives":
-      const totalAdjectives = Number(
-        prompt("How many random adjectives do you need? Enter a number:")
-      );
-      transformedText = generateSlug(totalAdjectives, {
-        format: "adjective",
-      });
-      props.showAlert("Random Adjectives Generated!", "success");
-      break;
-    case "generateNumbersList":
-      const startingNum = window.prompt(
-        "The STARTING Number must be SMALLER then the ENDING Number\nEnter the starting number:"
-      );
-      const endingNum = window.prompt(
-        "The ENDING Number must be GREATER then the STARTING Number\nEnter the ending number:"
-      );
-      transformedText = getNumbers(startingNum, endingNum);
-      props.showAlert("Numbers List Generated!", "success");
-      break;
-    case "convertToHashCode":
-      transformedText = convertToHashCode(originalText);
-      props.showAlert("Hash Code Generated!", "success");
-      setOutputText(transformedText);
-      break;
-    case "generateQuote":
-      const statement = getQuote().statement;
-      const author = getQuote().author;
-      transformedText = `${statement}\n${author}`;
-      props.showAlert("Quote Generated!", "success");
-      break;
-    default:
-      break;
+  let transformedText = actionHandlers[action]
+    ? actionHandlers[action](originalText)
+    : "";
+
+  if (transformedText) {
+    props.showAlert(`${action.replace(/([A-Z])/g, " $1").trim()}!`, "success");
   }
 
   setOutputText(transformedText);
 
-  const isActionTypeGenerate =
-    action === "generateDummyText" ||
-    "generateNumbersList" ||
-    "generateQuote" ||
-    "generateRandomCharacters" ||
-    "generateRandomSlagWords" ||
-    "generateRandomNouns" ||
-    "generateRandomAdjectives" ||
-    "generateNumbersList";
+  const isActionTypeGenerate = [
+    "generateDummyText",
+    "generateNumbersList",
+    "generateQuote",
+    "generateRandomCharacters",
+    "generateRandomSlagWords",
+    "generateRandomNouns",
+    "generateRandomAdjectives",
+  ].includes(action);
 
   if (isActionTypeGenerate) {
     setInputText(transformedText);
@@ -404,11 +243,11 @@ function wordFreq(text) {
 }
 
 function convertToHashCode(text) {
-  let hash = 0;
-  for (let i = 0; i < text.length; i++) {
-    const char = text.charCodeAt(i);
-    hash = (hash << 5) - hash + char;
-    hash |= 0;
-  }
-  return hash.toString();
+  return text
+    .split("")
+    .reduce((hash, char) => {
+      hash = (hash << 5) - hash + char.charCodeAt(0);
+      return hash | 0;
+    }, 0)
+    .toString();
 }
