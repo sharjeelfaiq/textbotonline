@@ -32,7 +32,7 @@ const DropdownMenu = ({
       <Dropdown.Toggle className={`btn btn-sm top-btns mx-1 btn-${props.mode}`}>
         {menu}
       </Dropdown.Toggle>
-      <Dropdown.Menu className="menuName-scroll menu-scroll" variant={mode}>
+      <Dropdown.Menu className="menu-scroll" variant={mode}>
         {manipulationBtnsData.map(
           ({ title, action, optionName, menuName }) =>
             menuName === menu && (

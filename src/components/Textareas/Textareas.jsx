@@ -6,7 +6,7 @@ import DropdownMenu from "../DropdownMenu/DropdownMenu.jsx";
 import ActionButton from "../ActionButton/ActionButton.jsx";
 import Statistics from "../Statistics/Statistics.jsx";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "../../css/TextareaAndStats.css";
+import "../../css/Textareas.css";
 
 
 const appName = textareaprops.appName;
