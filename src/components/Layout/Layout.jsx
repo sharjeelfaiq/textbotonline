@@ -6,7 +6,7 @@ import Textareas from "../Textareas/Textareas.jsx";
 import Alert from "../Utils/Alert.jsx";
 import ScrollToTop from "../Utils/ScrollToTop.jsx";
 
-import "./Layout.css";
+import "../../css/Layout.css";
 
 const Layout = () => {
   const [mode, setMode] = useState(
