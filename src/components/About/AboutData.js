@@ -1,4 +1,4 @@
-export const aboutText = `
+export const description = `
   <h1>Textbotonline: Your All-in-One Text Manipulation Tool</h1>
   
   <p>Discover Textbotonline, the ultimate free text utility website for all your text editing, analysis, and generation needs. Our comprehensive suite of tools empowers writers, programmers, and data analysts to effortlessly manipulate and analyze text online.</p>

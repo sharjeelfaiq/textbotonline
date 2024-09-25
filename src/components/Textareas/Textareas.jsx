@@ -1,16 +1,14 @@
 import React, { useState, useMemo, useCallback, useRef } from "react";
 import { Dropdown } from "react-bootstrap";
-import { motion } from "framer-motion";
-import { textareaprops } from "./TextareasProps.js";
-import DropdownMenu from "../DropdownMenu/DropdownMenu.jsx";
-import ActionButton from "../ActionButton/ActionButton.jsx";
-import Statistics from "../Statistics/Statistics.jsx";
+import { textareaData } from "./TextareasData";
+import DropdownMenu from "../DropdownMenu/DropdownMenu";
+import ActionButton from "../ActionButton/ActionButton";
+import Statistics from "../Statistics/Statistics";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../../css/Textareas.css";
 
-
-const appName = textareaprops.appName;
-const tagLine = textareaprops.tagLine;
+const appName = textareaData.appName;
+const tagLine = textareaData.tagLine;
 
 const Textareas = React.memo((props) => {
   const [inputText, setInputText] = useState("");
@@ -129,29 +127,12 @@ const Textareas = React.memo((props) => {
 
   return (
     <>
-      <motion.h1
-        className={`text-center text-${mode === "light" ? "dark" : "light"}`}
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: {
-            scale: 0.8,
-            opacity: 0,
-          },
-          visible: {
-            scale: 1,
-            opacity: 1,
-            transition: {
-              delay: 0.4,
-            },
-          },
-        }}
-      >
-        <h1
+      <h1 className={`text-center text-${mode === "light" ? "dark" : "light"}`}>
+        <span
           className="text-uppercase font-monospace"
           dangerouslySetInnerHTML={{ __html: appName }}
         />
-      </motion.h1>
+      </h1>
       <small>
         <p
           className={`text-center text-${mode === "light" ? "dark" : "light"}`}

@@ -1,8 +1,8 @@
 import React from "react";
-import { dropdownOptionsProps } from "../DropdownMenu/DropdownOptionProps.js";
+import { dropdownData } from "../DropdownMenu/DropdownMenuData";
 
 const AccordionItems = ({ menu }) => {
-  const manipulationBtnsProps = dropdownOptionsProps();
+  const manipulationBtnsProps = dropdownData();
 
   const filteredItems = manipulationBtnsProps.filter(
     (item) => item.menuName === menu
@@ -14,7 +14,7 @@ const AccordionItems = ({ menu }) => {
         <li key={index} style={{ width: "80%", borderRadius: "5px" }}>
           <small>
             <strong>{item.optionName} - </strong>
-            {item.description}
+            {item.optionDescription}
           </small>
         </li>
       ))}

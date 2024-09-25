@@ -1,37 +1,23 @@
+// Layout.js
 import { useCallback, useEffect, useState } from "react";
-import About from "../About/About.jsx";
-import Footer from "../Footer/Footer.jsx";
-import Header from "../Header/Header.jsx";
-import Textareas from "../Textareas/Textareas.jsx";
-import Alert from "../Utils/Alert.jsx";
-import ScrollToTop from "../Utils/ScrollToTop.jsx";
+import About from "../About/About";
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
+import Textareas from "../Textareas/Textareas";
+import Alert from "../Utils/Alert";
+import ScrollToTop from "../Utils/ScrollToTop";
+import { useTheme } from "../../context/ThemeContext"; // Adjust the import path as needed
 
 import "../../css/Layout.css";
 
 const Layout = () => {
-  const [mode, setMode] = useState(
-    () => localStorage.getItem("mode") || "light"
-  );
+  const { mode, toggleMode } = useTheme();
   const [alert, setAlert] = useState(null);
 
   const showAlert = useCallback((message, type) => {
     setAlert({ msg: message, type });
     setTimeout(() => setAlert(null), 500);
   }, []);
-
-  const toggleMode = useCallback(() => {
-    const newMode = mode === "light" ? "dark" : "light";
-    setMode(newMode);
-    localStorage.setItem("mode", newMode);
-    document.body.style.backgroundColor =
-      newMode === "dark" ? "#18191A" : "white";
-    showAlert(
-      `${
-        newMode.charAt(0).toUpperCase() + newMode.slice(1)
-      } mode has been enabled.`,
-      "success"
-    );
-  }, [mode, showAlert]);
 
   useEffect(() => {
     document.body.style.backgroundColor = mode === "dark" ? "#18191A" : "white";

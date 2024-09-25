@@ -1,10 +1,16 @@
-import { handleTextManipulation } from "./ManipulationFunctions";
+import { handleTextManipulation } from "./DropdownMenuFunctions";
 
-const createOption = (menuName, optionName, title, description, type) => ({
+const createOption = (
   menuName,
   optionName,
   title,
-  description,
+  optionDescription,
+  type
+) => ({
+  menuName,
+  optionName,
+  title,
+  optionDescription,
   action:
     (inputText, props, setOutputText, setInputText, transitionOutputTextarea) =>
     () =>
@@ -19,11 +25,11 @@ const createOption = (menuName, optionName, title, description, type) => ({
 });
 
 const createMenuOptions = (menuName, options) =>
-  options.map(([optionName, title, description, type]) =>
-    createOption(menuName, optionName, title, description, type)
+  options.map(([optionName, title, optionDescription, type]) =>
+    createOption(menuName, optionName, title, optionDescription, type)
   );
 
-export const dropdownOptionsProps = (
+export const dropdownData = (
   inputText,
   props,
   setOutputText,

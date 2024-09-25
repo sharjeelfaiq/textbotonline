@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { actionButtonProps } from "../ActionButton/ActionButtonProps.js";
+import { actionButtonProps } from "./ActionButtonData";
 import { motion } from "framer-motion";
 
 const ActionButton = ({

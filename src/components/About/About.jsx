@@ -1,5 +1,5 @@
 import React from "react";
-import { aboutText, metrics } from "./About.js";
+import { description, metrics } from "./AboutData";
 import AccordionItems from "./AccordionItem";
 
 function About({ mode }) {
@@ -21,7 +21,7 @@ function About({ mode }) {
       </h1>
       <p
         className={`lh-lg text-justify text-${isDarkMode ? "light" : "dark"}`}
-        dangerouslySetInnerHTML={{ __html: aboutText }}
+        dangerouslySetInnerHTML={{ __html: description }}
       />
       <div
         className="accordion my-4"

@@ -1,9 +1,7 @@
 import React, { useMemo } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
-
-import "../../css/Textareas.css";
 import { Dropdown } from "react-bootstrap";
-import { dropdownOptionsProps } from "./DropdownOptionProps";
+import { dropdownData } from "./DropdownMenuData";
 
 const DropdownMenu = ({
   mode,
@@ -16,7 +14,7 @@ const DropdownMenu = ({
 }) => {
   const manipulationBtnsData = useMemo(
     () =>
-      dropdownOptionsProps(
+      dropdownData(
         inputText,
         props,
         setOutputText,
