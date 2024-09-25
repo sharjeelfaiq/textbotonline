@@ -1,45 +1,48 @@
-.form-control {
+/* General Styles */
+.form-control,
+.top-btns,
+.bottom-btns,
+.contact-btn,
+.bottom-btns-icons,
+.statistics-btn {
   transition: 0.5s ease-out;
 }
+
 .menu-scroll {
   height: 200px;
   overflow-y: scroll;
 }
+
 .menu-item {
   font-size: 0.78rem;
 }
+
 .top-btns {
-  transition: 0.5s ease-out;
   font-size: 0.8rem;
 }
-.bottom-btns {
-  transition: 0.5s ease-out;
-  border-radius: 0;
-  width: 65px;
-  font-size: 0.75rem;
-}
+
+.bottom-btns,
 .contact-btn {
-  transition: 0.5s ease-out;
   border-radius: 0;
   width: 65px;
   font-size: 0.75rem;
 }
-.bottom-btns-icons {
-  transition: 0.5s ease-out;
-}
+
 .statistics-section {
   overflow-y: scroll;
 }
+
 .statistics-btn {
-  transition: 0.5s ease-out;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   width: 100%;
   max-width: 90px;
   font-size: 12px;
-  padding: 10px 10px 7px 10px;
+  padding: 10px;
   font-weight: bold;
 }
+
+/* Media Queries */
 @media screen and (max-width: 1199px) {
   .top-btns {
     font-size: 0.78rem;
@@ -48,6 +51,7 @@
     font-size: 0.75rem;
   }
 }
+
 @media screen and (max-width: 635px) {
   .top-btns {
     font-size: 0.69rem;
@@ -59,31 +63,28 @@
     font-size: 0.75rem;
   }
 }
+
 @media screen and (max-width: 550px) {
   .top-btns {
     font-size: 0.69rem;
   }
-  .menu-item {
+  .menu-item,
+  .bottom-btns-icons {
     font-size: 0.7rem;
   }
   .bottom-btns {
     font-size: 0;
     width: 20px;
     border-radius: 5px;
-    background: n;
     padding: 4px;
-  }
-  .bottom-btns-icons {
-    font-size: 0.55rem;
   }
   .form-control {
     font-size: 0.75rem;
   }
 }
+
 @media screen and (max-width: 320px) {
-  .top-btns {
-    font-size: 0.6rem;
-  }
+  .top-btns,
   .menu-item {
     font-size: 0.6rem;
   }
@@ -91,29 +92,16 @@
     font-size: 0;
     width: 15px;
     border-radius: 5px;
-    background: n;
     padding: 4px;
   }
-  .bottom-btns-icons {
-    font-size: 0.55rem;
-  }
-  .form-control {
-    font-size: 0.75rem;
-  }
-  .statistics-text {
-    font-size: 0.65rem;
-  }
   .statistics-btn {
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    width: 100%;
     max-width: 65px;
     font-size: 0.5rem;
-    padding: 10px 10px 7px 10px;
-    font-weight: bold;
   }
   .menu-scroll {
     height: 130px;
-    overflow-y: scroll;
+  }
+  .statistics-text {
+    font-size: 0.65rem;
   }
 }

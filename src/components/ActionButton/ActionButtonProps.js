@@ -3,7 +3,7 @@ import {
   clearTextarea,
   copyToClipboard,
   pasteToTextarea,
-} from "./ActionButton.js";
+} from "./ActionButtonFunctions.js";
 
 export const actionButtonProps = (
   inputText,
@@ -28,7 +28,7 @@ export const actionButtonProps = (
         disabled: false,
         title: "Paste the text to text area",
         actionName: "Paste",
-        iconClasess: "bi bi-clipboard bottom-btns-icons",
+        iconClasses: "bi bi-clipboard bottom-btns-icons",
       },
       {
         action: () =>
