@@ -231,6 +231,7 @@ const Statistics = ({ mode, outputText }) => {
           e.currentTarget.style.transform = "scale(1)";
           e.currentTarget.style.boxShadow = "none";
         }}
+        disabled={!outputText}
       >
         Key Statistics
       </button>
