@@ -37,7 +37,11 @@ export function clearTextarea(
   props.showAlert("Cleared!", "success");
 }
 
-export async function copyToClipboard(outputText, transitionOutputTextarea, props) {
+export async function copyToClipboard(
+  outputText,
+  transitionOutputTextarea,
+  props
+) {
   try {
     await navigator.clipboard.writeText(outputText);
     transitionOutputTextarea();
@@ -55,6 +59,12 @@ export async function pasteToTextarea(
 ) {
   try {
     const newText = await navigator.clipboard.readText();
+
+    if (newText.trim() === "") {
+      props.showAlert("Clipboard is empty. Nothing to paste.", "warning");
+      return;
+    }
+
     setInputText(newText);
     setOutputText(newText);
     transitionInputTextarea();
