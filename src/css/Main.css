@@ -5,103 +5,108 @@
 .contact-btn,
 .bottom-btns-icons,
 .statistics-btn {
-  transition: 0.5s ease-out;
+  transition: 0.5s ease-out; /* Smooth transition effect for all elements */
 }
 
 .menu-scroll {
   height: 200px;
-  overflow-y: scroll;
+  overflow-y: scroll; /* Allows scrolling for long menus */
 }
 
 .menu-item {
-  font-size: 0.78rem;
+  font-size: 0.78rem; /* Base font size for menu items */
 }
 
 .top-btns {
-  font-size: 0.8rem;
+  font-size: 0.8rem; /* Default font size for top buttons */
 }
 
 .bottom-btns,
 .contact-btn {
   border-radius: 0;
   width: 65px;
-  font-size: 0.75rem;
+  font-size: 0.75rem; /* Base font size for bottom and contact buttons */
 }
 
 .statistics-section {
-  overflow-y: scroll;
+  overflow-y: scroll; /* Enable scrolling for statistics section */
 }
 
 .statistics-btn {
   border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
+  border-top-right-radius: 30px; /* Rounded corners for statistics button */
   width: 100%;
   max-width: 90px;
   font-size: 12px;
   padding: 10px;
-  font-weight: bold;
+  font-weight: bold; /* Bold styling for emphasis */
 }
 
 /* Media Queries */
+
+/* Adjustments for screen sizes below 1199px */
 @media screen and (max-width: 1199px) {
   .top-btns {
-    font-size: 0.78rem;
+    font-size: 0.78rem; /* Slightly smaller font for top buttons */
   }
   .menu-item {
-    font-size: 0.75rem;
+    font-size: 0.75rem; /* Adjusted font for menu items */
   }
 }
 
+/* Adjustments for screen sizes below 635px */
 @media screen and (max-width: 635px) {
   .top-btns {
-    font-size: 0.69rem;
+    font-size: 0.69rem; /* Further reduce font size */
   }
   .menu-item {
     font-size: 0.7rem;
   }
   .statistics-text {
-    font-size: 0.75rem;
+    font-size: 0.75rem; /* Smaller font size for statistics text */
   }
 }
 
+/* Adjustments for screen sizes below 550px */
 @media screen and (max-width: 550px) {
   .top-btns {
-    font-size: 0.69rem;
+    font-size: 0.69rem; /* Smaller font for top buttons */
   }
   .menu-item,
   .bottom-btns-icons {
-    font-size: 0.7rem;
+    font-size: 0.7rem; /* Font adjustments for smaller screens */
   }
   .bottom-btns {
     font-size: 0;
     width: 20px;
     border-radius: 5px;
-    padding: 4px;
+    padding: 4px; /* Compact button size for small screens */
   }
   .form-control {
-    font-size: 0.75rem;
+    font-size: 0.75rem; /* Adjusted input field font size */
   }
 }
 
+/* Adjustments for screen sizes below 320px */
 @media screen and (max-width: 320px) {
   .top-btns,
   .menu-item {
-    font-size: 0.6rem;
+    font-size: 0.6rem; /* Minimum font size for extra small screens */
   }
   .bottom-btns {
     font-size: 0;
     width: 15px;
     border-radius: 5px;
-    padding: 4px;
+    padding: 4px; /* Further reduced button size */
   }
   .statistics-btn {
     max-width: 65px;
-    font-size: 0.5rem;
+    font-size: 0.5rem; /* Smaller statistics button size */
   }
   .menu-scroll {
-    height: 130px;
+    height: 130px; /* Reduce menu height for very small screens */
   }
   .statistics-text {
-    font-size: 0.65rem;
+    font-size: 0.65rem; /* Reduce statistics text size */
   }
 }

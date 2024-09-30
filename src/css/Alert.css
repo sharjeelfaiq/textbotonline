@@ -1,9 +1,12 @@
-.alert-div{
-    height: 55px;
+/* Base styling for alert container */
+.alert-div {
+  height: 55px;
 }
+
+/* Responsive adjustments for very small screens (max-width: 280px) */
 @media screen and (max-width: 280px) {
-    .alert-div{
-        height: 65px;
-        font-size: 0.75rem;
-    }
+  .alert-div {
+    height: 65px; /* Increase height for better visibility */
+    font-size: 0.75rem; /* Reduce font size to fit small screen */
+  }
 }

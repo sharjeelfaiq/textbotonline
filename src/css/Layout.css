@@ -1,24 +1,30 @@
+/* Positioning the form switch in the top-right corner */
 .form-switch {
   position: absolute;
   top: 20px;
   right: 20px;
-  z-index: 1;
+  z-index: 1; /* Ensures the switch stays on top of other elements */
 }
 
+/* Style for the form input to show pointer cursor */
 .form-check-input {
-  cursor: pointer;
+  cursor: pointer; /* Indicates interactivity */
 }
 
+/* Responsive adjustments for screen widths below 991px */
 @media screen and (max-width: 991px) {
   .form-check-label {
-    display: none;
+    display: none; /* Hide labels on smaller screens */
   }
+
   .form-check {
-    right: 20px;
+    right: 20px; /* Keep the form check aligned to the right */
   }
 }
+
+/* Further adjustments for very small screens (max-width: 285px) */
 @media screen and (max-width: 285px) {
   .form-check {
-    right: 0px;
+    right: 0; /* Align form check to the right edge */
   }
 }
