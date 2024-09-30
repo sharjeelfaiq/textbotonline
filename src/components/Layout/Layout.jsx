@@ -40,7 +40,6 @@ const Layout = () => {
         <div className="my-5">
           <About mode={mode} showAlert={showAlert} />
         </div>
-        <hr className={`text-${mode === "dark" ? "light" : "dark"}`} />
       </div>
       <div className="pt-3">
         <Footer mode={mode} />
