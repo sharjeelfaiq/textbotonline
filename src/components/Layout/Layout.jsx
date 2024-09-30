@@ -8,8 +8,6 @@ import Alert from "../Utils/Alert";
 import ScrollToTop from "../Utils/ScrollToTop";
 import { useTheme } from "../../context/ThemeContext"; // Adjust the import path as needed
 
-import "../../css/Layout.css";
-
 const Layout = () => {
   const { mode, toggleMode } = useTheme();
   const [alert, setAlert] = useState(null);

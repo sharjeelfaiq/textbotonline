@@ -5,7 +5,6 @@ import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import ActionButton from "../ActionButton/ActionButton";
 import Statistics from "../Statistics/Statistics";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "../../css/Main.css";
 
 const appName = mainData.appName;
 const tagLine = mainData.tagLine;
