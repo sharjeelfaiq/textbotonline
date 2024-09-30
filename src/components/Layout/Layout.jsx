@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import Textareas from "../Textareas/Textareas";
+import Main from "../Main/Main";
 import Alert from "../Utils/Alert";
 import ScrollToTop from "../Utils/ScrollToTop";
 import { useTheme } from "../../context/ThemeContext"; // Adjust the import path as needed
@@ -38,7 +38,7 @@ const Layout = () => {
       <ScrollToTop />
       <Alert alert={alert} />
       <div className="container-lg">
-        <Textareas mode={mode} showAlert={showAlert} />
+        <Main mode={mode} showAlert={showAlert} />
         <div className="my-5">
           <About mode={mode} showAlert={showAlert} />
         </div>
