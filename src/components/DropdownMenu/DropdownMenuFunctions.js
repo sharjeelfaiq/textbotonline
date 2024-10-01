@@ -33,7 +33,7 @@ import {
   unixToDate,
   unixToTime,
 } from "number-pro";
-import { getQuote } from "../Utils/QuotesData.js";
+import { getQuote } from "../Utils/QuotesData";
 import {
   alternateCase1,
   alternateCase2,
