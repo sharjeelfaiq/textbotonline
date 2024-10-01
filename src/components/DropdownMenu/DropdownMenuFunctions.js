@@ -33,7 +33,6 @@ import {
   unixToDate,
   unixToTime,
 } from "number-pro";
-import { getQuote } from "../Utils/QuotesData";
 import {
   alternateCase1,
   alternateCase2,
@@ -56,6 +55,7 @@ import {
   upperCase,
 } from "case-string";
 import { generateSlug } from "random-word-slugs";
+import { getQuote } from "../Utils/QuotesData";
 
 const actionHandlers = {
   splitInput: (text) => splitString(text),
