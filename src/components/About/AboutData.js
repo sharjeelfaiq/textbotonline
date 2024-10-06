@@ -1,4 +1,10 @@
-export const description = `
+export const siteData = {
+  name: `TEXTBOTONLINE`,
+  slug: "TBO",
+  url: "https://textbotonline.netlify.app",
+  tagLine:
+    "Just copy/paste or upload your text here and hit the desired button",
+  description: `
   <h1>Textbotonline: Your All-in-One Text Manipulation Tool</h1>
   
   <p>Discover Textbotonline, the ultimate free text utility website for all your text editing, analysis, and generation needs. Our comprehensive suite of tools empowers writers, programmers, and data analysts to effortlessly manipulate and analyze text online.</p>
@@ -13,16 +19,32 @@ export const description = `
     <li><strong>Time Conversion:</strong> Transform Unix timestamps to readable dates and times.</li>
   </ul>
   
-  <h2>Instant Text Statistics:</h2>
-  <p>Gain valuable insights into your text with our comprehensive analysis tools:</p>
-  <ul>
-    <li>Paragraph count</li>
-    <li>Sentence count</li>
-    <li>Word count</li>
-    <li>Unique word count</li>
-    <li>Character count (with and without spaces)</li>
-    <li>Average reading time</li>
-  </ul>
+<h2>Instant Text Statistics:</h2>
+<p>Gain valuable insights into your text with our comprehensive analysis tools:</p>
+<ul>
+  <li>Paragraph count</li>
+  <li>Sentence count</li>
+  <li>Word count</li>
+  <li>Unique word count</li>
+  <li>Character count (with and without spaces)</li>
+  <li>Average reading time (Slow)</li>
+  <li>Average reading time (Average)</li>
+  <li>Average reading time (Fast)</li>
+  <li>Longest word</li>
+  <li>Shortest word</li>
+  <li>Average word length</li>
+  <li>Complex words</li>
+  <li>Lexical density</li>
+  <li>Passive voice sentences</li>
+  <li>Longest sentence</li>
+  <li>Shortest sentence</li>
+  <li>Complex sentences (20+ words)</li>
+  <li>Hapax Legomena</li>
+  <li>Average sentence length</li>
+  <li>Unique word ratio</li>
+  <li>Flesch-Kincaid grade level</li>
+</ul>
+
   
   <p>Whether you're crafting an article, debugging code, or analyzing data, Textbotonline provides the tools you need to streamline your text-related tasks. Our user-friendly interface ensures a seamless experience for both beginners and advanced users.</p>
   
@@ -37,8 +59,8 @@ export const description = `
   </ul>
   
   <p>Experience the power of efficient text manipulation today. Visit <a href="https://textbotonline.netlify.app" target="_blank" rel="noopener noreferrer">Textbotonline</a> to explore our full range of features and revolutionize your text editing process.</p>
-  `;
-
+  `,
+};
 export const metrics = [
   {
     label: "Reading time (Slow)",

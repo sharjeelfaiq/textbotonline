@@ -1,6 +1,8 @@
-import React from "react";
-import { description, metrics } from "./AboutData";
+
+import { siteData, metrics } from "./AboutData";
 import AccordionItems from "./AccordionItem";
+
+const description = siteData.description;
 
 function About({ mode }) {
   const isDarkMode = mode === "dark";

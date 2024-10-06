@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Dropdown } from "react-bootstrap";
 import { dropdownData } from "./DropdownMenuData";

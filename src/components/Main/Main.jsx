@@ -1,13 +1,14 @@
-import React, { useState, useMemo, useCallback, useRef } from "react";
+import React from "react";
+import { useState, useMemo, useCallback, useRef } from "react";
 import { Dropdown } from "react-bootstrap";
-import { mainData } from "./MainData";
+import { siteData } from "../About/AboutData";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import ActionButton from "../ActionButton/ActionButton";
 import Statistics from "../Statistics/Statistics";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-const appName = mainData.appName;
-const tagLine = mainData.tagLine;
+const appName = siteData.name;
+const tagLine = siteData.tagLine;
 
 const Main = React.memo((props) => {
   const [inputText, setInputText] = useState("");

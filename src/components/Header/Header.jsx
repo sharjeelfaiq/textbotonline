@@ -1,6 +1,9 @@
-import React from "react";
+
+import { siteData } from "../About/AboutData";
 
 const Header = (props) => {
+  const { slug } = siteData;
+  
   return (
     <>
       <nav
@@ -15,7 +18,7 @@ const Header = (props) => {
                 textShadow: "0px 2px 2px rgba(0, 0, 0, 0.4)",
               }}
             >
-              TBO
+              {slug}
             </h4>
           </a>
         </div>

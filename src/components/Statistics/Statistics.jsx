@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from "react";
+import { useMemo, useCallback } from "react";
 
 const Statistics = ({ mode, outputText }) => {
   const isDarkMode = mode === "dark";

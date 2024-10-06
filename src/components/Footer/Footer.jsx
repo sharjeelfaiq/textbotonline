@@ -1,5 +1,7 @@
-import React, { memo } from "react";
+import { memo } from "react";
+import { siteData } from "../About/AboutData";
 
+const url = siteData.url;
 function handleShareButton() {
   if (!navigator.onLine) {
     alert("You are offline. Please connect to the internet to share.");
@@ -9,7 +11,7 @@ function handleShareButton() {
   if (navigator.share) {
     navigator
       .share({
-        url: "http://textbotonline.netlify.app",
+        url
       })
       .then(() => {
         console.log("Sharing successful");
