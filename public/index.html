@@ -1,85 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Welcome to http://www.textbotonline.com - the most comprehensive text editing tool website on the internet today. Textbotonline is an online text utility application or a website that let you edit your text online or generate different kinds of texts online. Textbotonline let you do several edits to your texts like split text, join text, remove extra spaces, remove all spaces, remove all symbols, duplicate text, reverse text, slugify text, truncate text, change paragraph to single line, alphabatize text, apply zalgo affect, rotate 13, add line numbers, encode text to url, decode url to text, base64 encode, base64 decode, convert unix to date, convert unix to time, format numbers, extract text, extract numbers, add prefix, add suffix, sort lines, reverse sort lines, convert decimal to roman numbers and roman numbers to decimal. This also lets you change your text from uppercase to lowercase, lowercase to uppercase, and any text to uppercase, lowercse, title case, reverse title case, invert case, sentence case, toggle case, random case, camel case, pascal case, kebab case, snake case, alternate case. This app also has the ability to generate characters frequency, words frequency, dummy text, random characters, random words, random-words-slug, random nouns, random adjectives, hash code of any text, and get quotes online. You can see your text summary/statistics which contains the average reading time, number of paragraphs, sentences, words, unique words, spaces, characters with spaces and new lines, characters without spaces and new lines, average character per word in the given text."
+
+    <!-- Description for SEO -->
+    <meta 
+      name="description" 
+      content="Textbotonline is your all-in-one text manipulation tool. Edit, format, analyze, and generate text effortlessly. Free, no registration required." 
     />
-    <meta name="robots" />
-    <meta
-      property="og:title"
-      content="Textbotonline - Edit or Convert your text (The simplest text editor online)"
-    />
-    <meta
-      property="og:description"
-      content="Welcome to http://www.textbotonline.com - the most comprehensive text editing tool website on the internet today. Textbotonline is an online text utility application or a website that let you edit your text online or generate different kinds of texts online. Textbotonline let you do several edits to your texts like split text, join text, remove extra spaces, remove all spaces, remove all symbols, duplicate text, reverse text, slugify text, truncate text, change paragraph to single line, alphabatize text, apply zalgo affect, rotate 13, add line numbers, encode text to url, decode url to text, base64 encode, base64 decode, convert unix to date, convert unix to time, format numbers, extract text, extract numbers, add prefix, add suffix, sort lines, reverse sort lines, convert decimal to roman numbers and roman numbers to decimal. This also lets you change your text from uppercase to lowercase, lowercase to uppercase, and any text to uppercase, lowercse, title case, reverse title case, invert case, sentence case, toggle case, random case, camel case, pascal case, kebab case, snake case, alternate case. This app also has the ability to generate characters frequency, words frequency, dummy text, random characters, random words, random-words-slug, random nouns, random adjectives, hash code of any text, and get quotes online. You can see your text summary/statistics which contains the average reading time, number of paragraphs, sentences, words, unique words, spaces, characters with spaces and new lines, characters without spaces and new lines, average character per word in the given text."
-    />
-    <meta property="og:url" content="http://textbotonline.com/" />
+
+    <meta name="keywords" content="text manipulation, text editor, text generation, free online tool" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Textbotonline - Your Ultimate Text Manipulation Tool" />
+    <meta property="og:description" content="Discover Textbotonline, the free online tool for text editing, analysis, and generation. Ideal for writers, programmers, and analysts." />
+    <meta property="og:url" content="https://textbotonline.netlify.app" />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://example.com/path-to-your-image.jpg" /> <!-- Add a relevant image URL -->
+    
+    <!-- Canonical Tag -->
+    <link rel="canonical" href="https://textbotonline.netlify.app" />
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
+    <link 
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+      rel="stylesheet" 
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+      crossorigin="anonymous" 
     />
 
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    <link 
+      rel="stylesheet" 
+      type="text/css" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" 
     />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.min.css"
+    <link 
+      rel="stylesheet" 
+      type="text/css" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.min.css" 
     />
-    <link
-      href="https://fonts.googleapis.com/css?family=Oswald:400,700|Roboto&display=swap"
-      rel="stylesheet"
+    <link 
+      href="https://fonts.googleapis.com/css?family=Oswald:400,700|Roboto&display=swap" 
+      rel="stylesheet" 
     />
+    
     <title>
-      Textbotonline - Edit or Convert your text (The simplest text editor
-      online)
+      Textbotonline - Your Ultimate Free Text Editing Tool
     </title>
-  </head>
-  <body>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Textbotonline",
+      "description": "Your all-in-one text manipulation tool. Edit, format, analyze, and generate text effortlessly.",
+      "url": "https://textbotonline.netlify.app",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "Web",
+      "author": {
+        "@type": "Organization",
+        "name": "Textbotonline"
+      }
+    }
+    </script>
+
+</head>
+<body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
+    
+    <script 
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+      crossorigin="anonymous" 
     ></script>
-  </body>
+</body>
 </html>
