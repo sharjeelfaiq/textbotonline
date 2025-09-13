@@ -1,7 +1,7 @@
 export const siteData = {
   name: `TEXTBOTONLINE`,
   slug: "TBO",
-  url: "https://textbotonline.netlify.app",
+  url: "https://textbotonline.vercel.app/",
   tagLine:
     "Just copy/paste or upload your text here and hit the desired button",
   description: `
@@ -58,7 +58,7 @@ export const siteData = {
     <li>Regularly updated with new features</li>
   </ul>
   
-  <p>Experience the power of efficient text manipulation today. Visit <a href="https://textbotonline.netlify.app" target="_blank" rel="noopener noreferrer">Textbotonline</a> to explore our full range of features and revolutionize your text editing process.</p>
+  <p>Experience the power of efficient text manipulation today. Visit <a href="https://textbotonline.vercel.app/" target="_blank" rel="noopener noreferrer">Textbotonline</a> to explore our full range of features and revolutionize your text editing process.</p>
   `,
 };
 export const metrics = [
