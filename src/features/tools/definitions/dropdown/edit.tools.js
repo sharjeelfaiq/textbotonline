@@ -55,6 +55,44 @@ function wordFreq(text) {
 
 const tools = [
   {
+    id: "textTrim",
+    kind: "dropdown",
+    menuName: "Edit",
+    optionName: "Trim Text",
+    title: "Trim whitespace",
+    optionDescription:
+      "This option trims leading/trailing whitespace from each line.",
+    route: "/edit/text-trim",
+    order: 5,
+    requiresInput: true,
+    applyTo: "outputOnly",
+    transitions: { output: true },
+    execute: ({ inputText }) => {
+      const lines = String(inputText ?? "").split(/\r\n|\r|\n/);
+      return lines.map((line) => line.trim()).join("\n").trim();
+    },
+  },
+  {
+    id: "findReplace",
+    kind: "dropdown",
+    menuName: "Edit",
+    optionName: "Find & Replace",
+    title: "Find and replace text",
+    optionDescription:
+      "This option replaces all occurrences of a string with another string.",
+    route: "/edit/find-replace",
+    order: 6,
+    requiresInput: true,
+    applyTo: "outputOnly",
+    transitions: { output: true },
+    execute: ({ inputText }, runtime) => {
+      const find = runtime.prompt("Find (exact text):");
+      if (!find) return null;
+      const replace = runtime.prompt("Replace with:");
+      return String(inputText ?? "").split(String(find)).join(String(replace ?? ""));
+    },
+  },
+  {
     id: "splitInput",
     kind: "dropdown",
     menuName: "Edit",
@@ -102,6 +140,7 @@ const tools = [
     optionName: "Remove All Spaces",
     title: "Removes all the spaces, new lines, tab spaces",
     optionDescription: "This option removes all the spaces, new lines, tab spaces.",
+    route: "/edit/remove-spaces",
     order: 40,
     requiresInput: true,
     applyTo: "outputOnly",

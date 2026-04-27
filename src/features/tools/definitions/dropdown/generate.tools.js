@@ -11,6 +11,7 @@ const tools = [
     optionName: "Generate Dummy Text",
     title: "Generate dummy text",
     optionDescription: "This option generates dummy text based on the given text.",
+    route: "/generate/lorem-ipsum",
     order: 30,
     requiresInput: false,
     applyTo: "both",
@@ -25,6 +26,7 @@ const tools = [
     title: "Generate random characters",
     optionDescription:
       "This option generates random characters based on the given text.",
+    route: "/generate/passwords",
     order: 40,
     requiresInput: false,
     applyTo: "both",
@@ -127,6 +129,7 @@ const tools = [
     title: "Generate a quote",
     optionDescription:
       "This option generates a quote based on the given text.",
+    route: "/generate/quotes",
     order: 90,
     requiresInput: false,
     applyTo: "both",
