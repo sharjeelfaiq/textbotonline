@@ -191,7 +191,7 @@ const Main = React.memo((props) => {
         />
         <button
           type="button"
-          className="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-sky-400 dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
+          className="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm transition-colors duration-fast ease-out hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-sky-400 motion-reduce:transition-none dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
           onClick={() => fileInputRef.current?.click()}
           title="Open a .txt file"
         >
@@ -264,7 +264,7 @@ const Main = React.memo((props) => {
         <div className="flex items-center gap-2 md:ml-auto">
           <button
             type="button"
-            className="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-sky-400 disabled:cursor-not-allowed disabled:opacity-50 dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
+            className="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm transition-colors duration-fast ease-out hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-sky-400 disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-none dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
             onClick={undo}
             disabled={!canUndo}
             title="Undo (Ctrl+Z / Cmd+Z)"
@@ -275,7 +275,7 @@ const Main = React.memo((props) => {
           </button>
           <button
             type="button"
-            className="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-sky-400 disabled:cursor-not-allowed disabled:opacity-50 dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
+            className="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm transition-colors duration-fast ease-out hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-sky-400 disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-none dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
             onClick={redo}
             disabled={!canRedo}
             title="Redo (Ctrl+Y / Cmd+Shift+Z)"

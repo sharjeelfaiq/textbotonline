@@ -39,16 +39,16 @@ function About({ mode }) {
             className="group rounded-md border border-slate-200 bg-white shadow-sm dark:border-tbo-border dark:bg-tbo-panel dark:shadow-tbo-inset"
           >
             <summary
-              className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-left text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:text-tbo-text dark:hover:bg-tbo-panelSoft"
+              className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-left text-sm font-semibold text-slate-900 transition-colors duration-fast ease-out hover:bg-slate-50 motion-reduce:transition-none dark:text-tbo-text dark:hover:bg-tbo-panelSoft"
               title="Click to see all available options"
             >
               <span>{item.title}</span>
               <BsChevronRight
-                className="text-xs opacity-70 transition-transform group-open:rotate-90"
+                className="text-xs opacity-70 transition-transform duration-fast ease-out motion-reduce:transition-none group-open:rotate-90"
                 aria-hidden="true"
               />
             </summary>
-            <div className="px-5 pb-5 pt-1 text-sm text-slate-700 dark:text-tbo-muted">
+            <div className="px-5 pb-5 pt-1 text-sm text-slate-700 motion-reduce:animate-none group-open:animate-in group-open:fade-in-0 group-open:slide-in-from-top-1 duration-normal ease-out dark:text-tbo-muted">
               {item.metrics ? (
                 <ul className="list-disc space-y-1 pl-5">
                   {metrics.map((metric) => (

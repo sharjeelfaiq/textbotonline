@@ -31,7 +31,7 @@ const Layout = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-white text-slate-900 dark:bg-tbo-bg dark:text-tbo-text dark:[background-image:radial-gradient(1200px_600px_at_50%_-180px,rgba(255,255,255,0.10),transparent_60%)]">
+      <div className="min-h-screen bg-white/85 text-slate-900 backdrop-blur-md supports-[backdrop-filter]:bg-white/70 dark:bg-tbo-bg/70 dark:text-tbo-text dark:supports-[backdrop-filter]:bg-tbo-bg/55">
         <Header mode={mode} onToggleTheme={toggleMode} />
         <ScrollToTop />
 

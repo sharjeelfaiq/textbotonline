@@ -58,6 +58,11 @@ export function useTextareaTransitions(mode) {
       backgroundColor: isDark ? darkBackgroundColor : lightBackgroundColor,
       color: isDark ? "white" : "black",
       textAlign: "left",
+      transition:
+        typeof window !== "undefined" &&
+        window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches
+          ? "none"
+          : "background-color 250ms ease-out, color 250ms ease-out",
     }),
     []
   );

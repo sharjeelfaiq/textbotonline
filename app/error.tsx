@@ -22,7 +22,7 @@ export default function Error({
         </p>
         <button
           type="button"
-          className="mt-4 inline-flex items-center justify-center rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800 dark:bg-tbo-accent dark:text-slate-950 dark:hover:brightness-110"
+          className="mt-4 inline-flex items-center justify-center rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition-colors duration-fast ease-out hover:bg-slate-800 motion-reduce:transition-none dark:bg-tbo-accent dark:text-slate-950 dark:hover:brightness-110"
           onClick={reset}
         >
           Try again
@@ -31,4 +31,3 @@ export default function Error({
     </div>
   );
 }
-

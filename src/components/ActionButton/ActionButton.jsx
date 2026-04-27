@@ -1,6 +1,6 @@
 const ActionButton = ({ buttons }) => {
   const baseClassName =
-    "transition-colors transition-transform duration-150 ease-out active:scale-[0.98] disabled:active:scale-100 motion-reduce:transition-none";
+    "transition-colors transition-transform duration-fast ease-out active:scale-[0.98] disabled:active:scale-100 motion-reduce:transition-none";
 
   return (
     <>

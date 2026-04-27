@@ -21,6 +21,9 @@ export const ThemeProvider = ({ children }) => {
       try {
         document.documentElement.dataset.theme = newMode;
       } catch (e) {}
+      try {
+        document.documentElement.classList.toggle("dark", newMode === "dark");
+      } catch (e) {}
       return newMode;
     });
   }, []);
@@ -37,11 +40,17 @@ export const ThemeProvider = ({ children }) => {
     try {
       document.documentElement.dataset.theme = initialMode;
     } catch (e) {}
+    try {
+      document.documentElement.classList.toggle("dark", initialMode === "dark");
+    } catch (e) {}
   }, []);
 
   useEffect(() => {
     try {
       document.documentElement.dataset.theme = mode;
+    } catch (e) {}
+    try {
+      document.documentElement.classList.toggle("dark", mode === "dark");
     } catch (e) {}
   }, [mode]);
 
