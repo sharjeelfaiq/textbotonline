@@ -151,16 +151,34 @@ const Main = React.memo((props) => {
         </p>
       </header>
 
-      <div className="tb-toolbar">
-        {actionButtonGroups.map(({ groupId, buttons }) => (
-          <div className="tb-toolbarGroup" key={groupId}>
-            <ActionButton buttons={buttons} />
-          </div>
-        ))}
-      </div>
-
       <div className="tb-panels">
         <section className="tb-panel" aria-label="Input panel">
+          <div className="tb-menus tb-menus--top" aria-label="Tools">
+            <Dropdown>
+              <Dropdown.Toggle className={`btn btn-sm top-btns btn-${mode}`}>
+                Upload
+              </Dropdown.Toggle>
+              <Dropdown.Menu variant={`${mode}`} className="menuName-opt">
+                <input
+                  id="tb-upload"
+                  type="file"
+                  accept="text/plain"
+                  onChange={uploadTextFile}
+                  title="Open the text file"
+                  className="menuName-item"
+                />
+              </Dropdown.Menu>
+            </Dropdown>
+            {dropdownMenus.map(({ menuName, items }) => (
+              <DropdownMenu
+                key={menuName}
+                mode={mode}
+                menu={menuName}
+                items={items}
+                onSelect={runTool}
+              />
+            ))}
+          </div>
           <textarea
             className="form-control tb-textarea"
             id="tb-input"
@@ -171,6 +189,13 @@ const Main = React.memo((props) => {
             rows={12}
             required
           />
+          <div className="tb-toolbar tb-toolbar--bottom" aria-label="Actions">
+            {actionButtonGroups.map(({ groupId, buttons }) => (
+              <div className="tb-toolbarGroup" key={groupId}>
+                <ActionButton buttons={buttons} />
+              </div>
+            ))}
+          </div>
         </section>
 
         <section className="tb-panel" aria-label="Output panel">
@@ -184,33 +209,6 @@ const Main = React.memo((props) => {
             readOnly
           />
         </section>
-      </div>
-
-      <div className="tb-menus">
-        <Dropdown>
-          <Dropdown.Toggle className={`btn btn-sm top-btns btn-${mode}`}>
-            Upload
-          </Dropdown.Toggle>
-          <Dropdown.Menu variant={`${mode}`} className="menuName-opt">
-            <input
-              id="tb-upload"
-              type="file"
-              accept="text/plain"
-              onChange={uploadTextFile}
-              title="Open the text file"
-              className="menuName-item"
-            />
-          </Dropdown.Menu>
-        </Dropdown>
-        {dropdownMenus.map(({ menuName, items }) => (
-          <DropdownMenu
-            key={menuName}
-            mode={mode}
-            menu={menuName}
-            items={items}
-            onSelect={runTool}
-          />
-        ))}
       </div>
       <hr className={`text-${mode === "dark" ? "light" : "dark"}`} />
       <Statistics mode={mode} outputText={outputText} />
