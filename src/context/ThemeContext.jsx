@@ -3,29 +3,46 @@
 import React from "react";
 import { createContext, useCallback, useEffect, useState } from "react";
 
-const ThemeContext = createContext();
+const ThemeContext = createContext({
+  mode: "dark",
+  toggleMode: () => {},
+});
 
 export const ThemeProvider = ({ children }) => {
-  const [mode, setMode] = useState(
-    () => {
-      if (typeof window === "undefined") return "dark";
-      return localStorage.getItem("mode") || "dark";
-    }
-  );
+  // Keep the initial server and client render consistent to avoid hydration mismatches.
+  const [mode, setMode] = useState("dark");
 
   const toggleMode = useCallback(() => {
-    const newMode = mode === "light" ? "dark" : "light";
-    setMode(newMode);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("mode", newMode);
-      document.documentElement.dataset.theme = newMode;
-    }
-  }, [mode]);
+    setMode((previousMode) => {
+      const newMode = previousMode === "light" ? "dark" : "light";
+      try {
+        localStorage.setItem("mode", newMode);
+      } catch (e) {}
+      try {
+        document.documentElement.dataset.theme = newMode;
+      } catch (e) {}
+      return newMode;
+    });
+  }, []);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    let initialMode = "dark";
+    try {
+      const storedMode = localStorage.getItem("mode");
+      if (storedMode === "light" || storedMode === "dark") {
+        initialMode = storedMode;
+      }
+    } catch (e) {}
+    setMode(initialMode);
+    try {
+      document.documentElement.dataset.theme = initialMode;
+    } catch (e) {}
+  }, []);
+
+  useEffect(() => {
+    try {
       document.documentElement.dataset.theme = mode;
-    }
+    } catch (e) {}
   }, [mode]);
 
   return (

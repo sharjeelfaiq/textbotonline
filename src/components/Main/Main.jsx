@@ -1,12 +1,17 @@
 "use client";
 
-import React, { useReducer, useMemo, useCallback, useRef } from "react";
+import React, { useEffect, useMemo, useCallback, useRef } from "react";
 import { siteData } from "../About/AboutData";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import ActionButton from "../ActionButton/ActionButton";
 import Statistics from "../Statistics/Statistics";
-import { BsUpload } from "react-icons/bs";
+import {
+  BsArrowClockwise,
+  BsArrowCounterclockwise,
+  BsUpload,
+} from "react-icons/bs";
 import { useTextareaTransitions } from "../../hooks/useTextareaTransitions";
+import { useUndoRedoReducer } from "../../hooks/useUndoRedoReducer";
 import {
   getActionButtonGroupIds,
   getActionButtonToolsByGroup,
@@ -27,10 +32,11 @@ const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
 
 const Main = React.memo((props) => {
   const fileInputRef = useRef(null);
-  const [state, dispatch] = useReducer(
+  const { state, dispatch, undo, redo, canUndo, canRedo } = useUndoRedoReducer(
     toolStateReducer,
     undefined,
-    () => createToolState("")
+    () => createToolState(""),
+    { maxHistory: 50 }
   );
   const { inputText, outputText } = state;
 
@@ -97,7 +103,37 @@ const Main = React.memo((props) => {
 
   const onTextChange = useCallback((e) => {
     dispatch({ type: TOOL_STATE_ACTIONS.TEXT_CHANGED, value: e.target.value });
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    const onKeyDown = (event) => {
+      const isModifierPressed = event.ctrlKey || event.metaKey;
+      if (!isModifierPressed) return;
+
+      const key = String(event.key ?? "").toLowerCase();
+      if (key === "z") {
+        if (event.shiftKey) {
+          if (!canRedo) return;
+          event.preventDefault();
+          redo();
+          return;
+        }
+        if (!canUndo) return;
+        event.preventDefault();
+        undo();
+        return;
+      }
+
+      if (key === "y") {
+        if (!canRedo) return;
+        event.preventDefault();
+        redo();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [canRedo, canUndo, redo, undo]);
 
   const dropdownMenus = useMemo(() => {
     return getDropdownMenuNames().map((menuName) => {
@@ -214,14 +250,41 @@ const Main = React.memo((props) => {
 
       {/* Action buttons always below the input textarea */}
       <div
-        className="flex flex-wrap items-center justify-between gap-2"
+        className="flex flex-wrap items-center gap-2"
         aria-label="Actions"
       >
-        {actionButtonGroups.map(({ groupId, buttons }) => (
-          <div className="flex flex-wrap gap-2" key={groupId}>
-            <ActionButton buttons={buttons} />
-          </div>
-        ))}
+        <div className="flex flex-wrap gap-2">
+          {actionButtonGroups.map(({ groupId, buttons }) => (
+            <div className="flex flex-wrap gap-2" key={groupId}>
+              <ActionButton buttons={buttons} />
+            </div>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-2 md:ml-auto">
+          <button
+            type="button"
+            className="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-sky-400 disabled:cursor-not-allowed disabled:opacity-50 dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
+            onClick={undo}
+            disabled={!canUndo}
+            title="Undo (Ctrl+Z / Cmd+Z)"
+            aria-label="Undo"
+          >
+            <BsArrowCounterclockwise className="text-sm opacity-90" aria-hidden="true" />
+            Undo
+          </button>
+          <button
+            type="button"
+            className="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-sky-400 disabled:cursor-not-allowed disabled:opacity-50 dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
+            onClick={redo}
+            disabled={!canRedo}
+            title="Redo (Ctrl+Y / Cmd+Shift+Z)"
+            aria-label="Redo"
+          >
+            <BsArrowClockwise className="text-sm opacity-90" aria-hidden="true" />
+            Redo
+          </button>
+        </div>
       </div>
 
       <div className="relative py-8">
