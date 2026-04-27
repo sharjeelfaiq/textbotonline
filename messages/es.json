@@ -1,0 +1,12 @@
+{
+  "nav.changeCase": "Cambiar mayúsculas/minúsculas",
+  "nav.edit": "Editar",
+  "nav.generate": "Generar",
+  "nav.menu": "Menú",
+  "nav.home": "Inicio",
+  "home.tagline": "Copia/pega o sube tu texto y pulsa el botón deseado",
+  "home.caseButtonsLabel": "Cambios de mayúsculas/minúsculas",
+  "toolbar.copy": "Copiar",
+  "toolbar.download": "Descargar"
+}
+

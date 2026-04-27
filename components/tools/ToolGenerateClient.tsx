@@ -75,7 +75,7 @@ export default function ToolGenerateClient({
         </h1>
         <button
           type="button"
-          className="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm transition-colors duration-fast ease-out hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 motion-reduce:transition-none dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
+          className="tbo-btn"
           onClick={run}
         >
           Generate
@@ -89,13 +89,13 @@ export default function ToolGenerateClient({
       )}
 
       <section
-        className="group relative rounded-md border border-slate-200 bg-white shadow-sm dark:border-tbo-border dark:bg-tbo-panel dark:shadow-tbo dark:shadow-tbo-inset"
+        className="tbo-surface group relative"
         aria-label="Output panel"
       >
         <div className="absolute right-2 top-2 flex items-center gap-2">
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-900 shadow-sm transition-colors duration-fast ease-out hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 motion-reduce:transition-none disabled:opacity-50 dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
+            className="tbo-icon-btn"
             aria-label="Copy output"
             title="Copy output"
             onClick={copyOutput}
@@ -105,7 +105,7 @@ export default function ToolGenerateClient({
           </button>
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-900 shadow-sm transition-colors duration-fast ease-out hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 motion-reduce:transition-none disabled:opacity-50 dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
+            className="tbo-icon-btn"
             aria-label="Download output"
             title="Download output"
             onClick={() => downloadTextFile(outputText)}
@@ -120,7 +120,7 @@ export default function ToolGenerateClient({
         </label>
         <textarea
           id="generate-output"
-          className="min-h-80 w-full resize-none bg-transparent pb-14 pl-4 pr-4 pt-3 font-mono text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 dark:text-tbo-text dark:placeholder:text-tbo-muted/70"
+          className="tbo-textarea min-h-80"
           value={outputText}
           placeholder="Generated output will appear here."
           rows={14}
@@ -131,4 +131,3 @@ export default function ToolGenerateClient({
     </div>
   );
 }
-

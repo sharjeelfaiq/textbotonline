@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import About from "../About/About";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -38,10 +37,6 @@ const Layout = () => {
         <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
           <Alert alert={alert} onDismiss={dismissAlert} />
           <Main mode={mode} showAlert={showAlert} />
-
-          <div className="mt-10">
-            <About mode={mode} showAlert={showAlert} />
-          </div>
         </div>
 
         <Footer mode={mode} />

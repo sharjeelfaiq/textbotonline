@@ -27,7 +27,7 @@ function About({ mode }) {
       </h2>
 
       <div
-        className="mx-auto mt-4 max-w-4xl space-y-4 text-sm leading-7 text-slate-700 dark:text-tbo-muted"
+        className="mx-auto mt-4 max-w-4xl space-y-4 text-sm leading-7 text-slate-700 dark:text-tbo-text/90"
         dangerouslySetInnerHTML={{ __html: description }}
       />
 
@@ -36,7 +36,7 @@ function About({ mode }) {
           <details
             key={item.title}
             open={index === 0}
-            className="group rounded-md border border-slate-200 bg-white shadow-sm dark:border-tbo-border dark:bg-tbo-panel dark:shadow-tbo-inset"
+            className="tbo-surface group"
           >
             <summary
               className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-left text-sm font-semibold text-slate-900 transition-colors duration-fast ease-out hover:bg-slate-50 motion-reduce:transition-none dark:text-tbo-text dark:hover:bg-tbo-panelSoft"

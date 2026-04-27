@@ -1,0 +1,12 @@
+{
+  "nav.changeCase": "Changer la casse",
+  "nav.edit": "Éditer",
+  "nav.generate": "Générer",
+  "nav.menu": "Menu",
+  "nav.home": "Accueil",
+  "home.tagline": "Copiez/collez ou téléversez votre texte puis cliquez sur le bouton souhaité",
+  "home.caseButtonsLabel": "Changements de casse",
+  "toolbar.copy": "Copier",
+  "toolbar.download": "Télécharger"
+}
+

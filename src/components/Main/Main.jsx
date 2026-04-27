@@ -6,13 +6,10 @@ import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import Statistics from "../Statistics/Statistics";
 import TextStatsOverlay from "../Utils/TextStatsOverlay";
 import TextareaIconControls from "../Utils/TextareaIconControls";
+import InputTextarea from "@/components/ui/input-textarea";
 import {
-  BsArrowClockwise,
-  BsArrowCounterclockwise,
   BsClipboard,
   BsDownload,
-  BsUpload,
-  BsXLg,
 } from "react-icons/bs";
 import { useTextareaTransitions } from "../../hooks/useTextareaTransitions";
 import { useUndoRedoReducer } from "../../hooks/useUndoRedoReducer";
@@ -31,12 +28,10 @@ import { getPrimaryTextStats } from "../../utils/text/getPrimaryTextStats";
 const appName = siteData.name;
 const tagLine = siteData.tagLine;
 
-const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
 const SESSION_STORAGE_KEY = "tbo_textareas_v1";
 const AUTOSAVE_DEBOUNCE_MS = 400;
 
 const Main = React.memo((props) => {
-  const fileInputRef = useRef(null);
   const hasHydratedFromStorageRef = useRef(false);
   const autosaveTimeoutRef = useRef(null);
   const autosaveWriteErrorRef = useRef(false);
@@ -81,37 +76,6 @@ const Main = React.memo((props) => {
     },
     [inputText, outputText, runtime]
   );
-
-  const uploadTextFile = useCallback(() => {
-    const fileInput = fileInputRef.current;
-    if (fileInput?.files.length > 0) {
-      const file = fileInput.files[0];
-      if (file.size > MAX_UPLOAD_BYTES) {
-        showAlert(
-          `File is too large (${file.size.toLocaleString()} bytes). Please upload a smaller file.`,
-          "warning"
-        );
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const content = String(event.target.result ?? "");
-        dispatch({ type: TOOL_STATE_ACTIONS.SET_BOTH, text: content });
-        transitionInputTextarea();
-        showAlert("File uploaded successfully!", "success");
-      };
-      reader.onerror = (error) => {
-        showAlert("Error reading file: " + error, "error");
-      };
-      reader.readAsText(fileInput.files[0]);
-    } else {
-      showAlert("No file selected", "warning");
-    }
-  }, [showAlert, transitionInputTextarea]);
-
-  const onTextChange = useCallback((e) => {
-    dispatch({ type: TOOL_STATE_ACTIONS.TEXT_CHANGED, value: e.target.value });
-  }, [dispatch]);
 
   useEffect(() => {
     if (hasHydratedFromStorageRef.current) return;
@@ -249,14 +213,6 @@ const Main = React.memo((props) => {
         </p>
       </header>
 
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="text/plain"
-        className="hidden"
-        onChange={uploadTextFile}
-      />
-
       <div className="flex flex-wrap items-center gap-2" aria-label="Tools">
         {[
           ["Change Case", dropdownMenus["Change Case"]],
@@ -273,72 +229,34 @@ const Main = React.memo((props) => {
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <section
-          className="group relative rounded-md border border-slate-200 bg-white shadow-sm dark:border-tbo-border dark:bg-tbo-panel dark:shadow-tbo dark:shadow-tbo-inset"
-          aria-label="Input panel"
-        >
-          <label htmlFor="tb-input" className="sr-only">
-            Input text
-          </label>
-          <textarea
-            id="tb-input"
-            className="min-h-64 w-full resize-none bg-transparent pb-14 pl-4 pr-24 pt-3 font-mono text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 dark:text-tbo-text dark:placeholder:text-tbo-muted/70"
-            style={inputTextAreaStyle}
-            onChange={onTextChange}
-            value={inputText}
-            placeholder="Enter text here."
-            rows={12}
-            required
-          />
-          <TextStatsOverlay stats={inputStats} />
-          <TextareaIconControls
-            position="top"
-            alwaysVisible
-            actions={[
-              {
-                key: "upload",
-                label: "Upload .txt",
-                icon: BsUpload,
-                title: "Open a .txt file",
-                onClick: () => fileInputRef.current?.click(),
-              },
-              {
-                key: "paste",
-                label: "Paste",
-                icon: BsClipboard,
-                title: "Paste from clipboard",
-                onClick: () => runTool("pasteToTextarea"),
-              },
-              {
-                key: "undo",
-                label: "Undo",
-                icon: BsArrowCounterclockwise,
-                title: "Undo (Ctrl+Z / Cmd+Z)",
-                disabled: !canUndo,
-                onClick: undo,
-              },
-              {
-                key: "redo",
-                label: "Redo",
-                icon: BsArrowClockwise,
-                title: "Redo (Ctrl+Y / Cmd+Shift+Z)",
-                disabled: !canRedo,
-                onClick: redo,
-              },
-              {
-                key: "clear",
-                label: "Clear",
-                icon: BsXLg,
-                title: "Clear input + output",
-                disabled: inputText.length === 0 && outputText.length === 0,
-                onClick: () => runTool("clearTextarea"),
-              },
-            ]}
-          />
-        </section>
+        <InputTextarea
+          id="tb-input"
+          ariaLabel="Input panel"
+          value={inputText}
+          onValueChange={(nextValue) =>
+            dispatch({ type: TOOL_STATE_ACTIONS.TEXT_CHANGED, value: nextValue })
+          }
+          textareaStyle={inputTextAreaStyle}
+          placeholder="Enter text here."
+          rows={12}
+          required
+          bottomOverlay={<TextStatsOverlay stats={inputStats} />}
+          canUndo={canUndo}
+          canRedo={canRedo}
+          clearDisabled={inputText.length === 0 && outputText.length === 0}
+          onNotify={(message, type) => showAlert(message, type ?? "success")}
+          onPaste={() => runTool("pasteToTextarea")}
+          onUploadText={(content) => {
+            dispatch({ type: TOOL_STATE_ACTIONS.SET_BOTH, text: content });
+            transitionInputTextarea();
+          }}
+          onUndo={undo}
+          onRedo={redo}
+          onClear={() => runTool("clearTextarea")}
+        />
 
         <section
-          className="group relative rounded-md border border-slate-200 bg-white shadow-sm dark:border-tbo-border dark:bg-tbo-panel dark:shadow-tbo dark:shadow-tbo-inset"
+          className="tbo-surface group relative"
           aria-label="Output panel"
         >
           <label htmlFor="tb-output" className="sr-only">
@@ -346,7 +264,7 @@ const Main = React.memo((props) => {
           </label>
           <textarea
             id="tb-output"
-            className="min-h-64 w-full resize-none bg-transparent pb-14 pl-4 pr-16 pt-3 font-mono text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 dark:text-tbo-text dark:placeholder:text-tbo-muted/70"
+            className="tbo-textarea min-h-64 pr-16"
             style={outputTextAreaStyle}
             value={outputText}
             placeholder="Nothing to preview!"

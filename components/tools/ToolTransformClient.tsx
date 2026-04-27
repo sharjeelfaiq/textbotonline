@@ -5,6 +5,31 @@ import { BsClipboard, BsDownload } from "react-icons/bs";
 import TextStatsOverlay from "@/src/components/Utils/TextStatsOverlay";
 import { getPrimaryTextStats } from "@/src/utils/text/getPrimaryTextStats";
 import { getToolById } from "@/src/features/tools/registry";
+import { useUndoRedoReducer } from "@/src/hooks/useUndoRedoReducer";
+import InputTextarea from "@/components/ui/input-textarea";
+
+type TransformState = { inputText: string; outputText: string };
+
+type TransformAction =
+  | { type: "SET_INPUT"; value: string }
+  | { type: "SET_OUTPUT"; value: string }
+  | { type: "SET_BOTH"; value: string }
+  | { type: "CLEAR" };
+
+function transformReducer(prev: TransformState, action: TransformAction): TransformState {
+  switch (action.type) {
+    case "SET_INPUT":
+      return { ...prev, inputText: action.value };
+    case "SET_OUTPUT":
+      return { ...prev, outputText: action.value };
+    case "SET_BOTH":
+      return { inputText: action.value, outputText: action.value };
+    case "CLEAR":
+      return { inputText: "", outputText: "" };
+    default:
+      return prev;
+  }
+}
 
 function downloadTextFile(text: string, filename = "output.txt") {
   const blob = new Blob([text], { type: "text/plain" });
@@ -26,9 +51,17 @@ export default function ToolTransformClient({
   title: string;
 }) {
   const tool = useMemo(() => getToolById(toolId), [toolId]);
-  const [inputText, setInputText] = useState("");
-  const [outputText, setOutputText] = useState("");
   const [error, setError] = useState<string | null>(null);
+
+  const { state, dispatch, undo, redo, canUndo, canRedo } = useUndoRedoReducer(
+    transformReducer,
+    undefined,
+    () => ({ inputText: "", outputText: "" } as TransformState),
+    { maxHistory: 50 }
+  );
+
+  const inputText = state.inputText;
+  const outputText = state.outputText;
 
   const inputStats = useMemo(() => getPrimaryTextStats(inputText), [inputText]);
   const outputStats = useMemo(
@@ -63,11 +96,11 @@ export default function ToolTransformClient({
 
       if (result === null || typeof result === "undefined") return;
       const nextText = typeof result === "string" ? result : String(result);
-      setOutputText(nextText);
+      dispatch({ type: "SET_OUTPUT", value: nextText });
     } catch (e) {
       setError("Tool execution failed.");
     }
-  }, [inputText, outputText, tool, toolId]);
+  }, [dispatch, inputText, outputText, tool, toolId]);
 
   const copyOutput = useCallback(async () => {
     if (!outputText.trim()) return;
@@ -84,7 +117,7 @@ export default function ToolTransformClient({
         </h1>
         <button
           type="button"
-          className="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm transition-colors duration-fast ease-out hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 motion-reduce:transition-none dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
+          className="tbo-btn"
           onClick={run}
         >
           Run
@@ -98,32 +131,34 @@ export default function ToolTransformClient({
       )}
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <section
-          className="group relative rounded-md border border-slate-200 bg-white shadow-sm dark:border-tbo-border dark:bg-tbo-panel dark:shadow-tbo dark:shadow-tbo-inset"
-          aria-label="Input panel"
-        >
-          <label htmlFor="tool-input" className="sr-only">
-            Input text
-          </label>
-          <textarea
-            id="tool-input"
-            className="min-h-64 w-full resize-none bg-transparent pb-14 pl-4 pr-4 pt-3 font-mono text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 dark:text-tbo-text dark:placeholder:text-tbo-muted/70"
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            placeholder="Enter text here."
-            rows={12}
-          />
-          <TextStatsOverlay stats={inputStats} />
-        </section>
+        <InputTextarea
+          id="tool-input"
+          ariaLabel="Input panel"
+          value={inputText}
+          onValueChange={(nextValue) =>
+            dispatch({ type: "SET_INPUT", value: nextValue })
+          }
+          placeholder="Enter text here."
+          rows={12}
+          bottomOverlay={<TextStatsOverlay stats={inputStats} />}
+          canUndo={canUndo}
+          canRedo={canRedo}
+          clearDisabled={inputText.length === 0 && outputText.length === 0}
+          onUndo={undo}
+          onRedo={redo}
+          onClear={() => dispatch({ type: "CLEAR" })}
+          onPasteText={(text) => dispatch({ type: "SET_BOTH", value: text })}
+          onUploadText={(text) => dispatch({ type: "SET_BOTH", value: text })}
+        />
 
         <section
-          className="group relative rounded-md border border-slate-200 bg-white shadow-sm dark:border-tbo-border dark:bg-tbo-panel dark:shadow-tbo dark:shadow-tbo-inset"
+          className="tbo-surface group relative"
           aria-label="Output panel"
         >
           <div className="absolute right-2 top-2 flex items-center gap-2">
             <button
               type="button"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-900 shadow-sm transition-colors duration-fast ease-out hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 motion-reduce:transition-none disabled:opacity-50 dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
+              className="tbo-icon-btn"
               aria-label="Copy output"
               title="Copy output"
               onClick={copyOutput}
@@ -133,7 +168,7 @@ export default function ToolTransformClient({
             </button>
             <button
               type="button"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-900 shadow-sm transition-colors duration-fast ease-out hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 motion-reduce:transition-none disabled:opacity-50 dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
+              className="tbo-icon-btn"
               aria-label="Download output"
               title="Download output"
               onClick={() => downloadTextFile(outputText)}
@@ -148,7 +183,7 @@ export default function ToolTransformClient({
           </label>
           <textarea
             id="tool-output"
-            className="min-h-64 w-full resize-none bg-transparent pb-14 pl-4 pr-4 pt-3 font-mono text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 dark:text-tbo-text dark:placeholder:text-tbo-muted/70"
+            className="tbo-textarea min-h-64"
             value={outputText}
             placeholder="Output will appear here."
             rows={12}
@@ -160,4 +195,3 @@ export default function ToolTransformClient({
     </div>
   );
 }
-

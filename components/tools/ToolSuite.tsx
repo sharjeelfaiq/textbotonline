@@ -2,8 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import Alert from "@/src/components/Utils/Alert";
-import About from "@/src/components/About/About";
-import Main from "@/src/components/Main/Main";
+import ToolsHomeSingleInput from "@/components/tools/ToolsHomeSingleInput";
 import ScrollToTop from "@/src/components/Utils/ScrollToTop";
 import { useTheme } from "@/src/context/ThemeContext";
 
@@ -33,10 +32,7 @@ export default function ToolSuite() {
     <>
       <ScrollToTop />
       <Alert alert={alert} onDismiss={dismissAlert} />
-      <Main mode={mode} showAlert={showAlert} />
-      <div className="mt-10">
-        <About mode={mode} showAlert={showAlert} />
-      </div>
+      <ToolsHomeSingleInput mode={mode} showAlert={showAlert} />
     </>
   );
 }
