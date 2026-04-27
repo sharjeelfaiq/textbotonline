@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useCallback, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { BsBarChartLine, BsXLg } from "react-icons/bs";
 
 const Statistics = ({ mode, outputText }) => {
@@ -316,6 +317,8 @@ const Statistics = ({ mode, outputText }) => {
   const [open, setOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const closeTimeoutRef = useRef(null);
+  const dialogRef = useRef(null);
+  const [mounted, setMounted] = useState(false);
 
   const close = useCallback(() => {
     setIsClosing(true);
@@ -341,6 +344,15 @@ const Statistics = ({ mode, outputText }) => {
     };
   }, []);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    dialogRef.current?.focus();
+  }, [open]);
+
   return (
     <div className="flex justify-center">
       <button
@@ -353,77 +365,82 @@ const Statistics = ({ mode, outputText }) => {
         Key Statistics
       </button>
 
-      {open && (
-        <div
-          className="fixed inset-0 z-40"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Text analysis summary"
-          onKeyDown={(e) => {
-            if (e.key === "Escape") close();
-          }}
-        >
-          <button
-            type="button"
-            className={[
-              "absolute inset-0 h-full w-full cursor-default bg-black/40 motion-reduce:animate-none",
-              isClosing
-                ? "animate-out fade-out-0 duration-fast ease-in"
-                : "animate-in fade-in-0 duration-normal ease-out",
-            ].join(" ")}
-            aria-label="Close statistics"
-            onClick={close}
-          />
-
+      {open &&
+        mounted &&
+        createPortal(
           <div
-            className={[
-              "absolute inset-x-0 bottom-0 mx-auto w-full max-w-4xl rounded-t-2xl border border-slate-200 bg-white shadow-2xl motion-reduce:animate-none",
-              isClosing
-                ? "animate-out fade-out-0 slide-out-to-bottom-4 duration-fast ease-in"
-                : "animate-in fade-in-0 slide-in-from-bottom-4 duration-normal ease-out",
-              "dark:border-tbo-border dark:bg-tbo-surface",
-            ].join(" ")}
+            ref={dialogRef}
+            className="fixed inset-0 z-[9998]"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Text analysis summary"
+            tabIndex={-1}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") close();
+            }}
           >
-            <div className="flex items-center justify-between gap-3 border-b border-slate-200 px-4 py-3 dark:border-tbo-border dark:bg-tbo-surface">
-              <h3 className="text-sm font-semibold text-slate-900 dark:text-tbo-text">
-                Text Analysis Summary
-              </h3>
-              <button
-                type="button"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-900 shadow-sm transition-colors duration-fast ease-out hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-sky-400 motion-reduce:transition-none dark:border-tbo-border dark:bg-tbo-panel dark:text-tbo-text dark:hover:bg-tbo-panelSoft"
-                onClick={close}
-                aria-label="Close statistics"
-              >
-                <BsXLg className="text-sm opacity-80" aria-hidden="true" />
-              </button>
-            </div>
+            <button
+              type="button"
+              className={[
+                "fixed inset-0 z-[9998] cursor-default bg-black/40",
+                isClosing
+                  ? "opacity-0 transition-opacity duration-fast ease-in"
+                  : "opacity-100 transition-opacity duration-normal ease-out",
+              ].join(" ")}
+              aria-label="Close statistics"
+              onClick={close}
+            />
 
-            <div className="max-h-[70vh] overflow-auto p-4 dark:bg-tbo-surface">
-              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                {statistics.map(({ label, value }) => (
-                  <div
-                    key={label}
-                    className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 dark:border-tbo-border dark:bg-tbo-panel"
-                  >
-                    <div className="text-xs font-medium text-slate-600 dark:text-tbo-muted">
-                      {label}
-                    </div>
-                    <div className="mt-1 font-mono text-sm text-slate-900 dark:text-tbo-text">
-                      {String(value)}
-                    </div>
-                  </div>
-                ))}
+            <div
+              className={[
+                "fixed inset-x-0 bottom-0 z-[9999] mx-auto w-full max-w-4xl transform-gpu rounded-t-2xl border border-slate-200 bg-white shadow-2xl",
+                isClosing
+                  ? "translate-y-full opacity-0 transition-all duration-fast ease-in"
+                  : "translate-y-0 opacity-100 transition-all duration-normal ease-out",
+                "dark:border-tbo-border dark:bg-tbo-surface",
+              ].join(" ")}
+            >
+              <div className="flex items-center justify-between gap-3 border-b border-slate-200 px-4 py-3 dark:border-tbo-border dark:bg-tbo-surface">
+                <h3 className="text-sm font-semibold text-slate-900 dark:text-tbo-text">
+                  Text Analysis Summary
+                </h3>
+                <button
+                  type="button"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-900 shadow-sm transition-colors duration-fast ease-out hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-sky-400 motion-reduce:transition-none dark:border-tbo-border dark:bg-tbo-panel dark:text-tbo-text dark:hover:bg-tbo-panelSoft"
+                  onClick={close}
+                  aria-label="Close statistics"
+                >
+                  <BsXLg className="text-sm opacity-80" aria-hidden="true" />
+                </button>
               </div>
 
-              {outputText && outputText.length > MAX_DETAILED_STATS_CHARS && (
-                <p className="mt-4 text-xs text-slate-500 dark:text-tbo-muted">
-                  Showing a lightweight summary because the output is very large.
-                </p>
-              )}
+              <div className="max-h-[70vh] overflow-auto p-4 dark:bg-tbo-surface">
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                  {statistics.map(({ label, value }) => (
+                    <div
+                      key={label}
+                      className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 dark:border-tbo-border dark:bg-tbo-panel"
+                    >
+                      <div className="text-xs font-medium text-slate-600 dark:text-tbo-muted">
+                        {label}
+                      </div>
+                      <div className="mt-1 font-mono text-sm text-slate-900 dark:text-tbo-text">
+                        {String(value)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {outputText && outputText.length > MAX_DETAILED_STATS_CHARS && (
+                  <p className="mt-4 text-xs text-slate-500 dark:text-tbo-muted">
+                    Showing a lightweight summary because the output is very large.
+                  </p>
+                )}
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </div>
   );
 };

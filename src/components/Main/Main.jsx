@@ -3,18 +3,20 @@
 import React, { useEffect, useMemo, useCallback, useRef } from "react";
 import { siteData } from "../About/AboutData";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
-import ActionButton from "../ActionButton/ActionButton";
 import Statistics from "../Statistics/Statistics";
+import TextStatsOverlay from "../Utils/TextStatsOverlay";
+import TextareaIconControls from "../Utils/TextareaIconControls";
 import {
   BsArrowClockwise,
   BsArrowCounterclockwise,
+  BsClipboard,
+  BsDownload,
   BsUpload,
+  BsXLg,
 } from "react-icons/bs";
 import { useTextareaTransitions } from "../../hooks/useTextareaTransitions";
 import { useUndoRedoReducer } from "../../hooks/useUndoRedoReducer";
 import {
-  getActionButtonGroupIds,
-  getActionButtonToolsByGroup,
   getDropdownToolsByMenu,
   getDropdownMenuNames,
 } from "../../features/tools/registry";
@@ -24,14 +26,20 @@ import {
   createToolState,
   toolStateReducer,
 } from "../../features/tools/state/toolState";
+import { getPrimaryTextStats } from "../../utils/text/getPrimaryTextStats";
 
 const appName = siteData.name;
 const tagLine = siteData.tagLine;
 
 const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
+const SESSION_STORAGE_KEY = "tbo_textareas_v1";
+const AUTOSAVE_DEBOUNCE_MS = 400;
 
 const Main = React.memo((props) => {
   const fileInputRef = useRef(null);
+  const hasHydratedFromStorageRef = useRef(false);
+  const autosaveTimeoutRef = useRef(null);
+  const autosaveWriteErrorRef = useRef(false);
   const { state, dispatch, undo, redo, canUndo, canRedo } = useUndoRedoReducer(
     toolStateReducer,
     undefined,
@@ -106,6 +114,63 @@ const Main = React.memo((props) => {
   }, [dispatch]);
 
   useEffect(() => {
+    if (hasHydratedFromStorageRef.current) return;
+
+    try {
+      const raw = window.sessionStorage.getItem(SESSION_STORAGE_KEY);
+      if (!raw) {
+        hasHydratedFromStorageRef.current = true;
+        return;
+      }
+
+      const parsed = JSON.parse(raw);
+      const nextInputText = String(parsed?.inputText ?? "");
+      const nextOutputText = String(parsed?.outputText ?? "");
+
+      if (nextInputText || nextOutputText) {
+        dispatch({
+          type: TOOL_STATE_ACTIONS.APPLY_PATCH,
+          patch: { inputText: nextInputText, outputText: nextOutputText },
+        });
+      }
+    } catch (_) {
+      // Ignore session storage parse/access issues.
+    } finally {
+      hasHydratedFromStorageRef.current = true;
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!hasHydratedFromStorageRef.current) return;
+
+    if (autosaveTimeoutRef.current) clearTimeout(autosaveTimeoutRef.current);
+    autosaveTimeoutRef.current = setTimeout(() => {
+      autosaveTimeoutRef.current = null;
+
+      try {
+        if (!inputText && !outputText) {
+          window.sessionStorage.removeItem(SESSION_STORAGE_KEY);
+          return;
+        }
+
+        const snapshot = JSON.stringify({
+          inputText,
+          outputText,
+          updatedAt: Date.now(),
+        });
+        window.sessionStorage.setItem(SESSION_STORAGE_KEY, snapshot);
+      } catch (_) {
+        autosaveWriteErrorRef.current = true;
+      }
+    }, AUTOSAVE_DEBOUNCE_MS);
+
+    return () => {
+      if (autosaveTimeoutRef.current) clearTimeout(autosaveTimeoutRef.current);
+      autosaveTimeoutRef.current = null;
+    };
+  }, [inputText, outputText]);
+
+  useEffect(() => {
     const onKeyDown = (event) => {
       const isModifierPressed = event.ctrlKey || event.metaKey;
       if (!isModifierPressed) return;
@@ -136,35 +201,39 @@ const Main = React.memo((props) => {
   }, [canRedo, canUndo, redo, undo]);
 
   const dropdownMenus = useMemo(() => {
-    return getDropdownMenuNames().map((menuName) => {
+    const entries = getDropdownMenuNames().map((menuName) => {
       const items = getDropdownToolsByMenu(menuName).map((tool) => ({
         id: tool.id,
         optionName: tool.optionName ?? tool.name,
         title: tool.title ?? tool.description,
         disabled: Boolean(tool.requiresInput) && inputText.length === 0,
       }));
-      return { menuName, items };
+      return [menuName, items];
     });
+
+    return Object.fromEntries(entries);
   }, [inputText.length]);
 
-  const actionButtonGroups = useMemo(() => {
-    return getActionButtonGroupIds().map((groupId) => {
-      const tools = getActionButtonToolsByGroup(groupId);
-      const buttons = tools.map((tool) => ({
-        action: () => runTool(tool.id),
-        className: tool.ui?.getClassName
-          ? tool.ui.getClassName({ inputText, outputText })
-          : tool.ui?.className,
-        disabled: tool.isDisabled
-          ? tool.isDisabled({ inputText, outputText })
-          : false,
-        title: tool.title ?? tool.description,
-        actionName: tool.actionName ?? tool.name,
-        iconClasses: tool.ui?.iconClasses,
-      }));
-      return { groupId, buttons };
-    });
-  }, [inputText, outputText, runTool]);
+  const inputStats = useMemo(() => getPrimaryTextStats(inputText), [inputText]);
+  const outputStats = useMemo(
+    () => getPrimaryTextStats(outputText),
+    [outputText]
+  );
+
+
+  const copyOutput = useCallback(async () => {
+    if (!outputText.trim()) {
+      showAlert("No output to copy", "warning");
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(outputText);
+      showAlert("Copied!", "success");
+    } catch (err) {
+      showAlert("Failed to copy: " + err, "error");
+    }
+  }, [outputText, showAlert]);
 
   return (
     <div className="space-y-6">
@@ -180,30 +249,24 @@ const Main = React.memo((props) => {
         </p>
       </header>
 
-      {/* Tools dropdown always above the input textarea */}
-      <div className="flex flex-wrap items-center gap-2" aria-label="Tools">
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="text/plain"
-          className="hidden"
-          onChange={uploadTextFile}
-        />
-        <button
-          type="button"
-          className="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm transition-colors duration-fast ease-out hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-sky-400 motion-reduce:transition-none dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
-          onClick={() => fileInputRef.current?.click()}
-          title="Open a .txt file"
-        >
-          <BsUpload className="text-sm opacity-90" aria-hidden="true" />
-          Upload
-        </button>
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="text/plain"
+        className="hidden"
+        onChange={uploadTextFile}
+      />
 
-        {dropdownMenus.map(({ menuName, items }) => (
+      <div className="flex flex-wrap items-center gap-2" aria-label="Tools">
+        {[
+          ["Change Case", dropdownMenus["Change Case"]],
+          ["Edit", dropdownMenus["Edit"]],
+          ["Generate", dropdownMenus["Generate"]],
+        ].map(([menuName, items]) => (
           <DropdownMenu
             key={menuName}
             menu={menuName}
-            items={items}
+            items={items ?? []}
             onSelect={runTool}
           />
         ))}
@@ -211,7 +274,7 @@ const Main = React.memo((props) => {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <section
-          className="overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm dark:border-tbo-border dark:bg-tbo-panel dark:shadow-tbo dark:shadow-tbo-inset"
+          className="group relative rounded-md border border-slate-200 bg-white shadow-sm dark:border-tbo-border dark:bg-tbo-panel dark:shadow-tbo dark:shadow-tbo-inset"
           aria-label="Input panel"
         >
           <label htmlFor="tb-input" className="sr-only">
@@ -219,7 +282,7 @@ const Main = React.memo((props) => {
           </label>
           <textarea
             id="tb-input"
-            className="min-h-64 w-full resize-none bg-transparent px-4 py-3 font-mono text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 dark:text-tbo-text dark:placeholder:text-tbo-muted/70"
+            className="min-h-64 w-full resize-none bg-transparent pb-14 pl-4 pr-24 pt-3 font-mono text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 dark:text-tbo-text dark:placeholder:text-tbo-muted/70"
             style={inputTextAreaStyle}
             onChange={onTextChange}
             value={inputText}
@@ -227,10 +290,55 @@ const Main = React.memo((props) => {
             rows={12}
             required
           />
+          <TextStatsOverlay stats={inputStats} />
+          <TextareaIconControls
+            position="top"
+            alwaysVisible
+            actions={[
+              {
+                key: "upload",
+                label: "Upload .txt",
+                icon: BsUpload,
+                title: "Open a .txt file",
+                onClick: () => fileInputRef.current?.click(),
+              },
+              {
+                key: "paste",
+                label: "Paste",
+                icon: BsClipboard,
+                title: "Paste from clipboard",
+                onClick: () => runTool("pasteToTextarea"),
+              },
+              {
+                key: "undo",
+                label: "Undo",
+                icon: BsArrowCounterclockwise,
+                title: "Undo (Ctrl+Z / Cmd+Z)",
+                disabled: !canUndo,
+                onClick: undo,
+              },
+              {
+                key: "redo",
+                label: "Redo",
+                icon: BsArrowClockwise,
+                title: "Redo (Ctrl+Y / Cmd+Shift+Z)",
+                disabled: !canRedo,
+                onClick: redo,
+              },
+              {
+                key: "clear",
+                label: "Clear",
+                icon: BsXLg,
+                title: "Clear input + output",
+                disabled: inputText.length === 0 && outputText.length === 0,
+                onClick: () => runTool("clearTextarea"),
+              },
+            ]}
+          />
         </section>
 
         <section
-          className="overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm dark:border-tbo-border dark:bg-tbo-panel dark:shadow-tbo dark:shadow-tbo-inset"
+          className="group relative rounded-md border border-slate-200 bg-white shadow-sm dark:border-tbo-border dark:bg-tbo-panel dark:shadow-tbo dark:shadow-tbo-inset"
           aria-label="Output panel"
         >
           <label htmlFor="tb-output" className="sr-only">
@@ -238,53 +346,35 @@ const Main = React.memo((props) => {
           </label>
           <textarea
             id="tb-output"
-            className="min-h-64 w-full resize-none bg-transparent px-4 py-3 font-mono text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 dark:text-tbo-text dark:placeholder:text-tbo-muted/70"
+            className="min-h-64 w-full resize-none bg-transparent pb-14 pl-4 pr-16 pt-3 font-mono text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 dark:text-tbo-text dark:placeholder:text-tbo-muted/70"
             style={outputTextAreaStyle}
             value={outputText}
             placeholder="Nothing to preview!"
             rows={12}
             readOnly
           />
+          <TextStatsOverlay stats={outputStats} />
+          <TextareaIconControls
+            actions={[
+              {
+                key: "copy",
+                label: "Copy output",
+                icon: BsClipboard,
+                title: "Copy output to clipboard",
+                disabled: outputText.length === 0,
+                onClick: copyOutput,
+              },
+              {
+                key: "save",
+                label: "Save output",
+                icon: BsDownload,
+                title: "Save output as .txt",
+                disabled: outputText.length === 0,
+                onClick: () => runTool("downloadTextFile"),
+              },
+            ]}
+          />
         </section>
-      </div>
-
-      {/* Action buttons always below the input textarea */}
-      <div
-        className="flex flex-wrap items-center gap-2"
-        aria-label="Actions"
-      >
-        <div className="flex flex-wrap gap-2">
-          {actionButtonGroups.map(({ groupId, buttons }) => (
-            <div className="flex flex-wrap gap-2" key={groupId}>
-              <ActionButton buttons={buttons} />
-            </div>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-2 md:ml-auto">
-          <button
-            type="button"
-            className="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm transition-colors duration-fast ease-out hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-sky-400 disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-none dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
-            onClick={undo}
-            disabled={!canUndo}
-            title="Undo (Ctrl+Z / Cmd+Z)"
-            aria-label="Undo"
-          >
-            <BsArrowCounterclockwise className="text-sm opacity-90" aria-hidden="true" />
-            Undo
-          </button>
-          <button
-            type="button"
-            className="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm transition-colors duration-fast ease-out hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-sky-400 disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-none dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
-            onClick={redo}
-            disabled={!canRedo}
-            title="Redo (Ctrl+Y / Cmd+Shift+Z)"
-            aria-label="Redo"
-          >
-            <BsArrowClockwise className="text-sm opacity-90" aria-hidden="true" />
-            Redo
-          </button>
-        </div>
       </div>
 
       <div className="relative py-8">
