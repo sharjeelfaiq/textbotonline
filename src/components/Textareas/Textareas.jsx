@@ -145,11 +145,29 @@ const Textareas = React.memo((props) => {
         </p>
       </small>
       <div className="form-floating mb-3">
-        <div className="d-flex justify-content-between">
-          {actionButtonGroups.map(({ groupId, buttons }) => (
-            <div key={groupId}>
-              <ActionButton buttons={buttons} />
-            </div>
+        <div className="d-flex flex-wrap gap-2 mb-2">
+          <Dropdown>
+            <Dropdown.Toggle className={`btn btn-sm top-btns mx-1 btn-${mode}`}>
+              Upload
+            </Dropdown.Toggle>
+            <Dropdown.Menu variant={`${mode}`} className="menuName-opt">
+              <input
+                type="file"
+                accept="text/plain"
+                onChange={uploadTextFile}
+                title="Open the text file"
+                className="menuName-item"
+              />
+            </Dropdown.Menu>
+          </Dropdown>
+          {dropdownMenus.map(({ menuName, items }) => (
+            <DropdownMenu
+              key={menuName}
+              mode={mode}
+              menu={menuName}
+              items={items}
+              onSelect={runTool}
+            />
           ))}
         </div>
         <div className="d-flex align-items-center mt-1 mb-2">
@@ -174,29 +192,11 @@ const Textareas = React.memo((props) => {
             readOnly
           />
         </div>
-        <div className="d-flex">
-          <Dropdown>
-            <Dropdown.Toggle className={`btn btn-sm top-btns mx-1 btn-${mode}`}>
-              Upload
-            </Dropdown.Toggle>
-            <Dropdown.Menu variant={`${mode}`} className="menuName-opt">
-              <input
-                type="file"
-                accept="text/plain"
-                onChange={uploadTextFile}
-                title="Open the text file"
-                className="menuName-item"
-              />
-            </Dropdown.Menu>
-          </Dropdown>
-          {dropdownMenus.map(({ menuName, items }) => (
-            <DropdownMenu
-              key={menuName}
-              mode={mode}
-              menu={menuName}
-              items={items}
-              onSelect={runTool}
-            />
+        <div className="d-flex justify-content-between flex-wrap gap-2">
+          {actionButtonGroups.map(({ groupId, buttons }) => (
+            <div key={groupId}>
+              <ActionButton buttons={buttons} />
+            </div>
           ))}
         </div>
       </div>

@@ -74,20 +74,6 @@ body {
   margin-bottom: var(--tb-space-3);
 }
 
-.tb-toolbar--bottom {
-  margin: var(--tb-space-3) 0 0;
-  padding: var(--tb-space-3) var(--tb-space-4);
-  border-top: 1px solid var(--tb-border);
-  background: var(--tb-surface-2);
-}
-
-.tb-menus--top {
-  margin: 0;
-  padding: var(--tb-space-3) var(--tb-space-4);
-  border-bottom: 1px solid var(--tb-border);
-  background: var(--tb-surface-2);
-}
-
 .tb-toolbarGroup {
   display: inline-flex;
   gap: var(--tb-space-2);
