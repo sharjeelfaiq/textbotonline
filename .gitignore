@@ -3,3 +3,5 @@ build
 dist
 .codegraph
 build_tmp_*
+.next
+out

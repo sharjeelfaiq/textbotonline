@@ -1,8 +1,11 @@
+"use client";
+
 import React, { useReducer, useMemo, useCallback, useRef } from "react";
 import { siteData } from "../About/AboutData";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import ActionButton from "../ActionButton/ActionButton";
 import Statistics from "../Statistics/Statistics";
+import { BsUpload } from "react-icons/bs";
 import { useTextareaTransitions } from "../../hooks/useTextareaTransitions";
 import {
   getActionButtonGroupIds,
@@ -130,13 +133,13 @@ const Main = React.memo((props) => {
   return (
     <div className="space-y-6">
       <header className="space-y-2 text-center">
-        <h1 className="font-display text-3xl font-bold tracking-tight text-slate-900 dark:text-zinc-100 sm:text-4xl">
+        <h1 className="font-display text-4xl font-bold tracking-[0.12em] text-slate-900 dark:text-tbo-text sm:text-5xl">
           <span
             className="font-mono uppercase"
             dangerouslySetInnerHTML={{ __html: appName }}
           />
         </h1>
-        <p className="text-sm text-slate-600 dark:text-zinc-300 sm:text-base">
+        <p className="text-sm text-slate-600 dark:text-tbo-muted sm:text-base">
           {tagLine}
         </p>
       </header>
@@ -152,11 +155,11 @@ const Main = React.memo((props) => {
         />
         <button
           type="button"
-          className="inline-flex items-center gap-2 rounded-md bg-slate-900 px-3 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-slate-800 focus-visible:ring-2 focus-visible:ring-sky-400 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white"
+          className="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-sky-400 dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
           onClick={() => fileInputRef.current?.click()}
           title="Open a .txt file"
         >
-          <i className="bi bi-upload text-base opacity-90" aria-hidden="true" />
+          <BsUpload className="text-sm opacity-90" aria-hidden="true" />
           Upload
         </button>
 
@@ -170,9 +173,9 @@ const Main = React.memo((props) => {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <section
-          className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-950"
+          className="overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm dark:border-tbo-border dark:bg-tbo-panel dark:shadow-tbo dark:shadow-tbo-inset"
           aria-label="Input panel"
         >
           <label htmlFor="tb-input" className="sr-only">
@@ -180,7 +183,7 @@ const Main = React.memo((props) => {
           </label>
           <textarea
             id="tb-input"
-            className="min-h-64 w-full resize-y bg-transparent px-4 py-3 font-mono text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 dark:text-zinc-100 dark:placeholder:text-zinc-500"
+            className="min-h-64 w-full resize-none bg-transparent px-4 py-3 font-mono text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 dark:text-tbo-text dark:placeholder:text-tbo-muted/70"
             style={inputTextAreaStyle}
             onChange={onTextChange}
             value={inputText}
@@ -191,7 +194,7 @@ const Main = React.memo((props) => {
         </section>
 
         <section
-          className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-950"
+          className="overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm dark:border-tbo-border dark:bg-tbo-panel dark:shadow-tbo dark:shadow-tbo-inset"
           aria-label="Output panel"
         >
           <label htmlFor="tb-output" className="sr-only">
@@ -199,7 +202,7 @@ const Main = React.memo((props) => {
           </label>
           <textarea
             id="tb-output"
-            className="min-h-64 w-full resize-y bg-transparent px-4 py-3 font-mono text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 dark:text-zinc-100 dark:placeholder:text-zinc-500"
+            className="min-h-64 w-full resize-none bg-transparent px-4 py-3 font-mono text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 dark:text-tbo-text dark:placeholder:text-tbo-muted/70"
             style={outputTextAreaStyle}
             value={outputText}
             placeholder="Nothing to preview!"
@@ -221,8 +224,11 @@ const Main = React.memo((props) => {
         ))}
       </div>
 
-      <div className="border-t border-slate-200 pt-6 dark:border-zinc-800">
-        <Statistics mode={mode} outputText={outputText} />
+      <div className="relative py-8">
+        <div className="absolute inset-x-0 top-1/2 h-px bg-slate-200 dark:bg-tbo-border/80" />
+        <div className="relative">
+          <Statistics mode={mode} outputText={outputText} />
+        </div>
       </div>
     </div>
   );

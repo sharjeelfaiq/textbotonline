@@ -1,3 +1,4 @@
+import { BsXLg } from "react-icons/bs";
 
 function Alert(props) {
   const capitalizeFirstLetter = (string) => {
@@ -54,7 +55,7 @@ function Alert(props) {
             aria-label="Dismiss notification"
             onClick={props.onDismiss}
           >
-            <i className="bi bi-x-lg text-sm" aria-hidden="true" />
+            <BsXLg className="text-sm" aria-hidden="true" />
           </button>
         </div>
       )}

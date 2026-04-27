@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback, useRef, useState } from "react";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
@@ -29,11 +31,11 @@ const Layout = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-white text-slate-900 dark:bg-zinc-950 dark:text-zinc-100">
+      <div className="min-h-screen bg-white text-slate-900 dark:bg-tbo-bg dark:text-tbo-text dark:[background-image:radial-gradient(1200px_600px_at_50%_-180px,rgba(255,255,255,0.10),transparent_60%)]">
         <Header mode={mode} onToggleTheme={toggleMode} />
         <ScrollToTop />
 
-        <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-10">
+        <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
           <Alert alert={alert} onDismiss={dismissAlert} />
           <Main mode={mode} showAlert={showAlert} />
 

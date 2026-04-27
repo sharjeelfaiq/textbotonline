@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback, useMemo, useRef, useState } from "react";
 
 export function useTextareaTransitions(mode) {
@@ -99,4 +101,3 @@ export function useTextareaTransitions(mode) {
     transitionOutputTextarea,
   };
 }
-

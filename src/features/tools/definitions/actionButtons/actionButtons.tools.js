@@ -1,3 +1,5 @@
+import { BsClipboard, BsDownload, BsXLg } from "react-icons/bs";
+
 function downloadTextFile(text) {
   const blob = new Blob([text], { type: "text/plain" });
   const url = URL.createObjectURL(blob);
@@ -22,8 +24,8 @@ const tools = [
     ui: {
       buttonGroup: 0,
       className:
-        "inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 shadow-sm transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-900",
-      iconClasses: "bi bi-clipboard text-base opacity-80",
+        "inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel",
+      icon: BsClipboard,
     },
     isDisabled: () => false,
     execute: async (_state, runtime) => {
@@ -52,8 +54,8 @@ const tools = [
     ui: {
       buttonGroup: 0,
       className:
-        "inline-flex items-center gap-2 rounded-md bg-rose-600 px-3 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-rose-700 disabled:cursor-not-allowed disabled:opacity-50",
-      iconClasses: "bi bi-x-lg text-base opacity-90",
+        "inline-flex items-center gap-2 rounded-sm bg-tbo-danger px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50",
+      icon: BsXLg,
     },
     isDisabled: ({ inputText }) => inputText.length === 0,
     execute: ({ inputText, outputText }, runtime) => {
@@ -75,11 +77,11 @@ const tools = [
     transitions: { output: true },
     ui: {
       buttonGroup: 1,
-      iconClasses: "bi bi-download text-base opacity-90",
+      icon: BsDownload,
       getClassName: ({ inputText }) =>
         inputText.length === 0
-          ? "inline-flex items-center gap-2 rounded-md bg-slate-200 px-3 py-2 text-sm font-medium text-slate-600 shadow-sm transition disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-800 dark:text-zinc-300"
-          : "inline-flex items-center gap-2 rounded-md bg-sky-600 px-3 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-50",
+          ? "inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-500 shadow-sm transition disabled:cursor-not-allowed disabled:opacity-50 dark:border-tbo-border dark:bg-tbo-panelSoft/60 dark:text-tbo-muted"
+          : "inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel",
     },
     isDisabled: ({ inputText }) => inputText.length === 0,
     execute: ({ inputText }, runtime) => {

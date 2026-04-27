@@ -1,4 +1,7 @@
+"use client";
+
 import { useMemo, useCallback, useState } from "react";
+import { BsBarChartLine, BsXLg } from "react-icons/bs";
 
 const Statistics = ({ mode, outputText }) => {
   const MAX_DETAILED_STATS_CHARS = 200_000;
@@ -316,11 +319,11 @@ const Statistics = ({ mode, outputText }) => {
     <div className="flex justify-center">
       <button
         type="button"
-        className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-sm transition hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-sky-500 dark:hover:bg-sky-400"
+        className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-slate-900 shadow-sm transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-tbo-border dark:bg-tbo-panelSoft dark:text-tbo-text dark:shadow-tbo-inset dark:hover:bg-tbo-panel"
         onClick={() => setOpen(true)}
         disabled={!outputText}
       >
-        <i className="bi bi-bar-chart-line text-base opacity-90" aria-hidden="true" />
+        <BsBarChartLine className="text-sm opacity-90" aria-hidden="true" />
         Key Statistics
       </button>
 
@@ -341,32 +344,32 @@ const Statistics = ({ mode, outputText }) => {
             onClick={() => setOpen(false)}
           />
 
-          <div className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-4xl rounded-t-2xl border border-slate-200 bg-white shadow-2xl dark:border-zinc-800 dark:bg-zinc-950">
-            <div className="flex items-center justify-between gap-3 border-b border-slate-200 px-4 py-3 dark:border-zinc-800">
-              <h3 className="text-sm font-semibold text-slate-900 dark:text-zinc-100">
+          <div className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-4xl rounded-t-2xl border border-slate-200 bg-white shadow-2xl dark:border-tbo-border dark:bg-tbo-surface">
+            <div className="flex items-center justify-between gap-3 border-b border-slate-200 px-4 py-3 dark:border-tbo-border dark:bg-tbo-surface">
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-tbo-text">
                 Text Analysis Summary
               </h3>
               <button
                 type="button"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-900 shadow-sm hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-sky-400 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-900"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-900 shadow-sm hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-sky-400 dark:border-tbo-border dark:bg-tbo-panel dark:text-tbo-text dark:hover:bg-tbo-panelSoft"
                 onClick={() => setOpen(false)}
                 aria-label="Close statistics"
               >
-                <i className="bi bi-x-lg text-sm opacity-80" aria-hidden="true" />
+                <BsXLg className="text-sm opacity-80" aria-hidden="true" />
               </button>
             </div>
 
-            <div className="max-h-[70vh] overflow-auto p-4">
+            <div className="max-h-[70vh] overflow-auto p-4 dark:bg-tbo-surface">
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                 {statistics.map(({ label, value }) => (
                   <div
                     key={label}
-                    className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 dark:border-zinc-800 dark:bg-zinc-900/40"
+                    className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 dark:border-tbo-border dark:bg-tbo-panel"
                   >
-                    <div className="text-xs font-medium text-slate-600 dark:text-zinc-300">
+                    <div className="text-xs font-medium text-slate-600 dark:text-tbo-muted">
                       {label}
                     </div>
-                    <div className="mt-1 font-mono text-sm text-slate-900 dark:text-zinc-100">
+                    <div className="mt-1 font-mono text-sm text-slate-900 dark:text-tbo-text">
                       {String(value)}
                     </div>
                   </div>
@@ -374,7 +377,7 @@ const Statistics = ({ mode, outputText }) => {
               </div>
 
               {outputText && outputText.length > MAX_DETAILED_STATS_CHARS && (
-                <p className="mt-4 text-xs text-slate-500 dark:text-zinc-400">
+                <p className="mt-4 text-xs text-slate-500 dark:text-tbo-muted">
                   Showing a lightweight summary because the output is very large.
                 </p>
               )}

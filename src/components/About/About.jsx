@@ -1,6 +1,7 @@
 import { siteData, metrics } from "./AboutData";
 import AccordionItems from "./AccordionItem";
 import { getDropdownMenuNames } from "../../features/tools/registry";
+import { BsChevronRight } from "react-icons/bs";
 
 const description = siteData.description;
 
@@ -21,12 +22,12 @@ function About({ mode }) {
 
   return (
     <>
-      <h2 className="text-center font-mono text-2xl font-semibold uppercase tracking-wide text-slate-900 dark:text-zinc-100">
+      <h2 className="text-center font-mono text-2xl font-semibold uppercase tracking-[0.18em] text-slate-900 dark:text-tbo-text">
         About
       </h2>
 
       <div
-        className="mx-auto mt-4 max-w-4xl space-y-4 text-sm leading-7 text-slate-700 dark:text-zinc-300"
+        className="mx-auto mt-4 max-w-4xl space-y-4 text-sm leading-7 text-slate-700 dark:text-tbo-muted"
         dangerouslySetInnerHTML={{ __html: description }}
       />
 
@@ -35,19 +36,19 @@ function About({ mode }) {
           <details
             key={item.title}
             open={index === 0}
-            className="rounded-lg border border-slate-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-950"
+            className="group rounded-md border border-slate-200 bg-white shadow-sm dark:border-tbo-border dark:bg-tbo-panel dark:shadow-tbo-inset"
           >
             <summary
-              className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-left text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:text-zinc-100 dark:hover:bg-zinc-900"
+              className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-left text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:text-tbo-text dark:hover:bg-tbo-panelSoft"
               title="Click to see all available options"
             >
               <span>{item.title}</span>
-              <i
-                className="bi bi-chevron-down text-xs opacity-70"
+              <BsChevronRight
+                className="text-xs opacity-70 transition-transform group-open:rotate-90"
                 aria-hidden="true"
               />
             </summary>
-            <div className="px-4 pb-4 pt-1 text-sm text-slate-700 dark:text-zinc-300">
+            <div className="px-5 pb-5 pt-1 text-sm text-slate-700 dark:text-tbo-muted">
               {item.metrics ? (
                 <ul className="list-disc space-y-1 pl-5">
                   {metrics.map((metric) => (

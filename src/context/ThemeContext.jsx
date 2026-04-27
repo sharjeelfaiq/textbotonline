@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { createContext, useCallback, useEffect, useState } from "react";
 
@@ -5,21 +7,25 @@ const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [mode, setMode] = useState(
-    () => localStorage.getItem("mode") || "light"
+    () => {
+      if (typeof window === "undefined") return "dark";
+      return localStorage.getItem("mode") || "dark";
+    }
   );
 
   const toggleMode = useCallback(() => {
     const newMode = mode === "light" ? "dark" : "light";
     setMode(newMode);
-    localStorage.setItem("mode", newMode);
-    document.body.style.backgroundColor =
-      newMode === "dark" ? "#18191A" : "white";
-    document.documentElement.dataset.theme = newMode;
+    if (typeof window !== "undefined") {
+      localStorage.setItem("mode", newMode);
+      document.documentElement.dataset.theme = newMode;
+    }
   }, [mode]);
 
   useEffect(() => {
-    document.body.style.backgroundColor = mode === "dark" ? "#18191A" : "white";
-    document.documentElement.dataset.theme = mode;
+    if (typeof window !== "undefined") {
+      document.documentElement.dataset.theme = mode;
+    }
   }, [mode]);
 
   return (

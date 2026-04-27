@@ -50,11 +50,17 @@ function compareTools(a, b) {
   return orderA - orderB;
 }
 
-const toolsModules = import.meta.glob("./definitions/**/*.tools.js", {
-  eager: true,
-});
+import actionButtonTools from "./definitions/actionButtons/actionButtons.tools";
+import changeCaseTools from "./definitions/dropdown/changeCase.tools";
+import editTools from "./definitions/dropdown/edit.tools";
+import generateTools from "./definitions/dropdown/generate.tools";
 
-const allTools = Object.values(toolsModules)
+const allTools = [
+  actionButtonTools,
+  changeCaseTools,
+  editTools,
+  generateTools,
+]
   .flatMap((mod) => normalizeModuleTools(mod))
   .map(normalizeTool)
   .filter(Boolean);
