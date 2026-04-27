@@ -21,8 +21,9 @@ const tools = [
     transitions: { input: true },
     ui: {
       buttonGroup: 0,
-      className: "btn btn-secondary mx-1 btn-sm bottom-btns rounded",
-      iconClasses: "bi bi-clipboard bottom-btns-icons",
+      className:
+        "inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 shadow-sm transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-900",
+      iconClasses: "bi bi-clipboard text-base opacity-80",
     },
     isDisabled: () => false,
     execute: async (_state, runtime) => {
@@ -50,8 +51,9 @@ const tools = [
     transitions: { input: true, output: true },
     ui: {
       buttonGroup: 0,
-      className: "btn btn-danger mx-1 btn-sm bottom-btns rounded",
-      iconClasses: "bi bi-x-lg bottom-btns-icons",
+      className:
+        "inline-flex items-center gap-2 rounded-md bg-rose-600 px-3 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-rose-700 disabled:cursor-not-allowed disabled:opacity-50",
+      iconClasses: "bi bi-x-lg text-base opacity-90",
     },
     isDisabled: ({ inputText }) => inputText.length === 0,
     execute: ({ inputText, outputText }, runtime) => {
@@ -73,9 +75,11 @@ const tools = [
     transitions: { output: true },
     ui: {
       buttonGroup: 1,
-      iconClasses: "bi bi-download bottom-btns-icons",
+      iconClasses: "bi bi-download text-base opacity-90",
       getClassName: ({ inputText }) =>
-        `btn btn-${inputText.length === 0 ? "secondary" : "primary"} mx-1 btn-sm bottom-btns rounded`,
+        inputText.length === 0
+          ? "inline-flex items-center gap-2 rounded-md bg-slate-200 px-3 py-2 text-sm font-medium text-slate-600 shadow-sm transition disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-800 dark:text-zinc-300"
+          : "inline-flex items-center gap-2 rounded-md bg-sky-600 px-3 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-50",
     },
     isDisabled: ({ inputText }) => inputText.length === 0,
     execute: ({ inputText }, runtime) => {

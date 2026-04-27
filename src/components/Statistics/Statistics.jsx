@@ -1,12 +1,7 @@
-import { useMemo, useCallback } from "react";
+import { useMemo, useCallback, useState } from "react";
 
 const Statistics = ({ mode, outputText }) => {
   const MAX_DETAILED_STATS_CHARS = 200_000;
-
-  const isDarkMode = mode === "dark";
-  const themeColor = isDarkMode ? "light" : "dark";
-  const bgColor = isDarkMode ? "#212529" : "#F8F9FA";
-  const textColor = isDarkMode ? "white" : "black";
 
   const calculateReadabilityScore = useCallback(
     (sentences, words, syllables) => {
@@ -315,116 +310,78 @@ const Statistics = ({ mode, outputText }) => {
     countParagraphsFast,
   ]);
 
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="d-flex justify-content-center">
+    <div className="flex justify-center">
       <button
-        className={`btn mx-1 btn-lg text-uppercase shadow`}
         type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasBottom"
-        aria-controls="offcanvasBottom"
-        style={{
-          borderRadius: "50px",
-          fontWeight: "600",
-          padding: "12px 30px",
-          backgroundColor: isDarkMode ? "#343a40" : "#007bff",
-          color: "#ffffff",
-          border: "none",
-          transition: "background-color 0.3s, transform 0.2s, box-shadow 0.2s",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = isDarkMode
-            ? "#495057"
-            : "#0056b3";
-          e.currentTarget.style.transform = "scale(1.05)";
-          e.currentTarget.style.boxShadow = "0 4px 10px rgba(0, 0, 0, 0.2)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = isDarkMode
-            ? "#343a40"
-            : "#007bff";
-          e.currentTarget.style.transform = "scale(1)";
-          e.currentTarget.style.boxShadow = "none";
-        }}
+        className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-sm transition hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-sky-500 dark:hover:bg-sky-400"
+        onClick={() => setOpen(true)}
         disabled={!outputText}
       >
+        <i className="bi bi-bar-chart-line text-base opacity-90" aria-hidden="true" />
         Key Statistics
       </button>
 
-      <div
-        className="offcanvas offcanvas-bottom statistics-section"
-        tabIndex="-1"
-        id="offcanvasBottom"
-        aria-labelledby="offcanvasBottomLabel"
-        style={{
-          backgroundColor: bgColor,
-          color: textColor,
-          height: "70vh",
-          borderTopLeftRadius: "25px",
-          borderTopRightRadius: "25px",
-          boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)",
-          padding: "20px",
-        }}
-      >
+      {open && (
         <div
-          className="offcanvas-header"
-          style={{ borderBottom: `1px solid ${textColor}` }}
+          className="fixed inset-0 z-40"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Text analysis summary"
+          onKeyDown={(e) => {
+            if (e.key === "Escape") setOpen(false);
+          }}
         >
-          <h5 className="offcanvas-title" id="offcanvasBottomLabel">
-            Text Analysis Summary
-          </h5>
           <button
             type="button"
-            className={`btn-close btn-close-${themeColor}`}
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div
-          className="offcanvas-body"
-          style={{ overflowY: "auto", padding: "10px 0" }}
-        >
-          <div className="table-responsive">
-            <table
-              className={`table table-hover table-sm statistics-text table-${mode}`}
-              style={{ textAlign: "left" }}
-            >
-              <thead>
-                <tr>
-                  <th
-                    scope="col"
-                    style={{
-                      backgroundColor: isDarkMode ? "#343a40" : "#f8f9fa",
-                      color: isDarkMode ? "white" : "black",
-                      borderBottom: `1px solid ${textColor}`,
-                    }}
+            className="absolute inset-0 h-full w-full cursor-default bg-black/40"
+            aria-label="Close statistics"
+            onClick={() => setOpen(false)}
+          />
+
+          <div className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-4xl rounded-t-2xl border border-slate-200 bg-white shadow-2xl dark:border-zinc-800 dark:bg-zinc-950">
+            <div className="flex items-center justify-between gap-3 border-b border-slate-200 px-4 py-3 dark:border-zinc-800">
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-zinc-100">
+                Text Analysis Summary
+              </h3>
+              <button
+                type="button"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-900 shadow-sm hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-sky-400 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-900"
+                onClick={() => setOpen(false)}
+                aria-label="Close statistics"
+              >
+                <i className="bi bi-x-lg text-sm opacity-80" aria-hidden="true" />
+              </button>
+            </div>
+
+            <div className="max-h-[70vh] overflow-auto p-4">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                {statistics.map(({ label, value }) => (
+                  <div
+                    key={label}
+                    className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 dark:border-zinc-800 dark:bg-zinc-900/40"
                   >
-                    Metric
-                  </th>
-                  <th
-                    scope="col"
-                    style={{
-                      backgroundColor: isDarkMode ? "#343a40" : "#f8f9fa",
-                      color: isDarkMode ? "white" : "black",
-                      borderBottom: `1px solid ${textColor}`,
-                    }}
-                  >
-                    Value
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {statistics.map(({ label, value }, index) => (
-                  <tr key={index}>
-                    <td>{label}</td>
-                    <td>{value}</td>
-                  </tr>
+                    <div className="text-xs font-medium text-slate-600 dark:text-zinc-300">
+                      {label}
+                    </div>
+                    <div className="mt-1 font-mono text-sm text-slate-900 dark:text-zinc-100">
+                      {String(value)}
+                    </div>
+                  </div>
                 ))}
-              </tbody>
-            </table>
+              </div>
+
+              {outputText && outputText.length > MAX_DETAILED_STATS_CHARS && (
+                <p className="mt-4 text-xs text-slate-500 dark:text-zinc-400">
+                  Showing a lightweight summary because the output is very large.
+                </p>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

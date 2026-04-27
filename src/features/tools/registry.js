@@ -1,5 +1,3 @@
-const toolsContext = require.context("./definitions", true, /\.tools\.js$/);
-
 function normalizeModuleTools(mod) {
   const candidate =
     mod?.default ?? mod?.tools ?? mod?.tool ?? mod?.Tool ?? mod ?? [];
@@ -52,9 +50,12 @@ function compareTools(a, b) {
   return orderA - orderB;
 }
 
-const allTools = toolsContext
-  .keys()
-  .flatMap((key) => normalizeModuleTools(toolsContext(key)))
+const toolsModules = import.meta.glob("./definitions/**/*.tools.js", {
+  eager: true,
+});
+
+const allTools = Object.values(toolsModules)
+  .flatMap((mod) => normalizeModuleTools(mod))
   .map(normalizeTool)
   .filter(Boolean);
 

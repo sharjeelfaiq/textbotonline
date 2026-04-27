@@ -1,4 +1,3 @@
-// Layout.js
 import { useCallback, useRef, useState } from "react";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
@@ -30,25 +29,19 @@ const Layout = () => {
 
   return (
     <>
-      <div className="form-check form-switch">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          id="flexSwitchCheckDefault"
-          onChange={toggleMode}
-          checked={mode === "dark"}
-        />
-      </div>
-      <Header mode={mode} />
-      <ScrollToTop />
-      <Alert alert={alert} onDismiss={dismissAlert} />
-      <div className="container-lg">
-        <Main mode={mode} showAlert={showAlert} />
-        <div className="my-5">
-          <About mode={mode} showAlert={showAlert} />
+      <div className="min-h-screen bg-white text-slate-900 dark:bg-zinc-950 dark:text-zinc-100">
+        <Header mode={mode} onToggleTheme={toggleMode} />
+        <ScrollToTop />
+
+        <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-10">
+          <Alert alert={alert} onDismiss={dismissAlert} />
+          <Main mode={mode} showAlert={showAlert} />
+
+          <div className="mt-10">
+            <About mode={mode} showAlert={showAlert} />
+          </div>
         </div>
-      </div>
-      <div className="pt-3">
+
         <Footer mode={mode} />
       </div>
     </>

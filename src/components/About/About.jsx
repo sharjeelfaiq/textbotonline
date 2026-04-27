@@ -1,4 +1,3 @@
-
 import { siteData, metrics } from "./AboutData";
 import AccordionItems from "./AccordionItem";
 import { getDropdownMenuNames } from "../../features/tools/registry";
@@ -6,10 +5,6 @@ import { getDropdownMenuNames } from "../../features/tools/registry";
 const description = siteData.description;
 
 function About({ mode }) {
-  const isDarkMode = mode === "dark";
-  const backgroundColor = isDarkMode ? "#242526" : "white";
-  const textColor = isDarkMode ? "white" : "black";
-
   const menuTitles = {
     Edit: "Edit Your Text",
     "Change Case": "Change The Case Of Your Text",
@@ -26,72 +21,45 @@ function About({ mode }) {
 
   return (
     <>
-      <h1 className={`text-center mb-4 text-${isDarkMode ? "light" : "dark"}`}>
-        <span className="text-uppercase font-monospace">about</span>
-      </h1>
-      <p
-        className={`lh-lg text-justify text-${isDarkMode ? "light" : "dark"}`}
+      <h2 className="text-center font-mono text-2xl font-semibold uppercase tracking-wide text-slate-900 dark:text-zinc-100">
+        About
+      </h2>
+
+      <div
+        className="mx-auto mt-4 max-w-4xl space-y-4 text-sm leading-7 text-slate-700 dark:text-zinc-300"
         dangerouslySetInnerHTML={{ __html: description }}
       />
-      <div
-        className="accordion my-4"
-        id="accordionPanelsStayOpenExample"
-        style={{ backgroundColor, color: textColor }}
-      >
-        {accordionItems.map((item, index) => {
-          const isExpanded = index === 0;
-          const collapseId = `panelsStayOpen-collapse${index + 1}`;
-          const headingId = `panelsStayOpen-heading${index + 1}`;
 
-          return (
-            <div
-              className="accordion-item"
-              key={index}
-              style={{ backgroundColor, color: textColor }}
+      <div className="mt-6 space-y-2">
+        {accordionItems.map((item, index) => (
+          <details
+            key={item.title}
+            open={index === 0}
+            className="rounded-lg border border-slate-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-950"
+          >
+            <summary
+              className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-left text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:text-zinc-100 dark:hover:bg-zinc-900"
+              title="Click to see all available options"
             >
-              <h2 className="accordion-header" id={headingId}>
-                <button
-                  className={`accordion-button ${
-                    !isExpanded ? "collapsed" : ""
-                  }`}
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target={`#${collapseId}`}
-                  aria-expanded={isExpanded}
-                  aria-controls={collapseId}
-                  style={{ backgroundColor, color: textColor }}
-                  title="Click to see all available options"
-                >
-                  <strong>{item.title}</strong>
-                </button>
-              </h2>
-              <div
-                id={collapseId}
-                className={`accordion-collapse collapse ${
-                  isExpanded ? "show" : ""
-                }`}
-                aria-labelledby={headingId}
-              >
-                <div className="accordion-body">
-                  {item.metrics ? (
-                    <ul style={{ listStyleType: "none" }} className="lh-lg">
-                      {metrics.map((metric, metricIndex) => (
-                        <li
-                          key={metricIndex}
-                          style={{ width: "80%", borderRadius: "5px" }}
-                        >
-                          <small>{metric.description}</small>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <AccordionItems menu={item.menu} />
-                  )}
-                </div>
-              </div>
+              <span>{item.title}</span>
+              <i
+                className="bi bi-chevron-down text-xs opacity-70"
+                aria-hidden="true"
+              />
+            </summary>
+            <div className="px-4 pb-4 pt-1 text-sm text-slate-700 dark:text-zinc-300">
+              {item.metrics ? (
+                <ul className="list-disc space-y-1 pl-5">
+                  {metrics.map((metric) => (
+                    <li key={metric.label}>{metric.description}</li>
+                  ))}
+                </ul>
+              ) : (
+                <AccordionItems menu={item.menu} />
+              )}
             </div>
-          );
-        })}
+          </details>
+        ))}
       </div>
     </>
   );

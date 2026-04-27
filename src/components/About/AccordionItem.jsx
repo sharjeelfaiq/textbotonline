@@ -1,17 +1,14 @@
-
 import { getDropdownToolsByMenu } from "../../features/tools/registry";
 
 const AccordionItems = ({ menu }) => {
   const filteredItems = getDropdownToolsByMenu(menu);
 
   return (
-    <ul style={{ listStyleType: "none" }} className="lh-lg">
-      {filteredItems.map((item, index) => (
-        <li key={index} style={{ width: "80%", borderRadius: "5px" }}>
-          <small>
-            <strong>{item.optionName} - </strong>
-            {item.optionDescription}
-          </small>
+    <ul className="list-disc space-y-1 pl-5">
+      {filteredItems.map((item) => (
+        <li key={item.id}>
+          <span className="font-semibold">{item.optionName}</span>
+          <span className="opacity-80"> — {item.optionDescription}</span>
         </li>
       ))}
     </ul>

@@ -4,13 +4,10 @@ import { FaAngleUp } from "react-icons/fa";
 const ScrollToTop = () => {
   const [showTopBtn, setShowTopBtn] = useState(false);
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 400) {
-        setShowTopBtn(true);
-      } else {
-        setShowTopBtn(false);
-      }
-    });
+    const onScroll = () => setShowTopBtn(window.scrollY > 400);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
   const goToTop = () => {
     window.scrollTo({
@@ -19,11 +16,18 @@ const ScrollToTop = () => {
     });
   };
   return (
-    <div className="top-to-btm">
-      {" "}
+    <div aria-hidden={!showTopBtn}>
       {showTopBtn && (
-        <FaAngleUp className="icon-position icon-style" onClick={goToTop} />
-      )}{" "}
+        <button
+          type="button"
+          onClick={goToTop}
+          className="fixed bottom-6 right-6 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full bg-sky-600 text-white shadow-lg transition hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-400 dark:bg-sky-500 dark:hover:bg-sky-400"
+          aria-label="Scroll to top"
+          title="Scroll to top"
+        >
+          <FaAngleUp className="text-lg" aria-hidden="true" />
+        </button>
+      )}
     </div>
   );
 };

@@ -6,15 +6,18 @@ const ActionButton = ({ buttons }) => {
       {buttons.map((btnProp) => (
         <motion.button
           whileTap={{
-            scale: 0.5,
+            scale: 0.98,
           }}
           onClick={btnProp.action}
           className={btnProp.className}
           disabled={btnProp.disabled}
           title={btnProp.title}
-          key={btnProp.title}
+          key={btnProp.title ?? btnProp.actionName}
         >
-          {btnProp.actionName} <i className={`${btnProp.iconClasses}`}></i>
+          <span>{btnProp.actionName}</span>
+          {btnProp.iconClasses ? (
+            <i className={btnProp.iconClasses} aria-hidden="true" />
+          ) : null}
         </motion.button>
       ))}
     </>

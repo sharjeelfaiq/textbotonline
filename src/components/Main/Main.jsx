@@ -1,11 +1,8 @@
-import React from "react";
-import { useReducer, useMemo, useCallback } from "react";
-import { Dropdown } from "react-bootstrap";
+import React, { useReducer, useMemo, useCallback, useRef } from "react";
 import { siteData } from "../About/AboutData";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import ActionButton from "../ActionButton/ActionButton";
 import Statistics from "../Statistics/Statistics";
-import "bootstrap-icons/font/bootstrap-icons.css";
 import { useTextareaTransitions } from "../../hooks/useTextareaTransitions";
 import {
   getActionButtonGroupIds,
@@ -26,6 +23,7 @@ const tagLine = siteData.tagLine;
 const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
 
 const Main = React.memo((props) => {
+  const fileInputRef = useRef(null);
   const [state, dispatch] = useReducer(
     toolStateReducer,
     undefined,
@@ -68,7 +66,7 @@ const Main = React.memo((props) => {
   );
 
   const uploadTextFile = useCallback(() => {
-    const fileInput = document.getElementById("tb-upload");
+    const fileInput = fileInputRef.current;
     if (fileInput?.files.length > 0) {
       const file = fileInput.files[0];
       if (file.size > MAX_UPLOAD_BYTES) {
@@ -130,47 +128,41 @@ const Main = React.memo((props) => {
   }, [inputText, outputText, runTool]);
 
   return (
-    <>
-      <header>
-        <h1
-          className={`text-center tb-title text-${
-            mode === "light" ? "dark" : "light"
-          }`}
-        >
+    <div className="space-y-6">
+      <header className="space-y-2 text-center">
+        <h1 className="font-display text-3xl font-bold tracking-tight text-slate-900 dark:text-zinc-100 sm:text-4xl">
           <span
-            className="text-uppercase font-monospace"
+            className="font-mono uppercase"
             dangerouslySetInnerHTML={{ __html: appName }}
           />
         </h1>
-        <p
-          className={`text-center tb-tagline text-${
-            mode === "light" ? "dark" : "light"
-          }`}
-        >
+        <p className="text-sm text-slate-600 dark:text-zinc-300 sm:text-base">
           {tagLine}
         </p>
       </header>
 
-      <div className="tb-menus" aria-label="Tools">
-        <Dropdown>
-          <Dropdown.Toggle className={`btn btn-sm top-btns btn-${mode}`}>
-            Upload
-          </Dropdown.Toggle>
-          <Dropdown.Menu variant={`${mode}`} className="menuName-opt">
-            <input
-              id="tb-upload"
-              type="file"
-              accept="text/plain"
-              onChange={uploadTextFile}
-              title="Open the text file"
-              className="menuName-item"
-            />
-          </Dropdown.Menu>
-        </Dropdown>
+      {/* Tools dropdown always above the input textarea */}
+      <div className="flex flex-wrap items-center gap-2" aria-label="Tools">
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="text/plain"
+          className="hidden"
+          onChange={uploadTextFile}
+        />
+        <button
+          type="button"
+          className="inline-flex items-center gap-2 rounded-md bg-slate-900 px-3 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-slate-800 focus-visible:ring-2 focus-visible:ring-sky-400 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white"
+          onClick={() => fileInputRef.current?.click()}
+          title="Open a .txt file"
+        >
+          <i className="bi bi-upload text-base opacity-90" aria-hidden="true" />
+          Upload
+        </button>
+
         {dropdownMenus.map(({ menuName, items }) => (
           <DropdownMenu
             key={menuName}
-            mode={mode}
             menu={menuName}
             items={items}
             onSelect={runTool}
@@ -178,11 +170,17 @@ const Main = React.memo((props) => {
         ))}
       </div>
 
-      <div className="tb-panels">
-        <section className="tb-panel" aria-label="Input panel">
+      <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
+        <section
+          className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-950"
+          aria-label="Input panel"
+        >
+          <label htmlFor="tb-input" className="sr-only">
+            Input text
+          </label>
           <textarea
-            className="form-control tb-textarea"
             id="tb-input"
+            className="min-h-64 w-full resize-y bg-transparent px-4 py-3 font-mono text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 dark:text-zinc-100 dark:placeholder:text-zinc-500"
             style={inputTextAreaStyle}
             onChange={onTextChange}
             value={inputText}
@@ -192,10 +190,16 @@ const Main = React.memo((props) => {
           />
         </section>
 
-        <section className="tb-panel" aria-label="Output panel">
+        <section
+          className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-950"
+          aria-label="Output panel"
+        >
+          <label htmlFor="tb-output" className="sr-only">
+            Output text
+          </label>
           <textarea
-            className="form-control tb-textarea"
             id="tb-output"
+            className="min-h-64 w-full resize-y bg-transparent px-4 py-3 font-mono text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 dark:text-zinc-100 dark:placeholder:text-zinc-500"
             style={outputTextAreaStyle}
             value={outputText}
             placeholder="Nothing to preview!"
@@ -205,18 +209,22 @@ const Main = React.memo((props) => {
         </section>
       </div>
 
-      <div className="tb-toolbar" aria-label="Actions">
+      {/* Action buttons always below the input textarea */}
+      <div
+        className="flex flex-wrap items-center justify-between gap-2"
+        aria-label="Actions"
+      >
         {actionButtonGroups.map(({ groupId, buttons }) => (
-          <div className="tb-toolbarGroup" key={groupId}>
+          <div className="flex flex-wrap gap-2" key={groupId}>
             <ActionButton buttons={buttons} />
           </div>
         ))}
       </div>
 
-      <hr className={`text-${mode === "dark" ? "light" : "dark"}`} />
-      <Statistics mode={mode} outputText={outputText} />
-      <hr className={`text-${mode === "dark" ? "light" : "dark"}`} />
-    </>
+      <div className="border-t border-slate-200 pt-6 dark:border-zinc-800">
+        <Statistics mode={mode} outputText={outputText} />
+      </div>
+    </div>
   );
 });
 
