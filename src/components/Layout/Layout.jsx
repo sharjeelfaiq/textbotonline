@@ -1,5 +1,5 @@
 // Layout.js
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
@@ -11,15 +11,22 @@ import { useTheme } from "../../context/ThemeContext"; // Adjust the import path
 const Layout = () => {
   const { mode, toggleMode } = useTheme();
   const [alert, setAlert] = useState(null);
+  const dismissTimeoutRef = useRef(null);
 
-  const showAlert = useCallback((message, type) => {
-    setAlert({ msg: message, type });
-    setTimeout(() => setAlert(null), 500);
+  const dismissAlert = useCallback(() => {
+    if (dismissTimeoutRef.current) clearTimeout(dismissTimeoutRef.current);
+    dismissTimeoutRef.current = null;
+    setAlert(null);
   }, []);
 
-  useEffect(() => {
-    document.body.style.backgroundColor = mode === "dark" ? "#18191A" : "white";
-  }, [mode]);
+  const showAlert = useCallback((message, type) => {
+    if (dismissTimeoutRef.current) clearTimeout(dismissTimeoutRef.current);
+    setAlert({ msg: message, type });
+    dismissTimeoutRef.current = setTimeout(() => {
+      dismissTimeoutRef.current = null;
+      setAlert(null);
+    }, 1500);
+  }, []);
 
   return (
     <>
@@ -34,7 +41,7 @@ const Layout = () => {
       </div>
       <Header mode={mode} />
       <ScrollToTop />
-      <Alert alert={alert} />
+      <Alert alert={alert} onDismiss={dismissAlert} />
       <div className="container-lg">
         <Main mode={mode} showAlert={showAlert} />
         <div className="my-5">

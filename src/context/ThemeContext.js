@@ -14,10 +14,12 @@ export const ThemeProvider = ({ children }) => {
     localStorage.setItem("mode", newMode);
     document.body.style.backgroundColor =
       newMode === "dark" ? "#18191A" : "white";
+    document.documentElement.dataset.theme = newMode;
   }, [mode]);
 
   useEffect(() => {
     document.body.style.backgroundColor = mode === "dark" ? "#18191A" : "white";
+    document.documentElement.dataset.theme = mode;
   }, [mode]);
 
   return (

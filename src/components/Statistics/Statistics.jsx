@@ -1,6 +1,8 @@
 import { useMemo, useCallback } from "react";
 
 const Statistics = ({ mode, outputText }) => {
+  const MAX_DETAILED_STATS_CHARS = 200_000;
+
   const isDarkMode = mode === "dark";
   const themeColor = isDarkMode ? "light" : "dark";
   const bgColor = isDarkMode ? "#212529" : "#F8F9FA";
@@ -56,36 +58,149 @@ const Statistics = ({ mode, outputText }) => {
     return words.filter((word) => stopWords.has(word.toLowerCase())).length;
   }, []);
 
-  const statistics = useMemo(() => {
-    const words = outputText.trim().split(/\s+/).filter(Boolean);
-    const sentences = outputText
-      .trim()
-      .split(/[.!?]+/)
-      .filter(Boolean);
-    const paragraphs = outputText.split(/\r\n|\r|\n/).filter(Boolean);
-    const characters = outputText.length;
+  const countWordsFast = useCallback((text) => {
+    let count = 0;
+    let inWord = false;
+    for (let i = 0; i < text.length; i++) {
+      const code = text.charCodeAt(i);
+      const isWhitespace =
+        code === 9 ||
+        code === 10 ||
+        code === 13 ||
+        code === 32 ||
+        code === 11 ||
+        code === 12;
+      if (isWhitespace) {
+        inWord = false;
+      } else if (!inWord) {
+        inWord = true;
+        count++;
+      }
+    }
+    return count;
+  }, []);
 
-    const uniqueWords = new Set(words);
-    const syllables = words.reduce(
-      (sum, word) => sum + countSyllables(word),
-      0
-    );
-    const longestWord = words.reduce(
-      (longest, word) => (word.length > longest.length ? word : longest),
-      ""
-    );
-    const shortestWord = words.reduce(
-      (shortest, word) =>
-        word.length < shortest.length && word.length > 1 ? word : shortest,
-      words[0]
-    );
+  const countSentencesFast = useCallback((text) => {
+    let count = 0;
+    let prevWasTerminator = false;
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      const isTerminator = ch === "." || ch === "!" || ch === "?";
+      if (isTerminator && !prevWasTerminator) count++;
+      prevWasTerminator = isTerminator;
+    }
+    return count;
+  }, []);
+
+  const countParagraphsFast = useCallback((text) => {
+    let paragraphs = 0;
+    let betweenParagraphs = true;
+    let lineHasNonWhitespace = false;
+
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      if (ch === "\r") continue;
+
+      if (ch === "\n") {
+        if (!lineHasNonWhitespace) betweenParagraphs = true;
+        lineHasNonWhitespace = false;
+        continue;
+      }
+
+      if (ch.trim() !== "") {
+        if (betweenParagraphs) paragraphs++;
+        betweenParagraphs = false;
+        lineHasNonWhitespace = true;
+      }
+    }
+
+    if (!text.trim()) return 0;
+    return paragraphs;
+  }, []);
+
+  const statistics = useMemo(() => {
+    const text = String(outputText ?? "");
+    const trimmed = text.trim();
+
+    if (!trimmed) {
+      return [
+        { label: "Reading time (Slow)", value: "N/A" },
+        { label: "Reading time (Average)", value: "N/A" },
+        { label: "Reading time (Fast)", value: "N/A" },
+        { label: "Paragraphs", value: "N/A" },
+        { label: "Sentences", value: "N/A" },
+        { label: "Words", value: "N/A" },
+        { label: "Characters", value: 0 },
+        { label: "Unique Words", value: "N/A" },
+        { label: "Longest Word", value: "N/A" },
+        { label: "Shortest Word", value: "N/A" },
+        { label: "Average Word Length", value: "N/A" },
+        { label: "Complex Words", value: "N/A" },
+        { label: "Lexical Density", value: "N/A" },
+        { label: "Passive Voice Sentences", value: "N/A" },
+        { label: "Longest Sentence", value: "N/A" },
+        { label: "Shortest Sentence", value: "N/A" },
+        { label: "Complex Sentences (20+ words)", value: "N/A" },
+        { label: "Hapax Legomena", value: "N/A" },
+        { label: "Average Sentence Length", value: "N/A" },
+        { label: "Unique Word Ratio", value: "N/A" },
+        { label: "Flesch-Kincaid Grade Level", value: "N/A" },
+        { label: "Readability", value: "N/A" },
+      ];
+    }
+
+    const characters = text.length;
+
+    if (text.length > MAX_DETAILED_STATS_CHARS) {
+      const wordsCount = countWordsFast(text);
+      const sentencesCount = countSentencesFast(text);
+      const paragraphsCount = countParagraphsFast(text);
+      return [
+        {
+          label: "Note",
+          value: `Text is large; showing basic statistics only (>${MAX_DETAILED_STATS_CHARS.toLocaleString()} chars).`,
+        },
+        { label: "Paragraphs", value: paragraphsCount || "N/A" },
+        { label: "Sentences", value: sentencesCount || "N/A" },
+        { label: "Words", value: wordsCount || "N/A" },
+        { label: "Characters", value: characters || "N/A" },
+      ];
+    }
+
+    const words = trimmed.split(/\s+/).filter(Boolean);
+    const sentences = trimmed.split(/[.!?]+/).filter(Boolean);
+    const paragraphs = text.split(/\r\n|\r|\n/).filter(Boolean);
+
+    const wordCounts = new Map();
+    for (const word of words) {
+      wordCounts.set(word, (wordCounts.get(word) ?? 0) + 1);
+    }
+
+    const uniqueWordsCount = wordCounts.size;
+    let hapaxLegomena = 0;
+    for (const count of wordCounts.values()) {
+      if (count === 1) hapaxLegomena++;
+    }
+
+    let syllables = 0;
+    let longestWord = "";
+    let shortestWord = "";
+    let totalWordLength = 0;
+    let complexWords = 0;
+
+    for (const word of words) {
+      const wordSyllables = countSyllables(word);
+      syllables += wordSyllables;
+      totalWordLength += word.length;
+      if (wordSyllables > 3) complexWords++;
+      if (word.length > longestWord.length) longestWord = word;
+      if (!shortestWord || (word.length > 1 && word.length < shortestWord.length))
+        shortestWord = word;
+    }
 
     const averageWordLength = (
-      words.reduce((sum, word) => sum + word.length, 0) / words.length
+      totalWordLength / words.length
     ).toFixed(2);
-    const complexWords = words.filter(
-      (word) => countSyllables(word) > 3
-    ).length;
 
     const slowReadingTime = (words.length / 125).toFixed(1);
     const averageReadingTime = (words.length / 200).toFixed(1);
@@ -113,9 +228,6 @@ const Statistics = ({ mode, outputText }) => {
 
     const complexSentences = sentences.filter(
       (sentence) => sentence.split(/\s+/).length > 20
-    ).length;
-    const hapaxLegomena = words.filter(
-      (word) => words.filter((w) => w === word).length === 1
     ).length;
 
     const fleschKincaidGradeLevel = (
@@ -150,7 +262,7 @@ const Statistics = ({ mode, outputText }) => {
       { label: "Sentences", value: sentences.length || "N/A" },
       { label: "Words", value: words.length || "N/A" },
       { label: "Characters", value: characters || "N/A" },
-      { label: "Unique Words", value: uniqueWords.size || "N/A" },
+      { label: "Unique Words", value: uniqueWordsCount || "N/A" },
       { label: "Longest Word", value: longestWord || "N/A" },
       { label: "Shortest Word", value: shortestWord || "N/A" },
       {
@@ -178,9 +290,9 @@ const Statistics = ({ mode, outputText }) => {
       {
         label: "Unique Word Ratio",
         value:
-          `${((uniqueWords.size / words.length) * 100).toFixed(2)}%` === "NaN%"
+          `${((uniqueWordsCount / words.length) * 100).toFixed(2)}%` === "NaN%"
             ? "N/A"
-            : `${((uniqueWords.size / words.length) * 100).toFixed(2)}%`,
+            : `${((uniqueWordsCount / words.length) * 100).toFixed(2)}%`,
       },
       {
         label: "Flesch-Kincaid Grade Level",
@@ -198,6 +310,9 @@ const Statistics = ({ mode, outputText }) => {
     countSyllables,
     detectPassiveVoice,
     countStopWords,
+    countWordsFast,
+    countSentencesFast,
+    countParagraphsFast,
   ]);
 
   return (

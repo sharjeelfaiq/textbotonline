@@ -1,42 +1,9 @@
-import { useMemo } from "react";
-import { actionButtonProps } from "./ActionButtonData";
 import { motion } from "framer-motion";
 
-const ActionButton = ({
-  inputText,
-  outputText,
-  setInputText,
-  setOutputText,
-  props,
-  transitionInputTextarea,
-  transitionOutputTextarea,
-  index,
-}) => {
-  const actionBtnsData = useMemo(
-    () =>
-      actionButtonProps(
-        inputText,
-        outputText,
-        setInputText,
-        setOutputText,
-        props,
-        transitionInputTextarea,
-        transitionOutputTextarea
-      ),
-    [
-      inputText,
-      outputText,
-      props,
-      setInputText,
-      setOutputText,
-      transitionInputTextarea,
-      transitionOutputTextarea,
-    ]
-  );
-
+const ActionButton = ({ buttons }) => {
   return (
     <>
-      {actionBtnsData[index].map((btnProp) => (
+      {buttons.map((btnProp) => (
         <motion.button
           whileTap={{
             scale: 0.5,

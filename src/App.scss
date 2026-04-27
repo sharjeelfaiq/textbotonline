@@ -13,6 +13,132 @@ $alert-height: 55px; // Height of alert div
 $menu-item-font-size: 0.78rem; // Base font size for menu items
 $small-font-size: 0.69rem; // Smaller font size for buttons
 
+/* Design tokens (spacing, typography, surfaces) */
+:root {
+  --tb-space-1: 0.25rem;
+  --tb-space-2: 0.5rem;
+  --tb-space-3: 0.75rem;
+  --tb-space-4: 1rem;
+  --tb-space-5: 1.5rem;
+  --tb-space-6: 2rem;
+
+  --tb-radius-1: 0.5rem;
+  --tb-radius-2: 0.75rem;
+
+  --tb-font-sans: Roboto, system-ui, -apple-system, "Segoe UI", Arial,
+    sans-serif;
+  --tb-font-display: Oswald, var(--tb-font-sans);
+  --tb-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  --tb-surface: #ffffff;
+  --tb-surface-2: #f8f9fa;
+  --tb-border: rgba(0, 0, 0, 0.12);
+  --tb-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --tb-focus: #0dcaf0;
+  --tb-focus-rgb: 13, 202, 240;
+}
+
+html[data-theme="dark"] {
+  --tb-surface: #1f2022;
+  --tb-surface-2: #212529;
+  --tb-border: rgba(255, 255, 255, 0.12);
+  --tb-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --tb-focus: #66d9ff;
+  --tb-focus-rgb: 102, 217, 255;
+}
+
+body {
+  font-family: var(--tb-font-sans);
+}
+
+/* Tool workspace layout */
+.tb-title {
+  font-family: var(--tb-font-display);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin: var(--tb-space-5) 0 var(--tb-space-2);
+}
+
+.tb-tagline {
+  margin: 0 0 var(--tb-space-5);
+  opacity: 0.85;
+}
+
+.tb-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--tb-space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--tb-space-3);
+}
+
+.tb-toolbarGroup {
+  display: inline-flex;
+  gap: var(--tb-space-2);
+  flex-wrap: wrap;
+}
+
+.tb-panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--tb-space-3);
+  align-items: stretch;
+  margin: var(--tb-space-3) 0;
+}
+
+.tb-panel {
+  background: var(--tb-surface);
+  border: 1px solid var(--tb-border);
+  border-radius: var(--tb-radius-2);
+  box-shadow: var(--tb-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.tb-textarea {
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: var(--tb-space-3) var(--tb-space-4) !important;
+  font-family: var(--tb-font-mono);
+  resize: vertical;
+  min-height: 240px;
+}
+
+.tb-textarea:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+.dropdown-toggle:focus-visible,
+.form-check-input:focus-visible {
+  outline: 3px solid rgba(var(--tb-focus-rgb), 0.4);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 0.25rem rgba(var(--tb-focus-rgb), 0.25) !important;
+}
+
+.tb-menus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--tb-space-2);
+  margin-top: var(--tb-space-3);
+}
+
+
+.tb-toastShell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--tb-space-2) 0;
+}
+
+.tb-toast {
+  width: min(560px, calc(100% - 2rem));
+  border-radius: var(--tb-radius-2);
+  box-shadow: var(--tb-shadow);
+}
+
 // General Styles
 .form-control,
 .top-btns,
@@ -131,7 +257,7 @@ $small-font-size: 0.69rem; // Smaller font size for buttons
 
 // Alert Div
 .alert-div {
-  height: $alert-height; // Height of alert div
+  min-height: $alert-height; // Height of alert div
 }
 
 // Media Queries for Responsive Design
@@ -156,6 +282,12 @@ $small-font-size: 0.69rem; // Smaller font size for buttons
 
   .form-check {
     right: 20px; // Align form check on smaller screens
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tb-panels {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -226,7 +358,7 @@ $small-font-size: 0.69rem; // Smaller font size for buttons
 
 @media screen and (max-width: 280px) {
   .alert-div {
-    height: 65px; // Increase alert height
+    min-height: 65px; // Increase alert height
     font-size: 0.75rem; // Smaller font size for visibility
   }
 }

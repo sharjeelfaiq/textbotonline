@@ -1,12 +1,8 @@
 
-import { dropdownData } from "../DropdownMenu/DropdownMenuData";
+import { getDropdownToolsByMenu } from "../../features/tools/registry";
 
 const AccordionItems = ({ menu }) => {
-  const manipulationBtnsProps = dropdownData();
-
-  const filteredItems = manipulationBtnsProps.filter(
-    (item) => item.menuName === menu
-  );
+  const filteredItems = getDropdownToolsByMenu(menu);
 
   return (
     <ul style={{ listStyleType: "none" }} className="lh-lg">

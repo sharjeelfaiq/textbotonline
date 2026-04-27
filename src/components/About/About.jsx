@@ -1,6 +1,7 @@
 
 import { siteData, metrics } from "./AboutData";
 import AccordionItems from "./AccordionItem";
+import { getDropdownMenuNames } from "../../features/tools/registry";
 
 const description = siteData.description;
 
@@ -9,10 +10,17 @@ function About({ mode }) {
   const backgroundColor = isDarkMode ? "#242526" : "white";
   const textColor = isDarkMode ? "white" : "black";
 
+  const menuTitles = {
+    Edit: "Edit Your Text",
+    "Change Case": "Change The Case Of Your Text",
+    Generate: "Generate Different Kinds Of Text",
+  };
+
   const accordionItems = [
-    { title: "Edit Your Text", menu: "Edit" },
-    { title: "Change The Case Of Your Text", menu: "Change Case" },
-    { title: "Generate Different Kinds Of Text", menu: "Generate" },
+    ...getDropdownMenuNames().map((menu) => ({
+      title: menuTitles[menu] ?? menu,
+      menu,
+    })),
     { title: "Know The Statistics/Summary of Your Text", metrics: true },
   ];
 
